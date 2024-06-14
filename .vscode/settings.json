@@ -14,10 +14,10 @@
     "/node_modules": true,
     "node_modules": true,
     "**/node_modules": true,
-    "**/.vscode": false,
-    ".vscode": false
+    "**/.vscode": true,
+    ".vscode": true
   },
   "terminal.integrated.cwd": "/home/rr-h/Documents/Git/Projects/Clinic.OS",
   "explorerExclude.backup": {}
-  
+
 }
