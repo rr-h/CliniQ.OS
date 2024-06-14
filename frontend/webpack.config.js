@@ -1,10 +1,12 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './main.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true, // This will clean the /dist folder before each build
   },
   mode: 'development',
   devServer: {
@@ -13,7 +15,7 @@ module.exports = {
     },
     compress: true,
     port: 9000,
-    open: true, // This will automatically open the browser when the server starts
+    open: true, // Automatically open the browser when the server starts
   },
   module: {
     rules: [
@@ -23,4 +25,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+    }),
+  ],
 };
