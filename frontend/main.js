@@ -1,11 +1,14 @@
-import { fetchData } from './utils/dataFetcher.js';
-import { processData } from './utils/dataProcessor.js';
-import { displayData } from './components/UIComponents.js';
-import { handleSubmit, handleClick } from './components/EventHandler.js';
+import { fetchData } from './utils/dataFetcher';
+import { processData } from './utils/dataProcessor';
+import { displayData } from './components/UIComponents';
+import { handleSubmit, handleClick } from './components/EventHandler';
 import './CliniQ.OS/css/styles.css';
 import './CliniQ.OS/css/clinic_OS.min.css';
 import './CliniQ.OS/css/fonts.css';
-import './CliniQ.OS/js/clinic.OS.webflow.js'; // Import the main JS file of CliniQ.OS
+import './CliniQ.OS/fonts';
+import './CliniQ.OS/index.CliniQ.OS.html';
+import './CliniQ.OS/images';
+import './CliniQ.OS/js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
