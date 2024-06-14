@@ -2679,7 +2679,7 @@ p {
 }
 
 .bg-wrapper.cosmic {
-   background-image: url(../images/Type%3DType%2001.svg), url(../images/e_giphy.gif);
+   background-image: url(../images/Type%3DType%2001.svg), url(../images/gifs/wrapper_cosmic.gif);
    background-position: 50%, 50% 25%;
    background-size: 500px, cover
 }
@@ -6329,7 +6329,7 @@ p {
    }
 
    .bg-wrapper.cosmic {
-      background-image: url(../images/Type%3DType%2001.svg), url(../images/e_giphy.gif);
+      background-image: url(../images/Type%3DType%2001.svg), url(../images/gifs/wrapper_cosmic.gif);
       background-position: 50%, 50%
    }
 
