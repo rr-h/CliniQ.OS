@@ -1,0 +1,3 @@
+healthcare icons = https://icons8.com/icon/set/healthcare/pulsar-color
+UI icons = https://icons8.com/icon/set/user-interface/pulsar-color
+files icons = https://icons8.com/icon/set/files/pulsar-color
