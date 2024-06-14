@@ -14,4 +14,4 @@ app.use(loggerMiddleware);
 
 app.use('/api', routes);
 
-export default app;
+export default App;
