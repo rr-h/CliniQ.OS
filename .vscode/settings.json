@@ -18,6 +18,7 @@
     ".vscode": true
   },
   "terminal.integrated.cwd": "/home/rr-h/Documents/Git/Projects/CliniQ.OS",
-  "explorerExclude.backup": {}
+  "explorerExclude.backup": {},
+  "workbench.colorCustomizations": {}
 
 }
