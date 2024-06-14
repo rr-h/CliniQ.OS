@@ -19,6 +19,15 @@
   },
   "terminal.integrated.cwd": "/home/rr-h/Documents/Git/Projects/CliniQ.OS",
   "explorerExclude.backup": {},
-  "workbench.colorCustomizations": {}
+  "workbench.colorCustomizations": {},
+  "folder-color.pathColors": [
+    {
+      "folderPath": "CliniQ.OS/backend/controllers/",
+      "color": "foldercolorizer.Gold"
+    },
+    {
+      "folderPath": "CliniQ.OS/backend/"
+    }
+  ]
 
 }

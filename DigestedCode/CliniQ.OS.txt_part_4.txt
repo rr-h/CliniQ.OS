@@ -1,0 +1,5017 @@
+            if (T) return l(T);
+            p.toggle(!1),
+              H.css("display", "inline-block"),
+              H.focus(),
+              (k.fileUploads[D].uploading = !1),
+              w() || P(k);
+          }
+          function w() {
+            var T = (k.fileUploads && k.fileUploads.toArray()) || [];
+            return T.some(function (x) {
+              return x.uploading;
+            });
+          }
+        }
+        function Q(D, k) {
+          var K = new URLSearchParams({ name: D.name, size: D.size });
+          e.ajax({ type: "GET", url: `${_}?${K}`, crossDomain: !0 })
+            .done(function (V) {
+              k(null, V);
+            })
+            .fail(function (V) {
+              k(V);
+            });
+        }
+        function Z(D, k, K, V, F) {
+          var p = new FormData();
+          for (var H in k) p.append(H, k[H]);
+          p.append("file", K, V),
+            e
+              .ajax({
+                type: "POST",
+                url: D,
+                data: p,
+                processData: !1,
+                contentType: !1,
+              })
+              .done(function () {
+                F(null);
+              })
+              .fail(function (W) {
+                F(W);
+              });
+        }
+        return r;
+      })
+    );
+  });
+  var U_ = c((Zj, G_) => {
+    "use strict";
+    var bt = Me(),
+      CH = un();
+    bt.define(
+      "tabs",
+      (G_.exports = function (e) {
+        var t = {},
+          r = e.tram,
+          n = e(document),
+          i,
+          o,
+          a = bt.env,
+          s = a.safari,
+          u = a(),
+          f = "data-w-tab",
+          g = "data-w-pane",
+          d = ".w-tabs",
+          h = "w--current",
+          y = "w--tab-active",
+          E = CH.triggers,
+          _ = !1;
+        (t.ready = t.design = t.preview = q),
+          (t.redraw = function () {
+            (_ = !0), q(), (_ = !1);
+          }),
+          (t.destroy = function () {
+            (i = n.find(d)), i.length && (i.each(A), I());
+          });
+        function q() {
+          (o = u && bt.env("design")),
+            (i = n.find(d)),
+            i.length &&
+              (i.each(N), bt.env("preview") && !_ && i.each(A), I(), S());
+        }
+        function I() {
+          bt.redraw.off(t.redraw);
+        }
+        function S() {
+          bt.redraw.on(t.redraw);
+        }
+        function A(U, O) {
+          var v = e.data(O, d);
+          v &&
+            (v.links && v.links.each(E.reset),
+            v.panes && v.panes.each(E.reset));
+        }
+        function N(U, O) {
+          var v = d.substr(1) + "-" + U,
+            R = e(O),
+            M = e.data(O, d);
+          if (
+            (M || (M = e.data(O, d, { el: R, config: {} })),
+            (M.current = null),
+            (M.tabIdentifier = v + "-" + f),
+            (M.paneIdentifier = v + "-" + g),
+            (M.menu = R.children(".w-tab-menu")),
+            (M.links = M.menu.children(".w-tab-link")),
+            (M.content = R.children(".w-tab-content")),
+            (M.panes = M.content.children(".w-tab-pane")),
+            M.el.off(d),
+            M.links.off(d),
+            M.menu.attr("role", "tablist"),
+            M.links.attr("tabindex", "-1"),
+            P(M),
+            !o)
+          ) {
+            M.links.on("click" + d, B(M)), M.links.on("keydown" + d, j(M));
+            var G = M.links.filter("." + h),
+              Q = G.attr(f);
+            Q && z(M, { tab: Q, immediate: !0 });
+          }
+        }
+        function P(U) {
+          var O = {};
+          O.easing = U.el.attr("data-easing") || "ease";
+          var v = parseInt(U.el.attr("data-duration-in"), 10);
+          v = O.intro = v === v ? v : 0;
+          var R = parseInt(U.el.attr("data-duration-out"), 10);
+          (R = O.outro = R === R ? R : 0),
+            (O.immediate = !v && !R),
+            (U.config = O);
+        }
+        function L(U) {
+          var O = U.current;
+          return Array.prototype.findIndex.call(
+            U.links,
+            (v) => v.getAttribute(f) === O,
+            null
+          );
+        }
+        function B(U) {
+          return function (O) {
+            O.preventDefault();
+            var v = O.currentTarget.getAttribute(f);
+            v && z(U, { tab: v });
+          };
+        }
+        function j(U) {
+          return function (O) {
+            var v = L(U),
+              R = O.key,
+              M = {
+                ArrowLeft: v - 1,
+                ArrowUp: v - 1,
+                ArrowRight: v + 1,
+                ArrowDown: v + 1,
+                End: U.links.length - 1,
+                Home: 0,
+              };
+            if (R in M) {
+              O.preventDefault();
+              var G = M[R];
+              G === -1 && (G = U.links.length - 1),
+                G === U.links.length && (G = 0);
+              var Q = U.links[G],
+                Z = Q.getAttribute(f);
+              Z && z(U, { tab: Z });
+            }
+          };
+        }
+        function z(U, O) {
+          O = O || {};
+          var v = U.config,
+            R = v.easing,
+            M = O.tab;
+          if (M !== U.current) {
+            U.current = M;
+            var G;
+            U.links.each(function (F, p) {
+              var H = e(p);
+              if (O.immediate || v.immediate) {
+                var W = U.panes[F];
+                p.id || (p.id = U.tabIdentifier + "-" + F),
+                  W.id || (W.id = U.paneIdentifier + "-" + F),
+                  (p.href = "#" + W.id),
+                  p.setAttribute("role", "tab"),
+                  p.setAttribute("aria-controls", W.id),
+                  p.setAttribute("aria-selected", "false"),
+                  W.setAttribute("role", "tabpanel"),
+                  W.setAttribute("aria-labelledby", p.id);
+              }
+              p.getAttribute(f) === M
+                ? ((G = p),
+                  H.addClass(h)
+                    .removeAttr("tabindex")
+                    .attr({ "aria-selected": "true" })
+                    .each(E.intro))
+                : H.hasClass(h) &&
+                  H.removeClass(h)
+                    .attr({ tabindex: "-1", "aria-selected": "false" })
+                    .each(E.outro);
+            });
+            var Q = [],
+              Z = [];
+            U.panes.each(function (F, p) {
+              var H = e(p);
+              p.getAttribute(f) === M ? Q.push(p) : H.hasClass(y) && Z.push(p);
+            });
+            var D = e(Q),
+              k = e(Z);
+            if (O.immediate || v.immediate) {
+              D.addClass(y).each(E.intro),
+                k.removeClass(y),
+                _ || bt.redraw.up();
+              return;
+            } else {
+              var K = window.scrollX,
+                V = window.scrollY;
+              G.focus(), window.scrollTo(K, V);
+            }
+            k.length && v.outro
+              ? (k.each(E.outro),
+                r(k)
+                  .add("opacity " + v.outro + "ms " + R, { fallback: s })
+                  .start({ opacity: 0 })
+                  .then(() => $(v, k, D)))
+              : $(v, k, D);
+          }
+        }
+        function $(U, O, v) {
+          if (
+            (O.removeClass(y).css({
+              opacity: "",
+              transition: "",
+              transform: "",
+              width: "",
+              height: "",
+            }),
+            v.addClass(y).each(E.intro),
+            bt.redraw.up(),
+            !U.intro)
+          )
+            return r(v).set({ opacity: 1 });
+          r(v)
+            .set({ opacity: 0 })
+            .redraw()
+            .add("opacity " + U.intro + "ms " + U.easing, { fallback: s })
+            .start({ opacity: 1 });
+        }
+        return t;
+      })
+    );
+  });
+  Hs();
+  ks();
+  Bs();
+  Ks();
+  un();
+  A_();
+  x_();
+  R_();
+  N_();
+  q_();
+  F_();
+  U_();
+})();
+/*!
+ * tram.js v0.8.2-global
+ * Cross-browser CSS3 transitions in JavaScript
+ * https://github.com/bkwld/tram
+ * MIT License
+ */
+/*!
+ * Webflow._ (aka) Underscore.js 1.6.0 (custom build)
+ * _.each
+ * _.map
+ * _.find
+ * _.filter
+ * _.any
+ * _.contains
+ * _.delay
+ * _.defer
+ * _.throttle (webflow)
+ * _.debounce
+ * _.keys
+ * _.has
+ * _.now
+ * _.template (webflow: upgraded to 1.13.6)
+ *
+ * http://underscorejs.org
+ * (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Underscore may be freely distributed under the MIT license.
+ * @license MIT
+ */
+/*! Bundled license information:
+
+timm/lib/timm.js:
+  (*!
+   * Timm
+   *
+   * Immutability helpers with fast reads and acceptable writes.
+   *
+   * @copyright Guillermo Grau Panea 2016
+   * @license MIT
+   *)
+*/
+/**
+ * ----------------------------------------------------------------------
+ * Webflow: Interactions 2.0: Init
+ */
+Webflow.require("ix2").init({
+  events: {
+    e: {
+      id: "e",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "SCROLL_INTO_VIEW",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-2",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        selector: ".content-block",
+        originalId:
+          "63e4d5b7359de159bee34dae|67af61e7-558b-f92e-6c4f-491deb69b2a5",
+        appliesTo: "CLASS",
+      },
+      targets: [
+        {
+          selector: ".content-block",
+          originalId:
+            "63e4d5b7359de159bee34dae|67af61e7-558b-f92e-6c4f-491deb69b2a5",
+          appliesTo: "CLASS",
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: 0,
+        scrollOffsetUnit: "%",
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654185105029,
+    },
+    "e-3": {
+      id: "e-3",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "SCROLL_INTO_VIEW",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-4",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        selector: ".div-block-2._2",
+        originalId:
+          "63e4d5b7359de159bee34dae|dbafbea6-b86e-6447-96a8-47adefc9cee4",
+        appliesTo: "CLASS",
+      },
+      targets: [
+        {
+          selector: ".div-block-2._2",
+          originalId:
+            "63e4d5b7359de159bee34dae|dbafbea6-b86e-6447-96a8-47adefc9cee4",
+          appliesTo: "CLASS",
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: 0,
+        scrollOffsetUnit: "%",
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654185265314,
+    },
+    "e-5": {
+      id: "e-5",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "SCROLL_INTO_VIEW",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-6",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        selector: ".div-block-2._1",
+        originalId:
+          "63e4d5b7359de159bee34dae|937263e3-77ee-95eb-bd0f-eae393ef0fcc",
+        appliesTo: "CLASS",
+      },
+      targets: [
+        {
+          selector: ".div-block-2._1",
+          originalId:
+            "63e4d5b7359de159bee34dae|937263e3-77ee-95eb-bd0f-eae393ef0fcc",
+          appliesTo: "CLASS",
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: 0,
+        scrollOffsetUnit: "%",
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654185274563,
+    },
+    "e-7": {
+      id: "e-7",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-2",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-8",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|ac48f439-bb77-abb9-99e3-e60c38fc61e1",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|ac48f439-bb77-abb9-99e3-e60c38fc61e1",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654202337482,
+    },
+    "e-9": {
+      id: "e-9",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-4",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-10",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|30ddb4cf-2afe-801e-5244-c24b79d05b3e",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|30ddb4cf-2afe-801e-5244-c24b79d05b3e",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654202967139,
+    },
+    "e-11": {
+      id: "e-11",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-5",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-12",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|c045ac82-f5a0-8610-ffe8-b6d1969426d9",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|c045ac82-f5a0-8610-ffe8-b6d1969426d9",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654204552735,
+    },
+    "e-13": {
+      id: "e-13",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-6",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-14",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|b0e12881-f2fd-464e-14f5-6e57e8b3a6e8",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|b0e12881-f2fd-464e-14f5-6e57e8b3a6e8",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654204632722,
+    },
+    "e-17": {
+      id: "e-17",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-13",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-18",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|50a80dfa-a12c-fae1-ca03-5c8886456103",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|50a80dfa-a12c-fae1-ca03-5c8886456103",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654205525696,
+    },
+    "e-19": {
+      id: "e-19",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-9",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-20",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|5080cc49-9485-9efe-829d-b12aaa2dfdfc",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|5080cc49-9485-9efe-829d-b12aaa2dfdfc",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654209570515,
+    },
+    "e-21": {
+      id: "e-21",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-8",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-22",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|b79a9326-4ff5-c912-61c8-b2ece8c6a839",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|b79a9326-4ff5-c912-61c8-b2ece8c6a839",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654209621448,
+    },
+    "e-23": {
+      id: "e-23",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-10",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-24",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|170a44dd-3a35-9f01-c8f4-0114f1a35a50",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|170a44dd-3a35-9f01-c8f4-0114f1a35a50",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654209717899,
+    },
+    "e-25": {
+      id: "e-25",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-11",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-26",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|57fde76a-0201-fa7d-9988-683d09558d39",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|57fde76a-0201-fa7d-9988-683d09558d39",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654209771088,
+    },
+    "e-27": {
+      id: "e-27",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-12",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-28",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|49d900b1-de7d-8eec-20df-821591810397",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|49d900b1-de7d-8eec-20df-821591810397",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654209821161,
+    },
+    "e-29": {
+      id: "e-29",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-14",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-30",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|072c925d-d052-cc66-a180-f2c5a9286b8b",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|072c925d-d052-cc66-a180-f2c5a9286b8b",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654212896158,
+    },
+    "e-31": {
+      id: "e-31",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-15",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-32",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|7a7d79dd-f2d0-83ac-5370-61fc969cfd5f",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|7a7d79dd-f2d0-83ac-5370-61fc969cfd5f",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654212939356,
+    },
+    "e-33": {
+      id: "e-33",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-7",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-34",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|5096f17e-06e3-b14a-6873-1b9d146f9d3f",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|5096f17e-06e3-b14a-6873-1b9d146f9d3f",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654213489843,
+    },
+    "e-35": {
+      id: "e-35",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-45",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-36",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|d1b2c1a0-7b9e-47c8-9204-fbbc3e31884b",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|d1b2c1a0-7b9e-47c8-9204-fbbc3e31884b",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654215457248,
+    },
+    "e-39": {
+      id: "e-39",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-17",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-40",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|18d22c0b-8f7d-2bb0-9bcd-4c63870593fa",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|18d22c0b-8f7d-2bb0-9bcd-4c63870593fa",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654217560239,
+    },
+    "e-41": {
+      id: "e-41",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-18",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-42",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|37df3d7e-d1d0-cf11-ffb1-899064a0e26d",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|37df3d7e-d1d0-cf11-ffb1-899064a0e26d",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654261673152,
+    },
+    "e-43": {
+      id: "e-43",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-23",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-44",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|18b1cbe9-0eff-819b-72bd-8e5b69b91be7",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|18b1cbe9-0eff-819b-72bd-8e5b69b91be7",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654262055030,
+    },
+    "e-45": {
+      id: "e-45",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-18",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-46",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|7612b7c2-4938-ded4-d438-1d593d3b33f0",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|7612b7c2-4938-ded4-d438-1d593d3b33f0",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654262554774,
+    },
+    "e-51": {
+      id: "e-51",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-20",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-52",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|aa7aaaee-9d32-bd7b-8550-5014a1014b4d",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|aa7aaaee-9d32-bd7b-8550-5014a1014b4d",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654265145237,
+    },
+    "e-53": {
+      id: "e-53",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-21",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-54",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|cd6deb31-dbfb-a528-f172-48cdfb072ef7",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|cd6deb31-dbfb-a528-f172-48cdfb072ef7",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654265161293,
+    },
+    "e-55": {
+      id: "e-55",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-16",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-56",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|b392bc02-7a44-8a9d-3eb5-5642d1c1df25",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|b392bc02-7a44-8a9d-3eb5-5642d1c1df25",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654265604338,
+    },
+    "e-57": {
+      id: "e-57",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-16",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-58",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|b392bc02-7a44-8a9d-3eb5-5642d1c1df4a",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|b392bc02-7a44-8a9d-3eb5-5642d1c1df4a",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654265604338,
+    },
+    "e-59": {
+      id: "e-59",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-19",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-60",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|b392bc02-7a44-8a9d-3eb5-5642d1c1df4a",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|b392bc02-7a44-8a9d-3eb5-5642d1c1df4a",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654265604338,
+    },
+    "e-61": {
+      id: "e-61",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-24",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-62",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|6a27d2ae-198d-1e34-3077-de3a5167533a",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|6a27d2ae-198d-1e34-3077-de3a5167533a",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654267761375,
+    },
+    "e-63": {
+      id: "e-63",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-23",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-64",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|38e2e920-e01d-ba97-aa87-cb8f7b05e0e9",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|38e2e920-e01d-ba97-aa87-cb8f7b05e0e9",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654267838243,
+    },
+    "e-65": {
+      id: "e-65",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-21",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-66",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|7bc4a8cf-b974-7195-099e-80d545ed01ad",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|7bc4a8cf-b974-7195-099e-80d545ed01ad",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654268327611,
+    },
+    "e-67": {
+      id: "e-67",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-17",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-68",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|1c70d090-50b0-fe2e-a95d-c5255d9ab374",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|1c70d090-50b0-fe2e-a95d-c5255d9ab374",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654268337214,
+    },
+    "e-71": {
+      id: "e-71",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-2",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-72",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|22573d47-3bba-dc62-908f-63ed19e71bd2",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|22573d47-3bba-dc62-908f-63ed19e71bd2",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654268365009,
+    },
+    "e-73": {
+      id: "e-73",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-47",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-74",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|b668b37f-8234-0a5b-1d2f-50d1ffc93354",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|b668b37f-8234-0a5b-1d2f-50d1ffc93354",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654269662111,
+    },
+    "e-75": {
+      id: "e-75",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-26",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-76",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|c890ed27-75bc-ff07-3f70-70eb6b007921",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|c890ed27-75bc-ff07-3f70-70eb6b007921",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654273271272,
+    },
+    "e-77": {
+      id: "e-77",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-27",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-78",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|aa7aaaee-9d32-bd7b-8550-5014a1014b56",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|aa7aaaee-9d32-bd7b-8550-5014a1014b56",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654273487482,
+    },
+    "e-79": {
+      id: "e-79",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-28",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-80",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|33aeb146-7cd9-63e8-9205-2a63f1e74d50",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|33aeb146-7cd9-63e8-9205-2a63f1e74d50",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654273511385,
+    },
+    "e-91": {
+      id: "e-91",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-33",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-92",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|fd204100-2844-9ac6-0061-a48b4340b2d8",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|fd204100-2844-9ac6-0061-a48b4340b2d8",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1654298213830,
+    },
+    "e-93": {
+      id: "e-93",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-25",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-94",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|bf7187c4-4441-f01d-b905-a6ebf0a54f24",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|bf7187c4-4441-f01d-b905-a6ebf0a54f24",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655219326725,
+    },
+    "e-95": {
+      id: "e-95",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-34",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-96",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|30702944-7370-1aa5-cca8-40a8adf8c83a",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|30702944-7370-1aa5-cca8-40a8adf8c83a",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655219498747,
+    },
+    "e-97": {
+      id: "e-97",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-35",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-98",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|6a8a2d25-d8f1-249b-9359-80d175cfa2dd",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|6a8a2d25-d8f1-249b-9359-80d175cfa2dd",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655219562664,
+    },
+    "e-99": {
+      id: "e-99",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-36",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-100",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|ec8445a4-c922-f78b-1508-e8646591a4b1",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|ec8445a4-c922-f78b-1508-e8646591a4b1",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655219839763,
+    },
+    "e-101": {
+      id: "e-101",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-37",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-102",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|670b9d60-9b71-178d-c4e4-536f367f12ee",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|670b9d60-9b71-178d-c4e4-536f367f12ee",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655219946611,
+    },
+    "e-103": {
+      id: "e-103",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-38",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-104",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|b72d82c5-5c19-7807-8748-dc2e9fbe46a8",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|b72d82c5-5c19-7807-8748-dc2e9fbe46a8",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655220308305,
+    },
+    "e-105": {
+      id: "e-105",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-39",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-106",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|c5941327-b2cd-3b44-3540-d3c7f3f1c983",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|c5941327-b2cd-3b44-3540-d3c7f3f1c983",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655220785046,
+    },
+    "e-107": {
+      id: "e-107",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-41",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-108",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|8226d090-2ad2-99f4-8027-ab5f3d37d39d",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|8226d090-2ad2-99f4-8027-ab5f3d37d39d",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655221081635,
+    },
+    "e-109": {
+      id: "e-109",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-42",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-110",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|f7d2f7db-20e7-7e54-1401-cb2ced377648",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|f7d2f7db-20e7-7e54-1401-cb2ced377648",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655221254497,
+    },
+    "e-111": {
+      id: "e-111",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-44",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-112",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|e8ea8b5c-49b1-919c-e833-231559dc21cf",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|e8ea8b5c-49b1-919c-e833-231559dc21cf",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655221503092,
+    },
+    "e-113": {
+      id: "e-113",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-43",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-114",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|5c1579fd-9c7e-01a8-3dbf-1cc62fbb94b6",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|5c1579fd-9c7e-01a8-3dbf-1cc62fbb94b6",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655221551408,
+    },
+    "e-115": {
+      id: "e-115",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-46",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-116",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|dcacb4b7-de36-3d58-e41a-bf0ce16a242f",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|dcacb4b7-de36-3d58-e41a-bf0ce16a242f",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655221973671,
+    },
+    "e-117": {
+      id: "e-117",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-17",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-118",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|202dbc7d-3e1a-9817-eb84-9c4ce7767955",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|202dbc7d-3e1a-9817-eb84-9c4ce7767955",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655222010780,
+    },
+    "e-119": {
+      id: "e-119",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-17",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-120",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|b668b37f-8234-0a5b-1d2f-50d1ffc93363",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|b668b37f-8234-0a5b-1d2f-50d1ffc93363",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655222542753,
+    },
+    "e-121": {
+      id: "e-121",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "PAGE_START",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-48",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-122",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae",
+        appliesTo: "PAGE",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae",
+          appliesTo: "PAGE",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1655233953371,
+    },
+    "e-123": {
+      id: "e-123",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-50",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-124",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|dae63006-35ee-3f59-5f68-496f1e2acaf4",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|dae63006-35ee-3f59-5f68-496f1e2acaf4",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1675945913402,
+    },
+    "e-125": {
+      id: "e-125",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-49",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-126",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|842d1d8b-ad9e-8f2a-9611-6695906e9bdc",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|842d1d8b-ad9e-8f2a-9611-6695906e9bdc",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1675946652765,
+    },
+    "e-131": {
+      id: "e-131",
+      name: "",
+      animationType: "preset",
+      eventTypeId: "MOUSE_CLICK",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-52",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-132",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|ea36db0a-3105-cc11-5797-23907d00980f",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|ea36db0a-3105-cc11-5797-23907d00980f",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1675962783502,
+    },
+    "e-133": {
+      id: "e-133",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_MOVE",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_CONTINUOUS_ACTION",
+        config: { actionListId: "a-53", affectedElements: {}, duration: 0 },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|274fbb95-cd81-85e6-c736-406538f4380b",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|274fbb95-cd81-85e6-c736-406538f4380b",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: [
+        {
+          continuousParameterGroupId: "a-53-p",
+          selectedAxis: "X_AXIS",
+          basedOn: "ELEMENT",
+          reverse: false,
+          smoothing: 50,
+          restingState: 50,
+        },
+        {
+          continuousParameterGroupId: "a-53-p-2",
+          selectedAxis: "Y_AXIS",
+          basedOn: "ELEMENT",
+          reverse: false,
+          smoothing: 50,
+          restingState: 50,
+        },
+      ],
+      createdOn: 1676022868880,
+    },
+    "e-134": {
+      id: "e-134",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_OVER",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-54",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-135",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|274fbb95-cd81-85e6-c736-406538f4380b",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|274fbb95-cd81-85e6-c736-406538f4380b",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1676023068488,
+    },
+    "e-135": {
+      id: "e-135",
+      name: "",
+      animationType: "custom",
+      eventTypeId: "MOUSE_OUT",
+      action: {
+        id: "",
+        actionTypeId: "GENERAL_START_ACTION",
+        config: {
+          delay: 0,
+          easing: "",
+          duration: 0,
+          actionListId: "a-55",
+          affectedElements: {},
+          playInReverse: false,
+          autoStopEventId: "e-134",
+        },
+      },
+      mediaQueries: ["main", "medium", "small", "tiny"],
+      target: {
+        id: "63e4d5b7359de159bee34dae|274fbb95-cd81-85e6-c736-406538f4380b",
+        appliesTo: "ELEMENT",
+        styleBlockIds: [],
+      },
+      targets: [
+        {
+          id: "63e4d5b7359de159bee34dae|274fbb95-cd81-85e6-c736-406538f4380b",
+          appliesTo: "ELEMENT",
+          styleBlockIds: [],
+        },
+      ],
+      config: {
+        loop: false,
+        playInReverse: false,
+        scrollOffsetValue: null,
+        scrollOffsetUnit: null,
+        delay: null,
+        direction: null,
+        effectIn: null,
+      },
+      createdOn: 1676023068489,
+    },
+  },
+  actionLists: {
+    a: {
+      id: "a",
+      title: "New Timed Animation",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  useEventTarget: true,
+                  id: "63e4d5b7359de159bee34dae|67af61e7-558b-f92e-6c4f-491deb69b2a5",
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+            {
+              id: "a-n-3",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  useEventTarget: true,
+                  id: "63e4d5b7359de159bee34dae|67af61e7-558b-f92e-6c4f-491deb69b2a5",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-n-2",
+              actionTypeId: "TRANSFORM_MOVE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  useEventTarget: true,
+                  id: "63e4d5b7359de159bee34dae|67af61e7-558b-f92e-6c4f-491deb69b2a5",
+                },
+                yValue: 50,
+                xUnit: "PX",
+                yUnit: "%",
+                zUnit: "PX",
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-n-4",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.175, 0.885, 0.32, 1.275],
+                duration: 500,
+                target: {
+                  useEventTarget: true,
+                  id: "63e4d5b7359de159bee34dae|67af61e7-558b-f92e-6c4f-491deb69b2a5",
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+            {
+              id: "a-n-6",
+              actionTypeId: "TRANSFORM_MOVE",
+              config: {
+                delay: 0,
+                easing: [0.175, 0.885, 0.32, 1.275],
+                duration: 500,
+                target: {
+                  useEventTarget: true,
+                  id: "63e4d5b7359de159bee34dae|67af61e7-558b-f92e-6c4f-491deb69b2a5",
+                },
+                yValue: 0,
+                xUnit: "PX",
+                yUnit: "%",
+                zUnit: "PX",
+              },
+            },
+            {
+              id: "a-n-5",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 650,
+                target: {
+                  useEventTarget: true,
+                  id: "63e4d5b7359de159bee34dae|67af61e7-558b-f92e-6c4f-491deb69b2a5",
+                },
+                value: 1,
+                unit: "",
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654185107859,
+    },
+    "a-2": {
+      id: "a-2",
+      title: "About Me ON",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-2-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-about-me",
+                  selectorGuids: ["54bb747f-4c9c-42f1-8d5d-2212b5ff2bec"],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+            {
+              id: "a-2-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-pics-about-me",
+                  selectorGuids: ["8f5ab35e-54bb-4d5d-8215-6542362857be"],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+            {
+              id: "a-2-n-3",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".image-about-me",
+                  selectorGuids: ["8dc658a1-57f1-4a74-9ad3-15e7639e9cc8"],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-2-n-4",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-about-me",
+                  selectorGuids: ["54bb747f-4c9c-42f1-8d5d-2212b5ff2bec"],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+            {
+              id: "a-2-n-5",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 200,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-pics-about-me",
+                  selectorGuids: ["8f5ab35e-54bb-4d5d-8215-6542362857be"],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202340964,
+    },
+    "a-4": {
+      id: "a-4",
+      title: "New Timed Animation",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-4-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".image-about-me",
+                  selectorGuids: ["8dc658a1-57f1-4a74-9ad3-15e7639e9cc8"],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-4-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.25, 0.25, 0.75, 0.75],
+                duration: 200,
+                target: {
+                  selector: ".image-about-me",
+                  selectorGuids: ["8dc658a1-57f1-4a74-9ad3-15e7639e9cc8"],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-5": {
+      id: "a-5",
+      title: "Exit Window",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-5-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-pics-about-me.draggable",
+                  selectorGuids: [
+                    "8f5ab35e-54bb-4d5d-8215-6542362857be",
+                    "7f50e0a0-2a5a-2082-2229-fff69985ee05",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-6": {
+      id: "a-6",
+      title: "Exit Window 2",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-6-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-notes.draggable",
+                  selectorGuids: [
+                    "9afc38d1-e8b1-adc3-b595-06e021c8ee99",
+                    "2cb1ff0e-62fb-b60d-f70f-457228218142",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-13": {
+      id: "a-13",
+      title: "Exit Window 6",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-13-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".image-about-bike.draggable",
+                  selectorGuids: [
+                    "50adc9fc-3a44-bb32-7090-f419143acf1c",
+                    "27d491f1-93b6-8e38-3396-73dc7a9f31e0",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-9": {
+      id: "a-9",
+      title: "Exit Window 4",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-9-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".image-about-me.draggable",
+                  selectorGuids: [
+                    "8dc658a1-57f1-4a74-9ad3-15e7639e9cc8",
+                    "2f84419d-e434-c863-3842-c9e36dd93500",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-8": {
+      id: "a-8",
+      title: "Exit Window 3",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-8-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".image-about-myself.draggable",
+                  selectorGuids: [
+                    "4fb24ddf-b6c7-a2ea-4a17-e5b42b967edb",
+                    "075c2d33-6651-5997-6902-be6715a70741",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-10": {
+      id: "a-10",
+      title: "New Timed Animation 3",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-10-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".image-about-trip.draggable",
+                  selectorGuids: [
+                    "702f74d8-7e71-eb25-6a03-7ebbcabe554d",
+                    "5d0c7c45-341e-374a-6f25-f3db58c64cbf",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-10-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.25, 0.25, 0.75, 0.75],
+                duration: 200,
+                target: {
+                  selector: ".image-about-trip.draggable",
+                  selectorGuids: [
+                    "702f74d8-7e71-eb25-6a03-7ebbcabe554d",
+                    "5d0c7c45-341e-374a-6f25-f3db58c64cbf",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-11": {
+      id: "a-11",
+      title: "Exit Window 5",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-11-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".image-about-trip.draggable",
+                  selectorGuids: [
+                    "702f74d8-7e71-eb25-6a03-7ebbcabe554d",
+                    "5d0c7c45-341e-374a-6f25-f3db58c64cbf",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-12": {
+      id: "a-12",
+      title: "New Timed Animation 4",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-12-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".image-about-bike.draggable",
+                  selectorGuids: [
+                    "50adc9fc-3a44-bb32-7090-f419143acf1c",
+                    "27d491f1-93b6-8e38-3396-73dc7a9f31e0",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-12-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.25, 0.25, 0.75, 0.75],
+                duration: 200,
+                target: {
+                  selector: ".image-about-bike.draggable",
+                  selectorGuids: [
+                    "50adc9fc-3a44-bb32-7090-f419143acf1c",
+                    "27d491f1-93b6-8e38-3396-73dc7a9f31e0",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-14": {
+      id: "a-14",
+      title: "Exit Music",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-14-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".div-block-40",
+                  selectorGuids: ["32f9d289-d9fd-f066-930d-dd61fe636154"],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654212898573,
+    },
+    "a-15": {
+      id: "a-15",
+      title: "Music ON",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-15-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".div-block-40",
+                  selectorGuids: ["32f9d289-d9fd-f066-930d-dd61fe636154"],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-15-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.175, 0.885, 0.32, 1.275],
+                duration: 200,
+                target: {
+                  selector: ".div-block-40",
+                  selectorGuids: ["32f9d289-d9fd-f066-930d-dd61fe636154"],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654212941583,
+    },
+    "a-7": {
+      id: "a-7",
+      title: "New Timed Animation 2",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-7-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".image-about-myself.draggable",
+                  selectorGuids: [
+                    "4fb24ddf-b6c7-a2ea-4a17-e5b42b967edb",
+                    "075c2d33-6651-5997-6902-be6715a70741",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-7-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.25, 0.25, 0.75, 0.75],
+                duration: 200,
+                target: {
+                  selector: ".image-about-myself.draggable",
+                  selectorGuids: [
+                    "4fb24ddf-b6c7-a2ea-4a17-e5b42b967edb",
+                    "075c2d33-6651-5997-6902-be6715a70741",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-45": {
+      id: "a-45",
+      title: "Exit Window 20",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-45-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-partnerhub.draggable",
+                  selectorGuids: [
+                    "7afc9c53-a697-dd6b-ecab-fdbb7e09fb3b",
+                    "9b6f6d10-f927-f7de-81a9-cc5ee5af884c",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-17": {
+      id: "a-17",
+      title: "New Timed Animation 5",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-17-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-form-mail._2.draggable",
+                  selectorGuids: [
+                    "e63bef16-1076-ed4f-e134-f01e159ec846",
+                    "df3c943a-e381-4d23-fc00-987d434a3c59",
+                    "034a3c1f-5286-f449-20a4-214e6d434d51",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-17-n-3",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-form-mail._2.draggable",
+                  selectorGuids: [
+                    "e63bef16-1076-ed4f-e134-f01e159ec846",
+                    "df3c943a-e381-4d23-fc00-987d434a3c59",
+                    "034a3c1f-5286-f449-20a4-214e6d434d51",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-18": {
+      id: "a-18",
+      title: "Exit Window 8",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-18-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-confirm._2.draggable",
+                  selectorGuids: [
+                    "2c6bdf0e-d522-5184-86c5-602d051fe04f",
+                    "cf54f0f7-96ff-e2a5-aeba-1866a78fdd30",
+                    "8b4b3756-6e51-3bd0-ef79-bd577164b7ab",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-23": {
+      id: "a-23",
+      title: "Exit Window 10",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-23-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".theme._2-copy.draggable",
+                  selectorGuids: [
+                    "1e689f1a-daad-7238-a028-27d49be4d90a",
+                    "26849003-4b79-5ed7-a7eb-8cac5f0e346d",
+                    "bba4c9b9-c0b6-a087-4804-154d83825898",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-20": {
+      id: "a-20",
+      title: "Exit Window 9",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-20-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-projects._2.draggable",
+                  selectorGuids: [
+                    "e56136a5-4855-9a91-f7f8-a33ed9932231",
+                    "6c010109-ef0d-d445-0007-cfb7c33daf3e",
+                    "9e3ce1d7-f3cb-7f32-1fca-8ac63fa1e855",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-21": {
+      id: "a-21",
+      title: "New Timed Animation 6",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-21-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-projects._2.draggable",
+                  selectorGuids: [
+                    "e56136a5-4855-9a91-f7f8-a33ed9932231",
+                    "6c010109-ef0d-d445-0007-cfb7c33daf3e",
+                    "9e3ce1d7-f3cb-7f32-1fca-8ac63fa1e855",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-21-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-projects.draggable._2",
+                  selectorGuids: [
+                    "e56136a5-4855-9a91-f7f8-a33ed9932231",
+                    "8249ec40-989b-5b1e-bf38-d0478b00aab4",
+                    "2f715151-d816-be82-dd63-815b70ed0374",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-16": {
+      id: "a-16",
+      title: "Exit Window 7",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-16-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-form-mail._2.draggable",
+                  selectorGuids: [
+                    "e63bef16-1076-ed4f-e134-f01e159ec846",
+                    "df3c943a-e381-4d23-fc00-987d434a3c59",
+                    "034a3c1f-5286-f449-20a4-214e6d434d51",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-19": {
+      id: "a-19",
+      title: "Send Email",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-19-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-blackhole._2.draggable",
+                  selectorGuids: [
+                    "e6b4d5f5-d902-7f7a-bea8-8eabe9cec6a2",
+                    "eeda6379-d105-c781-db09-29ab4fec0eab",
+                    "bc204211-1ceb-aff8-7dc9-feef6f0b47f1",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+            {
+              id: "a-19-n-16",
+              actionTypeId: "TRANSFORM_ROTATE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-blackhole._2.draggable",
+                  selectorGuids: [
+                    "e6b4d5f5-d902-7f7a-bea8-8eabe9cec6a2",
+                    "eeda6379-d105-c781-db09-29ab4fec0eab",
+                    "bc204211-1ceb-aff8-7dc9-feef6f0b47f1",
+                  ],
+                },
+                zValue: -61,
+                xUnit: "DEG",
+                yUnit: "DEG",
+                zUnit: "deg",
+              },
+            },
+            {
+              id: "a-19-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-confirm._2.draggable",
+                  selectorGuids: [
+                    "2c6bdf0e-d522-5184-86c5-602d051fe04f",
+                    "cf54f0f7-96ff-e2a5-aeba-1866a78fdd30",
+                    "8b4b3756-6e51-3bd0-ef79-bd577164b7ab",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-19-n-4",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|91e099d1-59f8-4cf0-8787-030a14fae3b9",
+                },
+                value: "none",
+              },
+            },
+            {
+              id: "a-19-n-5",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|30700437-fa65-8e46-8369-407c41dfef3c",
+                },
+                value: "block",
+              },
+            },
+            {
+              id: "a-19-n-17",
+              actionTypeId: "TRANSFORM_ROTATE",
+              config: {
+                delay: 0,
+                easing: [0.215, 0.61, 0.355, 1],
+                duration: 500,
+                target: {
+                  selector: ".window-blackhole._2.draggable",
+                  selectorGuids: [
+                    "e6b4d5f5-d902-7f7a-bea8-8eabe9cec6a2",
+                    "eeda6379-d105-c781-db09-29ab4fec0eab",
+                    "bc204211-1ceb-aff8-7dc9-feef6f0b47f1",
+                  ],
+                },
+                zValue: 0,
+                xUnit: "DEG",
+                yUnit: "DEG",
+                zUnit: "deg",
+              },
+            },
+            {
+              id: "a-19-n-3",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.175, 0.885, 0.32, 1.275],
+                duration: 750,
+                target: {
+                  selector: ".window-blackhole._2.draggable",
+                  selectorGuids: [
+                    "e6b4d5f5-d902-7f7a-bea8-8eabe9cec6a2",
+                    "eeda6379-d105-c781-db09-29ab4fec0eab",
+                    "bc204211-1ceb-aff8-7dc9-feef6f0b47f1",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-19-n-6",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|91e099d1-59f8-4cf0-8787-030a14fae3b9",
+                },
+                value: "block",
+              },
+            },
+            {
+              id: "a-19-n-7",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|30700437-fa65-8e46-8369-407c41dfef3c",
+                },
+                value: "none",
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-19-n-8",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 1000,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|91e099d1-59f8-4cf0-8787-030a14fae3b9",
+                },
+                value: "none",
+              },
+            },
+            {
+              id: "a-19-n-9",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 1000,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|30700437-fa65-8e46-8369-407c41dfef3c",
+                },
+                value: "block",
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-19-n-10",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 1000,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|91e099d1-59f8-4cf0-8787-030a14fae3b9",
+                },
+                value: "block",
+              },
+            },
+            {
+              id: "a-19-n-11",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 1000,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|30700437-fa65-8e46-8369-407c41dfef3c",
+                },
+                value: "none",
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-19-n-12",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 1000,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|91e099d1-59f8-4cf0-8787-030a14fae3b9",
+                },
+                value: "none",
+              },
+            },
+            {
+              id: "a-19-n-13",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 1000,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|30700437-fa65-8e46-8369-407c41dfef3c",
+                },
+                value: "block",
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-19-n-14",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 1000,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  selector: ".window-blackhole._2.draggable",
+                  selectorGuids: [
+                    "e6b4d5f5-d902-7f7a-bea8-8eabe9cec6a2",
+                    "eeda6379-d105-c781-db09-29ab4fec0eab",
+                    "bc204211-1ceb-aff8-7dc9-feef6f0b47f1",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-19-n-15",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.175, 0.885, 0.32, 1.275],
+                duration: 200,
+                target: {
+                  selector: ".window-confirm._2.draggable",
+                  selectorGuids: [
+                    "2c6bdf0e-d522-5184-86c5-602d051fe04f",
+                    "cf54f0f7-96ff-e2a5-aeba-1866a78fdd30",
+                    "8b4b3756-6e51-3bd0-ef79-bd577164b7ab",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654262792012,
+    },
+    "a-24": {
+      id: "a-24",
+      title: "New Timed Animation",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-24-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".theme._2-copy.draggable",
+                  selectorGuids: [
+                    "1e689f1a-daad-7238-a028-27d49be4d90a",
+                    "26849003-4b79-5ed7-a7eb-8cac5f0e346d",
+                    "bba4c9b9-c0b6-a087-4804-154d83825898",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-24-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.175, 0.885, 0.32, 1.275],
+                duration: 200,
+                target: {
+                  selector: ".theme._2-copy.draggable",
+                  selectorGuids: [
+                    "1e689f1a-daad-7238-a028-27d49be4d90a",
+                    "26849003-4b79-5ed7-a7eb-8cac5f0e346d",
+                    "bba4c9b9-c0b6-a087-4804-154d83825898",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654268041477,
+    },
+    "a-47": {
+      id: "a-47",
+      title: "Exit Window 21",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-47-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-about-me.draggable",
+                  selectorGuids: [
+                    "54bb747f-4c9c-42f1-8d5d-2212b5ff2bec",
+                    "932a1140-d279-4fff-c149-dcfe60068b0d",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+            {
+              id: "a-47-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  selector: ".window-pics-about-me.draggable",
+                  selectorGuids: [
+                    "8f5ab35e-54bb-4d5d-8215-6542362857be",
+                    "7f50e0a0-2a5a-2082-2229-fff69985ee05",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-26": {
+      id: "a-26",
+      title: "Exit Window 12",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-26-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-motkraft",
+                  selectorGuids: ["d555e0f4-9d65-dbce-f3a7-1b5f47c752a4"],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-27": {
+      id: "a-27",
+      title: "New Timed Animation 7",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-27-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-motkraft.draggable",
+                  selectorGuids: [
+                    "d555e0f4-9d65-dbce-f3a7-1b5f47c752a4",
+                    "32fcb28f-040f-705c-f383-ec2963e2e7b4",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-27-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-motkraft.draggable",
+                  selectorGuids: [
+                    "d555e0f4-9d65-dbce-f3a7-1b5f47c752a4",
+                    "32fcb28f-040f-705c-f383-ec2963e2e7b4",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-28": {
+      id: "a-28",
+      title: "New Timed Animation 8",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-28-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-apteo.draggable",
+                  selectorGuids: [
+                    "a97433ba-29b8-80f7-eef2-66394686adaf",
+                    "7d5c0679-37ea-1b4b-604d-963806063286",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-28-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-apteo.draggable",
+                  selectorGuids: [
+                    "a97433ba-29b8-80f7-eef2-66394686adaf",
+                    "7d5c0679-37ea-1b4b-604d-963806063286",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-33": {
+      id: "a-33",
+      title: "New Timed Animation 10",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-33-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-notes.draggable",
+                  selectorGuids: [
+                    "9afc38d1-e8b1-adc3-b595-06e021c8ee99",
+                    "2cb1ff0e-62fb-b60d-f70f-457228218142",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-33-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-notes.draggable",
+                  selectorGuids: [
+                    "9afc38d1-e8b1-adc3-b595-06e021c8ee99",
+                    "2cb1ff0e-62fb-b60d-f70f-457228218142",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-25": {
+      id: "a-25",
+      title: "Exit Window 11",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-25-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-apteo",
+                  selectorGuids: ["a97433ba-29b8-80f7-eef2-66394686adaf"],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-34": {
+      id: "a-34",
+      title: "New Timed Animation 11",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-34-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-kmc.draggable",
+                  selectorGuids: [
+                    "ae4bf0cb-451b-6e64-5dbe-cc81d9ca14f8",
+                    "be5f766e-b693-42ff-d3d3-fbb6d56c094a",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-34-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-kmc.draggable",
+                  selectorGuids: [
+                    "ae4bf0cb-451b-6e64-5dbe-cc81d9ca14f8",
+                    "be5f766e-b693-42ff-d3d3-fbb6d56c094a",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-35": {
+      id: "a-35",
+      title: "Exit Window 15",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-35-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-kmc.draggable",
+                  selectorGuids: [
+                    "ae4bf0cb-451b-6e64-5dbe-cc81d9ca14f8",
+                    "be5f766e-b693-42ff-d3d3-fbb6d56c094a",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-36": {
+      id: "a-36",
+      title: "New Timed Animation 12",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-36-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-readylift.draggable",
+                  selectorGuids: [
+                    "48df82b9-4fb8-0783-b77d-05377337b91a",
+                    "5eabc3b6-20d8-6592-4b7a-b4b11a396baa",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-36-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-readylift.draggable",
+                  selectorGuids: [
+                    "48df82b9-4fb8-0783-b77d-05377337b91a",
+                    "5eabc3b6-20d8-6592-4b7a-b4b11a396baa",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-37": {
+      id: "a-37",
+      title: "Exit Window 16",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-37-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-readylift.draggable",
+                  selectorGuids: [
+                    "48df82b9-4fb8-0783-b77d-05377337b91a",
+                    "5eabc3b6-20d8-6592-4b7a-b4b11a396baa",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-38": {
+      id: "a-38",
+      title: "New Timed Animation 13",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-38-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-imchi.draggable",
+                  selectorGuids: [
+                    "b907887f-7597-3efa-6425-e5472e8c2977",
+                    "799d7a5e-b341-f67b-2cd0-aeb756bb909c",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-38-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-imchi.draggable",
+                  selectorGuids: [
+                    "b907887f-7597-3efa-6425-e5472e8c2977",
+                    "799d7a5e-b341-f67b-2cd0-aeb756bb909c",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-39": {
+      id: "a-39",
+      title: "Exit Window 17",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-39-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-imchi.draggable",
+                  selectorGuids: [
+                    "b907887f-7597-3efa-6425-e5472e8c2977",
+                    "799d7a5e-b341-f67b-2cd0-aeb756bb909c",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-41": {
+      id: "a-41",
+      title: "New Timed Animation 14",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-41-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-musea.draggable",
+                  selectorGuids: [
+                    "ccb0cfb8-1d43-4fcd-d582-52c0df618308",
+                    "898a85a5-2c48-cb96-1ed0-005f3617e918",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-41-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-musea.draggable",
+                  selectorGuids: [
+                    "ccb0cfb8-1d43-4fcd-d582-52c0df618308",
+                    "898a85a5-2c48-cb96-1ed0-005f3617e918",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-42": {
+      id: "a-42",
+      title: "Exit Window 18",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-42-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-musea.draggable",
+                  selectorGuids: [
+                    "ccb0cfb8-1d43-4fcd-d582-52c0df618308",
+                    "898a85a5-2c48-cb96-1ed0-005f3617e918",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-44": {
+      id: "a-44",
+      title: "New Timed Animation 15",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-44-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-automaited.draggable",
+                  selectorGuids: [
+                    "e4c0363c-faf9-785e-5a3d-5166ea3208d8",
+                    "b4d3450f-424a-041c-9871-8492ddfa6036",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-44-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-automaited.draggable",
+                  selectorGuids: [
+                    "e4c0363c-faf9-785e-5a3d-5166ea3208d8",
+                    "b4d3450f-424a-041c-9871-8492ddfa6036",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-43": {
+      id: "a-43",
+      title: "Exit Window 19",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-43-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.6, -0.28, 0.735, 0.045],
+                duration: 200,
+                target: {
+                  useEventTarget: "PARENT",
+                  selector: ".window-automaited.draggable",
+                  selectorGuids: [
+                    "e4c0363c-faf9-785e-5a3d-5166ea3208d8",
+                    "b4d3450f-424a-041c-9871-8492ddfa6036",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: false,
+      createdOn: 1654204555209,
+    },
+    "a-46": {
+      id: "a-46",
+      title: "New Timed Animation 16",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-46-n",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  selector: ".window-partnerhub.draggable",
+                  selectorGuids: [
+                    "7afc9c53-a697-dd6b-ecab-fdbb7e09fb3b",
+                    "9b6f6d10-f927-f7de-81a9-cc5ee5af884c",
+                  ],
+                },
+                xValue: 0,
+                yValue: 0,
+                locked: true,
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-46-n-2",
+              actionTypeId: "TRANSFORM_SCALE",
+              config: {
+                delay: 0,
+                easing: [0.075, 0.82, 0.165, 1],
+                duration: 200,
+                target: {
+                  selector: ".window-automaited.draggable",
+                  selectorGuids: [
+                    "e4c0363c-faf9-785e-5a3d-5166ea3208d8",
+                    "b4d3450f-424a-041c-9871-8492ddfa6036",
+                  ],
+                },
+                xValue: 1,
+                yValue: 1,
+                locked: true,
+              },
+            },
+          ],
+        },
+      ],
+      useFirstGroupAsInitialState: true,
+      createdOn: 1654202987380,
+    },
+    "a-48": {
+      id: "a-48",
+      title: "Loader",
+      actionItemGroups: [
+        {
+          actionItems: [
+            {
+              id: "a-48-n",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|0e407d89-754d-c9df-c046-2f01976fb14d",
+                },
+                value: "flex",
+              },
+            },
+            {
+              id: "a-48-n-23",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|a5d4f439-93e8-500c-0cce-8603583d6f8f",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-2",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|0af9e2fe-1e59-7406-ba50-bf88d385654b",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-3",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|081f29a3-81bc-8188-ae90-451a724d6764",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-4",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|9fa4a8fa-06cf-964a-727b-80b0056437f7",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-5",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|a5bcda8a-1bc6-0164-2e3a-f93a4ac5e0fe",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-6",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|9e97a157-2c19-edfd-fbf2-098dd8cb022d",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-7",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|0e45985d-d680-8a21-a714-88a72c9ac1c0",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-8",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|044e1ac8-b7bf-4b1b-8905-64d076247791",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-9",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|dd800c0e-83d6-fb6c-aab7-e6d90e90ae5b",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-10",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|67eed2b3-2a12-a123-ce26-c11fefe0c996",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-11",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 500,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|e275e18b-71f6-fe27-b370-0ff8d910265c",
+                },
+                value: 0,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-26",
+              actionTypeId: "GENERAL_DISPLAY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|0e407d89-754d-c9df-c046-2f01976fb14d",
+                },
+                value: "flex",
+              },
+            },
+          ],
+        },
+        {
+          actionItems: [
+            {
+              id: "a-48-n-12",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 0,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|0af9e2fe-1e59-7406-ba50-bf88d385654b",
+                },
+                value: 1,
+                unit: "",
+              },
+            },
+            {
+              id: "a-48-n-13",
+              actionTypeId: "STYLE_OPACITY",
+              config: {
+                delay: 500,
+                easing: "",
+                duration: 0,
+                target: {
+                  id: "63e4d5b7359de159bee34dae|081f29a3-81bc-8188-ae90-451a724d6764",
+                },
+                value: 1,
+                unit: "",
+              },
+            },
