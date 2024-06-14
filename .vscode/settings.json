@@ -13,7 +13,10 @@
     "/.venv": true,
     "/node_modules": true,
     "node_modules": true,
-    "**/node_modules": true
+    "**/node_modules": true,
+    "**/.vscode": true,
+    ".vscode": true
   },
-  "terminal.integrated.cwd": ""
+  "terminal.integrated.cwd": "/home/rr-h/Documents/Git/Projects/Clinic.OS/project-root",
+  "explorerExclude.backup": {}
 }
