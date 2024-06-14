@@ -1,6 +1,7 @@
 {
   "name": "middleware",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "echo 'No start script defined for middleware'"
