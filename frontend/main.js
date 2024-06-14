@@ -1,7 +1,7 @@
 import { fetchData } from './utils/dataFetcher.js';
 import { processData } from './utils/dataProcessor.js';
-import { displayData } from './components/uiComponents.js';
-import { handleSubmit, handleClick } from './components/eventHandler.js';
+import { displayData } from './components/UIComponents.js';
+import { handleSubmit, handleClick } from './components/EventHandler.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {

@@ -1,4 +1,4 @@
-export function processData(data) {
+export const processData = (data) => {
   // Logic to process data
   return data; // Modify as needed
-}
+};

@@ -1,3 +1,3 @@
-export function displayData(data) {
+export const displayData = (data) => {
   // Logic to render data on the screen
-}
+};

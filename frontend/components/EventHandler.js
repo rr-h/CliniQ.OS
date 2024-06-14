@@ -1,8 +1,8 @@
-export function handleSubmit(event) {
+export const handleSubmit = (event) => {
   event.preventDefault();
   // Handle form submission
-}
+};
 
-export function handleClick(event) {
+export const handleClick = (event) => {
   // Handle click event
-}
+};
