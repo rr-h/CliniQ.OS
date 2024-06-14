@@ -17,6 +17,6 @@
     "**/.vscode": true,
     ".vscode": true
   },
-  "terminal.integrated.cwd": "/home/rr-h/Documents/Git/Projects/Clinic.OS/project-root",
+  "terminal.integrated.cwd": "/home/rr-h/Documents/Git/Projects/Clinic.OS",
   "explorerExclude.backup": {}
 }
