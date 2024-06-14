@@ -114,6 +114,24 @@
 }
 
 @font-face {
+   font-family: 'Inconsolata';
+   font-style: normal;
+   font-weight: 400;
+   src: local('Inconsolata Regular'), local('Inconsolata-Regular'),
+      url('./fonts/Inconsolata-Regular.woff2') format('woff2'),
+      url('./fonts/Inconsolata-Regular.woff') format('woff');
+}
+
+@font-face {
+   font-family: 'Inconsolata';
+   font-style: normal;
+   font-weight: 700;
+   src: local('Inconsolata Bold'), local('Inconsolata-Bold'),
+      url('./fonts/Inconsolata-Bold.woff2') format('woff2'),
+      url('./fonts/Inconsolata-Bold.woff') format('woff');
+}
+
+@font-face {
    font-family: 'PerfectDOSVGA437';
    src: url('../fonts/PerfectDOSVGA437.bfbcfb6f.woff2') format('woff2'),
       url('../fonts/PerfectDOSVGA437.30b3c1a1.woff') format('woff');
