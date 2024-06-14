@@ -1,6 +1,6 @@
-import { fetchData } from './utils/dataFetcher.js';
-import { processData } from './utils/dataProcessor.js';
-import { displayData } from './components/uiComponents.js';
+import { fetchData } from './utils/DataFetcher.js';
+import { processData } from './utils/DataProcessor.js';
+import { displayData } from './components/UIComponents.js';
 import { handleSubmit, handleClick } from './components/eventHandlers.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
