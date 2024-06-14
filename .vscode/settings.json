@@ -14,8 +14,8 @@
     "/node_modules": true,
     "node_modules": true,
     "**/node_modules": true,
-    "**/.vscode": false,
-    ".vscode": false
+    "**/.vscode": true,
+    ".vscode": true
   },
   "terminal.integrated.cwd": "/home/rr-h/Documents/Git/Projects/CliniQ.OS",
   "explorerExclude.backup": {}
