@@ -7622,7 +7622,7 @@ p {
 
 @font-face {
    font-family: 'Chicagoflf';
-   src: url('./fonts/ChicagoFLF.ttf') format('truetype');
+   src: url("../fonts/ChicagoFLF.ttf") format('truetype');
    font-weight: 400;
    font-style: normal;
    font-display: swap;
@@ -7630,7 +7630,7 @@ p {
 
 @font-face {
    font-family: 'Charcoal';
-   src: url('./fonts/Charcoal.ttf') format('truetype');
+   src: url("../fonts/Charcoal.ttf") format('truetype');
    font-weight: 400;
    font-style: normal;
    font-display: swap;
@@ -7638,7 +7638,7 @@ p {
 
 @font-face {
    font-family: 'Geneva 9';
-   src: url('./fonts/geneva_9.ttf') format('truetype');
+   src: url("../fonts/geneva_9.ttf") format('truetype');
    font-weight: 400;
    font-style: normal;
    font-display: swap;
@@ -7646,7 +7646,7 @@ p {
 
 @font-face {
    font-family: 'Pixelmix';
-   src: url('./fonts/pixelmix.ttf') format('truetype');
+   src: url("../fonts/pixelmix.ttf") format('truetype');
    font-weight: 400;
    font-style: normal;
    font-display: swap;
@@ -7654,7 +7654,7 @@ p {
 
 @font-face {
    font-family: 'Pixelmix';
-   src: url('./fonts/pixelmix_bold.ttf') format('truetype');
+   src: url("../fonts/pixelmix_bold.ttf") format('truetype');
    font-weight: 700;
    font-style: normal;
    font-display: swap;
