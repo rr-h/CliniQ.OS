@@ -1,4 +1,4 @@
-import dataModel from '../models/dataModel.js';
+import dataModel from '../models/dataModels.js';
 
 export const getData = async (req, res) => {
   try {
