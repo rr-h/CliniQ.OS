@@ -3007,7 +3007,7 @@ p {
 
 .exit-btn:hover {
    background-color: #3d3d3d;
-   background-image: url(../images/0_x-bold204.svg);
+   background-image: url(../images/exit_button.svg);
    background-position: 50%;
    background-size: 7.5px;
    box-shadow: 1px 1px #fff, -1px -1px gray
