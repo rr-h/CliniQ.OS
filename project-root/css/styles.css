@@ -1,3 +1,5 @@
+@import "./fonts.css";
+
 .goog-inline-block {
    position: relative;
    display: -moz-inline-box;
