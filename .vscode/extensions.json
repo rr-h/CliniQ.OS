@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "mrmlnc.vscode-scss",
-    "ms-azuretools.vscode-azureappservice"
+    "ms-azuretools.vscode-azureappservice",
+    "onecentlin.laravel-blade"
   ]
 }
