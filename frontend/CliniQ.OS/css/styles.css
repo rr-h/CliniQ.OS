@@ -1,5 +1,15 @@
 @import "./fonts.css";
 
+@font-face {
+   font-family: 'Gelion';
+   src: url('../fonts/Gelion-Regular.ttf') format('truetype');
+}
+
+body {
+   font-family: 'Gelion', sans-serif;
+   background-image: url('../images/background.png');
+}
+
 .goog-inline-block {
    position: relative;
    display: -moz-inline-box;

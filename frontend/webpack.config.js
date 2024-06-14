@@ -11,7 +11,7 @@ module.exports = {
   mode: 'development',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      contentBase: path.join(__dirname, 'dist'),
     },
     compress: true,
     port: 9000,
@@ -20,8 +20,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
