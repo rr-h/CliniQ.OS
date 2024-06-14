@@ -1,10 +1,10 @@
 {
   "name": "middleware",
   "version": "1.0.0",
+  "main": "auth.js",
   "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "start": "echo 'No start script defined for middleware'"
-  },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.1",
+    "dotenv": "^10.0.0"
+  }
 }
