@@ -5,9 +5,9 @@
    src: url('../fonts/Gelion-Regular.ttf') format('truetype');
 }
 
-body {
+.body {
    font-family: 'Gelion', sans-serif;
-   background-image: url('../images/background.png');
+   background-image: url('../images/png/background.png');
 }
 
 .goog-inline-block {
