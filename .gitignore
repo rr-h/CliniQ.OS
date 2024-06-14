@@ -28,6 +28,12 @@ node_modules
 ****/build
 *****/build
 
+/DigestedCode
+*/DigestedCode
+**/DigestedCode
+***/DigestedCode
+****/DigestedCode
+
 # misc
 .DS_Store
 */.DS_Store
