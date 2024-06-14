@@ -6,6 +6,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  mode: 'development', // Add this line to set the mode to development
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
