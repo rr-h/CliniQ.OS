@@ -1,3 +1,6 @@
 {
-  "recommendations": ["mrmlnc.vscode-scss"]
+  "recommendations": [
+    "mrmlnc.vscode-scss",
+    "ms-azuretools.vscode-azureappservice"
+  ]
 }
