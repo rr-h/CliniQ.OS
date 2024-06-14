@@ -6,13 +6,14 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  mode: 'development', // Add this line to set the mode to development
+  mode: 'development',
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
     compress: true,
     port: 9000,
+    open: true, // This will automatically open the browser when the server starts
   },
   module: {
     rules: [
