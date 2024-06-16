@@ -5629,7 +5629,8 @@ p {
    color: #fff;
    background-color: #000000;
    font-family: Yoster-Island-Regular;
-   background-repeat: no-repeat;
+   background-repeat: repeat-x 40%;
+   background-repeat: repeat-y 80%;
    background-image: url(../assets/elements/lmnt_noise.png), url(../assets/animations/anim_brainScan_compressed.gif);
    background-position: 50%;
    background-size: 70%;
