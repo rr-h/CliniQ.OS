@@ -1,19 +1,30 @@
 // backend/server.js
 
-import app from './app.js';
-import database from './utils/database.js';
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import path from 'path';
+import dataRoutes from './routes/index.js';
 
+const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect to the database
-database.query('SELECT 1')
-  .then(() => {
-    // Start the server
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error('Database connection error:', err);
-    process.exit(1);
-  });
+// Middleware setup
+app.use(cors());
+app.use(bodyParser.json());
+
+// API routes
+app.use('/api', dataRoutes);
+
+// Serve static files from the frontend
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Catch-all handler to serve the frontend application
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
