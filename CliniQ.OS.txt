@@ -884,153 +884,6 @@ export const processData = (data) => {
 
 
 
-PACKAGE.JSON
-
-{
-  "name": "frontend",
-  "version": "1.0.0",
-  "main": "main.js",
-  "scripts": {
-    "start": "webpack serve --config webpack.config.js",
-    "build": "webpack --config webpack.config.js"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "css-loader": "^7.1.2",
-    "html-loader": "^5.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "style-loader": "^4.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-react": "^7.14.5",
-    "babel-loader": "^8.2.2",
-    "html-webpack-plugin": "^5.3.2",
-    "webpack": "^5.52.0",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.0.0"
-  }
-}
-
-
-
-INDEX.HTML
-
-<!-- frontend/index.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CliniQ.OS</title>
-  <link rel="stylesheet" href="styles/styles.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script src="js/main.js"></script>
-</body>
-
-
-
-EVENTHANDLER.JS
-
-// frontend/components/EventHandler.js
-
-export const handleSubmit = (event) => {
-  event.preventDefault();
-  try {
-    // Handle form submission
-    console.log('Form submitted');
-  } catch (error) {
-    console.error('Error handling submit:', error);
-  }
-};
-
-export const handleClick = (event) => {
-  try {
-    // Handle click event
-    console.log('Button clicked');
-  } catch (error) {
-    console.error('Error handling click:', error);
-  }
-};
-
-
-
-UICOMPONENTS.JS
-
-// frontend/components/UIComponents.js
-
-export const initUIComponents = () => {
-  console.log('UI Components initialized');
-  // Initialize and render your UI components
-};
-
-export const displayData = (data) => {
-  // Logic to render data on the screen
-  console.log('Displaying data:', data);
-};
-
-
-
-.ENV.EXAMPLE
-
-
-
-
-WEBPACK.CONFIG.JS
-
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-module.exports = {
-  entry: './main.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true, // Clean the /dist folder before each build
-  },
-  mode: 'development',
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    compress: true,
-    port: 9000,
-    open: true, // Automatically open the browser when the server starts
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['file-loader'],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.html',
-    }),
-  ],
-};
-
-
-
 INDEX.HTML
 
 <!DOCTYPE html>
@@ -1061,20 +914,17 @@ INDEX.HTML
         -webkit-font-smoothing: antialiased;
       }
     </style>
-
     <style>
       /*width*/
       .scroll::-webkit-scrollbar {
         width: 10px;
       }
-
       /*track*/
       .scroll::-webkit-scrollbar-track {
         background: rgb(135, 135, 135);
         border-width: 1px;
         border-style: solid;
       }
-
       /*thumb*/
       .scroll::-webkit-scrollbar-thumb {
         background: rgb(153, 153, 255);
@@ -32036,6 +31886,153 @@ FONTS.CSS
 @font-face {
    font-family: 'corruptPixel';
    src: url('../fonts/corruptPixel.ttf') format('truetype');
+
+
+
+PACKAGE.JSON
+
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "webpack serve --config webpack.config.js",
+    "build": "webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "css-loader": "^7.1.2",
+    "html-loader": "^5.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "style-loader": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.2",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  }
+}
+
+
+
+INDEX.HTML
+
+<!-- frontend/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CliniQ.OS</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="js/main.js"></script>
+</body>
+
+
+
+EVENTHANDLER.JS
+
+// frontend/components/EventHandler.js
+
+export const handleSubmit = (event) => {
+  event.preventDefault();
+  try {
+    // Handle form submission
+    console.log('Form submitted');
+  } catch (error) {
+    console.error('Error handling submit:', error);
+  }
+};
+
+export const handleClick = (event) => {
+  try {
+    // Handle click event
+    console.log('Button clicked');
+  } catch (error) {
+    console.error('Error handling click:', error);
+  }
+};
+
+
+
+UICOMPONENTS.JS
+
+// frontend/components/UIComponents.js
+
+export const initUIComponents = () => {
+  console.log('UI Components initialized');
+  // Initialize and render your UI components
+};
+
+export const displayData = (data) => {
+  // Logic to render data on the screen
+  console.log('Displaying data:', data);
+};
+
+
+
+.ENV.EXAMPLE
+
+
+
+
+WEBPACK.CONFIG.JS
+
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './main.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true, // Clean the /dist folder before each build
+  },
+  mode: 'development',
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 9000,
+    open: true, // Automatically open the browser when the server starts
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+  ],
+};
 
 
 
