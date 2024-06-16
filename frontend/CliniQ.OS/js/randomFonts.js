@@ -10,15 +10,18 @@ const fonts = [
    'Gelion SemiBold Italic', 'Gelion SemiBold', 'Gelion Thin Italic',
    'Gelion Thin', 'geneva_9', 'Inconsolata-Bold', 'Inconsolata-Regular',
    'Inconsolata', 'PerfectDOSVGA437', 'PixelArial11', 'pixelmix_bold',
-   'pixelmix', 'Pixolde-Bold', 'Pixolde, "Yoster-Island-"'
+   'pixelmix', 'Pixolde-Bold', 'Pixolde, "Yoster-Island-Regular"'
 ];
 
 // Function to apply a random font family to each element
 function applyRandomFontsToElements() {
    const elements = document.querySelectorAll('*');
    elements.forEach(element => {
-      const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-      element.style.fontFamily = randomFont;
+      // Check if the element has the data-permanent-font attribute or the permanent-font class
+      if (!element.hasAttribute('data-permanent-font') && !element.classList.contains('permanent-font')) {
+         const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+         element.style.fontFamily = randomFont;
+      }
    });
 }
 
