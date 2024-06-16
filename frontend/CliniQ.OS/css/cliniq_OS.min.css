@@ -5709,7 +5709,7 @@ p {
    text-align: center;
    margin-left: auto;
    margin-right: auto;
-   letter-spacing: -4px;
+   letter-spacing: 1px;
    color: #da34fc;
    -webkit-text-stroke-color: #540c70;
    -webkit-text-stroke-width: 4px;
