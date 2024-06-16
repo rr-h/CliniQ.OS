@@ -1525,35 +1525,28 @@
                           ctx.fillRect(snake[i].x, snake[i].y, 10, 10);
                         }
                       }
-
                       // Draw the food
                       function drawFood(ctx) {
                         ctx.fillStyle = '#f00';
                         ctx.fillRect(food.x, food.y, 10, 10);
                       }
-
                       // Draw the score
                       function drawScore(ctx) {
                         ctx.fillStyle = 'white';
                         ctx.font = '24px';
                         ctx.fillText('Score: ' + score, 10, 390);
                       }
-
                       // Draw everything
                       function draw(ctx) {
                         ctx.clearRect(0, 0, 400, 400);
-
                         drawSnake(ctx);
                         drawFood(ctx);
                         drawScore(ctx);
                       }
-
                       // Main function
                       function main() {
                         var ctx = createCanvas();
-
                         createFood();
-
                         document.addEventListener('keydown', function (e) {
                           if (e.keyCode == 37 && d != 'right') {
                             d = 'left';
@@ -1565,11 +1558,9 @@
                             d = 'down';
                           }
                         });
-
                         // Call draw function every 100ms
                         setInterval(function () {
                           draw(ctx);
-
                           // Snake movement
                           var x = snake[0].x;
                           var y = snake[0].y;
@@ -1583,7 +1574,6 @@
                           } else if (d == 'down') {
                             y += 10;
                           }
-
                           // Check for collision with food
                           if (x == food.x && y == food.y) {
                             score++;
@@ -1591,28 +1581,20 @@
                           } else {
                             snake.pop();
                           }
-
                           // Create new head
                           var newHead = {
                             x: x,
                             y: y
                           };
-
                           // Game over conditions
                           if (x < 0 || x > 420 || y < 0 || y > 420 || collision(newHead, snake)) {
-
                             document.getElementById("snake-alert").classList.remove("hide");
                             document.getElementById("snake-wrapper").classList.add("hide");
                             document.getElementById("instructions-snake").classList.add("hide");
-
-
-
                           }
-
                           snake.unshift(newHead);
                         }, speed);
                       }
-
                       // Check for collision with self
                       function collision(head, array) {
                         for (var i = 0; i < array.length; i++) {
@@ -1622,14 +1604,9 @@
                         }
                         return false;
                       }
-
                       main();
                     </script>
-
-
-
                   </body>
-
                   </html>
                 </div>
                 <div class="pixel-layer"></div>
