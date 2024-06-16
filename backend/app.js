@@ -2,8 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import routes from './routes/index.js';
-import authMiddleware from '../middleware/auth.js';
-import loggerMiddleware from '../middleware/logger.js';
+import { authMiddleware, loggerMiddleware } from '../middleware';
 
 const app = express();
 

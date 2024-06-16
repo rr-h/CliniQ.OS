@@ -1,8 +1,8 @@
 import database from '../utils/database.js';
 
 const getData = async () => {
-  const data = await database.query('SELECT * FROM data');
-  return data.rows;
+  const { rows } = await database.query('SELECT * FROM data');
+  return rows;
 };
 
 export default {

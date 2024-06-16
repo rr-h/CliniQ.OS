@@ -12,4 +12,9 @@ const pool = new Pool({
   port: process.env.DATABASE_PORT,
 });
 
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+});
+
 export default pool;
