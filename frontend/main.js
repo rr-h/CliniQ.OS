@@ -1,7 +1,6 @@
-import { fetchData } from './utils/dataFetcher.js';
-import { processData } from './utils/dataProcessor.js';
-import { displayData } from './components/UIComponents.js';
 import { handleSubmit, handleClick } from './components/EventHandler.js';
+import { fetchData, processData } from './utils/dataHandlers.js';
+import { displayData } from './components/UIComponents.js';
 import './CliniQ.OS/css/styles.css';
 import './CliniQ.OS/css/clinic_OS.min.css';
 import './CliniQ.OS/css/fonts.css';
@@ -12,6 +11,7 @@ import './CliniQ.OS/js/jquery-ui.min.js';
 import './CliniQ.OS/js/jquery.validate.min.js';
 import './CliniQ.OS/js/select.menu.custom.js';
 import './CliniQ.OS/js/widget.js';
+
 
 
 document.addEventListener('DOMContentLoaded', async () => {

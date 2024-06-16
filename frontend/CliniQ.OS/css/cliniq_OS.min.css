@@ -5623,17 +5623,17 @@ p {
 }
 
 .loader {
+   margin: 0;
    z-index: 9999999;
+   background-position: 0%;
    width: 100%;
    height: 100vh;
+   -webkit-text-stroke-color: #000;
+   -webkit-text-stroke-width: 4px;
    color: #fff;
    background-color: #000000;
-   font-family: Yoster-Island-Regular;
-   background-repeat: repeat-x 40%;
-   background-repeat: repeat-y 80%;
-   background-image: url(../assets/elements/lmnt_noise.png), url(../assets/animations/anim_brainScan_compressed.gif);
-   background-position: 50%;
-   background-size: 70%;
+   background-image: url(../assets/elements/lmnt_noise.png), url(../assets/animations/anim_abdoCT_compressed.gif);
+   background-size: cover;
    justify-content: center;
    align-items: center;
    display: none;
@@ -5641,7 +5641,7 @@ p {
    top: 0%;
    bottom: 0%;
    left: 0%;
-   right: 0%
+   right: 0%;
 }
 
 .text-block-7 {
@@ -5823,7 +5823,7 @@ p {
    width: 100%;
    height: 32px;
    max-height: 32px;
-   background-image: url(../assets/elements/lmnt_buttonTopBorder.svg), url(../assets/elements/lmnt_buttonMainBorder.svg), url(../assets/elements/lmnt_right.svg), url(../assets/elements/lmnt_left.svg);
+   background-image: url(../assets/elements/lmnt_drpdwnTopBorder.svg), url(../assets/elements/lmnt_drpdwnMainBorder.svg), url(../assets/elements/lmnt_drpdwnBorderRight.svg), url(../assets/elements/lmnt_drpdwnBorderLeft.svg);
    background-position: 50% 100%, 50% 0, 100%, 0%;
    background-repeat: repeat-x, repeat-x, no-repeat, no-repeat;
    background-size: 66%, 135% 2.1px, auto 100%, auto 100%;
@@ -5832,7 +5832,7 @@ p {
 
 .button.contact-me {
    width: 100px;
-   background-image: url(../assets/elements/lmnt_buttonTopBorder.svg), url(../assets/elements/lmnt_buttonMainBorder.svg), url(../assets/elements/lmnt_right.svg), url(../assets/elements/lmnt_left.svg);
+   background-image: url(../assets/elements/lmnt_buttonTopBorder.svg), url(../assets/elements/lmnt_buttonMainBorder.svg), url(../assets/elements/lmnt_btnBorderRight.svg), url(../assets/elements/lmnt_btnBorderLeft.svg);
    background-size: auto 3px, 120% 1.5px, auto 32px, auto 32px
 }
 
