@@ -2,10 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './main.js',
+  entry: './CQ.OS_UI/js/main.js',
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
     clean: true, // Clean the /dist folder before each build
   },
   mode: 'development',
@@ -16,6 +16,9 @@ module.exports = {
     compress: true,
     port: 9000,
     open: true, // Automatically open the browser when the server starts
+    proxy: {
+      '/api': 'http://localhost:5000',
+    },
   },
   module: {
     rules: [
@@ -32,8 +35,9 @@ module.exports = {
         use: ['file-loader'],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
         type: 'asset/resource',
+        use: ['file-loader'],
       },
     ],
   },
