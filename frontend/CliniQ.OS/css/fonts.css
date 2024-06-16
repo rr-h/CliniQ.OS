@@ -165,3 +165,8 @@
    font-family: 'Yoster-Island-Regular';
    src: url('../fonts/YosterIslandRegular-VqMe.ttf') format('truetype');
 }
+
+@font-face {
+   font-family: 'ka1';
+   src: url('../fonts/ka1.ttf') format('truetype');
+}
