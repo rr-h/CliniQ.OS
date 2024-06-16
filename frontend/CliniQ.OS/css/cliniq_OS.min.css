@@ -5709,8 +5709,9 @@ p {
    text-align: center;
    margin-left: auto;
    margin-right: auto;
-   font-family: Yos;
-   font-size: 24px;
+   color: #d11ff5;
+   font-size: 42px;
+   font-weight: 900;
    line-height: 100%
 }
 
