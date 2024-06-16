@@ -4,7 +4,7 @@ import { initUIComponents } from './components/UIComponents';
 import { handleSubmit, handleClick } from './components/EventHandler.js';
 import { fetchData, processData } from './utils/dataHandlers.js';
 import { displayData } from './components/UIComponents.js';
-import './CliniQ.OS_UI/css/styles.css';
+import './iQ.OS_UI/css/styles.css';
 import './CliniQ.OS_UI/css/cliniq_OS.min.css';
 import './CliniQ.OS_UI/css/fonts.css';
 import './CliniQ.OS_UI/js/cliniq_OS.webflow.js';
