@@ -33,6 +33,7 @@
     {
       "folderPath": "CliniQ.OS/backend/"
     }
-  ]
+  ],
+  "livePreview.defaultPreviewPath": "/frontend/CliniQ.OS/index.CliniQ.OS.html"
 
 }

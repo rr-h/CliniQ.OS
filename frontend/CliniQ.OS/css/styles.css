@@ -2,12 +2,12 @@
 
 @font-face {
    font-family: 'Gelion';
-   src: url('../fonts/Gelion-Regular.ttf') format('truetype');
+   src: url('../fonts/Gelion Regular.ttf') format('truetype');
 }
 
 .body {
    font-family: 'Gelion', sans-serif;
-   background-image: url('../images/png/background.png');
+   background-image: url('../assets/photo/pht_background.png');
 }
 
 .goog-inline-block {
@@ -59,7 +59,7 @@
 }
 
 .recaptcha-checkbox-nodatauri.recaptcha-checkbox-borderAnimation {
-   background-image: url(../images/checkbox_sprite.png)
+   background-image: url(../assets/animations/sprt_tickbox.png)
 }
 
 .recaptcha-checkbox-spinner-gif {
@@ -209,7 +209,7 @@
 }
 
 .recaptcha-checkbox-nodatauri.recaptcha-checkbox-checkmark {
-   background-image: url(../images/checkmark_sprite.png)
+   background-image: url(../assets/animations/sprt_tick.png)
 }
 
 .recaptcha-checkbox-hover .recaptcha-checkbox-border,
@@ -236,7 +236,7 @@
 }
 
 .recaptcha-checkbox-loading .recaptcha-checkbox-spinner-gif {
-   background-image: url('../images/loading.gif')
+   background-image: url('../assets/animations/anim_loading.gif')
 }
 
 .recaptcha-checkbox-checked .recaptcha-checkbox-border,
@@ -394,12 +394,12 @@
 }
 
 .rc-anchor-logo-img {
-   background: url('../images/logo_48.png');
+   background: url('../assets/logo/logo_cycle.png');
    background-repeat: no-repeat
 }
 
 .rc-anchor-logo-img-ie8 {
-   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/logo_48.png', sizingMethod="scale")
+   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../assets/logo/logo_cycle.png', sizingMethod="scale")
 }
 
 .rc-anchor-logo-text {
@@ -742,7 +742,7 @@
 }
 
 .rc-audiochallenge-tdownload-link {
-   background-image: url('../images/download.png');
+   background-image: url('../assets/icons/icon_downloadBlack.png');
    background-repeat: no-repeat;
    -webkit-background-size: 36px;
    -o-background-size: 36px;
@@ -761,7 +761,7 @@
 
 @media screen and (forced-colors:active) and (prefers-color-scheme:dark) {
    .rc-audiochallenge-tdownload-link {
-      background-image: url('../images/download_white.png');
+      background-image: url('../assets/icons/icon_downloadWhite.png');
       background-repeat: no-repeat;
       -webkit-background-size: 36px;
       -o-background-size: 36px;
@@ -909,7 +909,7 @@ body {
 }
 
 .rc-button-reload {
-   background: url('../images/refresh_2x.png')
+   background: url('../assets/icons/icon_refreshBlack.png')
 }
 
 .rc-button-reload:focus-visible {
@@ -918,12 +918,12 @@ body {
 
 @media screen and (forced-colors:active) and (prefers-color-scheme:dark) {
    .rc-button-reload {
-      background: url('../images/refresh_white_2x.png')
+      background: url('../assets/icons/icon_refreshWhite.png')
    }
 }
 
 .rc-button-reload-on-dark {
-   background: url('../images/refresh_white_2x.png')
+   background: url('../assets/icons/icon_refreshWhite.png')
 }
 
 .rc-button-reload-on-dark:focus-visible {
@@ -931,7 +931,7 @@ body {
 }
 
 .rc-button-audio {
-   background: url('../images/audio_2x.png')
+   background: url('../assets/icons/icon_headphonesBlack.png')
 }
 
 .rc-button-audio:focus-visible {
@@ -940,12 +940,12 @@ body {
 
 @media screen and (forced-colors:active) and (prefers-color-scheme:dark) {
    .rc-button-audio {
-      background: url('../images/audio_white_2x.png')
+      background: url('../assets/icons/icon_headphonesWhite.png')
    }
 }
 
 .rc-button-audio-on-dark {
-   background: url('../images/audio_white_2x.png')
+   background: url('../assets/icons/icon_headphonesWhite.png')
 }
 
 .rc-button-audio-on-dark:focus-visible {
@@ -953,7 +953,7 @@ body {
 }
 
 .rc-button-image {
-   background: url('../images/image_2x.png')
+   background: url('../assets/icons/icon_eyeBlack.png')
 }
 
 .rc-button-image:focus-visible {
@@ -962,12 +962,12 @@ body {
 
 @media screen and (forced-colors:active) and (prefers-color-scheme:dark) {
    .rc-button-image {
-      background: url('../images/image_white_2x.png')
+      background: url('../assets/icons/icon_eyeWhite.png')
    }
 }
 
 .rc-button-image-on-dark {
-   background: url('../images/image_white_2x.png')
+   background: url('../assets/icons/icon_eyeWhite.png')
 }
 
 .rc-button-image-on-dark:focus-visible {
@@ -975,7 +975,7 @@ body {
 }
 
 .rc-button-help {
-   background: url('../images/info_2x.png')
+   background: url('../assets/icons/icon_infoBlack.png')
 }
 
 .rc-button-help:focus-visible {
@@ -984,12 +984,12 @@ body {
 
 @media screen and (forced-colors:active) and (prefers-color-scheme:dark) {
    .rc-button-help {
-      background: url('../images/info_white_2x.png')
+      background: url('../assets/icons/icon_infoWhite.png')
    }
 }
 
 .rc-button-help-on-dark {
-   background: url('../images/info_white_2x.png')
+   background: url('../assets/icons/icon_infoWhite.png')
 }
 
 .rc-button-help-on-dark:focus-visible {
@@ -997,7 +997,7 @@ body {
 }
 
 .rc-button-undo {
-   background: url('../images/undo_2x.png')
+   background: url('../assets/icons/icon_undoBlack.png')
 }
 
 .rc-button-undo:focus-visible {
@@ -1006,12 +1006,12 @@ body {
 
 @media screen and (forced-colors:active) and (prefers-color-scheme:dark) {
    .rc-button-undo {
-      background: url('../images/undo_white_2x.png')
+      background: url('../assets/icons/icon_undoWhite.png')
    }
 }
 
 .rc-button-undo-on-dark {
-   background: url('../images/undo_white_2x.png')
+   background: url('../assets/icons/icon_undoWhite.png')
 }
 
 .rc-button-undo-on-dark:focus-visible {
@@ -1514,42 +1514,42 @@ td:focus {
 }
 
 .rc-canonical-stop-sign {
-   background: url('../images/stop_sign.jpg');
+   background: url('../assets/photo/pht_canonical_stop_sign.jpg');
    background-repeat: no-repeat
 }
 
 .rc-canonical-speed-limit {
-   background: url('../images/canonical_speed_limit.png');
+   background: url('../assets/photo/pht_canonical_speed_limit.png');
    background-repeat: no-repeat
 }
 
 .rc-canonical-street-name {
-   background: url('../images/canonical_street_name.png');
+   background: url('../assets/photo/pht_canonical_street_name.png');
    background-repeat: no-repeat
 }
 
 .rc-canonical-other {
-   background: url('../images/canonical_other.png');
+   background: url('../assets/photo/pht_canonical_other.png');
    background-repeat: no-repeat
 }
 
 .rc-canonical-bounding-box {
-   background: url('../images/boundingbox2.gif');
+   background: url('../assets/animations/anim_boundingBox2.gif');
    background-repeat: no-repeat
 }
 
 .rc-canonical-car {
-   background: url('../images/canonical_car.png');
+   background: url('../assets/photo/pht_canonical_car.png');
    background-repeat: no-repeat
 }
 
 .rc-canonical-road {
-   background: url('../images/canonical_road.png');
+   background: url('../assets/photo/pht_canonical_road.png');
    background-repeat: no-repeat
 }
 
 .rc-canonical-bridge {
-   background: url('../images/canonical_bridge.png');
+   background: url('../assets/photo/pht_canonical_bridge.png');
    background-repeat: no-repeat
 }
 
