@@ -5710,6 +5710,8 @@ p {
    margin-left: auto;
    margin-right: auto;
    color: #d11ff5;
+   -webkit-text-stroke-color: #c2b6f8;
+   -webkit-text-stroke-width: 3px;
    line-height: 100%
 }
 
