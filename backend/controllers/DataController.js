@@ -1,100 +1,90 @@
 // backend/controllers/DataController.js
 
-const DataModel = require('../models/DataModel');
-const { validationResult } = require('express-validator');
+import DataModel from '../models/DataModel.js';
+import { validationResult } from 'express-validator';
 
 // Get all data
-exports.getAllData = async (req, res) => {
+export const getAllData = async (req, res) => {
   try {
-    const data = await DataModel.find();
+    const data = await DataModel.getData();
     res.json(data);
-  } catch (err) {
-    res.status(500).send('Server Error');
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Failed to fetch data', details: error.message });
   }
 };
 
 // Get data by ID
-exports.getDataById = async (req, res) => {
+export const getDataById = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
-    const data = await DataModel.findById(req.params.id);
+    const data = await DataModel.getDataById(req.params.id);
     if (!data) {
-      return res.status(404).json({ msg: 'Data not found' });
+      return res.status(404).json({ error: 'Data not found' });
     }
     res.json(data);
-  } catch (err) {
-    if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Data not found' });
-    }
-    res.status(500).send('Server Error');
+  } catch (error) {
+    console.error('Error fetching data by ID:', error);
+    res.status(500).json({ error: 'Failed to fetch data by ID', details: error.message });
   }
 };
 
 // Add new data
-exports.addData = async (req, res) => {
+export const addData = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
   const { name, value } = req.body;
-
   try {
-    const newData = new DataModel({
-      name,
-      value,
-    });
-
-    const data = await newData.save();
-    res.json(data);
-  } catch (err) {
-    res.status(500).send('Server Error');
+    const newData = await DataModel.addData({ name, value });
+    res.status(201).json(newData);
+  } catch (error) {
+    console.error('Error adding new data:', error);
+    res.status(500).json({ error: 'Failed to add new data', details: error.message });
   }
 };
 
 // Update data
-exports.updateData = async (req, res) => {
+export const updateData = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { name, value } = req.body;
-
-  const dataFields = {};
-  if (name) dataFields.name = name;
-  if (value) dataFields.value = value;
-
   try {
-    let data = await DataModel.findById(req.params.id);
-
-    if (!data) return res.status(404).json({ msg: 'Data not found' });
-
-    data = await DataModel.findByIdAndUpdate(
-      req.params.id,
-      { $set: dataFields },
-      { new: true }
-    );
-
-    res.json(data);
-  } catch (err) {
-    if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Data not found' });
+    const updatedData = await DataModel.updateData(req.params.id, { name, value });
+    if (!updatedData) {
+      return res.status(404).json({ error: 'Data not found' });
     }
-    res.status(500).send('Server Error');
+    res.json(updatedData);
+  } catch (error) {
+    console.error('Error updating data:', error);
+    res.status(500).json({ error: 'Failed to update data', details: error.message });
   }
 };
 
 // Delete data
-exports.deleteData = async (req, res) => {
+export const deleteData = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
-    let data = await DataModel.findById(req.params.id);
-
-    if (!data) {
-      return res.status(404).json({ msg: 'Data not found' });
+    const deletedData = await DataModel.deleteData(req.params.id);
+    if (!deletedData) {
+      return res.status(404).json({ error: 'Data not found' });
     }
-
-    await DataModel.findByIdAndRemove(req.params.id);
-
-    res.json({ msg: 'Data removed' });
-  } catch (err) {
-    if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Data not found' });
-    }
-    res.status(500).send('Server Error');
+    res.json({ message: 'Data deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting data:', error);
+    res.status(500).json({ error: 'Failed to delete data', details: error.message });
   }
 };
