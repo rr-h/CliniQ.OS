@@ -7,7 +7,7 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     ".DS_Store": true,
-    ".env": true,
+    ".env": false,
     "*.xcodeproj/": true,
     "*venv*": true,
     "/.venv": true,

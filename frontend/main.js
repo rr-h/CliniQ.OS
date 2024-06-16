@@ -1,4 +1,5 @@
-// js/main.js
+// frontend/main.js
+import { initUIComponents } from './components/UIComponents';
 import { handleSubmit, handleClick } from './components/EventHandler.js';
 import { fetchData, processData } from './utils/dataHandlers.js';
 import { displayData } from './components/UIComponents.js';
@@ -13,6 +14,9 @@ import './CliniQ.OS_UI/js/jquery.validate.min.js';
 import './CliniQ.OS_UI/js/select.menu.custom.js';
 import './CliniQ.OS_UI/js/widget.js';
 
+// Initialize UI components
+initUIComponents();
+
 // Initialize event listeners
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#form').addEventListener('submit', handleSubmit);
@@ -20,5 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchData().then(data => {
     const processedData = processData(data);
     displayData(processedData);
+    console.log(data);
   });
 });

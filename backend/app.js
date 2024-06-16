@@ -1,16 +1,22 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import routes from './routes/index.js';
-import { authMiddleware, loggerMiddleware } from '../middleware';
+// backend/app.js
 
+const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const routes = require('./routes/index');
 
-app.use(cors());
+// Middleware
 app.use(bodyParser.json());
-app.use(authMiddleware);
-app.use(loggerMiddleware);
+app.use(cors());
 
+// Routes
 app.use('/api', routes);
 
-export default app;
+// Error handling middleware
+app.use((err, req, res, next) => {
+   console.error(err.stack);
+   res.status(500).send('Something broke!');
+});
+
+module.exports = app;
