@@ -160,3 +160,8 @@
    font-family: 'Pixolde';
    src: url('../fonts/Pixolde.3a826705.woff') format('woff');
 }
+
+@font-face {
+   font-family: 'Yoster Island Regular';
+   src: url('../fonts/YosterIslandRegular-VqMe.ttf') format('truetype');
+}

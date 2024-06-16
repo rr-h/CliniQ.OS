@@ -3083,7 +3083,7 @@ p {
 }
 
 .bg-color.no-padding.gif {
-   background-image: url(../assets/animations/anim_singer.gif);
+   background-image: url(../assets/animations/anim_brainScan_compressed.gif);
    background-position: 50%;
    background-size: cover
 }
@@ -5628,9 +5628,10 @@ p {
    height: 100vh;
    color: #fff;
    background-color: #161614;
-   background-image: url(../assets/animations/anim_singer.gif);
+   background-repeat: no-repeat;
+   background-image: url(../assets/elements/lmnt_noise.png), url(../assets/animations/anim_brainScan_compressed.gif);
    background-position: 50%;
-   background-size: 200%;
+   background-size: cover;
    justify-content: center;
    align-items: center;
    display: none;
@@ -6329,7 +6330,7 @@ p {
    }
 
    .bg-wrapper.cosmic {
-      background-image: url(../assets/elements/lmnt_mesh.svg), url(../assets/animations/anim_);
+      background-image: url(../assets/elements/lmnt_mesh.svg), url(../assets/animations/anim_brainScan_compressed.gif);
       background-position: 50%, 50%
    }
 
@@ -7658,4 +7659,9 @@ p {
    font-weight: 700;
    font-style: normal;
    font-display: swap;
+}
+
+@font-face {
+   font-family: 'Yoster Island Regular';
+   src: url('../fonts/YosterIslandRegular-VqMe.ttf') format('truetype');
 }
