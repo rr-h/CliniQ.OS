@@ -10,7 +10,7 @@ const fonts = [
    'Gelion SemiBold Italic', 'Gelion SemiBold', 'Gelion Thin Italic',
    'Gelion Thin', 'geneva_9', 'Inconsolata-Bold', 'Inconsolata-Regular',
    'Inconsolata', 'PerfectDOSVGA437', 'PixelArial11', 'pixelmix_bold',
-   'pixelmix', 'Pixolde-Bold', 'Pixolde', 'Yoster-Island-Regular', 'ka1', ''
+   'pixelmix', 'Pixolde-Bold', 'Pixolde', 'Yoster-Island-Regular', 'ka1', 'corruptPixel'
 ];
 
 // Function to apply a random font family to each element
