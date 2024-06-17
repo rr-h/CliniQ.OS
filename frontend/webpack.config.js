@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './CQ.OS_UI/js/main.js',
+  entry: './CQ.OS_UI/index.html',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',

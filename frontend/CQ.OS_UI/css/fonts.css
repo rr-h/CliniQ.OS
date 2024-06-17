@@ -175,3 +175,8 @@
    font-family: 'corruptPixel';
    src: url('../fonts/corruptPixel.ttf') format('truetype');
 }
+
+@font-face {
+   font-family: 'pixel-lcd';
+   src: url('../fonts/pixel-lcd.ttf') format('truetype');
+}
