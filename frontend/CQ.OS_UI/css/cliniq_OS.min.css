@@ -3083,7 +3083,7 @@ p {
 }
 
 .bg-color.no-padding.gif {
-   background-image: url(../assets/animations/anim_brainScan_compressed.gif);
+   background-image: url(../assets/animations/anim_intro.gif);
    background-position: 50%;
    background-size: cover
 }
