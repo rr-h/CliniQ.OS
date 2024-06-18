@@ -44,6 +44,10 @@ footer {
    align-items: center;
 }
 
+header h1, footer p {
+   margin: 0;
+}
+
 main {
    overflow: hidden;
 }
@@ -52,6 +56,34 @@ section {
    height: 100%;
    overflow: hidden auto;
    margin: 1rem 0;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+thead th {
+   background-color: var(--secondary-color);
+   color: var(--background-color);
+   padding: 0.5rem;
+   border: 1px solid var(--primary-color);
+}
+
+tbody td {
+   padding: 0.5rem;
+   border: 1px solid var(--primary-color);
+}
+
+figure {
+   display: flex;
+   justify-content: center;
+   margin-top: 1rem;
+}
+
+figure img {
+   max-width: 100%;
+   height: auto;
 }
 
 @keyframes crtAnimation {
@@ -75,4 +107,3 @@ div.retro-container {
    mask-image: linear-gradient(to bottom, #0005 50%, #000 50%);
    mask-size: 100% 2px;
 }
-
