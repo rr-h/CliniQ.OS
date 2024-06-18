@@ -82,11 +82,9 @@ section {
     display: flex;
     justify-content: center; /* Center the content horizontally */
     align-items: center; /* Center the content vertically */
+    height: 100%; /* Ensure they stretch to fill the grid cell */
 }
 
-.table-container {
-    width: 100%;
-}
 
 table {
     width: 100%; /* Table takes full width of its container */
@@ -108,12 +106,17 @@ tbody td {
 
 figure {
     margin: 0;
-    padding-top: 0.3rem;;
+    padding-top: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure the figure takes full height of its container */
 }
 
 figure img {
     max-width: 100%;
-    height: auto; /* Maintains the aspect ratio */
+    max-height: 100%;
+    object-fit: contain; /* Ensure the image fits within the container */
 }
 
 @keyframes crtAnimation {
