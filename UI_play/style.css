@@ -24,7 +24,6 @@ body {
     background-color: var(--background-color);
 }
 
-
 li {
     font-size: calc(var(--base-font-size) / 4);
 }
@@ -85,7 +84,6 @@ section {
     height: 100%; /* Ensure they stretch to fill the grid cell */
 }
 
-
 table {
     width: 100%; /* Table takes full width of its container */
     border-collapse: collapse;
@@ -96,7 +94,6 @@ thead th {
     color: var(--background-color);
     padding: 0.3rem;
     border: 1px solid var(--primary-color);
-    align-items: center;
 }
 
 tbody td {
