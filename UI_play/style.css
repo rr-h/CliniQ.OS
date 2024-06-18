@@ -67,24 +67,15 @@ section {
     width: 100%;
     margin: 0.5rem 0;
     display: grid;
-    grid-template-columns: 1fr; /* Single column layout on small screens */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
     gap: 0.3rem;
-}
-
-@media (min-width: 700px) {
-    section {
-        grid-template-columns: 1fr 1fr; /* Two equal columns on larger screens */
-    }
 }
 
 .table-container, .image-container {
     display: flex;
     justify-content: center; /* Center the content horizontally */
     align-items: center; /* Center the content vertically */
-}
-
-.table-container {
-    width: 100%;
+    height: 100%; /* Ensure they stretch to fill the grid cell */
 }
 
 table {
@@ -110,7 +101,7 @@ figure {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%; /* Ensure the figure takes full width of its container */
+    height: 100%; /* Ensure the figure takes full height of its container */
 }
 
 figure img {
