@@ -18,6 +18,7 @@
 
 body {
     display: flex;
+    margin: 0;
     justify-content: center;
     align-items: center;
     height: 98vh;
@@ -73,7 +74,7 @@ section {
 
 @media (max-width: 800px) {
     section {
-        grid-template-columns: 1fr; /* Single column layout on small screens */
+        grid-template-columns: 1fr 1fr; /* Single column layout on small screens */
         width: 50%;
         height: 50%;
     }
@@ -83,7 +84,7 @@ section {
     display: flex;
     justify-content: center; /* Center the content horizontally */
     align-items: center; /* Center the content vertically */
-    height: 100%; /* Ensure they stretch to fill the grid cell */
+    /* Ensure they stretch to fill the grid cell */
 }
 
 table {
@@ -99,6 +100,7 @@ thead th {
 }
 
 tbody td {
+    margin: 0;
     padding: 0.3rem;
     border: 1px solid var(--primary-color);
 }
