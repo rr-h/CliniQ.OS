@@ -70,6 +70,7 @@ section {
    animation: crtAnimation 100s linear infinite;
    background-size: 100% 80%;
 }
+
 div.retro-container {
    mask-image: linear-gradient(to bottom, #0005 50%, #000 50%);
    mask-size: 100% 2px;
