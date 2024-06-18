@@ -79,11 +79,14 @@ figure {
    display: flex;
    justify-content: center;
    margin-top: 1rem;
+   background-color: var(--background-color); /* Added to blend with overall background */
+   padding: 1rem; /* Added padding to give some space around the image */
 }
 
 figure img {
    max-width: 100%;
    height: auto;
+   background-color: transparent;
 }
 
 @keyframes crtAnimation {
