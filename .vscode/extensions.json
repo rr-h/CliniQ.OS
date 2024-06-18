@@ -1,5 +1,6 @@
 {
    "recommendations": [
-      "christian-kohler.npm-intellisense"
+      "christian-kohler.npm-intellisense",
+      "lonefy.vscode-js-css-html-formatter"
    ]
 }

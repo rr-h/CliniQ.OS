@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -9,8 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="retro-container scanline-effect">
+    <div class="retro-container old-crt-monitor">
         <header>
             <h1>Retro Futuristic UI</h1>
             <nav role="navigation">
@@ -25,7 +27,7 @@
                     <header>
                         <h2>SCREEN 1</h2>
                     </header>
-                    <div class="content">
+                    <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
@@ -77,24 +79,26 @@
                             </tbody>
                         </table>
                     </div>
-                    <figure>
-                        <img src="./assets/image.png" alt="sci-fi ikea">
-                    </figure>
+                    <div class="image-container">
+                        <figure>
+                            <img src="./assets/image.png" alt="sci-fi ikea">
+                        </figure>
+                    </div>
                 </article>
             </section>
         </main>
         <footer>
-            <p>Created by Massimo Avvisati</p>
+            <p>Created by R. Reuther-Hols</p>
         </footer>
     </div>
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 const main = document.querySelector('main');
-        
+
                 if (targetElement) {
                     main.scrollTo({
                         top: targetElement.offsetTop - main.offsetTop,
@@ -105,4 +109,5 @@
         });
     </script>
 </body>
+
 </html>
