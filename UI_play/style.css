@@ -74,7 +74,8 @@ section {
 @media (max-width: 800px) {
     section {
         grid-template-columns: 1fr; /* Single column layout on small screens */
-        width: 
+        width: 50%;
+        height: 50%;
     }
 }
 
