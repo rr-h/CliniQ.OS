@@ -1,7 +1,7 @@
 :root {
     font-family: "VT323", monospace;
     font-weight: 100;
-    --base-font-size: 20px; /* Define the base font size */
+    --base-font-size: 20px;
     --primary-color: #ffd52c;
     --secondary-color: #ff5c00;
     --tertiary-color: #c72d04;
@@ -63,29 +63,39 @@ main {
 }
 
 section {
-    height: 100%;
-    width: 100%;
-    margin: 0.5rem 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); /* Responsive grid */
     gap: 0.3rem;
+    grid-template-columns: 1fr; /* Stack elements by default */
+}
+
+@media (min-width: 700px) {
+    section {
+        grid-template-columns: 1fr 1fr; /* Side by side on larger screens */
+    }
 }
 
 .table-container, .image-container {
-    margin: 0 0 0 0;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
     display: flex;
-    justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
-    height: 100%; /* Ensure they stretch to fill the grid cell */
+    width: 100%;
+    max-width: 700px;
+    min-width: fit-content;
+    max-height: contain;
+    height: 100%;
 }
 
 table {
-    width: 100%; /* Table takes full width of its container */
+    width: 100%;
+    max-width: 700px;
+    min-width: fit-content;
+    max-height: contain;
     border-collapse: collapse;
 }
 
 thead th {
+    width: 100%;
+    max-width: 700px;
+    min-width: fit-content;
+    max-height: 1rem;
     background-color: var(--secondary-color);
     color: var(--background-color);
     padding: 0.3rem;
@@ -93,6 +103,10 @@ thead th {
 }
 
 tbody td {
+    width: 100%;
+    max-width: 700px;
+    min-width: fit-content;
+    max-height: 1rem;
     padding: 0.3rem;
     border: 1px solid var(--primary-color);
 }
@@ -103,13 +117,13 @@ figure {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Ensure the figure takes full height of its container */
+    height: 100%;
 }
 
 figure img {
-    max-width: 100%;
+    max-width: 700px;
     max-height: 100%;
-    object-fit: contain; /* Ensure the image fits within the container */
+    object-fit: contain;
 }
 
 @keyframes crtAnimation {
@@ -128,7 +142,6 @@ figure img {
     background-size: 100% 80%;
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
     width: 12px;
 }
