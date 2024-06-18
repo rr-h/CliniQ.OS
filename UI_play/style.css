@@ -21,4 +21,35 @@ body {
    align-items: center;
    height: 100vh;
    background-color: var(--background-color);
-   cursor: url('./assets/mouse.svg')
+}
+
+div.retro-container {
+   width: 90vw;
+   height: 90vh;
+   display: grid;
+   grid-template-rows: auto 1fr auto;
+   overflow: hidden;
+   padding: 0.5rem;
+   border: 2px solid var(--primary-color);
+   color: var(--primary-color);
+   mask-image: linear-gradient(to bottom, #0005 50%, #000 50%);
+   mask-size: 100% 2px;
+   text-shadow: 0 0 0.5rem;
+}
+
+header,
+footer {
+   display: flex;
+   gap: 2rem;
+   align-items: center;
+}
+
+main {
+   overflow: hidden;
+}
+
+section {
+   height: 100%;
+   overflow: hidden auto;
+   margin: 1rem 0;
+}
