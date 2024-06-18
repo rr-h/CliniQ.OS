@@ -40,6 +40,7 @@ body {
 
 .table-container,
 .image-container {
+    margin: 0;
     background-color: var(--secondary-color);
     padding: 20px;
     border-radius: 8px;
@@ -62,10 +63,13 @@ body {
 }
 
 @media (min-width: 700px) {
-    .retro.container, .image-container, .table-container {
+    .retro.container {
         grid-template-columns: 1fr 1fr;
+    }
+    .image-container, .table-container {
         width: 50%;
     }
+
 }
 
 @keyframes crtAnimation {
