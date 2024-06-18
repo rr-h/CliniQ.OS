@@ -64,7 +64,7 @@ body {
 }
 
 @media (min-width: 700px) {
-    .container {
+    .retro.container, .image-container, .table-container {
         grid-template-columns: 1fr 1fr;
     }
 }
