@@ -20,7 +20,7 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-.container {
+.retro-container {
     display: grid;
     gap: 20px;
     width: 100%;
