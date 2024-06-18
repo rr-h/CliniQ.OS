@@ -1,0 +1,24 @@
+:root {
+   font-family: "VT323", monospace;
+   font-weight: 400;
+   --primary-color: #ffd52c;
+   --secondary-color: #ff5c00;
+   --tertiary-color: #c72d04;
+   --background-color: #111;
+   scrollbar-color: var(--primary-color) var(--secondary-color);
+   font-size: clamp(18px, 3vw, 30px);
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background-color: var(--background-color);
+   cursor: url('./assets/mouse.svg')
