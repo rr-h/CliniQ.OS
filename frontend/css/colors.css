@@ -1,7 +1,7 @@
 /* CSS HEX */
 :root {
---turquoise: #68D5B8ff,
---glaucous: #7B8BC7ff,
+   --turquoise: #68D5B8ff;
+--glaucous: #7B8BC7ff;
 --mauve: #DBA8F0ff;
 --thistle: #E6CBF4ff;
 --turquoise-2: #6AD3BAff;
