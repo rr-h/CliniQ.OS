@@ -5632,7 +5632,7 @@ p {
    -webkit-text-stroke-width: 4px;
    color: #fff;
    background-color: #000000;
-   background-image: url(../assets/elements/lmnt_noise.png), url(../assets/animations/anim_abdoCT_compressed.gif);
+   background-image: url(../assets/elements/lmnt_noise.png), url(../assets/animations/anim_intro.gif);
    background-size: cover;
    justify-content: center;
    align-items: center;
