@@ -1,5 +1,3 @@
-/* fonts.css */
-
 @font-face {
     font-family: 'ArgentPixelCF-Italic';
     src: url('../fonts/ArgentPixelCF-Italic.woff') format('woff');
@@ -66,6 +64,6 @@
 }
 
 @font-face {
-    font-family: 'PixelLCD.ttf';
+    font-family: 'PixelLCD';
     src: url('../fonts/PixelLCD.ttf') format('truetype');
 }

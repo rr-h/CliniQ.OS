@@ -11,7 +11,7 @@ const welcome = document.querySelector('.welcome'),
 // Here we listen when the doc and all assets are loaded
 window.addEventListener("load", function(e) {
     // If the user is on large devices
-    if(window.innerWidth > 699){
+    if (window.innerWidth > 699) {
         setTimeout(function() {
             // Remove the first mac icon
             macIcon.remove();
@@ -19,10 +19,13 @@ window.addEventListener("load", function(e) {
             welcome.classList.add('anim-show');
             // If the animation is ended, and the screen is loaded we show the website
             welcome.addEventListener('animationend', () => {
-            splash.remove();
-            // Two seconds for the animation to end 
-        });}, 2000); 
-    } else {
+                splash.remove();
+                // Two seconds for the animation to end 
+            });
+        }, 2000);
+    }
+});
+/* else {
         // If the user is on small devices
         {setTimeout(function() {
             // We change the icon
@@ -35,7 +38,7 @@ window.addEventListener("load", function(e) {
             // Fake it until you make it ;)
         }, 8000);}
     };
-});
+}); */
 
 // Dropdown menu
 // We select all the menus el from the header ['file', 'edit', 'view', 'special']
@@ -43,14 +46,14 @@ const items = document.querySelectorAll('.mac_menu > li');
 // When the user clicks the header we add the class 'menu-item'
 // Bref: when the header is on focus, we can see the howver effect when it's not we cant hover over it 
 header.addEventListener('click', () => {
-    for (item of items){
+    for (item of items) {
         item.classList.add('menu-item');
     };
 });
 // if the user clicks the main content the header is no longer active so the hover effect
 // is disabled, it's a mac thing!!!
 main.addEventListener('click', () => {
-    for (item of items){
+    for (item of items) {
         item.classList.remove('menu-item');
     };
 });
@@ -62,23 +65,25 @@ class Window {
     Each window has an btn (this.icon) which opens the window and 
     There is many window types, I decided to create one class with no subclasses for simplicity
     I used ternary and arguments for this.
-    */ 
-    constructor(selector, windowDraggable = true){
+    */
+    constructor(selector, windowDraggable = true) {
         this.icon = document.getElementById(selector);
         this.window = document.querySelector('.window.' + selector);
         this.windowDraggable = windowDraggable;
         this.closeBtn = document.querySelector('.close_btn.' + selector);
         this.resizeBtn = document.querySelector('.resize_btn.' + selector);
-        if(!this.windowDraggable) this.windowHeader = this.window.children[0];
+        if (!this.windowDraggable) this.windowHeader = this.window.children[0];
     }
 
     // drag just like in jquery ;)
     drag(el2, el1, foo) {
         // Declaring positions
-        let pos1 = 0, pos2 = 0, pos3, pos4;
+        let pos1 = 0,
+            pos2 = 0,
+            pos3, pos4;
         // I've used a defined function in order to remove the event when needed with removeEve..
 
-        el1.addEventListener('mousedown', function handleMouseDown(e) { 
+        el1.addEventListener('mousedown', function handleMouseDown(e) {
             // focusing an element when is dragged for the :focus selector
             el2.focus();
 
@@ -88,11 +93,11 @@ class Window {
 
             pos3 = e.clientX;
             pos4 = e.clientY;
-            
+
             // This is to prevent the window object from sticking to the mouse cursor. 
             document.onmouseup = (e) => {
                 document.onmouseup = null;
-                document.onmousemove = null;                          
+                document.onmousemove = null;
             };
 
             // move the windom with mouse coords
@@ -114,12 +119,12 @@ class Window {
                 el2.style.top = el2.offsetTop < 0 ? "0" : `${el2.offsetTop - pos2}px`;
                 el2.style.left = `${el2.offsetLeft - pos1}px`;
             };
-            if(foo) el1.removeEventListener('mousedown', handleMouseDown);
+            if (foo) el1.removeEventListener('mousedown', handleMouseDown);
         });
     };
 
     // Show el window when it's clicked
-    showWindow(){
+    showWindow() {
         // We define the event if the icon trigger is in the main or the header
         /* bisacly iif click an icon in the main the event should be a double click because
         we dont want to open the window when we try to move the icon, on the other side
@@ -130,7 +135,7 @@ class Window {
         this.icon.addEventListener(eve, () => {
             // if the window is already open add a bouncing animation to show to the user that
             // the window is already open.
-            if(this.window.style.display === "block") {
+            if (this.window.style.display === "block") {
                 this.window.classList.add('anim-bounce');
                 setTimeout(() => {
                     this.window.classList.remove('anim-bounce');
@@ -140,7 +145,7 @@ class Window {
                 this.window.style.display = "block";
                 // if the window deosn't have a close btn we close when we click on the overlay 
                 // just like a bootstrap modal.
-                if(!(this.closeBtn)){
+                if (!(this.closeBtn)) {
                     overlay.style.display = "block";
                 };
             };
@@ -148,38 +153,38 @@ class Window {
     };
 
     // Close the el window when btn close is clicked
-    closeWindowUsingBtn(){
+    closeWindowUsingBtn() {
         this.closeBtn.onclick = (e) => {
-            this.window.style.display = "none"; 
+            this.window.style.display = "none";
             // Reset the z-index 
-            this.window.style.zIndex = "1";  
-        };  
+            this.window.style.zIndex = "1";
+        };
     };
 
-    resizeWindow(){
+    resizeWindow() {
         // Resize the window with a sample transform scale animation saved within a class called 'anim-resize'
-        this.resizeBtn.onclick = (e) => {this.window.classList.toggle('anim-resize');};
+        this.resizeBtn.onclick = (e) => { this.window.classList.toggle('anim-resize'); };
     };
 
     // This thing has a fucking bug 
-    isActive(){
+    isActive() {
         this.window.onmousedown = () => {
             this.window.style.zIndex = "3";
             /* Updating windows z-index so if a window is clicked it becomes when 
             the bigger z-index in order.*/
-            setInterval((e)=>{
-                if(this.window !== document.activeElement) {
+            setInterval((e) => {
+                if (this.window !== document.activeElement) {
                     this.window.style.zIndex = "1";
                 };
             }, 100);
-        };  
+        };
     };
 
     // Close the el window when overlay is clicked
-    closeWindowUsingBackground(){
+    closeWindowUsingBackground() {
         // only for windows that dont have a close btn
         overlay.onclick = () => {
-            if (this.window){
+            if (this.window) {
                 this.window.style.display = "none";
             };
         };
@@ -191,12 +196,12 @@ class Window {
         this.drag(this.icon, this.icon, false);
         this.isActive();
         this.resizeBtn ? this.resizeWindow() : {};
-        this.windowDraggable ? this.drag(this.window, this.window) : this.drag(this.window, this.windowHeader); 
+        this.windowDraggable ? this.drag(this.window, this.window) : this.drag(this.window, this.windowHeader);
         setInterval(() => {
-            this.windowDraggable ? this.drag(this.window, this.window, true) : this.window.offsetTop < 200 || this.window.offsetLeft < 0 ? 
-            this.drag(this.window, this.window, true) : this.drag(this.window, this.windowHeader, true);
+            this.windowDraggable ? this.drag(this.window, this.window, true) : this.window.offsetTop < 200 || this.window.offsetLeft < 0 ?
+                this.drag(this.window, this.window, true) : this.drag(this.window, this.windowHeader, true);
         }, 100);
-        this.window ? this.isActive(): {};
+        this.window ? this.isActive() : {};
         this.window ? this.showWindow() : {};
         this.closeBtn ? this.closeWindowUsingBtn() : this.closeWindowUsingBackground();
     };
@@ -240,7 +245,7 @@ list.run();
 // when we click menu item in the view dropdow menu we change to full screen mode 
 const fullScreen = document.getElementById('full-screen');
 fullScreen.addEventListener('click', (e) => {
-    document.documentElement.requestFullscreen().then(()=>{
+    document.documentElement.requestFullscreen().then(() => {
         fullScreen.innerText = "Remove Full Screen";
         fullScreen.addEventListener('click', (e) => {
             document.exitFullscreen();
@@ -259,7 +264,7 @@ pattern.onmousedown = (e) => {
 
 // Time app
 var time = document.getElementById('time'),
-date = document.getElementById('date');
+    date = document.getElementById('date');
 const switcher = document.querySelector('.icon.switch');
 
 (function() {
@@ -267,42 +272,42 @@ const switcher = document.querySelector('.icon.switch');
     const second = 1000,
         minute = second * 60,
         hour = minute * 60,
-        day = hour * 24;  
+        day = hour * 24;
 
-        // to get current date in this format dd-mm-yyyy
-        var today = new Date(),
+    // to get current date in this format dd-mm-yyyy
+    var today = new Date(),
         // From stackoverflow ###################
-            dd = String(today.getDate()).padStart(2, '0'),
-            mm = String(today.getMonth() + 1).padStart(2, '0'),
-            yyyy = today.getFullYear();
-        // ############################
+        dd = String(today.getDate()).padStart(2, '0'),
+        mm = String(today.getMonth() + 1).padStart(2, '0'),
+        yyyy = today.getFullYear();
+    // ############################
 
-        today = dd + '-' + mm + '-' + yyyy;
-        date.innerText = today;
+    today = dd + '-' + mm + '-' + yyyy;
+    date.innerText = today;
 
-        switcher.onclick = (e) => {
-            // Here we show the date when switcher in the time app is clicked u should check it !!
-            document.querySelector('.alarm > .window-body').classList.toggle('d-block');
-            switcher.classList.toggle('rotate-180');
-        }
-    
-        setInterval(() => {    
-            // Here we run out time machine 
-            // We get the time from the navigator in ms 
-            let now = new Date().getTime() + hour;
-            // We apply our filters to get the current time we add + hour for utc+1 'Paris time' :)
-            time.innerText = 
-            Math.floor((now % (day)) / (hour)) + ":" 
-            + Math.floor((now % (hour)) / (minute)) + ":"
-            + Math.floor((now % (minute)) / second);
-        },  1000)
+    switcher.onclick = (e) => {
+        // Here we show the date when switcher in the time app is clicked u should check it !!
+        document.querySelector('.alarm > .window-body').classList.toggle('d-block');
+        switcher.classList.toggle('rotate-180');
+    }
+
+    setInterval(() => {
+        // Here we run out time machine 
+        // We get the time from the navigator in ms 
+        let now = new Date().getTime() + hour;
+        // We apply our filters to get the current time we add + hour for utc+1 'Paris time' :)
+        time.innerText =
+            Math.floor((now % (day)) / (hour)) + ":" +
+            Math.floor((now % (hour)) / (minute)) + ":" +
+            Math.floor((now % (minute)) / second);
+    }, 1000)
 }());
 
 // Now the HARDCORE Stuff HTML5 CANVAS
 // Paint App -------------------------------------
 // we create a paint canvas 
 const canvas = document.getElementById('paint-canvas'),
-ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -312,36 +317,48 @@ const strokeBtns = document.querySelectorAll('.paint-stroke > .btn'),
     clearBtn = document.querySelector('.paint-cmd > .clear.btn'),
     eraserBtn = document.querySelector('.paint-cmd > .eraser.btn'),
     lineBtn = document.querySelector('.paint-cmd > .line.btn'),
-    penBtn =document.querySelector('.paint-cmd > .pen.btn'),
-    sprayBtn =document.querySelector('.paint-cmd > .spray.btn'),
-    multilinesBtn =document.querySelector('.paint-cmd > .multilines.btn');
+    penBtn = document.querySelector('.paint-cmd > .pen.btn'),
+    sprayBtn = document.querySelector('.paint-cmd > .spray.btn'),
+    multilinesBtn = document.querySelector('.paint-cmd > .multilines.btn');
 
 // Coords
 // Here we define the pen previous coords
 let isDrawing = false,
-isOut = false,
-eraseMode = false,
-lastX = 0,
-lastY = 0,
-lastLY,
-lastLX;
+    isOut = false,
+    eraseMode = false,
+    lastX = 0,
+    lastY = 0,
+    lastLY,
+    lastLX;
 
 // Draw modes
 // Bisacly we have 4 drawing modes listed below when we click a btn we switch between modes
 // exept for the clean mode we use a white stroke style to erase everything since the canvas is by default white.
 let drawMode = 'pen';
-lineBtn.onclick = (e) => {drawMode = 'line'; ctx.strokeStyle = '#000'; isOut=true; eraseMode = false;};
-penBtn.onclick = () => { drawMode = 'pen'; ctx.strokeStyle = '#000'; eraseMode = false;};
-sprayBtn.onclick = () => {drawMode = 'spray'; ctx.strokeStyle = '#000'; eraseMode = false;};
-multilinesBtn.onclick = () => {drawMode = 'multilines'; ctx.strokeStyle = '#000'; eraseMode = false; isOut=true;};
-eraserBtn.onclick = () => {drawMode = 'pen'; ctx.strokeStyle = '#fff'; eraseMode = true;};
+lineBtn.onclick = (e) => { drawMode = 'line';
+    ctx.strokeStyle = '#000';
+    isOut = true;
+    eraseMode = false; };
+penBtn.onclick = () => { drawMode = 'pen';
+    ctx.strokeStyle = '#000';
+    eraseMode = false; };
+sprayBtn.onclick = () => { drawMode = 'spray';
+    ctx.strokeStyle = '#000';
+    eraseMode = false; };
+multilinesBtn.onclick = () => { drawMode = 'multilines';
+    ctx.strokeStyle = '#000';
+    eraseMode = false;
+    isOut = true; };
+eraserBtn.onclick = () => { drawMode = 'pen';
+    ctx.strokeStyle = '#fff';
+    eraseMode = true; };
 
 ctx.lineWidth = "2";
 
 // Clear canvas on one click.
 clearBtn.onclick = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    isOut = true;  
+    isOut = true;
 };
 
 // Stroke styles
@@ -361,11 +378,11 @@ if not we get out of the event handler, otherwise, we start drawing using 'move 
 'line to' 2D canvas methodes the stroke method fill the lines with stroke style color
 we pass mouse coords as parametres for these methodes just like I did with the drag method
 for the window remember.
-*/ 
+*/
 canvas.onmousemove = (e) => {
     if (!isDrawing) return;
     ctx.beginPath();
-    if (drawMode === 'pen'){
+    if (drawMode === 'pen') {
         ctx.moveTo(lastX, lastY);
         ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke();
@@ -374,12 +391,12 @@ canvas.onmousemove = (e) => {
         to draw multiple rects in every mousemove using a for loop, this a cool
         mode too, I wish you could try it, it's way better than Window's Paint.
         */
-        for (let i = 30; i>0; i--) { 
+        for (let i = 30; i > 0; i--) {
             // I use parsint because by default ctx.linewidth is a string
-            ctx.rect(lastX + Math.random() * parseInt(ctx.lineWidth)*2 - 10, 
-                    lastY + Math.random() * parseInt(ctx.lineWidth)*2 - 10, 1, 1);
+            ctx.rect(lastX + Math.random() * parseInt(ctx.lineWidth) * 2 - 10,
+                lastY + Math.random() * parseInt(ctx.lineWidth) * 2 - 10, 1, 1);
             ctx.fill();
-        };   
+        };
     } else if (drawMode === 'multilines') {
         // I descoverd this mode by chance it's really cool 
         // SO no comments here ?
@@ -404,8 +421,8 @@ canvas.onmousedown = (e) => {
                     ctx.lineTo(e.offsetX, e.offsetY);
     this will draw a point instead of connecting a line to the last position.
     */
-    if(isOut)[lastLX, lastLY] = [e.offsetX, e.offsetY];
-    if (drawMode === 'line'){
+    if (isOut)[lastLX, lastLY] = [e.offsetX, e.offsetY];
+    if (drawMode === 'line') {
         ctx.beginPath();
         ctx.moveTo(lastLX, lastLY);
         ctx.lineTo(e.offsetX, e.offsetY);
@@ -428,32 +445,32 @@ canvas.addEventListener('mouseout', () => (isDrawing = false));
 
 
 // Snake App -------------------------------------
-(function(){  
+(function() {
     // Snake Properties
     var snake,
-    snakeDir,
-	snakeNextDir,
-    snakeSpeed = 100,
-    // Food object
-    food = {x: 0, y: 0},
-    
-    // Creating the snake canvas and selecting html nodes
-    snakeCanvas = document.getElementById("snake-canvas"),
-    ctx = snakeCanvas.getContext("2d"),
+        snakeDir,
+        snakeNextDir,
+        snakeSpeed = 100,
+        // Food object
+        food = { x: 0, y: 0 },
 
-    // We only have two screens gameover and new game screens
-    screenMenu = document.getElementById("snake-menu"),
-    screenGameOver = document.getElementById("gameover"),
+        // Creating the snake canvas and selecting html nodes
+        snakeCanvas = document.getElementById("snake-canvas"),
+        ctx = snakeCanvas.getContext("2d"),
 
-    // Selecing both new game btns in the two gameover and new game screens
-    btnNewgame = document.getElementById("newgame_menu"),
-    btnGameOver = document.getElementById("newgame_gameover"),
+        // We only have two screens gameover and new game screens
+        screenMenu = document.getElementById("snake-menu"),
+        screenGameOver = document.getElementById("gameover"),
 
-    // Score
-    score,
-    // Selecting the score element 
-    scoreEl = document.getElementById("score_value");
-    
+        // Selecing both new game btns in the two gameover and new game screens
+        btnNewgame = document.getElementById("newgame_menu"),
+        btnGameOver = document.getElementById("newgame_gameover"),
+
+        // Score
+        score,
+        // Selecting the score element 
+        scoreEl = document.getElementById("score_value");
+
     // Drawing the rectangles for both snake and the food
     var draw = (x, y) => {
         ctx.fillStyle = "#000";
@@ -463,30 +480,34 @@ canvas.addEventListener('mouseout', () => (isDrawing = false));
     // Changing snake directions depending on keyboard events
     var changeDir = (key) => {
         // Keyboard ascii codes !! 
-        if(key == 38 && snakeDir != 2){
+        if (key == 38 && snakeDir != 2) {
             snakeNextDir = 0;
         } else {
-            if (key == 39 && snakeDir != 3){
+            if (key == 39 && snakeDir != 3) {
                 snakeNextDir = 1;
             } else {
-                if (key == 40 && snakeDir != 0){
+                if (key == 40 && snakeDir != 0) {
                     snakeNextDir = 2;
                 } else {
-                    if(key == 37 && snakeDir != 1){
+                    if (key == 37 && snakeDir != 1) {
                         snakeNextDir = 3;
-    }; }; }; };};
+                    };
+                };
+            };
+        };
+    };
 
     // Adding food rects randomly when there is no food
     var addFood = () => {
         food.x = Math.floor(Math.random() * ((snakeCanvas.width / 10) - 1));
         food.y = Math.floor(Math.random() * ((snakeCanvas.height / 10) - 1));
-        for(var i = 0; i < snake.length; i++){
-            if(checkBlock(food.x, food.y, snake[i].x, snake[i].y)){
+        for (var i = 0; i < snake.length; i++) {
+            if (checkBlock(food.x, food.y, snake[i].x, snake[i].y)) {
                 addFood();
             };
         };
     };
-    
+
     // Check if snake eat food aka check if snake coords are the same as food ones.
     var checkBlock = (x, y, _x, _y) => {
         return (x == _x && y == _y) ? true : false;
@@ -496,61 +517,69 @@ canvas.addEventListener('mouseout', () => (isDrawing = false));
     var altScore = (scoreVal) => {
         scoreEl.innerHTML = String(scoreVal);
     };
-    
+
     var mainLoop = () => {
-            var _x = snake[0].x;
-            var _y = snake[0].y;
-            // We get the next direction from the changeDir function above 
-			snakeDir = snakeNextDir;
+        var _x = snake[0].x;
+        var _y = snake[0].y;
+        // We get the next direction from the changeDir function above 
+        snakeDir = snakeNextDir;
 
-            // 0 - Up, 1 - Right, 2 - Down, 3 - Left
-            switch(snakeDir){
-                case 0: _y--; break;
-                case 1: _x++; break;
-                case 2: _y++; break;
-                case 3: _x--; break;
-            };
+        // 0 - Up, 1 - Right, 2 - Down, 3 - Left
+        switch (snakeDir) {
+            case 0:
+                _y--;
+                break;
+            case 1:
+                _x++;
+                break;
+            case 2:
+                _y++;
+                break;
+            case 3:
+                _x--;
+                break;
+        };
 
-            // CHanging direction
-            snake.pop();
-            snake.unshift({x: _x, y: _y});
+        // CHanging direction
+        snake.pop();
+        snake.unshift({ x: _x, y: _y });
 
-            // When snake hits the wall
-            if (snake[0].x < 0 || snake[0].x == snakeCanvas.width / 10 || snake[0].y < 0 || snake[0].y == snakeCanvas.height / 10 ){
-                showScreen(2);
-                // getting out of the loop (the function)
-                return;
-            };
-            
+        // When snake hits the wall
+        if (snake[0].x < 0 || snake[0].x == snakeCanvas.width / 10 || snake[0].y < 0 || snake[0].y == snakeCanvas.height / 10) {
+            showScreen(2);
+            // getting out of the loop (the function)
+            return;
+        };
+
         // When snake eats himself
-        for(var i = 1; i < snake.length; i++){
-            if (snake[0].x == snake[i].x && snake[0].y == snake[i].y){
+        for (var i = 1; i < snake.length; i++) {
+            if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
                 // Show the game over screen
                 showScreen(2);
                 // getting out of the loop (the function)
                 return;
             };
         };
-        
+
         // When snake eats food (if snake.x && snake.y === food.x && food.y)
-        if(checkBlock(snake[0].x, snake[0].y, food.x, food.y)){
-            snake[snake.length] = {x: snake[0].x, y: snake[0].y};
+        if (checkBlock(snake[0].x, snake[0].y, food.x, food.y)) {
+            snake[snake.length] = { x: snake[0].x, y: snake[0].y };
             score += 1;
             altScore(score);
             addFood();
             draw(food.x, food.y);
         };
-        
+
         // Clearing the canvas 
         ctx.beginPath();
         ctx.fillStyle = "#fff";
         ctx.fillRect(0, 0, snakeCanvas.width, snakeCanvas.height);
-    
+
         // Drawing all the snake parts 
-        for(var i = 0; i < snake.length; i++){
+        for (var i = 0; i < snake.length; i++) {
             draw(snake[i].x, snake[i].y);
         };
-    
+
         // Drawing the foos 
         draw(food.x, food.y);
 
@@ -561,24 +590,24 @@ canvas.addEventListener('mouseout', () => (isDrawing = false));
     /* Before every new game we have to reset some stuff like the score, the snake, 
     it's direction...
     */
-    var newGame = () => { 
+    var newGame = () => {
         showScreen(0);
         snakeCanvas.focus();
-      
+
         // Reset the snake parts to an empty array
         snake = [];
         // Creating the baby snake
-        for(var i = 4; i >= 0; i--){
-            snake.push({x: i, y: 15});
+        for (var i = 4; i >= 0; i--) {
+            snake.push({ x: i, y: 15 });
         };
-      
+
         // Initial direction
         snakeNextDir = 1;
-        
+
         // Reset the score and update the score element
         score = 0;
         altScore(score);
-        
+
         // Adding food 
         addFood();
 
@@ -588,101 +617,103 @@ canvas.addEventListener('mouseout', () => (isDrawing = false));
             changeDir(e.keyCode);
         };
         // Run the freaking game
-        mainLoop();         
+        mainLoop();
     };
 
     // 0 for the game
     // 1 for the main menu
     // 2 for the game over screen
     var showScreen = (screen_opt) => {
-        switch(screen_opt){  
-            case 0:  snakeCanvas.style.display = "block";
-                     screenMenu.style.display = "none";
-                     screenGameOver.style.display = "none";
-                     break;
-                
-            case 1:  snakeCanvas.style.display = "none";
-                     screenMenu.style.display = "block";
-                     
-                     screenGameOver.style.display = "none";
-                     break; 
+        switch (screen_opt) {
+            case 0:
+                snakeCanvas.style.display = "block";
+                screenMenu.style.display = "none";
+                screenGameOver.style.display = "none";
+                break;
 
-            case 2: snakeCanvas.style.display = "none";
-                    screenMenu.style.display = "none";
-                    screenGameOver.style.display = "block";
-                    break;
+            case 1:
+                snakeCanvas.style.display = "none";
+                screenMenu.style.display = "block";
+
+                screenGameOver.style.display = "none";
+                break;
+
+            case 2:
+                snakeCanvas.style.display = "none";
+                screenMenu.style.display = "none";
+                screenGameOver.style.display = "block";
+                break;
         };
     };
-     
+
     // Event listeners for both newgale btns
-    btnNewgame.onclick = function(){newGame();};
-    btnGameOver.onclick = function(){newGame();}; 
+    btnNewgame.onclick = function() { newGame(); };
+    btnGameOver.onclick = function() { newGame(); };
 })();
 // End Snake App ---------------------------------------
 
 
 // Calculator App -----------------------------------
 var display = document.getElementById('calc-res'), // input/output button
-  numbers = document.querySelectorAll('.num'), // number buttons
-  operators = document.querySelectorAll('.operator'), // operator buttons
-  resultbtn = document.getElementById('equal'), // equal button
-  clearbtn = document.getElementById('clear'), // clear button
-  eraseLastBtn = document.getElementById('erase-last'), // erase last element btn
-  resultDisplayed = false; // flag to keep an eye on what output is displayed
+    numbers = document.querySelectorAll('.num'), // number buttons
+    operators = document.querySelectorAll('.operator'), // operator buttons
+    resultbtn = document.getElementById('equal'), // equal button
+    clearbtn = document.getElementById('clear'), // clear button
+    eraseLastBtn = document.getElementById('erase-last'), // erase last element btn
+    resultDisplayed = false; // flag to keep an eye on what output is displayed
 
 
 // adding click handlers to number buttons
 for (let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener("click", (e) => {
-    // storing current input string and its last character in variables 
-    var currentString = display.innerHTML,
-    lastChar = currentString[currentString.length - 1];
+        // storing current input string and its last character in variables 
+        var currentString = display.innerHTML,
+            lastChar = currentString[currentString.length - 1];
 
-    // if result is not displayed, just keep adding
-    if (resultDisplayed === false) {
-        if(display.innerHTML.length < 11) display.innerHTML += e.target.value;
-    } else if (resultDisplayed === true && lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
-      // if result is currently displayed and user pressed an operator
-      // we need to keep on adding to the string for next operation
-      if(display.innerHTML.length < 11) display.innerHTML += e.target.value;
-      resultDisplayed = false;
-    } else {
-      // if result is currently displayed and user pressed a number
-      // we need clear the display string and add the new input to start the new opration
-      resultDisplayed = false;
-      display.innerHTML = "";
-      display.innerHTML += e.target.value;
-    };
-  });
+        // if result is not displayed, just keep adding
+        if (resultDisplayed === false) {
+            if (display.innerHTML.length < 11) display.innerHTML += e.target.value;
+        } else if (resultDisplayed === true && lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
+            // if result is currently displayed and user pressed an operator
+            // we need to keep on adding to the string for next operation
+            if (display.innerHTML.length < 11) display.innerHTML += e.target.value;
+            resultDisplayed = false;
+        } else {
+            // if result is currently displayed and user pressed a number
+            // we need clear the display string and add the new input to start the new opration
+            resultDisplayed = false;
+            display.innerHTML = "";
+            display.innerHTML += e.target.value;
+        };
+    });
 };
 
 // adding click handlers to operator buttons
 for (let i = 0; i < operators.length; i++) {
     operators[i].addEventListener("click", (e) => {
-    // storing current input string and its last character in variables - used later
-    var currentString = display.innerHTML;
-    var lastChar = currentString[currentString.length - 1];
+        // storing current input string and its last character in variables - used later
+        var currentString = display.innerHTML;
+        var lastChar = currentString[currentString.length - 1];
 
-    // if last character entered is an operator, replace it with the currently pressed one
-    if (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
-      var newString = currentString.substring(0, currentString.length - 1) + e.target.value;
-      display.innerHTML = newString;
-    } else if (currentString.length == 0) {
-      // if first key pressed is an opearator, don't do anything
-      console.log("enter a number first!");
-    } else {
-      // else just add the operator pressed to the input
-      display.innerHTML += e.target.value;
-    };
-  });
+        // if last character entered is an operator, replace it with the currently pressed one
+        if (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
+            var newString = currentString.substring(0, currentString.length - 1) + e.target.value;
+            display.innerHTML = newString;
+        } else if (currentString.length == 0) {
+            // if first key pressed is an opearator, don't do anything
+            console.log("enter a number first!");
+        } else {
+            // else just add the operator pressed to the input
+            display.innerHTML += e.target.value;
+        };
+    });
 };
 
 // From stackoverflow ######
 // This function calculate number of digits in a giver decimal number
 function digitCount(value, afterDecimal = true) {
-    if(Math.floor(value) === value) return 0;
-    if(afterDecimal){return value.toString().split(".")[1].length || 0;}
-    else{return(value.toString().split(".").join('').length)};  
+    if (Math.floor(value) === value) return 0;
+    if (afterDecimal) { return value.toString().split(".")[1].length || 0; } else { return (value.toString().split(".").join('').length) };
 };
 // ############
 
@@ -738,7 +769,7 @@ resultbtn.addEventListener("click", (e) => {
 
 // clearing the input on press of clear
 clearbtn.addEventListener("click", () => {
-  display.innerHTML = "";
+    display.innerHTML = "";
 });
 
 // Erase last element pressed byt the user
