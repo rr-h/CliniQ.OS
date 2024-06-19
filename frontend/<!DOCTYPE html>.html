@@ -1442,3 +1442,189 @@
     <div class="div-block-56">
         <img src="./assets/photo/pht_vaporwaveBuilding.jpg" loading="lazy" sizes="100vw" srcset="./assets/photo/pht_vaporwaveBuilding_large.jpeg 500w, ./assets/photo/pht_vaporwaveBuilding.jpg 2940w" alt="" class="image-10">
     </div>
+    <div class="css---marquee w-embed">
+        <style>
+            .list-marquee-2 {
+                position: relative;
+                will-change: transform;
+                animation: marquee-horizontal-alt-2 80s linear infinite;
+                /* manipulate the speed of the marquee by changing "80s" line above */
+            }
+            
+            @keyframes marquee-horizontal-alt-2 {
+                from {
+                    transform: translateX(0%);
+                }
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+            
+            .marquee-horizontal-2:hover .list-marquee-2 {
+                -webkit-animation-play-state: paused;
+                -moz-animation-play-state: paused;
+                -o-animation-play-state: paused;
+                animation-play-state: paused;
+            }
+        </style>
+    </div>
+
+    <div id="loader-wrapper" data-w-id="0e407d89-754d-c9df-c046-2f01976fb14d" style="display:flex" class="loader">
+        <div>
+            <div class="text-block-9">Starting Up...</div>
+            <div class="divider _20px"></div>
+            <div class="w-layout-grid grid-25">
+                <div id="w-node-_0af9e2fe-1e59-7406-ba50-bf88d385654b-bee34dae" data-w-id="0af9e2fe-1e59-7406-ba50-bf88d385654b" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-_081f29a3-81bc-8188-ae90-451a724d6764-bee34dae" data-w-id="081f29a3-81bc-8188-ae90-451a724d6764" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-_9fa4a8fa-06cf-964a-727b-80b0056437f7-bee34dae" data-w-id="9fa4a8fa-06cf-964a-727b-80b0056437f7" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-a5bcda8a-1bc6-0164-2e3a-f93a4ac5e0fe-bee34dae" data-w-id="a5bcda8a-1bc6-0164-2e3a-f93a4ac5e0fe" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-_9e97a157-2c19-edfd-fbf2-098dd8cb022d-bee34dae" data-w-id="9e97a157-2c19-edfd-fbf2-098dd8cb022d" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-_0e45985d-d680-8a21-a714-88a72c9ac1c0-bee34dae" data-w-id="0e45985d-d680-8a21-a714-88a72c9ac1c0" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-_044e1ac8-b7bf-4b1b-8905-64d076247791-bee34dae" data-w-id="044e1ac8-b7bf-4b1b-8905-64d076247791" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-dd800c0e-83d6-fb6c-aab7-e6d90e90ae5b-bee34dae" data-w-id="dd800c0e-83d6-fb6c-aab7-e6d90e90ae5b" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-_67eed2b3-2a12-a123-ce26-c11fefe0c996-bee34dae" data-w-id="67eed2b3-2a12-a123-ce26-c11fefe0c996" style="opacity:0" class="div-block-83"></div>
+                <div id="w-node-e275e18b-71f6-fe27-b370-0ff8d910265c-bee34dae" data-w-id="e275e18b-71f6-fe27-b370-0ff8d910265c" style="opacity:0" class="div-block-83"></div>
+            </div>
+        </div>
+        <div class="pixel-layer"></div>
+    </div>
+
+    <script defer src="./js/cliniq_OS.webflow.js" type="text/javascript"></script>
+
+    <script>
+        $(".click__about__me").click(function() {
+            $('.draggable').css("z-index", "");
+            $(".window-pics-about-me").css('z-index', 99999);
+            $(".window-about-me").css('z-index', 99999);
+        });
+
+        $(".click__my_projects").click(function() {
+            $('.draggable').css("z-index", "");
+            $(".window-projects").css('z-index', 99999);
+        });
+        $(".click__lets_talk").click(function() {
+            $('.draggable').css("z-index", "");
+            $(".window-form-mail").css('z-index', 99999);
+        });
+        $(".click__fm").click(function() {
+            $('.draggable').css("z-index", "");
+            $(".div-block-40").css('z-index', 99999);
+        });
+        $(".click__my__schedule").click(function() {
+            $('.draggable').css("z-index", "");
+            $(".window-notes").css('z-index', 99999);
+        });
+        $(".click__photoboot").click(function() {
+            $('.draggable').css("z-index", "");
+            $(".window-cam-notification").css('z-index', 99999);
+        });
+        $(".click__social").click(function() {
+            $('.draggable').css("z-index", "");
+            $(".window-cam-notification").css('z-index', 99999);
+        });
+        $(".click__theme").click(function() {
+            $('.draggable').css("z-index", "");
+            $(".theme").css('z-index', 99999);
+        });
+
+        var isPaused = false;
+        $(".audio_play").click(function() {
+            play_update();
+            isPaused = false;
+        });
+
+        var auioTimeout;
+        var song = document.getElementsByTagName('audio')[0];
+        var played = false;
+
+        $(".audio_paus").click(function() {
+            setCookie('timePlayed', song.currentTime);
+            song.pause();
+            isPaused = true;
+        });
+
+        $(".audio_stop").click(function() {
+            song.pause();
+            song.currentTime = 0;
+            isPaused = false;
+            stopit();
+            restart();
+            tt = 0;
+            $('.audio_clock').text(formatSecondsAsTime(song.duration + 1, 'mm:ss'));
+            //$('.audio_clock').text("00:"+parseInt(song.duration+1))
+        });
+
+        var tt = 0;
+        //auioTimeout = window.setInterval(audio_duration, 1000);
+        var timer = setInterval(audio_duration, 1000);
+
+        setTimeout(function() {
+            //$('.audio_clock').text("00:"+parseInt(song.duration+1))
+            $('.audio_clock').text(formatSecondsAsTime(song.duration + 1, 'mm:ss'));
+        }, 3000);
+
+        function audio_duration() {
+            if (!isPaused) {
+                if (song.duration > 0 && !song.paused) {
+                    tt = tt + 1;
+                    var times = parseInt(song.duration + 1 - tt);
+                    if (times.toString().length == 1) {
+                        times = '0' + times;
+                    }
+                    var du = (90 / song.duration);
+                    du = du * tt;
+                    $('.div-block-49').css('left', du + '%')
+                        // $('.audio_clock').text(formatSecondsAsTime(times,'mm:ss'));
+                }
+            }
+        }
+
+        function play_update() {
+            isPaused = false;
+            song.play();
+        }
+
+        function stopit() {
+            clearInterval(timer);
+        }
+
+        function start() {
+            timer = setInterval(audio_duration, 1000);
+        }
+
+        function restart() {
+            start = 1;
+            timer = setInterval(audio_duration, 1000);
+        }
+
+        function formatSecondsAsTime(secs, format) {
+            var hr = Math.floor(secs / 3600);
+            var min = Math.floor((secs - (hr * 3600)) / 60);
+            var sec = Math.floor(secs - (hr * 3600) - (min * 60));
+
+            if (hr < 10) {
+                hr = "0" + hr;
+            }
+            if (min < 10) {
+                min = "0" + min;
+            }
+            if (sec < 10) {
+                sec = "0" + sec;
+            }
+            if (hr) {
+                hr = "00";
+            }
+
+            if (format !== null) {
+                var formatted_time = format.replace('hh', hr);
+                formatted_time = formatted_time.replace('h', hr * 1 + ""); // check for single hour formatting
+                formatted_time = formatted_time.replace('mm', min);
+                formatted_time = formatted_time.replace('m', min * 1 + ""); // check for single minute formatting
+                formatted_time = formatted_time.replace('ss', sec);
+                formatted_time = formatted_time.replace('s', sec * 1 + ""); // check for single second formatting
+                return formatted_time;
+            } else {
+                return hr + ':' + min + ':' + sec;
+            }
+        }
+    </script>
