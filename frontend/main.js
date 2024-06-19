@@ -7,6 +7,7 @@ import { displayData } from './components/UIComponents.js';
 import './css/styles.css';
 import './css/cliniq_OS.min.css';
 import './css/fonts.css';
+import './css/styles.css'
 import './js/cliniq_OS.webflow.js';
 import './js/jquery-3.3.1.min.js';
 import './js/jquery-3.5.1.min.dc5e7f18c8.js';
