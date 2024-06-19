@@ -1,6 +1,6 @@
 // frontend/main.js
 
-import { initUIComponents } from './components/UIComponents';
+import { initUIComponents } from './components/UIComponents.js';
 import { handleSubmit, handleClick } from './components/EventHandler.js';
 import { fetchData, processData } from './utils/dataHandlers.js';
 import { displayData } from './components/UIComponents.js';
