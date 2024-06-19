@@ -1,0 +1,23 @@
+/* CSS HEX */
+:root {
+--turquoise: #68D5B8ff,
+--glaucous: #7B8BC7ff,
+--mauve: #DBA8F0ff;
+--thistle: #E6CBF4ff;
+--turquoise-2: #6AD3BAff;
+--uranian-blue: #A3DEFDff;
+--air-superiority-blue: #689ABBff;
+--aquamarine: #9AF0C1ff;
+--mauve-2: #DEA1F1ff;
+--tropical-indigo: #7D79C7ff;
+--turquoise: hsla(164, 56%, 62%, 1);
+--glaucous: hsla(227, 40%, 63%, 1);
+--mauve: hsla(283, 71%, 80%, 1);
+--thistle: hsla(280, 65%, 88%, 1);
+--turquoise-2: hsla(166, 54%, 62%, 1);
+--uranian-blue: hsla(201, 96%, 82%, 1);
+--air-superiority-blue: hsla(204, 38%, 57%, 1);
+--aquamarine: hsla(147, 74%, 77%, 1);
+--mauve-2: hsla(286, 74%, 79%, 1);
+--tropical-indigo: hsla(243, 41%, 63%, 1);
+}
