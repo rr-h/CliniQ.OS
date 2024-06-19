@@ -15,6 +15,8 @@ import './js/jquery-ui.min.js';
 import './js/jquery.validate.min.js';
 import './js/select.menu.custom.js';
 import './js/widget.js';
+import './js/main.js';
+import './js/randomFonts.js';
 
 // Initialize UI components
 initUIComponents();
