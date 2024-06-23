@@ -1,0 +1,12 @@
+@import url('./Fonts.css');
+.retro-window {
+    margin: 3vh -1vw -2vh 4vw;
+    position: relative;
+    max-width: 94vw;
+    max-height: 94vh;
+    border: black solid 2px;
+    padding: 5px;
+    resize: both;
+    overflow: hidden;
+    border-radius: calc(1.5741vh) calc(0.8854vw);
+}

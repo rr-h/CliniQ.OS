@@ -1,0 +1,26 @@
+# Ignore all JavaScript files including React
+*.js
+*.jsx
+src/**/*.js
+src/**/*.jsx
+
+# Ignore TypeScript files
+*.ts
+*.tsx
+src/**/*.ts
+src/**/*.tsx
+
+# Ignore Flow files
+*.flow
+src/**/*.flow
+
+# Ignore JSON files
+*.json
+src/**/*.json
+
+# Ignore CoffeeScript files
+*.coffee
+src/**/*.coffee
+
+# Ignore specific directories
+node_modules/

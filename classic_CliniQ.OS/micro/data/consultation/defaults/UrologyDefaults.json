@@ -1,0 +1,1786 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "specialtiesName": "Urology",
+  "disease": [
+    {
+      "diseaseName": "Urinary Tract Infections",
+      "diseaseID": "U1",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Burning sensation during urination, frequent urination, urgency, cloudy urine.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "More common in women, history of previous UTIs.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Infection in any part of the urinary system.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Suprapubic tenderness, no abdominal distension.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Urinary Tract Infections",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Interstitial cystitis, urethritis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antibiotics",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Increase fluid intake, cranberry supplements",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Monitor for symptoms of pyelonephritis, follow up if symptoms persist",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Benign Prostatic Hyperplasia",
+      "diseaseID": "U2",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Difficulty starting urination, weak stream, nocturia.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Common in older men.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Enlargement of the prostate gland causing urinary symptoms.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Enlarged, non-tender prostate on digital rectal exam.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Benign Prostatic Hyperplasia",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Prostate cancer, UTI",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Alpha-blockers, 5-alpha reductase inhibitors",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Lifestyle changes, monitor symptoms",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Regular follow-up to monitor symptom progression, PSA testing as indicated",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Kidney Stones",
+      "diseaseID": "U3",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Severe pain in the side and back, below the ribs, pain on urination, pink, red, or brown urine.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Dehydration, certain diets, family history.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Hard deposits made of minerals and salts forming inside the kidneys.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Costovertebral angle tenderness on the affected side.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Kidney Stones",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Pyelonephritis, musculoskeletal pain",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pain relief, alpha-blockers, fluids",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Drink plenty of water, dietary modifications",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Ultrasound or CT follow-up, evaluate for metabolic disorders if recurrent",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Erectile Dysfunction",
+      "diseaseID": "U4",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Trouble getting or keeping an erection firm enough for sex.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Cardiovascular disease, diabetes, psychological factors.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Can be due to a problem with blood flow, nerve supply, or hormones.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Physical exam typically normal; may assess secondary sexual characteristics.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Erectile Dysfunction",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Low libido, premature ejaculation",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Phosphodiesterase type 5 inhibitors, lifestyle changes",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Counseling for psychological causes, manage underlying disease",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Review medications that may contribute to ED, consider specialist referral if no improvement",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Prostate Cancer",
+      "diseaseID": "U5",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Difficulty urinating, blood in semen, erectile dysfunction.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Age, family history, race.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Cancer that occurs in the prostate gland.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Prostate may be asymmetrical or have nodules on digital rectal examination.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Prostate Cancer",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Benign prostatic hyperplasia, prostatitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Active surveillance, surgery, radiation therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular PSA testing, monitor for signs of metastasis",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Discuss treatment options, side effects, and impact on quality of life",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Interstitial Cystitis",
+      "diseaseID": "U6",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Pelvic pain, pressure, and discomfort related to the bladder, along with urinary frequency and urgency.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Unknown cause, potentially associated with autoimmune reactions or hereditary factors.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A chronic disease characterized by bladder pressure, bladder pain, and sometimes pelvic pain.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tenderness on bladder palpation, no specific findings.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Interstitial Cystitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Urinary tract infection, overactive bladder",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Diet modification, pain management, bladder instillations",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Stress management, pelvic floor therapy",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Regular follow-up, symptom diary to identify flare triggers",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Overactive Bladder",
+      "diseaseID": "U7",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Urinary urgency, with or without urge incontinence, usually with frequency and nocturia.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Unknown cause, may be associated with neurological disease.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A disease where the bladder muscle contracts involuntarily, causing frequent and urgent need to urinate.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Physical exam typically normal; focused on ruling out other causes.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Overactive Bladder",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Urinary tract infection, interstitial cystitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Bladder training, pelvic floor exercises, anticholinergic medications",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Dietary modifications, fluid management",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Evaluate efficacy of treatment, adjust as needed, consider neuromodulation for refractory cases",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Prostatitis",
+      "diseaseID": "U8",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Pain in the groin, painful urination, difficulty urinating, and flu-like symptoms.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can be caused by bacterial infection or non-infectious disease.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation of the prostate gland.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tender and swollen prostate on digital rectal examination.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Prostatitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Benign prostatic hyperplasia, urinary tract infection",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antibiotics for bacterial prostatitis, alpha-blockers, anti-inflammatory medications",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Warm baths, increased fluid intake",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Monitor symptoms, adjust treatment based on bacterial culture results",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Urethral Stricture",
+      "diseaseID": "U9",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Decreased urine stream, straining to urinate, spraying of urine stream, urinary retention.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can result from injury, infection, surgery, or inflammation.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A narrowing of the urethra caused by scarring.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Physical exam may reveal a decreased flow of urine.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Urethral Stricture",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Benign prostatic hyperplasia, prostate cancer",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Urethral dilation, urethroplasty, or endoscopic urethrotomy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Avoid catheterizations and urethral instrumentation when possible",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Follow-up to monitor for recurrence, post-operative care if surgery is performed",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Testicular Cancer",
+      "diseaseID": "U10",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Lump or enlargement in either testicle, a feeling of heaviness in the scrotum, dull ache in the abdomen or groin.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Risk factors include undescended testicle, family history, and age.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A cancer that originates in the testicles, typically affecting younger men.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Palpable mass in the testicle, with or without pain.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Testicular Cancer",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Epididymitis, hydrocele",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical removal of the affected testicle, possibly followed by radiation or chemotherapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular testicular self-examinations, surveillance imaging",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Counselling on fertility preservation, psychological support",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Epididymitis",
+      "diseaseID": "U11",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Scrotal pain, swelling, tenderness, and warmth; fever; and sometimes discharge from the penis.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Most commonly caused by bacterial infection or sexually transmitted infections.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation of the epididymis.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Swollen, tender epididymis on palpation; possible hydrocele.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Epididymitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Testicular torsion, orchitis, inguinal hernia",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antibiotics, scrotal elevation, and analgesics",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Rest, scrotal support, and follow-up to ensure resolution of infection",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Educate on STI prevention and the importance of completing antibiotic therapy",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Orchitis",
+      "diseaseID": "U12",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Testicular swelling, pain, tenderness, nausea, and fever.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can be caused by bacterial infections or viral mumps infection.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation of one or both testicles.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Swollen, tender testis; erythema of the scrotal skin.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Orchitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Epididymitis, testicular torsion, testicular cancer",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Supportive care, antibiotics for bacterial causes, analgesics",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Bed rest, ice packs, scrotal elevation",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Monitor for improvement, advise on vaccination against mumps",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Testicular Torsion",
+      "diseaseID": "U13",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Sudden severe testicular pain, swelling, abdominal pain, nausea, and vomiting.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Most common in adolescents, can occur after physical activity or trauma.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Twisting of the spermatic cord cutting off blood supply to the testicle.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "High-riding testicle, abnormal testicle position, absent cremasteric reflex.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Testicular Torsion",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Epididymitis, orchitis, inguinal hernia",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Emergency surgery to untwist the spermatic cord",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Surgical fixation of both testicles to prevent recurrence",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Educate on recognizing symptoms for immediate attention",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Bladder Cancer",
+      "diseaseID": "U14",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Blood in urine, frequent urination, painful urination, urinary urgency.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Risk factors include smoking, exposure to chemicals, and chronic irritation of the bladder lining.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Cancer that begins in the cells of the bladder.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Physical exam typically normal; findings based on cystoscopy and imaging.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Bladder Cancer",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "UTI, benign prostatic hyperplasia, kidney stones",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgery, intravesical therapy, chemotherapy, radiation",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Surveillance cystoscopy post-treatment, smoking cessation",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Regular monitoring for recurrence, manage side effects of treatment",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Peyronies Disease",
+      "diseaseID": "U15",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Penile curvature, pain during erections, erectile dysfunction.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Caused by fibrous scar tissue developing inside the penis.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A disease that leads to a curved, sometimes painful erection.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Palpable plaque within the penile shaft, curvature noted during erection.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Peyronies Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Congenital penile curvature, erectile dysfunction",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Oral medications, injections into the penis, surgery in severe cases",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Pain management, use of vacuum devices for erection aid",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Follow-up to monitor progression, discuss surgical options if necessary",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Prostatitis",
+      "diseaseID": "U16",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Pain in the groin, pelvic area, or genitals, and sometimes urinary symptoms such as burning sensation during urination or urgency.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Occurs in men of all ages but most commonly in men younger than 50.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation or infection of the prostate gland.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80 bpm",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80 mmHg",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tender and swollen prostate on digital rectal examination, may have discomfort or pain.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Prostatitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Benign prostatic hyperplasia (BPH), urinary tract infection (UTI), bladder cancer",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "denies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antibiotics for bacterial prostatitis, alpha-blockers, anti-inflammatory medications for chronic prostatitis",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Warm baths, pelvic floor exercises, avoid irritants such as caffeine and spicy foods",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "Regular follow-up to assess response to treatment, adjust therapy as needed, and manage chronic symptoms",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    }
+  ]
+}

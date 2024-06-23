@@ -1,0 +1,3229 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "specialtiesName": "Immunology",
+  "disease": [
+    {
+      "diseaseName": "COVID-19",
+      "diseaseID": "I1",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fever, cough, shortness of breath, loss of taste or smell.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Exposure to SARS-CoV-2, travel history.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Respiratory symptoms with potential progression to severe respiratory distress.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "90,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38.5°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Crackles on lung auscultation in severe cases.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "COVID-19",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Influenza, bacterial pneumonia",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Quarantine, supportive care",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Supportive care, antiviral therapy as indicated, vaccination",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Follow-up for potential post-COVID syndrome",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "HIV/AIDS",
+      "diseaseID": "I2",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Chronic fatigue, weight loss, opportunistic infections.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Unprotected sexual contact, needle sharing.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Progressive immune system failure caused by HIV.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Generalized lymphadenopathy, oral thrush.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "HIV/AIDS",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Other immunodeficiencies, chronic infections",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Prevention, antiretroviral therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antiretroviral therapy, prophylaxis for opportunistic infections",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of CD4 count and viral load",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Systemic Lupus Erythematosus",
+      "diseaseID": "I3",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Joint pain, skin rash, fatigue, renal involvement.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune disorder, more common in women.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Multi-system autoimmune disease with a wide range of symptoms.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Malar rash, discoid rash, photosensitivity.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "SLE",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Rheumatoid arthritis, dermatomyositis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Avoid sunlight, immunosuppressive medications",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "NSAIDs, corticosteroids, hydroxychloroquine",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular follow-up, manage comorbidities",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Tuberculosis",
+      "diseaseID": "I4",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Persistent cough, weight loss, night sweats, haemoptysis.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Exposure to Mycobacterium tuberculosis, living in or traveling to endemic areas.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Infectious disease primarily affecting the lungs.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "85,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Crackles on auscultation, lymphadenopathy.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Tuberculosis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Pneumonia, lung cancer",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Isolation, directly observed therapy (DOT)",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Anti-tuberculous therapy for 6-9 months",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor treatment response, adherence to therapy",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Rheumatoid Arthritis",
+      "diseaseID": "I5",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Joint pain, stiffness, swelling, symmetric involvement.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune disease, genetic and environmental factors.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic inflammatory disorder affecting joints.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Swollen, tender joints, rheumatoid nodules.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Rheumatoid Arthritis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Osteoarthritis, psoriatic arthritis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Physical therapy, occupational therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "DMARDs, biologics, NSAIDs",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring, adjust treatment as needed",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Lyme Disease",
+      "diseaseID": "I6",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Erythema migrans rash, fever, fatigue, joint pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Tick bite, outdoor activities in endemic areas.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Bacterial infection caused by Borrelia burgdorferi.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37.5°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Characteristic bull’s-eye rash, joint tenderness.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Lyme Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Cellulitis, arthritic disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Prevent tick bites",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Doxycycline, amoxicillin, Cefuroxime",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Tick prevention strategies, symptom management",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Sjögren Syndrome",
+      "diseaseID": "I7",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Dry eyes, dry mouth, fatigue, joint pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune disease, more common in women.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Immune system attacks glands that produce tears and saliva.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Dry mucous membranes, joint swelling.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Sjögren Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Rheumatoid arthritis, lupus",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Symptomatic relief",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Artificial tears, saliva stimulants, hydroxychloroquine",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular dental and ophthalmological care",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Malaria",
+      "diseaseID": "I8",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fever, chills, sweats, headaches, nausea, vomiting.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Travel to or living in endemic areas.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Parasitic infection transmitted by Anopheles mosquitoes.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "90,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "39°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Splenomegaly, pallor, jaundice in severe cases.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Malaria",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Dengue fever, typhoid fever",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Prophylaxis in travelers",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antimalarial drugs based on species and drug resistance",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Avoid mosquito bites, prophylactic medications for travelers",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Dengue Fever",
+      "diseaseID": "I9",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "High fever, severe headache, pain behind the eyes, joint and muscle pain, rash.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Travel to tropical and subtropical regions.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Acute viral illness caused by dengue virus transmission through Aedes mosquitoes.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "39.5°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "100/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Rash, minor bleeding manifestations like petechiae.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Dengue Fever",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Zika virus infection, chikungunya fever",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Supportive care, fluid management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Rest, hydration, antipyretics; avoid NSAIDs due to bleeding risk",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor for severe dengue, hospitalisation if necessary",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Zika Virus Infection",
+      "diseaseID": "I10",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Mild fever, rash, conjunctivitis, muscle and joint pain, malaise.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Travel to or living in affected areas, mosquito bite.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Viral infection primarily spread by Aedes mosquitoes.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37.8°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Conjunctival injection, maculopapular rash.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Zika Virus Infection",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Dengue fever, measles",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Prevent mosquito bites",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Symptomatic treatment with rest, fluids, and analgesics",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Prevent mosquito bites, consider testing in pregnant women",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Chikungunya Fever",
+      "diseaseID": "I11",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Abrupt onset of fever, severe joint pain, muscle pain, headache, rash.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Travel to endemic areas, mosquito-borne transmission.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Viral disease transmitted by Aedes mosquitoes.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "90,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "39°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "100/60,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Joint swelling, rash, may have lymphadenopathy.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Chikungunya Fever",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Dengue fever, rheumatoid arthritis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Avoid mosquito bites",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pain management, hydration",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Long-term joint pain management, vector control",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Leptospirosis",
+      "diseaseID": "I12",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "High fever, headache, chills, muscle aches, vomiting, jaundice, red eyes, abdominal pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Exposure to water contaminated by infected animal urine.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Bacterial infection caused by Leptospira species.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "100,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "39.2°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Conjunctival suffusion, jaundice, renal tenderness.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Leptospirosis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Hepatitis, dengue fever",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Antibiotic therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Doxycycline or penicillin",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Avoid contact with contaminated water, vaccination of domestic animals",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Guillain-Barré Syndrome",
+      "diseaseID": "I13",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Rapid onset of muscle weakness, numbness or tingling, difficulty walking.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Often follows respiratory or gastrointestinal viral infection.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Autoimmune disorder affecting the peripheral nervous system.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Decreased reflexes, muscle weakness.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Guillain-Barré Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Multiple sclerosis, acute myelopathy",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Immunotherapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Intravenous immunoglobulin (IVIG) or plasmapheresis",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor respiratory function, physical therapy for recovery",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Severe Acute Respiratory Syndrome",
+      "diseaseID": "I14",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fever, dry cough, difficulty breathing, malaise.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Exposure to SARS-CoV, travel to affected regions.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Viral respiratory illness caused by a coronavirus (SARS-CoV).",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "90,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38.5°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Pulmonary crackles, reduced oxygen saturation.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Severe Acute Respiratory Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Influenza, pneumonia",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Isolation, supportive care",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Supportive care, antiviral agents",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Intensive care if necessary, follow-up for lung function",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Autoimmune Hepatitis",
+      "diseaseID": "I15",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fatigue, jaundice, abdominal discomfort, joint pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "More common in females, autoimmune predisposition.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic liver disease with autoimmune features.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Hepatomegaly, possible splenomegaly.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Autoimmune Hepatitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Viral hepatitis, alcoholic liver disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Corticosteroids, azathioprine",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Immunosuppressive therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular liver function monitoring, manage cirrhosis complications",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "West Nile Virus Infection",
+      "diseaseID": "I16",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Most asymptomatic; fever, headache, body aches, skin rash, swollen lymph glands.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Mosquito-borne transmission.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Viral infection caused by West Nile virus.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Rash, lymphadenopathy; neuro-invasive disease may show neurological signs.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "West Nile Virus Infection",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Dengue, Zika virus infection",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Supportive care",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Rest, fluids, pain relievers",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Prevent mosquito bites, supportive care for severe cases",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Multiple Sclerosis",
+      "diseaseID": "I17",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Visual disturbances, muscle weakness, coordination problems, fatigue.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Unknown; likely involves genetic and environmental factors.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic autoimmune disease affecting the central nervous system.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Abnormal neurological exam, including eye movement disturbances, limb weakness.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Multiple Sclerosis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Neuromyelitis optica, Lyme disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Disease-modifying therapies",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Immunomodulatory treatments, symptom management",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular neurological assessments, physical therapy",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Psoriatic Arthritis",
+      "diseaseID": "I18",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Joint pain and stiffness, skin rashes, nail changes.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Associated with psoriasis; genetic and environmental factors.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammatory arthritis associated with psoriasis.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Swollen and tender joints, psoriatic skin lesions, pitting of nails.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Psoriatic Arthritis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Rheumatoid arthritis, osteoarthritis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "NSAIDs, DMARDs, biologics",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Biologic agents targeting specific immune pathways",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular skin and joint evaluations, dermatology and rheumatology collaboration",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Ankylosing Spondylitis",
+      "diseaseID": "I19",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Chronic back pain, stiffness, reduced flexibility of the spine.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic predisposition (HLA-B27 positive).",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Autoimmune disease primarily affecting the spine and sacroiliac joints.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Limited spinal mobility, tenderness at the sacroiliac joints.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Ankylosing Spondylitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Mechanical back pain, rheumatoid arthritis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Physical therapy, NSAIDs",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "TNF inhibitors, physical exercises",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular exercise, posture training, biannual rheumatology reviews",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Systemic Sclerosis",
+      "diseaseID": "I20",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Skin thickening, Raynauds phenomenon, joint pain, digestive issues.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune disease; exact cause unknown.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Connective tissue disease characterised by skin and organ fibrosis.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "65,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Skin hardening, digital ulcers, telangiectasias.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Systemic Sclerosis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Mixed connective tissue disease, lupus",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Immunosuppressive agents",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Skin care, management of Raynauds, gastrointestinal symptoms",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of organ function, multidisciplinary care",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Behçets Disease",
+      "diseaseID": "I21",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Mouth ulcers, genital ulcers, eye inflammation, skin lesions.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Unknown; thought to involve genetic and environmental factors.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Vasculitis that can affect multiple organs.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Recurrent oral aphthous ulcers, genital ulcers, uveitis.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Behçets Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Crohns disease, Reiters syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Colchicine, immunosuppressants",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Topical treatments for ulcers, systemic therapy for eye disease, vasculitis",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular dental and ophthalmologic exams, avoid triggering factors",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Vasculitis",
+      "diseaseID": "I22",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fever, fatigue, weight loss, muscle and joint pain, skin lesions.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can be primary or secondary to infections, medications, other autoimmune disease.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation of the blood vessels causing organ and tissue damage.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37.5°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Palpable purpura, ulcers, gangrene in severe cases.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Vasculitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Infections, connective tissue disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Corticosteroids, cytotoxic agents",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Long-term immunosuppression, monitor for organ involvement",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Frequent monitoring, adjust treatment based on disease activity",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Celiac Disease",
+      "diseaseID": "I23",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Diarrhoea, weight loss, abdominal pain, bloating, malabsorption.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic predisposition; triggered by ingestion of gluten.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Autoimmune disorder where gluten ingestion leads to small intestine damage.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Abdominal distension, dermatitis herpetiformis.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Celiac Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Irritable bowel syndrome, Crohns disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Strict gluten-free diet",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Gluten-free diet, nutritional support",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Dietary education, regular follow-up for nutritional deficiencies",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Fibromyalgia",
+      "diseaseID": "I24",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Widespread musculoskeletal pain, fatigue, sleep, memory and mood issues.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Aetiology unclear, often triggered by physical trauma, surgery, infection or significant psychological stress.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic disease characterised by widespread pain and tender points.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "72,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tender points without swelling or redness.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Fibromyalgia",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Rheumatoid arthritis, systemic lupus erythematosus",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pain management, antidepressants, physical therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Lifestyle modifications, regular exercise, stress reduction",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Chronic Fatigue Syndrome",
+      "diseaseID": "I25",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Severe fatigue not improved by rest, impaired memory or concentration, sore throat, muscle pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Cause unknown; can follow viral infections.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A complex disorder characterised by extreme fatigue.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "78,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "36.8°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "115/75,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Non-specific; may have lymphadenopathy, non-exudative pharyngitis.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Chronic Fatigue Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Sleep disorders, major depressive disorder",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Symptomatic treatment",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Cognitive behavioural therapy, graded exercise therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Pacing activities, supportive therapy",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Complex Regional Pain Syndrome",
+      "diseaseID": "I26",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Severe pain, swelling, changes in skin colour, temperature, and sensitivity in an extremity.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Often follows an injury or surgery.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A chronic pain disease affecting a limb.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Altered colour, temperature, and swelling of the affected limb.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Complex Regional Pain Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Peripheral neuropathy, venous thrombosis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Pain management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Physical therapy, nerve blocks, medications",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Pain management strategies, physical rehabilitation",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Interstitial Cystitis",
+      "diseaseID": "I27",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Pelvic pain, pressure, discomfort in the bladder area, and frequent, urgent urination.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Cause unknown; may involve a defect in the bladder lining.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic disease characterised by bladder pain and urinary frequency.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tenderness observed during pelvic examination.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Interstitial Cystitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Urinary tract infection, overactive bladder",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Avoid bladder irritants",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pentosan polysulfate, bladder instillations, pain management",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Bladder training, stress management",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Temporomandibular Joint Disorders",
+      "diseaseID": "I28",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Jaw pain, difficulty chewing, clicking or locking of the jaw joint.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Causes include jaw injury, arthritis, or genetics.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A group of disease affecting the temporomandibular joint.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Pain or tenderness of the jaw, clicking sound on movement.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Temporomandibular Joint Disorders",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Ear infections, dental disorders",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Soft diet, avoid jaw clenching",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pain relievers, oral splints, physical therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Jaw exercises, stress reduction techniques",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Peripheral Neuropathy",
+      "diseaseID": "I29",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Numbness, tingling in the hands and feet, sharp, burning or throbbing pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Diabetes, infections, exposure to toxins, and metabolic problems.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Damage to the peripheral nerves causing weakness, numbness, and pain.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "72,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Decreased sensation to touch, temperature, and vibration in extremities.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Peripheral Neuropathy",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Radiculopathy, Guillain-Barré syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Control underlying disease",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pain management, antidepressants, anticonvulsants",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Lifestyle modifications, physical therapy",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    }
+  ]
+}

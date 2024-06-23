@@ -1,0 +1,127 @@
+:root {
+    /* Color Variables */
+    --white: #fff;
+    --black: #000;
+    --turquoise: #68D5B8ff;
+    --glaucous: #7B8BC7ff;
+    --mauve: #DBA8F0ff;
+    --thistle: #E6CBF4ff;
+    --turquoise-2: #6AD3BAff;
+    --uranian-blue: #A3DEFDff;
+    --air-superiority-blue: #689ABBff;
+    --aquamarine: #9AF0C1ff;
+    --mauve-2: #DEA1F1ff;
+    --tropical-indigo: #7D79C7ff;
+    /* HSL Variables */
+    --turquoise-hsl: hsla(164, 56%, 62%, 1);
+    --glaucous-hsl: hsla(227, 40%, 63%, 1);
+    --mauve-hsl: hsla(283, 71%, 80%, 1);
+    --thistle-hsl: hsla(280, 65%, 88%, 1);
+    --turquoise-2-hsl: hsla(166, 54%, 62%, 1);
+    --uranian-blue-hsl: hsla(201, 96%, 82%, 1);
+    --air-superiority-blue-hsl: hsla(204, 38%, 57%, 1);
+    --aquamarine-hsl: hsla(147, 74%, 77%, 1);
+    --mauve-2-hsl: hsla(286, 74%, 79%, 1);
+    --tropical-indigo-hsl: hsla(243, 41%, 63%, 1);
+    /* RGB Variables */
+    --turquoise-rgb: rgba(104, 213, 184, 1);
+    --glaucous-rgb: rgba(123, 139, 199, 1);
+    --mauve-rgb: rgba(219, 168, 240, 1);
+    --thistle-rgb: rgba(230, 203, 244, 1);
+    --turquoise-2-rgb: rgba(106, 211, 186, 1);
+    --uranian-blue-rgb: rgba(163, 222, 253, 1);
+    --air-superiority-blue-rgb: rgba(104, 154, 187, 1);
+    --aquamarine-rgb: rgba(154, 240, 193, 1);
+    --mauve-2-rgb: rgba(222, 161, 241, 1);
+    --tropical-indigo-rgb: rgba(125, 121, 199, 1);
+    /* Gradient Variables */
+    --gradient-top: linear-gradient(0deg, var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    --gradient-right: linear-gradient(90deg, var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    --gradient-bottom: linear-gradient(180deg, var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    --gradient-left: linear-gradient(270deg, var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    --gradient-top-right: linear-gradient(45deg, var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    --gradient-bottom-right: linear-gradient(135deg, var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    --gradient-top-left: linear-gradient(225deg, var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    --gradient-bottom-left: linear-gradient(315deg, var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    --gradient-radial: radial-gradient(var(--turquoise), var(--glaucous), var(--mauve), var(--thistle), var(--turquoise-2), var(--uranian-blue), var(--air-superiority-blue), var(--aquamarine), var(--mauve-2), var(--tropical-indigo));
+    /* Font Variables */
+    --font-argent-pixel-italic: 'ArgentPixelCF-Italic';
+    --font-argent-pixel-regular: 'ArgentPixelCF-Regular';
+    --font-charcoal: 'Charcoal';
+    --font-chicago-flf: 'ChicagoFLF';
+    --font-chikarego2: 'Chikarego2';
+    --font-geneva-9: 'Geneva_9';
+    --font-perfect-dos: 'PerfectDOS';
+    --font-pixel-arial: 'PixelArial';
+    --font-pixelmix-bold: 'Pixelmix-Bold';
+    --font-pixolde-bold: 'Pixolde-Bold';
+    --font-yoster-island-regular: 'YosterIsland-Regular';
+    --font-ka1: 'KA1';
+    --font-corrupt-pixel: 'CorruptPixel';
+    --font-pixel-lcd: 'PixelLCD';
+    /* Font Families */
+    --Primary: 'ChicagoFLF', sans-serif;
+    --Secondary: 'Geneva', sans-serif;
+}
+
+
+/* Reusables */
+
+.d-none {
+    display: none !important;
+}
+
+.btn {
+    border-radius: 0;
+    border: 1px solid var(--black);
+    background: var(--white);
+}
+
+.btn:focus {
+    color: #efefef;
+    text-shadow: -1px -1px 0px #777, -1px -1px 0px #777;
+    box-shadow: inset 1.5px 1.5px 6px rgb(169, 169, 169);
+}
+
+.d-block {
+    display: block !important;
+}
+
+.v-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.vh-align {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 96%;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.d-flex {
+    display: flex;
+}
+
+.fd-row {
+    flex-direction: column;
+    justify-content: space-between;
+}

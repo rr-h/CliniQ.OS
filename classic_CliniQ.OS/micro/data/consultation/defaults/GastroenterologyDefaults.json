@@ -1,0 +1,3784 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "specialtiesName": "Gastroenterology",
+  "disease": [
+    {
+      "diseaseName": "Gastroesophageal Reflux Disease",
+      "diseaseID": "G1",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Heartburn, regurgitation, chest pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Diet, obesity, smoking.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic symptoms or mucosal damage produced by the abnormal reflux.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Normal examination; symptoms are typically reported.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "GERD",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Peptic ulcer disease, angina",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Lifestyle modifications",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "PPIs, H2 receptor antagonists, antacids",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Dietary adjustments, weight loss",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Irritable Bowel Syndrome",
+      "diseaseID": "G2",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Abdominal pain, bloating, altered bowel habits.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Stress, certain foods.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A disorder characterised by abdominal pain or discomfort and changes in bowel habit.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Normal physical exam, symptoms are functional.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "IBS",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Inflammatory bowel disease, celiac disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Stress management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Dietary management, fibre supplements, antispasmodics",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Identify trigger foods, stress reduction techniques",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Crohn Disease",
+      "diseaseID": "G3",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Diarrhoea, abdominal pain, weight loss, bloody stool.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic predisposition, environmental factors.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic inflammatory bowel disease affecting any part of the GI tract.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Abdominal tenderness, possible mass.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Crohn Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Ulcerative colitis, infectious colitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Avoid smoking",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Anti-TNF agents, immunomodulators, corticosteroids",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Nutritional support, surgery for complications",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Ulcerative Colitis",
+      "diseaseID": "G4",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Bloody diarrhoea, abdominal pain, urgency.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune factors, family history.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic inflammatory disease of the colon with ulcers and inflammation.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tenderness in the lower left quadrant, rectal bleeding.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Ulcerative Colitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Crohn disease, infectious colitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Avoid non-steroidal anti-inflammatory drugs",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Aminosalicylates, corticosteroids, immunosuppressants",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular colonoscopy, diet management",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hepatitis B",
+      "diseaseID": "G5",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Jaundice, fatigue, abdominal pain, dark urine.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Viral transmission through blood or other bodily fluids.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Acute or chronic viral hepatitis.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible hepatomegaly, jaundice.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hepatitis B",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Hepatitis A, C, alcoholic hepatitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Vaccination",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antiviral therapy for chronic infection",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of liver function and viral load",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Celiac Disease",
+      "diseaseID": "G6",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Diarrhoea, weight loss, bloating, fatigue.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic predisposition.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Immune reaction to eating gluten.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible dermatitis herpetiformis, signs of malnutrition.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Celiac Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "IBS, lactose intolerance",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Gluten-free diet",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Strict gluten-free diet",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Nutritional counselling, monitoring for deficiencies",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Liver Cirrhosis",
+      "diseaseID": "G7",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fatigue, easy bruising, jaundice, ascites.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Alcohol abuse, hepatitis B and C, nonalcoholic fatty liver disease.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "End-stage liver disease characterised by fibrosis and liver dysfunction.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Jaundice, ascites, spider angiomas.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Liver Cirrhosis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Acute liver failure, chronic hepatitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Alcohol abstinence, manage underlying cause",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Diuretics for ascites, beta-blockers for varices",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular liver function tests, screening for hepatocellular carcinoma",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Pancreatic Cancer",
+      "diseaseID": "G8",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Weight loss, jaundice, abdominal pain radiating to the back.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Smoking, chronic pancreatitis, diabetes.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Malignant tumour of the pancreas.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Jaundice, palpable gallbladder (Courvoisier sign).",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Pancreatic Cancer",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Chronic pancreatitis, pancreatic cysts",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Surgical resection if operable, chemotherapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pain management, nutritional support",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular imaging studies, CA 19-9 tumour marker monitoring",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Gastrointestinal Bleeding",
+      "diseaseID": "G9",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Hematemesis, melena, hematochezia.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Peptic ulcers, gastritis, oesophageal varices, colorectal cancer.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Bleeding anywhere along the GI tract.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "90,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "100/60,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Pallor, tachycardia, hypotension.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Gastrointestinal Bleeding",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Haemorrhoids, anal fissures",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Stabilisation, identify source of bleeding",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Endoscopy, surgery if needed",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Blood transfusions, fluid replacement",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Gallstones",
+      "diseaseID": "G10",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Right upper quadrant pain, nausea, vomiting, after eating fatty foods.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Obesity, rapid weight loss, female gender.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Stones in the gallbladder, causing biliary colic.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "78,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tenderness in right upper quadrant on palpation.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Gallstones",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Acute cholecystitis, pancreatitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Conservative management for asymptomatic, cholecystectomy for symptoms",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Low-fat diet, monitor for complications",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Acute Pancreatitis",
+      "diseaseID": "G11",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Severe upper abdominal pain radiating to the back, nausea, vomiting.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Alcohol consumption, gallstones.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation of the pancreas with elevated pancreatic enzymes.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "100,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Abdominal tenderness, guarding.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Acute Pancreatitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Peptic ulcer disease, biliary colic",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Avoid alcohol, gallstone removal if indicated",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "IV fluids, pain management, NPO initially",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Nutritional support, alcohol cessation",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hepatic Encephalopathy",
+      "diseaseID": "G12",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Confusion, lethargy, sleep disturbances, asterixis.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Liver cirrhosis, portal hypertension.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Neuropsychiatric syndrome due to liver dysfunction and toxins.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Flapping tremor (asterixis), disorientation.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hepatic Encephalopathy",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Alcohol withdrawal, Wernicke encephalopathy",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Manage underlying liver disease",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Lactulose, Rifaximin, dietary protein modification",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor mental status, avoid triggers like GI bleeding",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Diverticulitis",
+      "diseaseID": "G13",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Left lower quadrant pain, fever, leukocytosis.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Low fibre diet, aging.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation of a diverticulum in the colon.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "90,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/90,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tenderness in left lower quadrant, possibly palpable mass.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Diverticulitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Colon cancer, inflammatory bowel disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "High fibre diet for prevention",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antibiotics, possible surgery for complications",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Dietary management, monitor for recurrence",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Gastrointestinal Stromal Tumour",
+      "diseaseID": "G14",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Abdominal pain, GI bleeding, palpable mass.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Unknown; some associated with genetic mutations.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A type of tumour that occurs in the digestive tract.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible palpable abdominal mass, signs of anaemia.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "GIST",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Adenocarcinoma of the stomach, leiomyoma",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Surgical resection, targeted therapy for unresectable tumours",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Imatinib for mutations in KIT gene",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring with CT/MRI, endoscopy",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Oesophageal Varices",
+      "diseaseID": "G15",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Hematemesis, melena in a patient with known liver disease.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Chronic liver disease, portal hypertension.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Dilated submucosal veins in the esophagus.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "110,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "100/60,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Signs of chronic liver disease, hypotension if bleeding.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Oesophageal Varices",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Peptic ulcer bleeding, Mallory-Weiss tear",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Avoid alcohol, liver transplantation evaluation",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Endoscopic variceal ligation, beta-blockers",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Screening endoscopy in patients with cirrhosis, manage portal hypertension",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Nonalcoholic Fatty Liver Disease",
+      "diseaseID": "G16",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Mostly asymptomatic, fatigue, right upper quadrant discomfort.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Obesity, diabetes, metabolic syndrome.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Accumulation of fat in the liver cells in people who drink little or no alcohol.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Hepatomegaly; otherwise, examination often normal.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "NAFLD",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Alcoholic liver disease, hepatitis C",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Lifestyle modifications",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Weight loss, control of diabetes and cholesterol",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular liver function tests, ultrasound or FibroScan",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Barrett Oesophagus",
+      "diseaseID": "G17",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Often associated with long-standing GERD.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Chronic GERD, obesity.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A disease in which the oesophageal lining changes, becoming similar to the lining of the intestine.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Normal examination; diagnosis confirmed by endoscopy and biopsy.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Barrett Oesophagus",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "GERD, oesophageal adenocarcinoma",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Surveillance endoscopy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "PPIs, endoscopic surveillance , endoscopic therapies for dysplasia",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Lifestyle changes, acid suppression therapy",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Zollinger-Ellison Syndrome",
+      "diseaseID": "G18",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Peptic ulcers, diarrhoea, abdominal pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Gastrin-secreting tumours (gastrinomas), usually in the pancreas or duodenum.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "High levels of gastrin leading to excessive stomach acid.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Peptic ulcers may be found on endoscopic examination.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Zollinger-Ellison Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Peptic ulcer disease, GERD",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Identify and remove gastrinomas",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Proton pump inhibitors, surgical removal of gastrinomas",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor gastrin levels, periodic endoscopic examination",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Familial Hypercholesterolemia",
+      "diseaseID": "G19",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Early cardiovascular disease, xanthomas, corneal arcus.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic; autosomal dominant inheritance.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Extremely high levels of LDL cholesterol due to defective LDL receptors.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tendon xanthomas, xanthelasmas, corneal arcus in young patients.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Familial Hypercholesterolemia",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Polygenic hypercholesterolemia, secondary hyperlipidemias",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Statins, ezetimibe, PCSK9 inhibitors, lifestyle changes",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular lipid profile monitoring, cardiovascular risk assessment",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Nonalcoholic Steatohepatitis",
+      "diseaseID": "G20",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Often asymptomatic, may present with fatigue or right upper quadrant discomfort.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Obesity, insulin resistance, metabolic syndrome.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A more severe form of NAFLD characterised by liver inflammation.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "135/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Hepatomegaly; otherwise, often normal.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "NASH",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Alcoholic liver disease, chronic hepatitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Weight loss and control of diabetes",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Diet, exercise, possibly vitamin E and pioglitazone for selected patients",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular liver function tests, consider liver biopsy",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Primary Biliary Cholangitis",
+      "diseaseID": "G21",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fatigue, pruritus, dry eyes and mouth, right upper quadrant discomfort.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune disease, more common in women.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic destruction of intrahepatic bile ducts, leading to cirrhosis.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "May have hepatomegaly, jaundice in later stages.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "PBC",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Primary sclerosing cholangitis, drug-induced liver injury",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Avoid alcohol and hepatotoxic drugs",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Ursodeoxycholic acid, obeticholic acid for certain patients",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor liver function, fat-soluble vitamin levels",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Primary Sclerosing Cholangitis",
+      "diseaseID": "G22",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Jaundice, itching, fatigue, right upper quadrant pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Associated with inflammatory bowel disease, more common in men.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Chronic inflammation, fibrosis, and stricturing of bile ducts.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Jaundice, hepatosplenomegaly.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "PSC",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "PBC, choledocholithiasis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Liver transplantation in advanced cases",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Endoscopic management of strictures, liver transplantation",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Surveillance for cholangiocarcinoma, management of associated IBD",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hepatitis C",
+      "diseaseID": "G23",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Often asymptomatic, may present with fatigue, jaundice, abdominal pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Blood-borne virus, risk factors include IV drug use, unsafe medical practices.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Viral hepatitis leading to chronic liver disease.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible mild hepatomegaly, otherwise often normal.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hepatitis C",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Other viral hepatitides, alcoholic liver disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Screening in at-risk populations",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Direct-acting antiviral drugs",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring for liver fibrosis, hepatocellular carcinoma screening",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Gastrointestinal Perforation",
+      "diseaseID": "G24",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Severe abdominal pain, fever, signs of peritonitis.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can result from ulcer disease, diverticulitis, inflammatory bowel disease.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A hole in the wall of the gastrointestinal tract.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "120,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "38°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "90/60,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Rigidity, rebound tenderness, guarding indicative of peritonitis.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Gastrointestinal Perforation",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Acute pancreatitis, mesenteric ischemia",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Emergency surgery",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical repair, antibiotics",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Postoperative care, address underlying cause",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Autoimmune Hepatitis",
+      "diseaseID": "G25",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fatigue, jaundice, right upper quadrant pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune disease, more common in women.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Liver inflammation that occurs when the immune system attacks the liver.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Hepatomegaly, jaundice.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Autoimmune Hepatitis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Viral hepatitis, drug-induced hepatitis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Immunosuppressive therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Corticosteroids, azathioprine",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular liver function tests, liver biopsy as needed",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Wilson Disease",
+      "diseaseID": "G26",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Neurological symptoms, psychiatric disturbances, liver disease.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic disorder; autosomal recessive inheritance.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Copper accumulation in tissues, particularly liver and brain.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Kayser-Fleischer rings, neurological abnormalities.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Wilson Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Hepatitis, hemochromatosis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Chelation therapy to remove excess copper",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Penicillamine, trientine, zinc supplements",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of copper levels, neurological assessment",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Achalasia",
+      "diseaseID": "G27",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Difficulty swallowing, regurgitation of undigested food, chest pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Unknown aetiology, involves degeneration of oesophageal nerves.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "A disorder of oesophageal motility.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Physical exam typically normal.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Achalasia",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "GERD, oesophageal cancer",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pneumatic dilation, laparoscopic Heller myotomy, POEM (Peroral Endoscopic Myotomy)",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular follow-up, dietary modifications",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Sclerosing Mesenteritis",
+      "diseaseID": "G28",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Abdominal pain, bloating, occasional bowel obstruction.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Rare, cause unknown.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation and fibrosis of the mesentery.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible palpable abdominal mass.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Sclerosing Mesenteritis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Mesenteric panniculitis, carcinoid tumours",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Observation for mild cases",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Corticosteroids, tamoxifen, surgery for obstruction",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor for symptoms, manage complications",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Portal Hypertension",
+      "diseaseID": "G29",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Variceal bleeding, ascites, splenomegaly.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Often secondary to cirrhosis.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Increased blood pressure in the portal venous system.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Enlarged spleen, signs of chronic liver disease.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Portal Hypertension",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Budd-Chiari syndrome, hepatic vein thrombosis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Management of underlying liver disease",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Beta-blockers, endoscopic variceal ligation, TIPS procedure",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Surveillance for varices, management of ascites",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Budd-Chiari Syndrome",
+      "diseaseID": "G30",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Abdominal pain, liver enlargement, ascites.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Thrombosis of hepatic veins.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Impaired blood flow out of the liver.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "125/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Hepatomegaly, ascites.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Budd-Chiari Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Liver cirrhosis, constrictive pericarditis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Anticoagulation therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Anticoagulants, thrombolytic therapy, TIPS or liver transplantation for severe cases",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of liver function, manage ascites",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Gastroparesis",
+      "diseaseID": "G31",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Nausea, vomiting, early satiety, bloating.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Diabetes, idiopathic, post-surgical.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Delayed gastric emptying without an obvious obstruction.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Abdominal examination may be normal.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Gastroparesis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Functional dyspepsia, peptic ulcer disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Dietary modifications",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Dietary management, pro-kinetic agents, antiemetics",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Diet modification, glycemic control in diabetics",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Oesophageal Cancer",
+      "diseaseID": "G32",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Difficulty swallowing, weight loss, chest pain, hoarseness.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Smoking, alcohol, Barrett oesophagus.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Malignant tumour of the oesophagus.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "May present with signs of weight loss.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Oesophageal Cancer",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Achalasia, oesophageal strictures",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Surgical resection, chemotherapy, radiation therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Multidisciplinary approach, nutrition support",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular follow-up, symptom management",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Peptic Ulcer Disease",
+      "diseaseID": "G33",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Epigastric pain, bloating, nausea, vomiting.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "H. pylori infection, NSAID use.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Ulcers in the stomach or duodenum.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Epigastric tenderness.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Peptic Ulcer Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Gastric cancer, gastroesophageal reflux disease (GERD)",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Eradicate H. pylori, discontinue NSAIDs",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "PPIs, H. pylori eradication therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Avoid NSAIDs, limit alcohol, stop smoking",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Colorectal Cancer",
+      "diseaseID": "G34",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Changes in bowel habits, rectal bleeding, abdominal pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Age, family history, diet, lifestyle factors.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Malignant neoplasm of the colon or rectum.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible palpable mass on abdominal or rectal exam.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Colorectal Cancer",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Diverticular disease, inflammatory bowel disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Screening colonoscopy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical resection, chemotherapy, radiation",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular follow-up, lifestyle modifications",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    }
+  ]
+}
