@@ -1,5 +1,5 @@
-# Use the Node.js 22 slim image
-FROM node:22-buster-slim
+# Use the Node.js 18 slim image
+FROM node:18-buster-slim
 
 # Install necessary global packages
 RUN npm install -g webpack webpack-cli osjs-cli
