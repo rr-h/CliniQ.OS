@@ -1,7 +1,7 @@
 FROM node:14-alpine
 
 # Install global dependencies
-RUN npm install -g webpack webpack-cli osjs-cli
+RUN npm install -g webpack webpack-cli
 
 # Create app directory
 WORKDIR /usr/src/osjs
