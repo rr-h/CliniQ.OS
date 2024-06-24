@@ -28,7 +28,11 @@
     "devDependencies": {
         "@osjs/dev-meta": "^2.1.0",
         "html-webpack-plugin": "^3.2.0",
-        "source-map-loader": "^0.2.4"
+        "source-map-loader": "^0.2.4",
+        "@babel/core": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/preset-typescript": "^7.0.0"
     },
     "dependencies": {
         "@osjs/ace-application": "1.2.7",
@@ -97,7 +101,14 @@
         "webpack": "^5.0.0",
         "webpack-cli": "^4.0.0",
         "hyperapp": "^1.2.10",
-        "typeface-roboto": "0.0.75"
+        "typeface-roboto": "0.0.75",
+        "vue": "^3.0.0",
+        "uuid": "^8.0.0",
+        "axios": "^0.21.1",
+        "chokidar": "^3.0.0",
+        "xterm": "^5.0.0",
+        "xterm-addon-attach": "^0.6.0",
+        "xterm-addon-fit": "^0.4.0"
     },
     "repository": {
         "type": "git",
