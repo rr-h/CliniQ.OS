@@ -25,8 +25,8 @@ $(function() {
         scroll: false,
         start: function() {
 
-            $('.folder').contents().find('img').attr({ src: './gfx/disk.gif' });
-            $(this).contents().find('img').attr({ src: './gfx/disk_black.gif' });
+            $('.folder').contents().find('img').attr({ src: '../assets/img/disk.gif' });
+            $(this).contents().find('img').attr({ src: '../assets/img/disk_black.gif' });
 
             $('.folder_text').removeClass('folder_text-inverted');
             $(this).contents().find('.folder_text').addClass('folder_text-inverted');
@@ -38,8 +38,8 @@ $(function() {
 
     $('.folder').bind("click", function() {
 
-        $('.folder').contents().find('img').attr({ src: './gfx/disk.gif' });
-        $(this).contents().find('img').attr({ src: './gfx/disk_black.gif' });
+        $('.folder').contents().find('img').attr({ src: '../assets/img/disk.gif' });
+        $(this).contents().find('img').attr({ src: '../assets/img/disk_black.gif' });
 
         $('.folder_text').removeClass('folder_text-inverted');
         $(this).contents().find('.folder_text').addClass('folder_text-inverted');
@@ -125,7 +125,7 @@ $(function() {
             $("div.img_holder").bind("dblclick", function() { $(this).remove(); });
 
             $('.window_left').mousedown(function() {
-                $(this).find('img').attr('src', './gfx/window_left-close.gif');
+                $(this).find('img').attr('src', '../assets/img/window_left-close.gif');
             });
             $('.window_left').mouseup(function() {
                 $(this).closest('.img_holder').remove();
@@ -133,8 +133,8 @@ $(function() {
         });
 
         /* invert icon when double-clicked, as when dragged */
-        $('.folder').contents().find('img').attr({ src: './gfx/disk.gif' });
-        $(this).contents().find('img').attr({ src: './gfx/disk_black.gif' });
+        $('.folder').contents().find('img').attr({ src: '../assets/img/disk.gif' });
+        $(this).contents().find('img').attr({ src: '../assets/img/disk_black.gif' });
         $('.folder_text').removeClass('folder_text-inverted');
         $(this).contents().find('.folder_text').addClass('folder_text-inverted');
 
@@ -142,7 +142,7 @@ $(function() {
 
     // reset inverted icon when clicking bg
     $('#bg').click(function() {
-        $('.folder').contents().find('img').attr({ src: './gfx/disk.gif' });
+        $('.folder').contents().find('img').attr({ src: '../assets/img/disk.gif' });
         $('.folder_text').removeClass('folder_text-inverted');
     });
 
