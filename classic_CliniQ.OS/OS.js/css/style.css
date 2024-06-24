@@ -46,7 +46,7 @@ body {
     height: 100%;
     z-index: 0;
     background-color: black;
-    background-image: url(gfx/bg.gif);
+    background-image: url(../assets/img/bg.gif);
     position: fixed;
     top: 0;
     left: 0;
@@ -203,7 +203,7 @@ hr {
 }
 
 .img_holder {
-    background-image: url('gfx/window_bg.gif');
+    background-image: url('../assets/img/window_bg.gif');
     background-position: center top;
     background-repeat: repeat-x;
     z-index: 9999;
@@ -243,7 +243,7 @@ hr {
     cursor: default;
     font-weight: normal;
     font-family: 'chi';
-    background-image: url('gfx/window_bg.gif');
+    background-image: url('../assets/img/window_bg.gif');
     /* 	height: 16px; */
     text-align: center;
 }
