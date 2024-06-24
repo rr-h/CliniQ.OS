@@ -13,8 +13,8 @@ ENV LC_ALL en_US.UTF-8
 # Install necessary global packages
 RUN npm install -g webpack webpack-cli @osjs/cli
 
-# Install Python and build essentials for node-gyp
-RUN apt-get install -y python3 make g++ && \
+# Install Python, build essentials, and PAM development files for node-gyp
+RUN apt-get update && apt-get install -y python3 make g++ libpam0g-dev && \
     ln -sf python3 /usr/bin/python
 
 # Set the working directory
