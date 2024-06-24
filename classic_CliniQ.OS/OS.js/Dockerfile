@@ -2,7 +2,7 @@
 FROM node:22-buster-slim
 
 # Install necessary global packages
-RUN npm install -g webpack webpack-cli
+RUN npm install -g webpack webpack-cli osjs-cli
 
 # Install Python and build essentials for node-gyp
 RUN apt-get update && apt-get install -y python3 make g++ && \
