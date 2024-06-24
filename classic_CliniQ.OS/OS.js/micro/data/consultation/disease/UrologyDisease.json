@@ -1,0 +1,73 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "urologyDisease": [
+    {
+      "diseaseName": "Urinary Tract Infections",
+      "diseaseID": "U1"
+    },
+    {
+      "diseaseName": "Benign Prostatic Hyperplasia",
+      "diseaseID": "U2"
+    },
+    {
+      "diseaseName": "Kidney Stones",
+      "diseaseID": "U3"
+    },
+    {
+      "diseaseName": "Erectile Dysfunction",
+      "diseaseID": "U4"
+    },
+    {
+      "diseaseName": "Prostate Cancer",
+      "diseaseID": "U5"
+    },
+    {
+      "diseaseName": "Interstitial Cystitis",
+      "diseaseID": "U6"
+    },
+    {
+      "diseaseName": "Overactive Bladder",
+      "diseaseID": "U7"
+    },
+    {
+      "diseaseName": "Prostatitis",
+      "diseaseID": "U8"
+    },
+    {
+      "diseaseName": "Urethral Stricture",
+      "diseaseID": "U9"
+    },
+    {
+      "diseaseName": "Testicular Cancer",
+      "diseaseID": "U10"
+    },
+    {
+      "diseaseName": "Epididymitis",
+      "diseaseID": "U11"
+    },
+    {
+      "diseaseName": "Orchitis",
+      "diseaseID": "U12"
+    },
+    {
+      "diseaseName": "Testicular Torsion",
+      "diseaseID": "U13"
+    },
+    {
+      "diseaseName": "Bladder Cancer",
+      "diseaseID": "U14"
+    },
+    {
+      "diseaseName": "Peyronies Disease",
+      "diseaseID": "U15"
+    },
+    {
+      "diseaseName": "Prostatitis",
+      "diseaseID": "U16"
+    }
+  ]
+}
