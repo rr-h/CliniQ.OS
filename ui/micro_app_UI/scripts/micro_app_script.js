@@ -10,7 +10,7 @@ new Vue({
             isTimerPlaying: false,
             microAs: [{
                     name: "Mekanın Sahibi",
-                    artist: "Norm Ender",
+                    M_App: "Norm Ender",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/1.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/1.mp3",
                     url: "https://www.youtube.com/watch?v=z3wAjJXbYzA",
@@ -18,7 +18,7 @@ new Vue({
                 },
                 {
                     name: "Everybody Knows",
-                    artist: "Leonard Cohen",
+                    M_App: "Leonard Cohen",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/2.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/2.mp3",
                     url: "https://www.youtube.com/watch?v=Lin-a2lTelg",
@@ -26,7 +26,7 @@ new Vue({
                 },
                 {
                     name: "Extreme Ways",
-                    artist: "Moby",
+                    M_App: "Moby",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/3.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/3.mp3",
                     url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
@@ -34,7 +34,7 @@ new Vue({
                 },
                 {
                     name: "Butterflies",
-                    artist: "Sia",
+                    M_App: "Sia",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/4.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/4.mp3",
                     url: "https://www.youtube.com/watch?v=kYgGwWYOd9Y",
@@ -42,7 +42,7 @@ new Vue({
                 },
                 {
                     name: "The Final Victory",
-                    artist: "Haggard",
+                    M_App: "Haggard",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/5.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/5.mp3",
                     url: "https://www.youtube.com/watch?v=0WlpALnQdN8",
@@ -50,7 +50,7 @@ new Vue({
                 },
                 {
                     name: "Genius ft. Sia, Diplo, Labrinth",
-                    artist: "LSD",
+                    M_App: "LSD",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/6.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/6.mp3",
                     url: "https://www.youtube.com/watch?v=HhoATZ1Imtw",
@@ -58,7 +58,7 @@ new Vue({
                 },
                 {
                     name: "The Comeback Kid",
-                    artist: "Lindi Ortega",
+                    M_App: "Lindi Ortega",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/7.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/7.mp3",
                     url: "https://www.youtube.com/watch?v=me6aoX0wCV8",
@@ -66,7 +66,7 @@ new Vue({
                 },
                 {
                     name: "Overdose",
-                    artist: "Grandson",
+                    M_App: "Grandson",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/8.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/8.mp3",
                     url: "https://www.youtube.com/watch?v=00-Rl3Jlx-o",
@@ -74,7 +74,7 @@ new Vue({
                 },
                 {
                     name: "Rag'n'Bone Man",
-                    artist: "Human",
+                    M_App: "Human",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/9.jpg",
                     source: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/mp3/9.mp3",
                     url: "https://www.youtube.com/watch?v=L3wKzyIN1yk",
