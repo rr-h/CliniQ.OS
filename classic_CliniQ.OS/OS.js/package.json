@@ -80,7 +80,6 @@
         "@osjs/xterm-application": "1.4.0",
         "@osjs/client": "^3.2.0",
         "@osjs/xpra-application": "^1.0.0",
-        "@osjs/github-adapter": "^1.0.0",
         "@osjs/weather-widget": "^1.0.0",
         "@osjs/gapi-provider": "1.2.4",
         "@osjs/gdrive-adapter": "1.0.3",
