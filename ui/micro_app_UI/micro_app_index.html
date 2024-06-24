@@ -20,26 +20,26 @@
             <div class="micro_appapp__top">
                 <div class="micro_app-cover">
                     <transition-group :name="transitionName">
-                        <div class="micro_app-cover__item" v-if="$index === currentTrackIndex" :style="{ backgroundImage: `url(${track.cover})` }" v-for="(track, $index) in tracks" :key="$index"></div>
+                        <div class="micro_app-cover__item" v-if="$index === currentMicroAIndex" :style="{ backgroundImage: `url(${microA.cover})` }" v-for="(microA, $index) in microAs" :key="$index"></div>
                     </transition-group>
                 </div>
                 <div class="micro_app-controls">
-                    <div class="micro_app-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
+                    <div class="micro_app-controls__item -favorite" :class="{ active : currentMicroA.favorited }" @click="favorite">
                         <svg class="icon">
                 <use xlink:href="#icon-heart-o"></use>
               </svg>
                     </div>
-                    <a :href="currentTrack.url" target="_blank" class="micro_app-controls__item">
+                    <a :href="currentMicroA.url" target="_blank" class="micro_app-controls__item">
                         <svg class="icon">
                 <use xlink:href="#icon-link"></use>
               </svg>
                     </a>
-                    <div class="micro_app-controls__item" @click="prevTrack">
+                    <div class="micro_app-controls__item" @click="prevMicroA">
                         <svg class="icon">
                 <use xlink:href="#icon-prev"></use>
               </svg>
                     </div>
-                    <div class="micro_app-controls__item" @click="nextTrack">
+                    <div class="micro_app-controls__item" @click="nextMicroA">
                         <svg class="icon">
                 <use xlink:href="#icon-next"></use>
               </svg>
@@ -54,9 +54,9 @@
             </div>
             <div class="progress" ref="progress">
                 <div class="progress__top">
-                    <div class="album-info" v-if="currentTrack">
-                        <div class="album-info__name">{{ currentTrack.artist }}</div>
-                        <div class="album-info__track">{{ currentTrack.name }}</div>
+                    <div class="album-info" v-if="currentMicroA">
+                        <div class="album-info__name">{{ currentMicroA.artist }}</div>
+                        <div class="album-info__microA">{{ currentMicroA.name }}</div>
                     </div>
                     <div class="progress__duration">{{ duration }}</div>
                 </div>

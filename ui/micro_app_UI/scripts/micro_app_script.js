@@ -8,7 +8,7 @@ new Vue({
             duration: null,
             currentTime: null,
             isTimerPlaying: false,
-            tracks: [{
+            microAs: [{
                     name: "Mekanın Sahibi",
                     artist: "Norm Ender",
                     cover: "https://raw.githubusercontent.com/muhammederdem/mini-micro_app/master/img/1.jpg",
@@ -81,8 +81,8 @@ new Vue({
                     favorited: false
                 }
             ],
-            currentTrack: null,
-            currentTrackIndex: 0,
+            currentMicroA: null,
+            currentMicroAIndex: 0,
             transitionName: null
         };
     },
@@ -140,33 +140,33 @@ new Vue({
             this.audio.pause();
             this.updateBar(e.pageX);
         },
-        prevTrack() {
+        prevMicroA() {
             this.transitionName = "scale-in";
             this.isShowCover = false;
-            if (this.currentTrackIndex > 0) {
-                this.currentTrackIndex--;
+            if (this.currentMicroAIndex > 0) {
+                this.currentMicroAIndex--;
             } else {
-                this.currentTrackIndex = this.tracks.length - 1;
+                this.currentMicroAIndex = this.microAs.length - 1;
             }
-            this.currentTrack = this.tracks[this.currentTrackIndex];
+            this.currentMicroA = this.microAs[this.currentMicroAIndex];
             this.resetmicro_app();
         },
-        nextTrack() {
+        nextMicroA() {
             this.transitionName = "scale-out";
             this.isShowCover = false;
-            if (this.currentTrackIndex < this.tracks.length - 1) {
-                this.currentTrackIndex++;
+            if (this.currentMicroAIndex < this.microAs.length - 1) {
+                this.currentMicroAIndex++;
             } else {
-                this.currentTrackIndex = 0;
+                this.currentMicroAIndex = 0;
             }
-            this.currentTrack = this.tracks[this.currentTrackIndex];
+            this.currentMicroA = this.microAs[this.currentMicroAIndex];
             this.resetmicro_app();
         },
         resetmicro_app() {
             this.barWidth = 0;
             this.circleLeft = 0;
             this.audio.currentTime = 0;
-            this.audio.src = this.currentTrack.source;
+            this.audio.src = this.currentMicroA.source;
             setTimeout(() => {
                 if (this.isTimerPlaying) {
                     this.audio.play();
@@ -176,16 +176,16 @@ new Vue({
             }, 300);
         },
         favorite() {
-            this.tracks[this.currentTrackIndex].favorited = !this.tracks[
-                this.currentTrackIndex
+            this.microAs[this.currentMicroAIndex].favorited = !this.microAs[
+                this.currentMicroAIndex
             ].favorited;
         }
     },
     created() {
         let vm = this;
-        this.currentTrack = this.tracks[0];
+        this.currentMicroA = this.microAs[0];
         this.audio = new Audio();
-        this.audio.src = this.currentTrack.source;
+        this.audio.src = this.currentMicroA.source;
         this.audio.ontimeupdate = function() {
             vm.generateTime();
         };
@@ -193,13 +193,13 @@ new Vue({
             vm.generateTime();
         };
         this.audio.onended = function() {
-            vm.nextTrack();
+            vm.nextMicroA();
             this.isTimerPlaying = true;
         };
 
         // this is optional (for preload covers)
-        for (let index = 0; index < this.tracks.length; index++) {
-            const element = this.tracks[index];
+        for (let index = 0; index < this.microAs.length; index++) {
+            const element = this.microAs[index];
             let link = document.createElement('link');
             link.rel = "prefetch";
             link.href = element.cover;
