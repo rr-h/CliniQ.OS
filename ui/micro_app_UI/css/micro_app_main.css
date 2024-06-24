@@ -1,7 +1,7 @@
 @import './fonts.css';
 body {
     background: #dfe7ef;
-    font-family: "Bitter", serif;
+    font-family: "PixelArial";
 }
 
 * {
@@ -352,7 +352,8 @@ body {
     }
 }
 
-.github-btn {
+
+/* .github-btn {
     position: absolute;
     right: 40px;
     bottom: 50px;
@@ -366,9 +367,10 @@ body {
     letter-spacing: 1px;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
-}
+} */
 
-@media screen and (min-width: 500px) {
+
+/* @media screen and (min-width: 500px) {
     .github-btn:hover {
         transform: scale(1.1);
         box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
@@ -386,7 +388,7 @@ body {
         transform: scale(1.1);
         box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
     }
-}
+} */
 
 .scale-out-enter-active {
     transition: all 0.35s ease-in-out;
