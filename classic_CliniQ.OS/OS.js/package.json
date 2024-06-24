@@ -18,7 +18,8 @@
         "make:iframe-application": "osjs-cli make:iframe-application",
         "make:provider": "osjs-cli make:provider",
         "build": "webpack",
-        "watch": "webpack --watch"
+        "watch": "webpack --watch",
+        "start": "node src/server/index.js"
     },
     "keywords": [
         "osjs"
