@@ -307,7 +307,7 @@ body {
     border-radius: 10px;
 }
 
-.album-info {
+.Mic_App-info {
     color: #71829e;
     flex: 1;
     padding-right: 60px;
@@ -316,12 +316,12 @@ body {
 
 @media screen and (max-width: 576px),
 (max-height: 500px) {
-    .album-info {
+    .Mic_App-info {
         padding-right: 30px;
     }
 }
 
-.album-info__name {
+.Mic_App-info__name {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 12px;
@@ -330,13 +330,13 @@ body {
 
 @media screen and (max-width: 576px),
 (max-height: 500px) {
-    .album-info__name {
+    .Mic_App-info__name {
         font-size: 18px;
         margin-bottom: 9px;
     }
 }
 
-.album-info__microA {
+.Mic_App-info__microA {
     font-weight: 400;
     font-size: 20px;
     opacity: 0.7;
@@ -346,7 +346,7 @@ body {
 
 @media screen and (max-width: 576px),
 (max-height: 500px) {
-    .album-info__microA {
+    .Mic_App-info__microA {
         font-size: 18px;
         min-height: 50px;
     }
