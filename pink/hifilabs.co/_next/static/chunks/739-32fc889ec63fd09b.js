@@ -25,21 +25,21 @@
         );
       }
       var c = {
-          BOLT: '/images/icons/bolt.svg',
-          EXTERNAL: '/images/icons/external_link.png',
-          FOLDER: '/images/HIFILABS/icons/folder.svg',
-          FLOPPY: '/images/HIFILABS/icons/floppy.svg',
-          DISC: '/images/HIFILABS/icons/disc.svg',
-          TRASH: '/images/HIFILABS/icons/trash.svg',
-          TWITTER: '/images/icons/twitter.png',
-          PLATFORM: '/images/icons/platform.png',
-          PLAYER: '/images/icons/player.png',
-          PROFILE: '/images/icons/profile.png',
-          LOGO: '/images/icons/logo.png',
-          CLOSE: '/images/icons/close.png',
-          SHOWS: '/images/icons/shows.png',
-          EDIT: '/images/icons/edit.svg',
-          TEXT: '/images/HIFILABS/icons/filetype-text.svg'
+          BOLT: '../images/icons/bolt.svg',
+          EXTERNAL: '../images/icons/external_link.png',
+          FOLDER: '../images/HIFILABS/icons/folder.svg',
+          FLOPPY: '../images/HIFILABS/icons/floppy.svg',
+          DISC: '../images/HIFILABS/icons/disc.svg',
+          TRASH: '../images/HIFILABS/icons/trash.svg',
+          TWITTER: '../images/icons/twitter.png',
+          PLATFORM: '../images/icons/platform.png',
+          PLAYER: '../images/icons/player.png',
+          PROFILE: '../images/icons/profile.png',
+          LOGO: '../images/icons/logo.png',
+          CLOSE: '../images/icons/close.png',
+          SHOWS: '../images/icons/shows.png',
+          EDIT: '../images/icons/edit.svg',
+          TEXT: '../images/HIFILABS/icons/filetype-text.svg'
         },
         d = r.ZP.img.withConfig({ componentId: 'sc-fb2bce45-0' })(
           u(),
