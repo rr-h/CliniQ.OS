@@ -10,6 +10,7 @@ function loadDiseases() {
     .then(response => response.json())
     .then(data => {
       const drawerContent = document.getElementById('drawer-content');
+      drawerContent.innerHTML = ''; // Clear previous content
       data.cardiologyDisease.forEach(disease => {
         const diseaseCard = document.createElement('div');
         diseaseCard.className = 'disease-card';
@@ -22,8 +23,8 @@ function loadDiseases() {
 }
 
 function toggleDrawer() {
-  const drawer = document.getElementById('cardiology-drawer');
-  drawer.classList.toggle('open');
+  const drawerContent = document.getElementById('drawer-content');
+  drawerContent.classList.toggle('open');
 }
 
 function openForm(diseaseName) {
