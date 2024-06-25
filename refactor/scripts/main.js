@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   loadDiseases();
+  setUpWindowControls();
+  makeDraggable(document.getElementById('main-window'));
+  makeDraggable(document.getElementById('form-container'));
 });
 
 function loadDiseases() {
@@ -110,22 +113,51 @@ function copyToClipboard() {
   });
 }
 
-document.getElementById('main-minimize').addEventListener('click', () => {
-  const mainWindow = document.getElementById('main-window');
-  mainWindow.style.height = mainWindow.style.height === '40px' ? 'calc(100% - 40px)' : '40px';
-});
+function setUpWindowControls() {
+  document.getElementById('main-minimize').addEventListener('click', () => {
+    const mainWindow = document.getElementById('main-window');
+    mainWindow.style.height = mainWindow.style.height === '40px' ? 'calc(100% - 40px)' : '40px';
+  });
 
-document.getElementById('main-maximize').addEventListener('click', () => {
-  const mainWindow = document.getElementById('main-window');
-  mainWindow.classList.toggle('maximized');
-});
+  document.getElementById('main-maximize').addEventListener('click', () => {
+    const mainWindow = document.getElementById('main-window');
+    mainWindow.classList.toggle('maximized');
+  });
 
-document.getElementById('main-close').addEventListener('click', () => {
-  const mainWindow = document.getElementById('main-window');
-  mainWindow.style.display = 'none';
-});
+  document.getElementById('main-close').addEventListener('click', () => {
+    const mainWindow = document.getElementById('main-window');
+    mainWindow.style.display = 'none';
+  });
 
-document.getElementById('form-close').addEventListener('click', () => {
-  const formContainer = document.getElementById('form-container');
-  formContainer.style.display = 'none';
-});
+  document.getElementById('form-close').addEventListener('click', () => {
+    const formContainer = document.getElementById('form-container');
+    formContainer.style.display = 'none';
+  });
+}
+
+function makeDraggable(element) {
+  let isMouseDown = false;
+  let offset = [0, 0];
+  let mousePosition;
+
+  const titleBar = element.querySelector('.title-bar');
+  titleBar.addEventListener('mousedown', e => {
+    isMouseDown = true;
+    offset = [element.offsetLeft - e.clientX, element.offsetTop - e.clientY];
+  });
+
+  document.addEventListener('mouseup', () => {
+    isMouseDown = false;
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (isMouseDown) {
+      mousePosition = {
+        x: e.clientX,
+        y: e.clientY
+      };
+      element.style.left = mousePosition.x + offset[0] + 'px';
+      element.style.top = mousePosition.y + offset[1] + 'px';
+    }
+  });
+}
