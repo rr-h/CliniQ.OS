@@ -6,6 +6,8 @@ body {
     margin-bottom: 15px;
     margin-top: 8px;
     background: #77b;
+    -webkit-scroll-behavior: auto;
+    scroll-behavior: auto;
 }
 
 body,
@@ -144,4 +146,18 @@ h4 {
 
 .tblNoBorder td {
     border: 0;
+}
+
+.eviRG,
+.euooj {
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .euooj {
+        display: none;
+    }
 }
