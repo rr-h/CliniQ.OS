@@ -69,19 +69,19 @@
         about: {
           pageTitle: 'About HIFI Labs',
           url: function() {
-            return '/about';
+            return './about';
           }
         },
         welcome: {
           pageTitle: 'Welcome to HIFI Labs',
           url: function() {
-            return '/welcome';
+            return './welcome';
           }
         },
         webby: {
           pageTitle: 'We Won a Webby Award!',
           url: function() {
-            return '/webby';
+            return './webby';
           },
           alwaysRender: !0,
           open: !0
@@ -89,13 +89,13 @@
         contact: {
           pageTitle: 'Contact HIFI Labs',
           url: function() {
-            return '/contact';
+            return './contact';
           }
         },
         launcher: {
           pageTitle: 'HIFI Labs launcher',
           url: function() {
-            return '/launcher';
+            return './launcher';
           },
           alwaysRender: !1,
           open: !1
@@ -103,20 +103,20 @@
         artistlab: {
           pageTitle: 'Artist Lab',
           url: function() {
-            return '/artistlab';
+            return './artistlab';
           }
         },
         artist: {
           pageTitle: 'Artist Lab',
           url: function(e) {
             var t = e.slug;
-            return '/artistlab/'.concat(t);
+            return './artistlab/'.concat(t);
           }
         },
         web3cohort: {
           pageTitle: 'Web3 Cohort',
           url: function() {
-            return '/web3cohort';
+            return './web3cohort';
           }
         },
         web3cohortartist: {
@@ -135,13 +135,13 @@
           pageTitle: 'Idea Lab',
           url: function(e) {
             var t = e.slug;
-            return '/idealab/'.concat(t);
+            return './idealab/'.concat(t);
           }
         },
         productlab: {
           pageTitle: 'Product Lab',
           url: function() {
-            return '/productlab';
+            return './productlab';
           }
         },
         trash: {
