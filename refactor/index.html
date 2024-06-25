@@ -1,17 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardiology Component</title>
+    <link rel="stylesheet" href="styles/FormComponent.css" />
+    <link rel="stylesheet" href="styles/RetroMedicalForm.css" />
+    <link rel="stylesheet" href="styles/Drawer.css" />
+    <link rel="stylesheet" href="styles/WindowComponent.css" />
+  </head>
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../src/styles/Fonts.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>React App</title>
-</head>
-
-<body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-</body>
-
+  <body>
+    <div class="retro-desktop">
+      <div class="container">
+        <div class="retro-window" id="main-window" style="z-index: 1;">
+          <div class="title-bar" id="main-title-bar">
+            <div class="title">Retro Medical Form</div>
+            <div class="window-controls">
+              <button id="main-minimize"><img src="assets/icons/min-48.png" alt="Minimize" width="16" height="16" /></button>
+              <button id="main-maximize"><img src="assets/icons/max-48.png" alt="Maximize" width="16" height="16" /></button>
+              <button id="main-close"><img src="assets/icons/close-48.png" alt="Close" width="16" height="16" /></button>
+            </div>
+          </div>
+          <div class="window-content">
+            <div class="icon-grid">
+              <div class="drawer" id="cardiology-drawer">
+                <div class="drawer-label" onclick="toggleDrawer()">Cardiology</div>
+                <div class="drawer-content" id="drawer-content"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="form-container" class="retro-window" style="display:none; z-index: 2;">
+          <div class="title-bar" id="form-title-bar">
+            <div class="title" id="form-title"></div>
+            <div class="window-controls">
+              <button id="form-minimize"><img src="assets/icons/min-48.png" alt="Minimize" width="16" height="16" /></button>
+              <button id="form-maximize"><img src="assets/icons/max-48.png" alt="Maximize" width="16" height="16" /></button>
+              <button id="form-close"><img src="assets/icons/close-48.png" alt="Close" width="16" height="16" /></button>
+            </div>
+          </div>
+          <div class="window-content">
+            <div class="form-container">
+              <form id="disease-form">
+                <!-- Form fields will be dynamically inserted here -->
+              </form>
+              <div class="markdown-output" id="markdown-output"></div>
+              <button id="copy-button" onclick="copyToClipboard()" style="display:none;">Copy Markdown to Clipboard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>
