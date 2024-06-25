@@ -1,0 +1,145 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "gastroenterologyDisease": [
+    {
+      "diseaseName": "Gastroesophageal Reflux Disease",
+      "diseaseID": "G1"
+    },
+    {
+      "diseaseName": "Irritable Bowel Syndrome",
+      "diseaseID": "G2"
+    },
+    {
+      "diseaseName": "Crohn Disease",
+      "diseaseID": "G3"
+    },
+    {
+      "diseaseName": "Ulcerative Colitis",
+      "diseaseID": "G4"
+    },
+    {
+      "diseaseName": "Hepatitis B",
+      "diseaseID": "G5"
+    },
+    {
+      "diseaseName": "Celiac Disease",
+      "diseaseID": "G6"
+    },
+    {
+      "diseaseName": "Liver Cirrhosis",
+      "diseaseID": "G7"
+    },
+    {
+      "diseaseName": "Pancreatic Cancer",
+      "diseaseID": "G8"
+    },
+    {
+      "diseaseName": "Gastrointestinal Bleeding",
+      "diseaseID": "G9"
+    },
+    {
+      "diseaseName": "Gallstones",
+      "diseaseID": "G10"
+    },
+    {
+      "diseaseName": "Acute Pancreatitis",
+      "diseaseID": "G11"
+    },
+    {
+      "diseaseName": "Hepatic Encephalopathy",
+      "diseaseID": "G12"
+    },
+    {
+      "diseaseName": "Diverticulitis",
+      "diseaseID": "G13"
+    },
+    {
+      "diseaseName": "Gastrointestinal Stromal Tumour",
+      "diseaseID": "G14"
+    },
+    {
+      "diseaseName": "Oesophageal Varices",
+      "diseaseID": "G15"
+    },
+    {
+      "diseaseName": "Nonalcoholic Fatty Liver Disease",
+      "diseaseID": "G16"
+    },
+    {
+      "diseaseName": "Barrett Oesophagus",
+      "diseaseID": "G17"
+    },
+    {
+      "diseaseName": "Zollinger-Ellison Syndrome",
+      "diseaseID": "G18"
+    },
+    {
+      "diseaseName": "Familial Hypercholesterolemia",
+      "diseaseID": "G19"
+    },
+    {
+      "diseaseName": "Nonalcoholic Steatohepatitis",
+      "diseaseID": "G20"
+    },
+    {
+      "diseaseName": "Primary Biliary Cholangitis",
+      "diseaseID": "G21"
+    },
+    {
+      "diseaseName": "Primary Sclerosing Cholangitis",
+      "diseaseID": "G22"
+    },
+    {
+      "diseaseName": "Hepatitis C",
+      "diseaseID": "G23"
+    },
+    {
+      "diseaseName": "Gastrointestinal Perforation",
+      "diseaseID": "G24"
+    },
+    {
+      "diseaseName": "Autoimmune Hepatitis",
+      "diseaseID": "G25"
+    },
+    {
+      "diseaseName": "Wilson Disease",
+      "diseaseID": "G26"
+    },
+    {
+      "diseaseName": "Achalasia",
+      "diseaseID": "G27"
+    },
+    {
+      "diseaseName": "Sclerosing Mesenteritis",
+      "diseaseID": "G28"
+    },
+    {
+      "diseaseName": "Portal Hypertension",
+      "diseaseID": "G29"
+    },
+    {
+      "diseaseName": "Budd-Chiari Syndrome",
+      "diseaseID": "G30"
+    },
+    {
+      "diseaseName": "Gastroparesis",
+      "diseaseID": "G31"
+    },
+    {
+      "diseaseName": "Oesophageal Cancer",
+      "diseaseID": "G32"
+    },
+    {
+      "diseaseName": "Peptic Ulcer Disease",
+      "diseaseID": "G33"
+    },
+    {
+      "diseaseName": "Colorectal Cancer",
+      "diseaseID": "G34"
+    }
+  ]
+}

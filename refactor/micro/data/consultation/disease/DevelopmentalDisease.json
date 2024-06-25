@@ -1,0 +1,57 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "developmentalDisease": [
+    {
+      "diseaseName": "Lynch Syndrome",
+      "diseaseID": "DV1"
+    },
+    {
+      "diseaseName": "Down Syndrome",
+      "diseaseID": "DV2"
+    },
+    {
+      "diseaseName": "BRCA Gene Mutation",
+      "diseaseID": "DV3"
+    },
+    {
+      "diseaseName": "Huntingtons Disease",
+      "diseaseID": "DV4"
+    },
+    {
+      "diseaseName": "Cystic Fibrosis",
+      "diseaseID": "DV5"
+    },
+    {
+      "diseaseName": "Sickle Cell Disease",
+      "diseaseID": "DV6"
+    },
+    {
+      "diseaseName": "Fragile X Syndrome",
+      "diseaseID": "DV7"
+    },
+    {
+      "diseaseName": "Turner Syndrome",
+      "diseaseID": "DV8"
+    },
+    {
+      "diseaseName": "Klinefelter Syndrome",
+      "diseaseID": "DV9"
+    },
+    {
+      "diseaseName": "Williams Syndrome",
+      "diseaseID": "DV10"
+    },
+    {
+      "diseaseName": "Prader-Willi Syndrome",
+      "diseaseID": "DV11"
+    },
+    {
+      "diseaseName": "Angelman Syndrome",
+      "diseaseID": "DV12"
+    }
+  ]
+}

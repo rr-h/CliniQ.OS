@@ -1,0 +1,53 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "rheumatologyDisease": [
+    {
+      "diseaseName": "Rheumatoid Arthritis",
+      "diseaseID": "RH1"
+    },
+    {
+      "diseaseName": "Systemic Lupus Erythematosus",
+      "diseaseID": "RH2"
+    },
+    {
+      "diseaseName": "Osteoarthritis",
+      "diseaseID": "RH3"
+    },
+    {
+      "diseaseName": "Gout",
+      "diseaseID": "RH4"
+    },
+    {
+      "diseaseName": "Ankylosing Spondylitis",
+      "diseaseID": "RH5"
+    },
+    {
+      "diseaseName": "Psoriatic Arthritis",
+      "diseaseID": "RH6"
+    },
+    {
+      "diseaseName": "Sjögrens Syndrome",
+      "diseaseID": "RH7"
+    },
+    {
+      "diseaseName": "Vasculitis",
+      "diseaseID": "RH8"
+    },
+    {
+      "diseaseName": "Fibromyalgia",
+      "diseaseID": "RH9"
+    },
+    {
+      "diseaseName": "Polymyalgia Rheumatica",
+      "diseaseID": "RH10"
+    },
+    {
+      "diseaseName": "Giant Cell Arteritis",
+      "diseaseID": "RH11"
+    }
+  ]
+}

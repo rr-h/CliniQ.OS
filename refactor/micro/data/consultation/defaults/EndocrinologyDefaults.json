@@ -1,0 +1,4006 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "specialtiesName": "Endocrine",
+  "disease": [
+    {
+      "diseaseName": "Diabetes Mellitus Type 1",
+      "diseaseID": "ED1",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Polyuria, polydipsia, weight loss, fatigue.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune destruction of pancreatic beta cells.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Hyperglycemia.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "No specific findings; may have weight loss.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Diabetes Mellitus Type 1",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Type 2 diabetes, monogenic diabetes",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Insulin therapy, carbohydrate counting",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular blood glucose monitoring, endocrinologist follow-up",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Diabetes Mellitus Type 2",
+      "diseaseID": "ED2",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Often asymptomatic, may have polyuria, polydipsia.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Lifestyle factors, obesity, genetic predisposition.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Insulin resistance and relative insulin deficiency.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Overweight/obesity, acanthosis nigricans in some cases.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Diabetes Mellitus Type 2",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Type 1 diabetes, LADA",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Lifestyle modification, oral hypoglycemics, insulin if necessary",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Dietary management, physical activity, regular monitoring",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hypothyroidism",
+      "diseaseID": "ED3",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fatigue, weight gain, cold intolerance, constipation.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune (Hashimotos thyroiditis), iodine deficiency.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Low thyroid hormone levels.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "60,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "36.5°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Dry skin, bradycardia, delayed reflexes.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hypothyroidism",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Depression, chronic fatigue syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires adjustment of therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Levothyroxine",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular TSH monitoring, adjust dose as necessary",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hyperthyroidism",
+      "diseaseID": "ED4",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Weight loss, heat intolerance, palpitations, anxiety.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Graves disease, toxic nodular Goiter.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "High thyroid hormone levels.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "90,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Goiter, exophthalmos (in Graves disease), tremor.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hyperthyroidism",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Anxiety disorder, pheochromocytoma",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antithyroid medications, radioactive iodine, surgery",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Avoid iodine-rich foods, regular follow-up",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Addisons Disease",
+      "diseaseID": "ED5",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fatigue, muscle weakness, weight loss, hyperpigmentation.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune destruction of adrenal cortex.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Cortisol deficiency, aldosterone deficiency.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "100/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Hyperpigmentation, especially in sun-exposed areas, mucous membranes.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Addisons Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Secondary adrenal insufficiency, chronic fatigue syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires adjustment of therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Hydrocortisone, fludrocortisone",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Stress dose steroids during illness, medical alert bracelet",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Polycystic Ovary Syndrome",
+      "diseaseID": "ED6",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Irregular menstrual cycles, hirsutism, acne.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Insulin resistance, obesity.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Androgen excess, oligo-ovulation.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Ovarian cysts on ultrasound, clinical or biochemical signs of hyperandrogenism.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Polycystic Ovary Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Congenital adrenal hyperplasia, Cushings syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Lifestyle changes, metformin, oral contraceptives",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Weight management, monitor for metabolic syndrome",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Cushings Syndrome",
+      "diseaseID": "ED7",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Weight gain, particularly in the trunk, moon face, purple striae.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Exogenous corticosteroids, cortisol-producing tumours.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Excess cortisol.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "140/90,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Central obesity, facial rounding, skin changes.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Cushings Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Metabolic syndrome, polycystic ovary syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Reduce corticosteroid use, surgery for tumours",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor for complications, psychological support",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Acromegaly",
+      "diseaseID": "ED8",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Enlarged hands and feet, facial feature changes, joint pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Growth hormone-secreting pituitary adenoma.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Elevated growth hormone and IGF-1 levels.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Jaw protrusion, increased hand and foot size, coarse facial features.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Acromegaly",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Pituitary tumour, gigantism",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgery, somatostatin analogs, growth hormone receptor antagonists",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of hormone levels, manage comorbidities",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Graves Disease",
+      "diseaseID": "ED9",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Hyperthyroid symptoms, eye bulging, goiter.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune thyroid disease.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Thyroid-stimulating immunoglobulins.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "85,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Diffuse Goiter, ophthalmopathy, pretibial myxedema.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Graves Disease",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Toxic nodular goiter, thyroiditis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Antithyroid drugs, radioactive iodine therapy, surgery",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Eye care for ophthalmopathy, calcium and vitamin D",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hashimotos Thyroiditis",
+      "diseaseID": "ED10",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fatigue, weight gain, cold intolerance.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune thyroid disorder.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Hypothyroidism over time.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "65,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "36.8°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Goiter, dry skin, bradycardia.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hashimotos Thyroiditis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Hypothyroidism of other aetiologies",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires adjustment of therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Levothyroxine to normalise thyroid hormone levels",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular TSH level monitoring, adjust levothyroxine dose as needed",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Cushings Syndrome",
+      "diseaseID": "ED11",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Weight gain, particularly in the trunk, moon face, purple striae.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Exogenous corticosteroids, cortisol-producing tumours.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Excess cortisol.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "140/90,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Central obesity, facial rounding, skin changes.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Cushings Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Metabolic syndrome, polycystic ovary syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Reduce corticosteroid use, surgery for tumours",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor for complications, psychological support",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Acromegaly",
+      "diseaseID": "ED12",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Enlarged hands and feet, facial feature changes, joint pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Growth hormone-secreting pituitary adenoma.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Elevated growth hormone and IGF-1 levels.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Jaw protrusion, increased hand and foot size, coarse facial features.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Acromegaly",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Pituitary tumour, gigantism",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgery, somatostatin analogs, growth hormone receptor antagonists",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of hormone levels, manage comorbidities",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Osteoporosis",
+      "diseaseID": "ED13",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Bone pain, fractures with minimal trauma.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Age-related, postmenopausal, certain medications.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Decreased bone mineral density.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible height loss, kyphosis.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Osteoporosis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Osteomalacia, secondary osteoporosis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Calcium and vitamin D supplements, bisphosphonates",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular bone density scans, fall prevention measures",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hyperparathyroidism",
+      "diseaseID": "ED14",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Bone pain, kidney stones, fatigue, depression.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Overactivity of one or more parathyroid glands.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "High calcium levels in the blood.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible bone tenderness, abdominal pain due to stones.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hyperparathyroidism",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Familial hypocalciuric hypercalcaemia, malignancy",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical removal of affected gland(s), medication for symptom management",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Hydration, monitor blood calcium levels",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Pheochromocytoma",
+      "diseaseID": "ED15",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "High blood pressure, palpitations, headache, sweating.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Tumour of the adrenal medulla.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Catecholamine excess.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "100,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "150/90,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "May have no specific findings; diagnosis often confirmed by urine or blood test.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Pheochromocytoma",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Essential hypertension, hyperthyroidism",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical removal of the tumour, alpha and beta blockers pre-operatively",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring for recurrence, genetic testing in familial cases",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Thyroid Cancer",
+      "diseaseID": "ED16",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Neck lump, difficulty swallowing, hoarseness.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Exposure to radiation, family history of thyroid cancer.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Nodule within the thyroid gland.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Palpable thyroid nodule, possibly with cervical lymphadenopathy.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Thyroid Cancer",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Benign thyroid nodule, Goitre",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical removal, radioactive iodine, thyroid hormone therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Thyroid function monitoring, regular ultrasounds",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Metabolic Syndrome",
+      "diseaseID": "ED17",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Central obesity, high blood pressure, insulin resistance.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Sedentary lifestyle, poor diet.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Cluster of metabolic risk factors.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "78,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "135/85,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Increased waist circumference, elevated triglycerides.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Metabolic Syndrome",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Type 2 diabetes, polycystic ovary syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Lifestyle changes, medication for hypertension, diabetes",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Dietary modification, increased physical activity",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Primary Aldosteronism",
+      "diseaseID": "ED18",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Hypertension, muscle weakness, headache, and episodes of paralysis.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can be caused by an adrenal adenoma.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Excess aldosterone production leading to sodium retention and potassium loss.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "150/100,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Normal physical examination, possibly hypokalaemia on lab tests.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Primary Aldosteronism",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Secondary hypertension, renal artery stenosis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical removal of adenoma or aldosterone antagonists for management",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor blood pressure and serum potassium levels",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Growth Hormone Deficiency",
+      "diseaseID": "ED19",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Short stature in children, poor bone density, increased body fat.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic, idiopathic, or secondary to pituitary damage.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Lack of growth hormone.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "110/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Short stature compared to peers, delayed growth milestones.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Growth Hormone Deficiency",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Constitutional growth delay, Turner syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Growth hormone therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of growth and development, adjust therapy as needed",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hyperaldosteronism",
+      "diseaseID": "ED20",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Persistent hypertension, muscle cramps, and fatigue.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can result from adrenal hyperplasia or an aldosterone-producing adenoma.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Elevated aldosterone levels with low plasma renin activity.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "145/95,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "May present with normal physical findings, hypokalaemia on blood tests.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hyperaldosteronism",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Essential hypertension, renal artery stenosis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful monitoring",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Aldosterone antagonists, surgical intervention if indicated",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Blood pressure and electrolyte monitoring",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Multiple Endocrine Neoplasia Type 1",
+      "diseaseID": "ED21",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Varied symptoms depending on affected glands: ulcers, calcium imbalances, pituitary tumours.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic disorder affecting multiple endocrine glands.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Tumours in parathyroid, pancreatic, and pituitary glands.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Signs related to hormone overproduction: hypercalcaemia, peptic ulcers.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Multiple Endocrine Neoplasia Type 1",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Sporadic parathyroid adenoma, Zollinger-Ellison syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Genetic counselling recommended",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical removal of tumours, management of hormone levels",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular screening for affected glands, genetic testing for family members",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Thyroid Nodules",
+      "diseaseID": "ED22",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Asymptomatic, may notice swelling in neck or difficulty swallowing.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Most are benign; a small percentage can be cancerous.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Palpable nodules in the thyroid gland.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Nodule palpation on thyroid exam, further characterised by ultrasound.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Thyroid Nodules",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Thyroid cyst, goiter",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Fine-needle aspiration biopsy for suspicious nodules",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Monitoring, thyroid hormone suppression therapy, or surgery for large or malignant nodules",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular ultrasound monitoring, thyroid function tests",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Insulinoma",
+      "diseaseID": "ED23",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Hypoglycaemic episodes, confusion, sweating, palpitations.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Rare, usually benign tumour of the pancreas that produces insulin.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Episodes of hypoglycaemia, especially fasting or exertional.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Normal examination; symptoms occur during hypoglycaemic episodes.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Insulinoma",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Non-islet cell tumour hypoglycaemia, sulfonylurea misuse",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical removal of the tumour",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitoring blood glucose levels, avoid fasting",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Parathyroid Carcinoma",
+      "diseaseID": "ED24",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "High calcium levels, bone pain, kidney stones, abdominal pain.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Rare cancer of the parathyroid gland.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Significantly elevated calcium and parathyroid hormone (PTH) levels.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/90,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible palpable neck mass, signs of hypercalcaemia.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Parathyroid Carcinoma",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Primary hyperparathyroidism, benign parathyroid adenoma",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Surgical removal of the tumour",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Manage hypercalcaemia pre- and post-operatively, monitor for recurrence",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular calcium and PTH level checks",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Congenital Adrenal Hyperplasia",
+      "diseaseID": "ED25",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Early signs of puberty, rapid growth in childhood but shorter adult height, ambiguous genitalia in newborns.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Genetic disorder affecting steroid hormone production.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Elevated levels of adrenal androgens.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Varies with form of CAH; may include signs of androgen excess.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Congenital Adrenal Hyperplasia",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Androgen-secreting tumours, polycystic ovary syndrome",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Glucocorticoid replacement therapy",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Adjustment of hormone therapy based on growth, development, and stress",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular endocrinological follow-up, genetic counselling",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Vitamin D Deficiency",
+      "diseaseID": "ED26",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Bone pain, muscle weakness, fatigue.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Insufficient sunlight exposure, poor dietary intake.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Low serum levels of 25-hydroxyvitamin D.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "May be asymptomatic; signs of bone softening or weakness.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Vitamin D Deficiency",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Osteoporosis, osteomalacia",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires dietary and lifestyle modification",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Vitamin D supplementation",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Sun exposure, dietary sources of vitamin D, supplementation as needed",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Adrenal Insufficiency",
+      "diseaseID": "ED27",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Fatigue, abdominal pain, weight loss, low blood pressure.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Autoimmune, tuberculosis, or secondary to steroid withdrawal.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Deficiency in cortisol, and possibly aldosterone.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "100/70,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Hyperpigmentation (primary), orthostatic hypotension.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Adrenal Insufficiency",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Addison Disease, secondary adrenal insufficiency",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires glucocorticoid and possibly mineralocorticoid replacement",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Lifelong hormone replacement therapy",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of electrolytes, cortisol levels",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Paget Disease of Bone",
+      "diseaseID": "ED28",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Bone pain, deformity, and fractures.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Most common in older adults, genetic factors may play a role.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Abnormal bone remodelling.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Enlarged and deformed bones on physical examination.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Paget Disease of Bone",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Osteoarthritis, osteoporosis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Bisphosphonates, pain management",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of bone health, physical therapy as needed",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Hyperprolactinaemia",
+      "diseaseID": "ED29",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Galactorrhea, menstrual irregularities, infertility.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can be caused by pituitary tumours, medications, or hypothyroidism.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Elevated serum prolactin levels.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible evidence of pituitary mass on MRI.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Hyperprolactinaemia",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Polycystic ovary syndrome, primary hypothyroidism",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Careful medication review",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Dopamine agonists, treatment of underlying disease",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor prolactin levels, MRI follow-up for pituitary tumours",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Osteomalacia",
+      "diseaseID": "ED30",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Muscle weakness, bone pain, difficulty walking.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Vitamin D deficiency, certain medications, or disorders affecting Vitamin D metabolism.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Softening of the bones due to defective bone mineralization.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Bone tenderness on physical examination.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Osteomalacia",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Osteoporosis, chronic kidney disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires Vitamin D and calcium supplementation",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Vitamin D and calcium supplements, exposure to sunlight",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular monitoring of Vitamin D levels and bone density",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Thyroiditis",
+      "diseaseID": "ED31",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Neck pain, fatigue, variable thyroid function.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Can follow viral infection (subacute) or be autoimmune (Hashimoto or postpartum).",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Inflammation of the thyroid gland.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Tender or enlarged thyroid gland.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Thyroiditis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Graves disease, thyroid nodule",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Monitor thyroid function",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Pain management, thyroid hormone replacement if needed",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular thyroid function tests, symptom management",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Diabetic Ketoacidosis",
+      "diseaseID": "ED32",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Polyuria, polydipsia, nausea, vomiting, abdominal pain, altered mental state.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Typically in type 1 diabetes, can be triggered by infection or stress.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Acute, life-threatening complication of diabetes.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "110,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37.5°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "90/60,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Dehydration, rapid breathing, fruity odour of breath.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Diabetic Ketoacidosis",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Hyperosmolar hyperglycaemic state, sepsis",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Emergency medical treatment required",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "IV fluids, insulin therapy, electrolyte replacement",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Intensive care monitoring, education on diabetes management",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Primary Hyperparathyroidism",
+      "diseaseID": "ED33",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Bone pain, kidney stones, abdominal pain, depression.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Overproduction of parathyroid hormone.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Elevated calcium and parathyroid hormone levels.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "75,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "130/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible neck mass, signs of hypercalcaemia.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Primary Hyperparathyroidism",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Familial hypocalciuric hypercalcaemia, malignancy",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Surgical removal of parathyroid adenomas",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Surgical intervention, monitoring of calcium and bone density",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Regular follow-up with endocrinology, monitoring of serum calcium levels",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Secondary Hyperparathyroidism",
+      "diseaseID": "ED34",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Complication of chronic kidney disease leading to elevated PTH levels.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Common in patients with chronic kidney failure.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Response to low calcium levels and vitamin D deficiency.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "80,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "140/90,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "No specific physical findings; symptoms related to underlying kidney disease.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Secondary Hyperparathyroidism",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Primary hyperparathyroidism, vitamin D deficiency",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Management of chronic kidney disease",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Vitamin D analogs, phosphate binders, possibly surgery",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Management of underlying renal disease, regular monitoring of PTH and calcium",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Gynecomastia",
+      "diseaseID": "ED35",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Enlargement of male breast tissue.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "May be related to hormonal imbalances, medication use, or underlying health disease.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Excess glandular tissue development.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Palpable, tender breast tissue enlargement.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Gynecomastia",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Breast cancer, lipoma",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Not applicable",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Observation, medication review, surgery for persistent cases",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Lifestyle modifications, reassessment over time",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    },
+    {
+      "diseaseName": "Prolactinoma",
+      "diseaseID": "ED36",
+      "fields": [
+        {
+          "name": "chiefComplaint",
+          "type": "text",
+          "defaultValue": "Irregular menstrual cycles, galactorrhea, infertility in women; erectile dysfunction in men.",
+          "placeholder": "Enter chief complaint",
+          "label": "Chief Complaint"
+        },
+        {
+          "name": "socialHistory",
+          "type": "text",
+          "defaultValue": "Benign pituitary tumour producing prolactin.",
+          "placeholder": "Enter social history",
+          "label": "Social History"
+        },
+        {
+          "name": "systemsSurvey",
+          "type": "text",
+          "defaultValue": "Elevated serum prolactin levels.",
+          "placeholder": "Enter systems survey",
+          "label": "Systems Survey"
+        },
+        {
+          "name": "vitals.hr",
+          "type": "text",
+          "defaultValue": "70,",
+          "placeholder": "Enter heart rate",
+          "label": "Heart Rate"
+        },
+        {
+          "name": "vitals.temp",
+          "type": "text",
+          "defaultValue": "37°C",
+          "placeholder": "Enter temperature",
+          "label": "Temperature"
+        },
+        {
+          "name": "vitals.bp",
+          "type": "text",
+          "defaultValue": "120/80,",
+          "placeholder": "Enter BP",
+          "label": "Blood Pressure"
+        },
+        {
+          "name": "vitals.rr",
+          "type": "text",
+          "defaultValue": "16 rpm",
+          "placeholder": "Enter respiratory rate",
+          "label": "Respiratory Rate"
+        },
+        {
+          "name": "physicalExam",
+          "type": "text",
+          "defaultValue": "Possible visual field defects if tumour is large.",
+          "placeholder": "Enter physical exam details",
+          "label": "Physical Exam"
+        },
+        {
+          "name": "impression",
+          "type": "text",
+          "defaultValue": "Prolactinoma",
+          "placeholder": "Enter impression",
+          "label": "Impression"
+        },
+        {
+          "name": "differentialDiagnosis",
+          "type": "text",
+          "defaultValue": "Hypothyroidism, kidney disease",
+          "placeholder": "Enter DDx",
+          "label": "Differential Diagnosis"
+        },
+        {
+          "name": "allergies",
+          "type": "text",
+          "defaultValue": "None",
+          "placeholder": "Enter known allergies",
+          "label": "Allergies"
+        },
+        {
+          "name": "pregnancy",
+          "type": "text",
+          "defaultValue": "Requires careful management",
+          "placeholder": "Enter pregnancy status",
+          "label": "Pregnancy"
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "defaultValue": "Dopamine agonists, surgery if necessary",
+          "placeholder": "Enter treatment",
+          "label": "Treatment"
+        },
+        {
+          "name": "carePlan",
+          "type": "text",
+          "defaultValue": "Monitor prolactin levels, MRI for tumour growth",
+          "placeholder": "Enter care plan",
+          "label": "Care Plan"
+        },
+        {
+          "name": "accurex",
+          "type": "text",
+          "defaultValue": "N/A",
+          "placeholder": "Enter Accurex message",
+          "label": "Accurex Message"
+        }
+      ]
+    }
+  ]
+}
