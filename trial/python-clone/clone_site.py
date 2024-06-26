@@ -6,10 +6,12 @@ from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
 import re
 
-BASE_URL = 'https://hifilabs.co'
-BUILD_MANIFEST_FILE_PATH = '__BUILD_MANIFEST.js'
-SSG_MANIFEST_FILE_PATH = '__SSG_MANIFEST.js'
-OUTPUT_DIR = 'clone'
+BASE_URL = "https://hifilabs.co"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# Construct the full paths to the manifest files
+BUILD_MANIFEST_FILE_PATH = os.path.join(script_dir, "__BUILD_MANIFEST.js")
+SSG_MANIFEST_FILE_PATH = os.path.join(script_dir, "__SSG_MANIFEST.js")
+OUTPUT_DIR = './clone'
 
 def download_file(url, output_path):
     try:
