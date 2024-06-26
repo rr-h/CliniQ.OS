@@ -25,9 +25,15 @@ def parse_build_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            json_str = re.search(r"self\.__BUILD_MANIFEST\s*=\s*(\{[\s\S]*?\});", content, re.DOTALL).group(1)
-            json_str = json_str.replace("'", '"').replace(",\n}", "\n}")
-            return json.loads(json_str)
+            # Updated regular expression to match the JSON structure
+            match = re.search(r"self\.__BUILD_MANIFEST\s*=\s*(\{[\s\S]*?\});", content, re.DOTALL)
+            if match:
+                json_str = match.group(1)
+                # Convert single quotes to double quotes and remove trailing commas
+                json_str = json_str.replace("'", '"').replace(",\n}", "\n}")
+                return json.loads(json_str)
+            else:
+                raise ValueError(f"Could not find JSON in the __BUILD_MANIFEST file.")
     except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
         print(f"Error parsing {file_path}: {e}")
         return {}
