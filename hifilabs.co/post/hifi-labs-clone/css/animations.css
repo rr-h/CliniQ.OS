@@ -1,0 +1,48 @@
+/* Declaring animations */
+@keyframes beat {
+    0% {transform: scale(1);}
+    50% {transform: scale(.92);}
+}
+
+@keyframes load {
+    0% {transform: translate(-50%,-50%) scale(1);}
+    50% {transform: translate(-50%,-50%) scale(.94);}
+}
+
+@keyframes show {
+    100% {opacity: 1;}
+    10% {opacity: 0.9;}
+}
+
+@keyframes bounce {
+    50% {transform: scale(1.01); }
+}
+
+@keyframes resize {
+    100% {transform: scale(.4);}
+}
+
+@keyframes hideandshow {
+    50% {opacity: .1;}
+}
+
+/* Assigning animations */
+.anim-show {
+    animation: show 2s forwards;
+}
+
+.anim-bounce {
+    animation: load .2s 2;
+}
+
+.anim-resize {
+    animation: resize .8s forwards; 
+}
+
+.anim-beat {
+    animation: beat 2s infinite; 
+}
+
+.anim-load {
+    animation: load 2s infinite; 
+}

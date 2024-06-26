@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'ArgentPixelCF-Italic';
+    src: url('../fonts/ArgentPixelCF-Italic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'ArgentPixelCF-Regular';
+    src: url('../fonts/ArgentPixelCF-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Charcoal';
+    src: url('../fonts/Charcoal.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ChicagoFLF';
+    src: url('../fonts/ChicagoFLF.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Chikarego2';
+    src: url('../fonts/Chikarego2.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Geneva_9';
+    src: url('../fonts/Geneva_9.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PerfectDOS';
+    src: url('../fonts/PerfectDOS.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'PixelArial';
+    src: url('../fonts/PixelArial.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pixelmix-Bold';
+    src: url('../fonts/Pixelmix-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Pixolde-Bold';
+    src: url('../fonts/Pixolde-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'YosterIsland-Regular';
+    src: url('../fonts/YosterIsland-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KA1';
+    src: url('../fonts/KA1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'CorruptPixel';
+    src: url('../fonts/CorruptPixel.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PixelLCD';
+    src: url('../fonts/PixelLCD.ttf') format('truetype');
+}
