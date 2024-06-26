@@ -104,7 +104,7 @@ function generateMarkdown(event) {
 
 **Accurex**
 [${formData.get('accurex')}]
-  `;
+`;
     markdownOutput.innerHTML = `<pre>${markdown}</pre>`;
     document.getElementById('copy-button').style.display = 'block';
 }
