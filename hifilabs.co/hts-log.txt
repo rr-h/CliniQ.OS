@@ -1,11 +1,24 @@
-HTTrack3.49-4+libhtsjava.so.2 launched on Wed, 26 Jun 2024 21:29:39 at www.virtualdesktop.org/osonly/os8os/index.html#
-(httrack www.virtualdesktop.org/osonly/os8os/index.html# -O ./ )
+HTTrack3.49-4+libhtsjava.so.2 launched on Wed, 26 Jun 2024 21:46:21 at https://holenet.info/
+(httrack https://holenet.info/ -O ./ )
 
 Information, Warnings and Errors reported for this mirror:
 note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
 	such as username/password authentication for websites mirrored in this project
 	do not share these files/folders if you want these information to remain private
 
+21:48:09	Error: 	"Not Found" (404) at link holenet.info/downloads_files/downloads_files/bm2_levelrip.phps (from https://holenet.info/)
+21:48:09	Error: 	"Not Found" (404) at link holenet.info/downloads_files/downloads_files/busterrip.phps (from https://holenet.info/)
+21:48:09	Error: 	"Not Found" (404) at link holenet.info/downloads_files/downloads_files/sparkrip.phps (from https://holenet.info/)
+21:48:11	Error: 	"Forbidden" (403) at link https://holenet.info/assets/images/sol/h96/ (from https://holenet.info/)
+21:48:11	Error: 	"Not Found" (404) at link https://holenet.info/assets/fonts/vga_squarepx.eot (from https://holenet.info/assets/css/desktop.css)
+21:48:11	Error: 	"Not Found" (404) at link https://holenet.info/assets/fonts/vga_squarepx.eot? (from https://holenet.info/assets/css/desktop.css)
+21:48:11	Error: 	"Not Found" (404) at link https://holenet.info/assets/fonts/vga_squarepx.woff2 (from https://holenet.info/assets/css/desktop.css)
+21:48:11	Error: 	"Not Found" (404) at link https://holenet.info/assets/fonts/vga_squarepx.woff (from https://holenet.info/assets/css/desktop.css)
+21:48:11	Error: 	"Not Found" (404) at link https://holenet.info/assets/fonts/vga_squarepx.ttf (from https://holenet.info/assets/css/desktop.css)
+21:48:11	Error: 	"Not Found" (404) at link holenet.info/downloads_files/libripper.php (from holenet.info/downloads_files/sonic_levelrip.phps)
+21:48:11	Error: 	"Not Found" (404) at link holenet.info/downloads_files/".$savepath."/".$fgtiles[$i][$j].".png (from holenet.info/downloads_files/sonic_levelrip.phps)
+21:48:11	Error: 	"Not Found" (404) at link holenet.info/downloads_files/out/BG/map16.png (from holenet.info/downloads_files/cripper.phps)
+21:48:11	Error: 	"Not Found" (404) at link holenet.info/downloads_files/out/FG/map16.png (from holenet.info/downloads_files/cripper.phps)
 
-HTTrack Website Copier/3.49-4 mirror complete in 2 minutes 30 seconds : 150 links scanned, 149 files written (657487 bytes overall) [615048 bytes received at 4100 bytes/sec], 94513 bytes transferred using HTTP compression in 2 files, ratio 12%, 50.0 requests per connection
-(No errors, 0 warnings, 0 messages)
+HTTrack Website Copier/3.49-4 mirror complete in 1 minutes 50 seconds : 110 links scanned, 95 files written (7268038 bytes overall), 95 files updated [6854023 bytes received at 62309 bytes/sec], 784565 bytes transferred using HTTP compression in 9 files, ratio 43%, 9.1 requests per connection
+(13 errors, 0 warnings, 0 messages)
