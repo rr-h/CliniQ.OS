@@ -33,16 +33,21 @@ def parse_build_manifest(file_path):
         return {}
 
 def parse_ssg_manifest(file_path):
-    with open(file_path, 'r') as f:
-        content = f.read()
-        match = re.search(r"self\.__SSG_MANIFEST\s*=\s*new\s+Set\((\[[\s\S]*?\])\);", content)
-        if match:
-            json_str = match.group(1)
-            json_str = json_str.replace("\\u002F", "/")
-            manifest_list = json.loads(json_str)
-            return set(manifest_list)
-        else:
-            raise ValueError(f"Could not find JSON in the __SSG_MANIFEST file.")
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+            # Updated regular expression to match the JSON structure
+            match = re.search(r"self\.__SSG_MANIFEST\s*=\s*new\s+Set\((\[[\s\S]*?\])\);", content)
+            if match:
+                json_str = match.group(1)
+                json_str = json_str.replace("\\u002F", "/")
+                manifest_list = json.loads(json_str)
+                return set(manifest_list)
+            else:
+                raise ValueError(f"Could not find JSON in the __SSG_MANIFEST file.")
+    except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
+        print(f"Error parsing {file_path}: {e}")
+        return set()
 
 def download_resources(manifest):
     for route, files in manifest.items():
