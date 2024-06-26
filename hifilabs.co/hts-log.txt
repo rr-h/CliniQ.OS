@@ -1,0 +1,11 @@
+HTTrack3.49-4+libhtsjava.so.2 launched on Wed, 26 Jun 2024 21:29:39 at www.virtualdesktop.org/osonly/os8os/index.html#
+(httrack www.virtualdesktop.org/osonly/os8os/index.html# -O ./ )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+
+HTTrack Website Copier/3.49-4 mirror complete in 2 minutes 30 seconds : 150 links scanned, 149 files written (657487 bytes overall) [615048 bytes received at 4100 bytes/sec], 94513 bytes transferred using HTTP compression in 2 files, ratio 12%, 50.0 requests per connection
+(No errors, 0 warnings, 0 messages)
