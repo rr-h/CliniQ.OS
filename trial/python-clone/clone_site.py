@@ -20,25 +20,25 @@ def download_file(url, output_path):
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, 'wb') as f:
             f.write(response.content)
-        print(f'Downloaded {url} to {output_path}')
+        print(f"Downloaded {url} to {output_path}")
     except requests.exceptions.RequestException as e:
-        print(f'Failed to download {url}: {e}')
+        print(f"Failed to download {url}: {e}")
 
 def parse_build_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
             # Extract JSON object from the self-executing function
-            match = re.search(r'self\.__BUILD_MANIFEST\s*=\s*\(function\(.*?\)\s*\{([\s\S]*?)\}\)\(.*?\);', content, re.MULTILINE)
+            match = re.search(r"self\.__BUILD_MANIFEST\s*=\s*\(function\(.*?\)\s*\{([\s\S]*?)\}\)\(.*?\);", content, re.MULTILINE)
             if match:
                 json_str = match.group(1)
                 # Convert single quotes to double quotes and remove trailing commas
-                json_str = json_str.replace(''', ''').replace(',\n}', '\n}')
+                json_str = json_str.replace("'", '"').replace(",\n}", "\n}")
                 return json.loads(json_str)
             else:
-                raise ValueError(f'Could not find JSON in the __BUILD_MANIFEST file.')
+                raise ValueError(f"Could not find JSON in the __BUILD_MANIFEST file.")
     except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
-        print(f'Error parsing {file_path}: {e}')
+        print(f"Error parsing {file_path}: {e}")
         return {}
 
 def parse_ssg_manifest(file_path):
@@ -46,18 +46,17 @@ def parse_ssg_manifest(file_path):
         with open(file_path, 'r') as f:
             content = f.read()
             # Extract the array from the Set constructor
-            match = re.search(r'self\.__SSG_MANIFEST\s*=\s*new\s+Set\((\[[\s\S]*?\])\);', content)
+            match = re.search(r"self\.__SSG_MANIFEST\s*=\s*new\s+Set\((\[[\s\S]*?\])\);", content)
             if match:
                 json_str = match.group(1)
-                json_str = json_str.replace('\\u002F', '/')
+                json_str = json_str.replace("\\u002F", "/")
                 manifest_list = json.loads(json_str)
                 return set(manifest_list)
             else:
-                raise ValueError(f'Could not find JSON in the __SSG_MANIFEST file.')
+                raise ValueError(f"Could not find JSON in the __SSG_MANIFEST file.")
     except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
-        print(f'Error parsing {file_path}: {e}')
+        print(f"Error parsing {file_path}: {e}")
         return set()
-
 
 def download_resources(manifest):
     for route, files in manifest.items():
