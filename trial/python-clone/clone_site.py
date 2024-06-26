@@ -25,7 +25,9 @@ def parse_build_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            json_str = re.search(r'return ({.*});', content, re.DOTALL).group(1)
+            json_str = re.search(r'return ({.*?});\s*\}\)\(', content, re.DOTALL).group(1)
+            # Convert single quotes to double quotes and remove trailing commas
+            json_str = json_str.replace("'", '"').replace(",}", "}")
             return json.loads(json_str)
     except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
         print(f"Error parsing {file_path}: {e}")
@@ -35,7 +37,7 @@ def parse_ssg_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            json_str = re.search(r'new Set\(\[(.*)\]\);', content, re.DOTALL).group(1)
+            json_str = re.search(r'new Set\(\[(.*?)\]\);', content, re.DOTALL).group(1)
             manifest_list = [route.strip().strip("'").strip('"') for route in json_str.split(",")]
             return {route.replace("\\u002F", "/") for route in manifest_list}
     except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
