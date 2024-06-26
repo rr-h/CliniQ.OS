@@ -1,4 +1,4 @@
-(self.__BUILD_MANIFEST = (function(s, o, i, l) {
+((typeof window !== "undefined" ? window : this).__BUILD_MANIFEST = (function(s, o, i, l) {
     return {
         __rewrites: {
             beforeFiles: [],
@@ -48,4 +48,4 @@
         sortedPages: ["/", "/_app", "/_error", "/artistlab/[slug]", "/idealab/[slug]", "/web3cohort/[slug]", "/[windowId]"],
     };
 })("static/chunks/837-c19bc76e77d41ef3.js", "static/chunks/984-656420980a2b2a72.js", "static/chunks/803-7cd30887c5daaa8a.js", "static/chunks/739-32fc889ec63fd09b.js")),
-self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB();
+(typeof window !== "undefined" ? window : this).__BUILD_MANIFEST_CB && (typeof window !== "undefined" ? window : this).__BUILD_MANIFEST_CB();

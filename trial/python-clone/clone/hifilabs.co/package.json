@@ -12,8 +12,10 @@
     "license": "ISC",
     "description": "",
     "dependencies": {
+        "@emotion/is-prop-valid": "^1.2.2",
         "next": "^14.2.4",
         "nodejs": "^0.0.0",
-        "puppeteer": "^22.12.1"
+        "puppeteer": "^22.12.1",
+        "vite": "^5.3.1"
     }
 }

@@ -1,5 +1,5 @@
 "use strict";
-(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+((typeof window !== "undefined" ? window : this).webpackChunk_N_E = (typeof window !== "undefined" ? window : this).webpackChunk_N_E || []).push([
     [774],
     {
         64448: function(e, n, t) {
@@ -6521,7 +6521,7 @@
                 a = Symbol.for("react.fragment"),
                 o = Object.prototype.hasOwnProperty,
                 u = r.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,
-                i = { key: !0, ref: !0, __self: !0, __source: !0 };
+                i = { key: !0, ref: !0, __(typeof window !== "undefined" ? window : this): !0, __source: !0 };
 
             function s(e, n, t) {
                 var r,
@@ -6582,7 +6582,7 @@
             var w = Array.isArray,
                 S = Object.prototype.hasOwnProperty,
                 x = { current: null },
-                E = { key: !0, ref: !0, __self: !0, __source: !0 };
+                E = { key: !0, ref: !0, __(typeof window !== "undefined" ? window : this): !0, __source: !0 };
 
             function _(e, n, r) {
                 var l,

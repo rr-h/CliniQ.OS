@@ -1,4 +1,4 @@
-(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+((typeof window !== "undefined" ? window : this).webpackChunk_N_E = (typeof window !== "undefined" ? window : this).webpackChunk_N_E || []).push([
     [179],
     {
         25300: function(e, t) {
@@ -651,7 +651,7 @@
                 },
                 z = void 0,
                 G = !1;
-            self.__next_require__ = r;
+            (typeof window !== "undefined" ? window : this).__next_require__ = r;
             var V = (function(e) {
                 o(r, e);
                 var t = c(r);
@@ -1317,7 +1317,7 @@
             "use strict";
             Object.defineProperty(t, "__esModule", { value: !0 }), (t.cancelIdleCallback = t.requestIdleCallback = void 0);
             var r =
-                ("undefined" !== typeof self && self.requestIdleCallback && self.requestIdleCallback.bind(window)) ||
+                ("undefined" !== typeof (typeof window !== "undefined" ? window : this) && (typeof window !== "undefined" ? window : this).requestIdleCallback && (typeof window !== "undefined" ? window : this).requestIdleCallback.bind(window)) ||
                 function(e) {
                     var t = Date.now();
                     return setTimeout(function() {
@@ -1331,7 +1331,7 @@
                 };
             t.requestIdleCallback = r;
             var n =
-                ("undefined" !== typeof self && self.cancelIdleCallback && self.cancelIdleCallback.bind(window)) ||
+                ("undefined" !== typeof (typeof window !== "undefined" ? window : this) && (typeof window !== "undefined" ? window : this).cancelIdleCallback && (typeof window !== "undefined" ? window : this).cancelIdleCallback.bind(window)) ||
                 function(e) {
                     return clearTimeout(e);
                 };
@@ -1582,13 +1582,13 @@
             }
 
             function l() {
-                return self.__BUILD_MANIFEST ?
-                    Promise.resolve(self.__BUILD_MANIFEST) :
+                return (typeof window !== "undefined" ? window : this).__BUILD_MANIFEST ?
+                    Promise.resolve((typeof window !== "undefined" ? window : this).__BUILD_MANIFEST) :
                     s(
                         new Promise(function(e) {
-                            var t = self.__BUILD_MANIFEST_CB;
-                            self.__BUILD_MANIFEST_CB = function() {
-                                e(self.__BUILD_MANIFEST), t && t();
+                            var t = (typeof window !== "undefined" ? window : this).__BUILD_MANIFEST_CB;
+                            (typeof window !== "undefined" ? window : this).__BUILD_MANIFEST_CB = function() {
+                                e((typeof window !== "undefined" ? window : this).__BUILD_MANIFEST), t && t();
                             };
                         }),
                         3800,
@@ -2732,7 +2732,7 @@
                             (this.components["/_app"] = { Component: c, styleSheets: [] }),
                             (this.events = e.events),
                             (this.pageLoader = u);
-                        var w = b.isDynamicRoute(t) && self.__NEXT_DATA__.autoExport;
+                        var w = b.isDynamicRoute(t) && (typeof window !== "undefined" ? window : this).__NEXT_DATA__.autoExport;
                         if (
                             ((this.basePath = ""),
                                 (this.sub = p),
@@ -2740,7 +2740,7 @@
                                 (this._wrapApp = s),
                                 (this.isSsr = !0),
                                 (this.isLocaleDomain = !1),
-                                (this.isReady = !!(self.__NEXT_DATA__.gssp || self.__NEXT_DATA__.gip || (self.__NEXT_DATA__.appGip && !self.__NEXT_DATA__.gsp) || (!w && self.location.search, 0))),
+                                (this.isReady = !!((typeof window !== "undefined" ? window : this).__NEXT_DATA__.gssp || (typeof window !== "undefined" ? window : this).__NEXT_DATA__.gip || ((typeof window !== "undefined" ? window : this).__NEXT_DATA__.appGip && !(typeof window !== "undefined" ? window : this).__NEXT_DATA__.gsp) || (!w && (typeof window !== "undefined" ? window : this).location.search, 0))),
                                 (this.state = { route: g, pathname: t, query: r, asPath: w ? t : a, isPreview: !!m, locale: void 0, isFallback: h }),
                                 (this._initialMatchesMiddlewarePromise = Promise.resolve(!1)), !a.startsWith("//"))
                         ) {
@@ -3001,7 +3001,7 @@
                                                         l.changeState(t, r, n, a),
                                                         u &&
                                                         "/_error" === Q &&
-                                                        500 === (null == (ve = self.__NEXT_DATA__.props) || null == (me = ve.pageProps) ? void 0 : me.statusCode) &&
+                                                        500 === (null == (ve = (typeof window !== "undefined" ? window : this).__NEXT_DATA__.props) || null == (me = ve.pageProps) ? void 0 : me.statusCode) &&
                                                         (null == Ee ? void 0 : Ee.pageProps) &&
                                                         (Ee.pageProps.statusCode = 500),
                                                         (Ie = a.shallow && m.route === (null != (Le = ye.route) ? Le : ue)),

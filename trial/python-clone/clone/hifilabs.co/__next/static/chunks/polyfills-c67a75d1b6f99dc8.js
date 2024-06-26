@@ -6,8 +6,8 @@
         window :
         'undefined' != typeof global ?
         global :
-        'undefined' != typeof self ?
-        self :
+        'undefined' != typeof (typeof window !== "undefined" ? window : this) ?
+        (typeof window !== "undefined" ? window : this) :
         {};
 
     function e(t) {
@@ -20,7 +20,7 @@
         n =
         r('object' == typeof globalThis && globalThis) ||
         r('object' == typeof window && window) ||
-        r('object' == typeof self && self) ||
+        r('object' == typeof (typeof window !== "undefined" ? window : this) && (typeof window !== "undefined" ? window : this)) ||
         r('object' == typeof t && t) ||
         Function('return this')(),
         o = function(t) {
@@ -4678,7 +4678,7 @@
             if (!e.done) {
                 (e.done = !0), n && (e = n);
                 try {
-                    if (t === r) throw zf("Promise can't be resolved itself");
+                    if (t === r) throw zf("Promise can't be resolved it(typeof window !== "undefined" ? window : this)");
                     var o = Zf(r);
                     o
                         ?
@@ -4921,11 +4921,11 @@
             }
         }),
         re('Promise', 'finally');
-    var pl = 'URLSearchParams' in self,
-        dl = 'Symbol' in self && 'iterator' in Symbol,
+    var pl = 'URLSearchParams' in (typeof window !== "undefined" ? window : this),
+        dl = 'Symbol' in (typeof window !== "undefined" ? window : this) && 'iterator' in Symbol,
         vl =
-        'FileReader' in self &&
-        'Blob' in self &&
+        'FileReader' in (typeof window !== "undefined" ? window : this) &&
+        'Blob' in (typeof window !== "undefined" ? window : this) &&
         (function() {
             try {
                 return new Blob(), !0;
@@ -4933,8 +4933,8 @@
                 return !1;
             }
         })(),
-        gl = 'FormData' in self,
-        yl = 'ArrayBuffer' in self;
+        gl = 'FormData' in (typeof window !== "undefined" ? window : this),
+        yl = 'ArrayBuffer' in (typeof window !== "undefined" ? window : this);
     if (yl)
         var ml = [
                 '[object Int8Array]',
@@ -5217,7 +5217,7 @@
         if (-1 === Ul.indexOf(e)) throw new RangeError('Invalid status code');
         return new Ll(null, { status: e, headers: { location: t } });
     };
-    var Ml = self.DOMException;
+    var Ml = (typeof window !== "undefined" ? window : this).DOMException;
     try {
         new Ml();
     } catch (t) {
@@ -5285,7 +5285,7 @@
                 i.send(void 0 === o._bodyInit ? null : o._bodyInit);
         });
     }
-    (_l.polyfill = !0), self.fetch || ((self.fetch = _l), (self.Headers = xl), (self.Request = Tl), (self.Response = Ll));
+    (_l.polyfill = !0), (typeof window !== "undefined" ? window : this).fetch || (((typeof window !== "undefined" ? window : this).fetch = _l), ((typeof window !== "undefined" ? window : this).Headers = xl), ((typeof window !== "undefined" ? window : this).Request = Tl), ((typeof window !== "undefined" ? window : this).Response = Ll));
     var Nl = Object.getOwnPropertySymbols,
         Cl = Object.prototype.hasOwnProperty,
         Fl = Object.prototype.propertyIsEnumerable;

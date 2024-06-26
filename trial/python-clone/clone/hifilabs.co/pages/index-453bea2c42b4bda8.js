@@ -1,4 +1,4 @@
-(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+((typeof window !== "undefined" ? window : this).webpackChunk_N_E = (typeof window !== "undefined" ? window : this).webpackChunk_N_E || []).push([
     [405],
     {
         43916: function(n, _, u) {

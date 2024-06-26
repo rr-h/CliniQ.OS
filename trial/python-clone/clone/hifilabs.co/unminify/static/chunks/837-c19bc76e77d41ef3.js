@@ -1,5 +1,5 @@
 "use strict";
-(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+((typeof window !== "undefined" ? window : this).webpackChunk_N_E = (typeof window !== "undefined" ? window : this).webpackChunk_N_E || []).push([
     [837],
     {
         24394: function(n, t, r) {

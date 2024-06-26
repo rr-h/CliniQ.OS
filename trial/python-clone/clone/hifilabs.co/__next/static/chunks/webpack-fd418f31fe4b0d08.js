@@ -272,7 +272,7 @@
                 for (t && t(r); i < o.length; i++)(c = o[i]), n.o(e, c) && e[c] && e[c][0](), (e[c] = 0);
                 return n.O(d);
             },
-            r = (self.webpackChunk_N_E = self.webpackChunk_N_E || []);
+            r = ((typeof window !== "undefined" ? window : this).webpackChunk_N_E = (typeof window !== "undefined" ? window : this).webpackChunk_N_E || []);
         r.forEach(t.bind(null, 0)), (r.push = t.bind(null, r.push.bind(r)));
     })(),
     (n.nc = void 0);

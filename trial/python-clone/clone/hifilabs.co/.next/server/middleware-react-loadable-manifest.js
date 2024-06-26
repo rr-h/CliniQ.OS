@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}";
+(typeof window !== "undefined" ? window : this).__REACT_LOADABLE_MANIFEST="{}";

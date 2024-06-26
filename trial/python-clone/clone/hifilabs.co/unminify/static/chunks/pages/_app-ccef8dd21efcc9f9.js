@@ -1,4 +1,4 @@
-(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+((typeof window !== "undefined" ? window : this).webpackChunk_N_E = (typeof window !== "undefined" ? window : this).webpackChunk_N_E || []).push([
     [888],
     {
         8679: function(e, t, r) {
@@ -219,7 +219,7 @@
                                 src:
                                     (u ? "" : i) +
                                     c(
-                                        Object.assign(Object.assign({}, u), { scriptName: u ? u.scriptName : p(i, e.selfHosted) }),
+                                        Object.assign(Object.assign({}, u), { scriptName: u ? u.scriptName : p(i, e.(typeof window !== "undefined" ? window : this)Hosted) }),
                                         e.trackLocalhost ? "local" : null,
                                         e.manualPageviews ? "manual" : null,
                                         e.trackOutboundLinks ? "outbound-links" : null,
@@ -1725,7 +1725,7 @@
                         w = /[svh]\w+-[tblr]{2}/,
                         k = /\(\s*(.*)\s*\)/g,
                         S = /([\s\S]*?);/g,
-                        x = /-self|flex-/g,
+                        x = /-(typeof window !== "undefined" ? window : this)|flex-/g,
                         C = /[^]*?(:[rp][el]a[\w-]+)[^]*/,
                         E = /stretch|:\s*\w+\-(?:conte|avail)/,
                         A = /([^-])(image-set\()/,
