@@ -96,3 +96,25 @@ button[type="submit"]:hover {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+
+.drawer-content {
+    display: none;
+}
+
+.drawer-content.open {
+    display: block;
+}
+
+#form-container {
+    position: absolute;
+    width: 300px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    cursor: move;
+}
