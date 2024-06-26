@@ -1,3 +1,9 @@
+@import './variables.css';
+@import './fonts.css';
+@import './animations.css';
+@import './main.css';
+@import './style.css';
+@import './normalize.css';
 @font-face {
     font-family: "Geneva 9.2";
     src: local("Geneva 9.2"), url("../fonts/Geneva_9.ttf") format("truetype");
