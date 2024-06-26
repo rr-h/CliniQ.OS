@@ -3,6 +3,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
+import re
 
 BASE_URL = "https://hifilabs.co"
 BUILD_MANIFEST_FILE_PATH = "./__BUILD_MANIFEST.js"
@@ -24,14 +25,9 @@ def parse_build_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            start = content.find("return {")
-            end = content.rfind("});")
-            if start == -1 or end == -1:
-                raise ValueError("Could not find JSON in the manifest file.")
-            manifest_json = content[start + len("return "):end + 1].strip()
-            print(f"Parsed manifest content: {manifest_json[:100]}...")  # Print part of the content for debugging
-            return json.loads(manifest_json)
-    except (FileNotFoundError, json.JSONDecodeError, ValueError) as e:
+            json_str = re.search(r'return ({.*});', content, re.DOTALL).group(1)
+            return json.loads(json_str)
+    except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
         print(f"Error parsing {file_path}: {e}")
         return {}
 
@@ -39,15 +35,10 @@ def parse_ssg_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            start = content.find("new Set([")
-            end = content.find("]);", start)
-            if start == -1 or end == -1:
-                raise ValueError("Could not find JSON in the manifest file.")
-            manifest_json = content[start + len("new Set(["):end].strip()
-            manifest_list = manifest_json.split(",")
-            manifest_list = [route.strip().strip("'").strip('"') for route in manifest_list]
+            json_str = re.search(r'new Set\(\[(.*)\]\);', content, re.DOTALL).group(1)
+            manifest_list = [route.strip().strip("'").strip('"') for route in json_str.split(",")]
             return {route.replace("\\u002F", "/") for route in manifest_list}
-    except (FileNotFoundError, json.JSONDecodeError, ValueError) as e:
+    except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
         print(f"Error parsing {file_path}: {e}")
         return set()
 
