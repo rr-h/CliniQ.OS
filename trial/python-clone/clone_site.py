@@ -24,11 +24,9 @@ def parse_build_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            start = content.find("return ") + len("return ")
-            end = content.find("}),", start) + 1
-            manifest_json = content[start:end].strip()
-            manifest_json = manifest_json.replace("self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB();", "")
-            manifest_json = manifest_json.rsplit('(', 1)[-1].rsplit(')', 1)[0]
+            start = content.find("return {")
+            end = content.rfind("});")
+            manifest_json = content[start + len("return "):end + 1].strip()
             return json.loads(manifest_json)
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Error parsing {file_path}: {e}")
@@ -38,10 +36,11 @@ def parse_ssg_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            start = content.find("new Set([") + len("new Set([")
+            start = content.find("new Set([")
             end = content.find("]);", start)
-            manifest_json = content[start:end].strip()
-            manifest_list = json.loads(f"[{manifest_json}]")
+            manifest_json = content[start + len("new Set(["):end].strip()
+            manifest_list = manifest_json.split(",")
+            manifest_list = [route.strip().strip("'") for route in manifest_list]
             return {route.replace("\\u002F", "/") for route in manifest_list}
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Error parsing {file_path}: {e}")
