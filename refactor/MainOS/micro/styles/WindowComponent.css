@@ -7,6 +7,6 @@
     border: black solid 2px;
     padding: 5px;
     resize: both;
-    overflow: hidden;
+    overflow: scroll;
     border-radius: calc(1.5741vh) calc(0.8854vw);
 }

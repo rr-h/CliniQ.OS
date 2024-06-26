@@ -16,6 +16,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
     box-shadow: inset 1px 1px 4px 0px #050505, 0px 0px 4px 2px #000, 0px 0px 4px 2px #777;
+    overflow: hidden;
 }
 
 .form-container:hover {
