@@ -107,8 +107,8 @@ button[type="submit"]:hover {
 }
 
 #form-container {
-    position: absolute;
-    width: 300px;
+    position: relative;
+    width: 700px;
     padding: 10px;
     background-color: white;
     border: 1px solid black;
