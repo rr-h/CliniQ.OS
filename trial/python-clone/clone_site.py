@@ -21,19 +21,31 @@ def download_file(url, output_path):
     except requests.exceptions.RequestException as e:
         print(f"Failed to download {url}: {e}")
 
-def parse_manifest(file_path, key):
+def parse_build_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            start = content.find(f"self.{key} = ") + len(f"self.{key} = ")
-            end = content.rfind(";")
+            start = content.find("self.__BUILD_MANIFEST = ") + len("self.__BUILD_MANIFEST = ")
+            end = content.find("),", start)
             manifest_json = content[start:end].strip()
-            # Remove trailing commas if any
-            manifest_json = manifest_json.rstrip(',')
+            manifest_json = manifest_json + "}"  # Ensure it is a complete JSON object
             return json.loads(manifest_json)
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Error parsing {file_path}: {e}")
         return {}
+
+def parse_ssg_manifest(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+            start = content.find("new Set([") + len("new Set([")
+            end = content.find("]);", start)
+            manifest_json = content[start:end].strip()
+            manifest_list = json.loads(f"[{manifest_json}]")
+            return {route.replace("\\u002F", "/") for route in manifest_list}
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"Error parsing {file_path}: {e}")
+        return set()
 
 def download_resources(manifest):
     for route, files in manifest.items():
@@ -82,8 +94,8 @@ def download_additional_resources(resources):
         download_file(resource, output_path)
 
 def main():
-    build_manifest = parse_manifest(BUILD_MANIFEST_FILE_PATH, "__BUILD_MANIFEST")
-    ssg_manifest = parse_manifest(SSG_MANIFEST_FILE_PATH, "__SSG_MANIFEST")
+    build_manifest = parse_build_manifest(BUILD_MANIFEST_FILE_PATH)
+    ssg_manifest = parse_ssg_manifest(SSG_MANIFEST_FILE_PATH)
 
     if not build_manifest or not ssg_manifest:
         print("Error: Manifest files could not be parsed or are empty.")
@@ -92,9 +104,7 @@ def main():
     download_resources(build_manifest)
 
     for route in ssg_manifest:
-        route_path = route.replace('\u002F', '/')
-        if route_path == '/':
-            route_path = '/index.html'
+        route_path = route if route != '/' else '/index.html'
         file_url = f"{BASE_URL}{route_path}"
         output_path = os.path.join(OUTPUT_DIR, route_path.lstrip('/'))
         download_file(file_url, output_path)
