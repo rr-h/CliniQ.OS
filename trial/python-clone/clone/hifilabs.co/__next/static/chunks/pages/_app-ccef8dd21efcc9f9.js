@@ -219,8 +219,7 @@
                                 src:
                                     (u ? "" : i) +
                                     c(
-                                        Object.assign(Object.assign({}, u), { scriptName: u ? u.scriptName : p(i, e.(typeof window !== "undefined" ? window : this)Hosted) }),
-                                        e.trackLocalhost ? "local" : null,
+                                        Object.assign(Object.assign({}, u), { scriptName: u ? u.scriptName : p(i, e[(typeof window !== "undefined" ? window : this).Hosted]) }); e.trackLocalhost ? "local" : null,
                                         e.manualPageviews ? "manual" : null,
                                         e.trackOutboundLinks ? "outbound-links" : null,
                                         e.exclude ? "exclusions" : null,
