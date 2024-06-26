@@ -1,0 +1,30 @@
+HTTrack3.49-4+libhtsjava.so.2 launched on Wed, 26 Jun 2024 09:09:49 at https://hifilabs.co
+(httrack https://hifilabs.co -O ./ )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+09:09:50	Warning: 	HTML file (10275 bytes) retransferred due to lack of cache: https://hifilabs.co/
+09:10:09	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/favicon-32x32.png, './hifilabs.co/favicon-32x32.html' could not be found on disk
+09:10:09	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/favicon-16x16.png, './hifilabs.co/favicon-16x16.html' could not be found on disk
+09:10:09	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/safari-pinned-tab.svg, './hifilabs.co/safari-pinned-tab.html' could not be found on disk
+09:10:09	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/css/75fb90901c2ee1f9.css, './hifilabs.co/_next/static/css/75fb90901c2ee1f9.html' could not be found on disk
+09:10:10	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js, './hifilabs.co/_next/static/chunks/polyfills-c67a75d1b6f99dc8.html' could not be found on disk
+09:10:11	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/webpack-fd418f31fe4b0d08.js, './hifilabs.co/_next/static/chunks/webpack-fd418f31fe4b0d08.html' could not be found on disk
+09:10:11	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/framework-0ba0ddd33199226d.js, './hifilabs.co/_next/static/chunks/framework-0ba0ddd33199226d.html' could not be found on disk
+09:10:12	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/main-c0364ec597719817.js, './hifilabs.co/_next/static/chunks/main-c0364ec597719817.html' could not be found on disk
+09:10:13	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/pages/_app-ccef8dd21efcc9f9.js, './hifilabs.co/_next/static/chunks/pages/_app-ccef8dd21efcc9f9.html' could not be found on disk
+09:10:14	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/837-c19bc76e77d41ef3.js, './hifilabs.co/_next/static/chunks/837-c19bc76e77d41ef3.html' could not be found on disk
+09:10:15	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/984-656420980a2b2a72.js, './hifilabs.co/_next/static/chunks/984-656420980a2b2a72.html' could not be found on disk
+09:10:16	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/803-7cd30887c5daaa8a.js, './hifilabs.co/_next/static/chunks/803-7cd30887c5daaa8a.html' could not be found on disk
+09:10:16	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/739-32fc889ec63fd09b.js, './hifilabs.co/_next/static/chunks/739-32fc889ec63fd09b.html' could not be found on disk
+09:10:17	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/chunks/pages/index-453bea2c42b4bda8.js, './hifilabs.co/_next/static/chunks/pages/index-453bea2c42b4bda8.html' could not be found on disk
+09:10:18	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/_qbKLC8NwpL61siZyGWi2/_buildManifest.js, './hifilabs.co/_next/static/_qbKLC8NwpL61siZyGWi2/_buildManifest.html' could not be found on disk
+09:10:18	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/_next/static/_qbKLC8NwpL61siZyGWi2/_ssgManifest.js, './hifilabs.co/_next/static/_qbKLC8NwpL61siZyGWi2/_ssgManifest.html' could not be found on disk
+09:10:21	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/fonts/geneva-9-2.woff2, './hifilabs.co/fonts/geneva-9-2.html' could not be found on disk
+09:10:21	Warning: 	Unexpected 412/416 error (Precondition Failed) for https://hifilabs.co/fonts/pixChicago.woff2, './hifilabs.co/fonts/pixChicago.html' could not be found on disk
+
+HTTrack Website Copier/3.49-4 mirror complete in 33 seconds : 40 links scanned, 21 files written (657138 bytes overall) [312619 bytes received at 9473 bytes/sec], 536710 bytes transferred using HTTP compression in 15 files, ratio 31%, 6.6 requests per connection
+(No errors, 19 warnings, 0 messages)
