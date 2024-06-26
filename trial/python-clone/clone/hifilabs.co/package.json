@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "nodejs": "^0.0.0",
-    "pupeteer": "^0.0.1"
+    "pupeteer": "^0.0.1",
+    "puppeteer": "^22.12.1"
   }
 }
