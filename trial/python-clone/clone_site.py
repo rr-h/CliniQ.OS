@@ -24,11 +24,11 @@ def parse_build_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            start = content.find("self.__BUILD_MANIFEST = ") + len("self.__BUILD_MANIFEST = ")
-            end = content.find("),", start) + 1  # Include the closing parenthesis
+            start = content.find("return ") + len("return ")
+            end = content.find("}),", start) + 1
             manifest_json = content[start:end].strip()
-            manifest_json = manifest_json.rsplit('(', 1)[-1].rsplit(')', 1)[0]  # Extract JSON object from within function call
-            manifest_json = manifest_json + "}"  # Ensure it is a complete JSON object
+            manifest_json = manifest_json.replace("self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB();", "")
+            manifest_json = manifest_json.rsplit('(', 1)[-1].rsplit(')', 1)[0]
             return json.loads(manifest_json)
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Error parsing {file_path}: {e}")
