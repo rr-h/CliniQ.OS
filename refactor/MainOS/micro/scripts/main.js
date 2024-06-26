@@ -62,7 +62,12 @@ function openForm(diseaseName) {
 
             form.onsubmit = generateMarkdown;
 
+            // Display the form container as a modal
             formContainer.style.display = 'block';
+            formContainer.style.position = 'fixed';
+            formContainer.style.top = '50%';
+            formContainer.style.left = '50%';
+            formContainer.style.transform = 'translate(-50%, -50%)';
         })
         .catch(error => console.error('Error loading form defaults:', error));
 }
