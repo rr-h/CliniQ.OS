@@ -1,3 +1,8 @@
+@import './fonts.css';
+@import './normalize.css';
+@import './animations.css';
+@import './main.css';
+@import './style.css';
 :root {
     /* Color Variables */
     --white: #fff;

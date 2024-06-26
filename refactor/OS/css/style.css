@@ -1,5 +1,8 @@
 @import './variables.css';
 @import './fonts.css';
+@import './normalize.css';
+@import './animations.css';
+@import './main.css';
 @font-face {
     font-family: 'chi';
     font-weight: normal;

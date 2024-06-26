@@ -1,6 +1,8 @@
 @import './variables.css';
 @import './fonts.css';
+@import './normalize.css';
 @import './animations.css';
+@import './style.css';
 
 /* Additional styles */
 
