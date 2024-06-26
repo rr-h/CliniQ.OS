@@ -11,16 +11,27 @@ SSG_MANIFEST_FILE_PATH = "./__SSG_MANIFEST.js"
 OUTPUT_DIR = "./clone"
 
 def download_file(url, output_path):
-    response = requests.get(url)
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, 'wb') as f:
-        f.write(response.content)
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, 'wb') as f:
+            f.write(response.content)
+        print(f"Downloaded {url} to {output_path}")
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to download {url}: {e}")
 
 def parse_manifest(file_path, key):
-    with open(file_path, 'r') as f:
-        content = f.read()
-        manifest_json = content.split(f"self.{key} = ", 1)[1].rsplit(";", 1)[0]
-        return json.loads(manifest_json)
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+            start = content.find(f"self.{key} = ") + len(f"self.{key} = ")
+            end = content.rfind(";")
+            manifest_json = content[start:end]
+            return json.loads(manifest_json)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"Error parsing {file_path}: {e}")
+        return {}
 
 def download_resources(manifest):
     for route, files in manifest.items():
@@ -31,7 +42,7 @@ def download_resources(manifest):
             output_path = os.path.join(OUTPUT_DIR, file)
             download_file(file_url, output_path)
 
-    for rewrite in manifest['__rewrites']['afterFiles']:
+    for rewrite in manifest.get('__rewrites', {}).get('afterFiles', []):
         file_url = f"{BASE_URL}{rewrite['source']}"
         output_path = os.path.join(OUTPUT_DIR, rewrite['source'].lstrip('/'))
         download_file(file_url, output_path)
@@ -71,6 +82,10 @@ def download_additional_resources(resources):
 def main():
     build_manifest = parse_manifest(BUILD_MANIFEST_FILE_PATH, "__BUILD_MANIFEST")
     ssg_manifest = parse_manifest(SSG_MANIFEST_FILE_PATH, "__SSG_MANIFEST")
+
+    if not build_manifest or not ssg_manifest:
+        print("Error: Manifest files could not be parsed or are empty.")
+        return
 
     download_resources(build_manifest)
 
