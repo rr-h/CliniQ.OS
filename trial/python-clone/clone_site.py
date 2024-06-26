@@ -7,6 +7,7 @@ BASE_URL = "https://hifilabs.co/"
 
 # Path to the build manifest file
 MANIFEST_FILE_PATH = "./__BUILD_MANIFEST.js"
+SSG_MANIFEST_FILE_PATH = "./__SSG_MANIFEST.js"
 
 # Directory to save the cloned site
 OUTPUT_DIR = "./clone"
