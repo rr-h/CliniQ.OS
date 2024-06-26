@@ -1,0 +1,967 @@
+INDEX.HTML
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="description"
+      content="HIFI Labs is a creative incubator and artist mentorship collective building an artist-owned, community-powered future for musicians. Fueled by web3 technology and industry-changing innovation, HIFI Labs&#x27; mission is to achieve a more equitable and sustainable music economy."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hifilabs" />
+    <meta name="twitter:creator" content="@hifilabs" />
+    <meta
+      property="og:description"
+      content="HIFI Labs is a creative incubator and artist mentorship collective building an artist-owned, community-powered future for musicians. Fueled by web3 technology and industry-changing innovation, HIFI Labs&#x27; mission is to achieve a more equitable and sustainable music economy."
+    />
+    <meta property="og:url" content="https://hifilabs.co" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://hifilabs.co/images/HIFILABS/social-og.png" />
+    <meta property="og:image:alt" content="HIFI Labs" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:site_name" content="HIFI Labs" />
+    <meta name="keywords" content="HIFI Labs,artist development,artist mentorship,technology,music" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#ffffff" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+    <meta content="true" name="HandheldFriendly" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="white" name="apple-mobile-web-app-status-bar-style" />
+    <title>HIFI Labs | HIFI Labs</title>
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="HIFI Labs | HIFI Labs" />
+    <meta name="next-head-count" content="28" />
+    <link rel="preload" href="_next/static/css/75fb90901c2ee1f9.css" as="style" />
+    <link rel="stylesheet" href="_next/static/css/75fb90901c2ee1f9.css" data-n-g="" />
+    <noscript data-n-css=""></noscript>
+    <script defer="" nomodule="" src="_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script>
+    <script src="_next/static/chunks/webpack-fd418f31fe4b0d08.js" defer=""></script>
+    <script src="_next/static/chunks/framework-0ba0ddd33199226d.js" defer=""></script>
+    <script src="_next/static/chunks/main-c0364ec597719817.js" defer=""></script>
+    <script src="_next/static/chunks/pages/_app-ccef8dd21efcc9f9.js" defer=""></script>
+    <script src="_next/static/chunks/837-c19bc76e77d41ef3.js" defer=""></script>
+    <script src="_next/static/chunks/984-656420980a2b2a72.js" defer=""></script>
+    <script src="_next/static/chunks/803-7cd30887c5daaa8a.js" defer=""></script>
+    <script src="_next/static/chunks/739-32fc889ec63fd09b.js" defer=""></script>
+    <script src="_next/static/chunks/pages/index-453bea2c42b4bda8.js" defer=""></script>
+    <script src="_next/static/_qbKLC8NwpL61siZyGWi2/_buildManifest.js" defer=""></script>
+    <script src="_next/static/_qbKLC8NwpL61siZyGWi2/_ssgManifest.js" defer=""></script>
+    <style data-styled="" data-styled-version="5.3.6">
+      .knLARm {
+        scroll-behavior: none;
+        overscroll-behavior: none;
+        z-index: 133333337;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 44px;
+        padding: 0 12px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 24px;
+        background: #fff;
+        font-family: var(--font-title);
+        font-size: 11px;
+      }
+      /*!sc*/
+
+      @media only screen and (max-width: 899px) {
+        .knLARm {
+          border-bottom: 1px solid #000;
+        }
+      }
+      /*!sc*/
+
+      data-styled.g2[id='sc-f8c1ea71-0'] {
+        content: 'knLARm,';
+      }
+      /*!sc*/
+
+      .eviRG {
+        position: relative;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 2px;
+        outline: none;
+      }
+      /*!sc*/
+
+      @media only screen and (max-width: 600px) {
+        .eviRG {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+        }
+      }
+      /*!sc*/
+
+      .euooj {
+        position: relative;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 2px;
+        outline: none;
+      }
+      /*!sc*/
+
+      @media only screen and (max-width: 600px) {
+        .euooj {
+          display: none;
+        }
+      }
+      /*!sc*/
+
+      data-styled.g3[id='sc-f8c1ea71-1'] {
+        content: 'eviRG,euooj,';
+      }
+      /*!sc*/
+
+      .ceZhkJ {
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        white-space: nowrap;
+        padding: 2px 4px;
+        border-radius: 2px;
+      }
+      /*!sc*/
+
+      @media (hover: hover) and (pointer: fine) {
+        .ceZhkJ:not(.no-hover) {
+          cursor: pointer;
+        }
+        .ceZhkJ:not(.no-hover):hover {
+          background: #000;
+          color: #fff;
+        }
+      }
+      /*!sc*/
+
+      data-styled.g5[id='sc-f8c1ea71-3'] {
+        content: 'ceZhkJ,';
+      }
+      /*!sc*/
+
+      .gryRhR {
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        gap: 24px;
+      }
+      /*!sc*/
+
+      data-styled.g6[id='sc-f8c1ea71-4'] {
+        content: 'gryRhR,';
+      }
+      /*!sc*/
+
+      .leBHYD {
+        z-index: 5000;
+        position: relative;
+      }
+      /*!sc*/
+
+      data-styled.g7[id='sc-f8c1ea71-5'] {
+        content: 'leBHYD,';
+      }
+      /*!sc*/
+
+      .euKzKl {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        top: 22px;
+        min-width: 256px;
+        padding: 4px;
+        border: 1px solid #000;
+        border-radius: 2px;
+        box-shadow: 2px 2px 0 #000;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-align-items: flex-start;
+        -webkit-box-align: flex-start;
+        -ms-flex-align: flex-start;
+        align-items: flex-start;
+        gap: 8px;
+        background: #fff;
+      }
+      /*!sc*/
+
+      .euKzKl > .sc-f8c1ea71-3 {
+        width: 100%;
+      }
+      /*!sc*/
+
+      .euKzKl > * {
+        pointer-events: none;
+      }
+      /*!sc*/
+
+      data-styled.g9[id='sc-f8c1ea71-7'] {
+        content: 'euKzKl,';
+      }
+      /*!sc*/
+
+      .kixJOI {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        margin: 0;
+        display: none;
+      }
+      /*!sc*/
+
+      .kixJOI:checked ~ label {
+        background: #000;
+        color: #fff;
+      }
+      /*!sc*/
+
+      .kixJOI:checked ~ .sc-f8c1ea71-7 {
+        visibility: unset;
+      }
+      /*!sc*/
+
+      .kixJOI:checked ~ .sc-f8c1ea71-7 > * {
+        pointer-events: all;
+      }
+      /*!sc*/
+
+      data-styled.g10[id='sc-f8c1ea71-8'] {
+        content: 'kixJOI,';
+      }
+      /*!sc*/
+
+      .rDzeU {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: #000;
+      }
+      /*!sc*/
+
+      data-styled.g11[id='sc-f8c1ea71-9'] {
+        content: 'rDzeU,';
+      }
+      /*!sc*/
+    </style>
+  </head>
+
+  <body>
+    <div id="__next">
+      <div class="sc-f8c1ea71-0 knLARm" style="opacity:0;transform:translateY(-100%) translateZ(0)">
+        <svg width="25" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M13.667 2h-.834v.833H12v.834h-.833V4.5h-.834V6.167H9.5V7h-.833V8.667h-.834v1.666H7v.834h-.833v1.666h-.834v.834H4.5v.833H12V22h.833v-.833h.834v-.834h.833V19.5h.833V17.833h.834V17H17V15.333h.833v-1.666h.834v-.834h.833v-1.666h.833v-.834h.834V9.5h-7.5V2Z"
+            fill="#000"
+          ></path>
+        </svg>
+        <div tabindex="0" role="button" class="sc-f8c1ea71-1 eviRG" style="opacity:0;transform:translateY(-100%) translateZ(0)">
+          <div class="sc-f8c1ea71-5 leBHYD">
+            <input type="checkbox" id="dropdown0" class="sc-f8c1ea71-8 kixJOI" />
+            <label for="dropdown0" class="sc-f8c1ea71-3 ceZhkJ">HIFI Labs</label>
+            <div class="sc-f8c1ea71-7 euKzKl">
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Meet the Team</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a
+                  href="https://hifilabs.notion.site/HIFI-Labs-Job-Board-7eade43524ff4217827cd9e2e116c944"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU"
+                >
+                  Job Board
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0" role="button" class="sc-f8c1ea71-1 euooj" style="opacity:0;transform:translateY(-100%) translateZ(0)">
+          <div class="sc-f8c1ea71-5 leBHYD">
+            <input type="checkbox" id="dropdown1" class="sc-f8c1ea71-8 kixJOI" />
+            <label for="dropdown1" class="sc-f8c1ea71-3 ceZhkJ">View</label>
+            <div class="sc-f8c1ea71-7 euKzKl">
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Idea Lab</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Artist Lab</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Product Lab</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Web3 Cohort</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0" role="button" class="sc-f8c1ea71-1 eviRG" style="opacity:0;transform:translateY(-100%) translateZ(0)">
+          <div class="sc-f8c1ea71-5 leBHYD">
+            <input type="checkbox" id="dropdown2" class="sc-f8c1ea71-8 kixJOI" />
+            <label for="dropdown2" class="sc-f8c1ea71-3 ceZhkJ">Connect</label>
+            <div class="sc-f8c1ea71-7 euKzKl">
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Contact</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a href="https://discord.gg/7JnzAQCqjY" target="_blank" rel="noopener noreferrer" class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU">
+                  Discord
+                </a>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a href="https://twitter.com/hifilabs" target="_blank" rel="noopener noreferrer" class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU">
+                  Twitter
+                </a>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a href="https://instagram.com/hifilabs" target="_blank" rel="noopener noreferrer" class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU">
+                  Instagram
+                </a>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a
+                  href="https://open.spotify.com/user/ib3tse7i520i0uk007nxaj43i"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU"
+                >
+                  Spotify
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-f8c1ea71-4 gryRhR"></div>
+      </div>
+    </div>
+    <script id="__NEXT_DATA__" type="application/json">
+      {
+        "props": {
+          "pageProps": {},
+          "__N_SSG": true
+        },
+        "page": "/",
+        "query": {},
+        "buildId": "_qbKLC8NwpL61siZyGWi2",
+        "runtimeConfig": {
+          "nextPlausiblePublicProxyOptions": {
+            "subdirectory": "hifi",
+            "scriptName": "info",
+            "trailingSlash": false
+          }
+        },
+        "isFallback": false,
+        "gsp": true,
+        "scriptLoader": []
+      }
+    </script>
+  </body>
+</html>
+
+
+
+_BUILDMANIFEST.JS
+
+
+
+
+_SSGMANIFEST.JS
+
+
+
+
+_APP-CCEF8DD21EFCC9F9.JS
+
+
+
+
+INDEX-453BEA2C42B4BDA8.JS
+
+
+
+
+739-32FC889EC63FD09B.JS
+
+
+
+
+837-C19BC76E77D41EF3.JS
+
+
+
+
+MAIN-C0364EC597719817.JS
+
+
+
+
+FRAMEWORK-0BA0DDD33199226D.JS
+
+
+
+
+WEBPACK-FD418F31FE4B0D08.JS
+
+
+
+
+803-7CD30887C5DAAA8A.JS
+
+
+
+
+984-656420980A2B2A72.JS
+
+
+
+
+POLYFILLS-C67A75D1B6F99DC8.JS
+
+
+
+
+75FB90901C2EE1F9.CSS
+
+
+
+
+HIFILABS.CO.TXT
+
+INDEX.HTML
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="description"
+      content="HIFI Labs is a creative incubator and artist mentorship collective building an artist-owned, community-powered future for musicians. Fueled by web3 technology and industry-changing innovation, HIFI Labs&#x27; mission is to achieve a more equitable and sustainable music economy."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hifilabs" />
+    <meta name="twitter:creator" content="@hifilabs" />
+    <meta
+      property="og:description"
+      content="HIFI Labs is a creative incubator and artist mentorship collective building an artist-owned, community-powered future for musicians. Fueled by web3 technology and industry-changing innovation, HIFI Labs&#x27; mission is to achieve a more equitable and sustainable music economy."
+    />
+    <meta property="og:url" content="https://hifilabs.co" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://hifilabs.co/images/HIFILABS/social-og.png" />
+    <meta property="og:image:alt" content="HIFI Labs" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:site_name" content="HIFI Labs" />
+    <meta name="keywords" content="HIFI Labs,artist development,artist mentorship,technology,music" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#ffffff" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+    <meta content="true" name="HandheldFriendly" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="white" name="apple-mobile-web-app-status-bar-style" />
+    <title>HIFI Labs | HIFI Labs</title>
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="HIFI Labs | HIFI Labs" />
+    <meta name="next-head-count" content="28" />
+    <link rel="preload" href="_next/static/css/75fb90901c2ee1f9.css" as="style" />
+    <link rel="stylesheet" href="_next/static/css/75fb90901c2ee1f9.css" data-n-g="" />
+    <noscript data-n-css=""></noscript>
+    <script defer="" nomodule="" src="_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script>
+    <script src="_next/static/chunks/webpack-fd418f31fe4b0d08.js" defer=""></script>
+    <script src="_next/static/chunks/framework-0ba0ddd33199226d.js" defer=""></script>
+    <script src="_next/static/chunks/main-c0364ec597719817.js" defer=""></script>
+    <script src="_next/static/chunks/pages/_app-ccef8dd21efcc9f9.js" defer=""></script>
+    <script src="_next/static/chunks/837-c19bc76e77d41ef3.js" defer=""></script>
+    <script src="_next/static/chunks/984-656420980a2b2a72.js" defer=""></script>
+    <script src="_next/static/chunks/803-7cd30887c5daaa8a.js" defer=""></script>
+    <script src="_next/static/chunks/739-32fc889ec63fd09b.js" defer=""></script>
+    <script src="_next/static/chunks/pages/index-453bea2c42b4bda8.js" defer=""></script>
+    <script src="_next/static/_qbKLC8NwpL61siZyGWi2/_buildManifest.js" defer=""></script>
+    <script src="_next/static/_qbKLC8NwpL61siZyGWi2/_ssgManifest.js" defer=""></script>
+    <style data-styled="" data-styled-version="5.3.6">
+      .knLARm {
+        scroll-behavior: none;
+        overscroll-behavior: none;
+        z-index: 133333337;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 44px;
+        padding: 0 12px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 24px;
+        background: #fff;
+        font-family: var(--font-title);
+        font-size: 11px;
+      }
+      /*!sc*/
+
+      @media only screen and (max-width: 899px) {
+        .knLARm {
+          border-bottom: 1px solid #000;
+        }
+      }
+      /*!sc*/
+
+      data-styled.g2[id='sc-f8c1ea71-0'] {
+        content: 'knLARm,';
+      }
+      /*!sc*/
+
+      .eviRG {
+        position: relative;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 2px;
+        outline: none;
+      }
+      /*!sc*/
+
+      @media only screen and (max-width: 600px) {
+        .eviRG {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+        }
+      }
+      /*!sc*/
+
+      .euooj {
+        position: relative;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 2px;
+        outline: none;
+      }
+      /*!sc*/
+
+      @media only screen and (max-width: 600px) {
+        .euooj {
+          display: none;
+        }
+      }
+      /*!sc*/
+
+      data-styled.g3[id='sc-f8c1ea71-1'] {
+        content: 'eviRG,euooj,';
+      }
+      /*!sc*/
+
+      .ceZhkJ {
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        white-space: nowrap;
+        padding: 2px 4px;
+        border-radius: 2px;
+      }
+      /*!sc*/
+
+      @media (hover: hover) and (pointer: fine) {
+        .ceZhkJ:not(.no-hover) {
+          cursor: pointer;
+        }
+        .ceZhkJ:not(.no-hover):hover {
+          background: #000;
+          color: #fff;
+        }
+      }
+      /*!sc*/
+
+      data-styled.g5[id='sc-f8c1ea71-3'] {
+        content: 'ceZhkJ,';
+      }
+      /*!sc*/
+
+      .gryRhR {
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        gap: 24px;
+      }
+      /*!sc*/
+
+      data-styled.g6[id='sc-f8c1ea71-4'] {
+        content: 'gryRhR,';
+      }
+      /*!sc*/
+
+      .leBHYD {
+        z-index: 5000;
+        position: relative;
+      }
+      /*!sc*/
+
+      data-styled.g7[id='sc-f8c1ea71-5'] {
+        content: 'leBHYD,';
+      }
+      /*!sc*/
+
+      .euKzKl {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        top: 22px;
+        min-width: 256px;
+        padding: 4px;
+        border: 1px solid #000;
+        border-radius: 2px;
+        box-shadow: 2px 2px 0 #000;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-align-items: flex-start;
+        -webkit-box-align: flex-start;
+        -ms-flex-align: flex-start;
+        align-items: flex-start;
+        gap: 8px;
+        background: #fff;
+      }
+      /*!sc*/
+
+      .euKzKl > .sc-f8c1ea71-3 {
+        width: 100%;
+      }
+      /*!sc*/
+
+      .euKzKl > * {
+        pointer-events: none;
+      }
+      /*!sc*/
+
+      data-styled.g9[id='sc-f8c1ea71-7'] {
+        content: 'euKzKl,';
+      }
+      /*!sc*/
+
+      .kixJOI {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        margin: 0;
+        display: none;
+      }
+      /*!sc*/
+
+      .kixJOI:checked ~ label {
+        background: #000;
+        color: #fff;
+      }
+      /*!sc*/
+
+      .kixJOI:checked ~ .sc-f8c1ea71-7 {
+        visibility: unset;
+      }
+      /*!sc*/
+
+      .kixJOI:checked ~ .sc-f8c1ea71-7 > * {
+        pointer-events: all;
+      }
+      /*!sc*/
+
+      data-styled.g10[id='sc-f8c1ea71-8'] {
+        content: 'kixJOI,';
+      }
+      /*!sc*/
+
+      .rDzeU {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: #000;
+      }
+      /*!sc*/
+
+      data-styled.g11[id='sc-f8c1ea71-9'] {
+        content: 'rDzeU,';
+      }
+      /*!sc*/
+    </style>
+  </head>
+
+  <body>
+    <div id="__next">
+      <div class="sc-f8c1ea71-0 knLARm" style="opacity:0;transform:translateY(-100%) translateZ(0)">
+        <svg width="25" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M13.667 2h-.834v.833H12v.834h-.833V4.5h-.834V6.167H9.5V7h-.833V8.667h-.834v1.666H7v.834h-.833v1.666h-.834v.834H4.5v.833H12V22h.833v-.833h.834v-.834h.833V19.5h.833V17.833h.834V17H17V15.333h.833v-1.666h.834v-.834h.833v-1.666h.833v-.834h.834V9.5h-7.5V2Z"
+            fill="#000"
+          ></path>
+        </svg>
+        <div tabindex="0" role="button" class="sc-f8c1ea71-1 eviRG" style="opacity:0;transform:translateY(-100%) translateZ(0)">
+          <div class="sc-f8c1ea71-5 leBHYD">
+            <input type="checkbox" id="dropdown0" class="sc-f8c1ea71-8 kixJOI" />
+            <label for="dropdown0" class="sc-f8c1ea71-3 ceZhkJ">HIFI Labs</label>
+            <div class="sc-f8c1ea71-7 euKzKl">
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Meet the Team</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a
+                  href="https://hifilabs.notion.site/HIFI-Labs-Job-Board-7eade43524ff4217827cd9e2e116c944"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU"
+                >
+                  Job Board
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0" role="button" class="sc-f8c1ea71-1 euooj" style="opacity:0;transform:translateY(-100%) translateZ(0)">
+          <div class="sc-f8c1ea71-5 leBHYD">
+            <input type="checkbox" id="dropdown1" class="sc-f8c1ea71-8 kixJOI" />
+            <label for="dropdown1" class="sc-f8c1ea71-3 ceZhkJ">View</label>
+            <div class="sc-f8c1ea71-7 euKzKl">
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Idea Lab</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Artist Lab</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Product Lab</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Web3 Cohort</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0" role="button" class="sc-f8c1ea71-1 eviRG" style="opacity:0;transform:translateY(-100%) translateZ(0)">
+          <div class="sc-f8c1ea71-5 leBHYD">
+            <input type="checkbox" id="dropdown2" class="sc-f8c1ea71-8 kixJOI" />
+            <label for="dropdown2" class="sc-f8c1ea71-3 ceZhkJ">Connect</label>
+            <div class="sc-f8c1ea71-7 euKzKl">
+              <div class="sc-f8c1ea71-1 eviRG">
+                <div class="sc-f8c1ea71-3 ceZhkJ">Contact</div>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a href="https://discord.gg/7JnzAQCqjY" target="_blank" rel="noopener noreferrer" class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU">
+                  Discord
+                </a>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a href="https://twitter.com/hifilabs" target="_blank" rel="noopener noreferrer" class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU">
+                  Twitter
+                </a>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a href="https://instagram.com/hifilabs" target="_blank" rel="noopener noreferrer" class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU">
+                  Instagram
+                </a>
+              </div>
+              <div class="sc-f8c1ea71-1 eviRG">
+                <a
+                  href="https://open.spotify.com/user/ib3tse7i520i0uk007nxaj43i"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sc-f8c1ea71-3 sc-f8c1ea71-9 ceZhkJ rDzeU"
+                >
+                  Spotify
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-f8c1ea71-4 gryRhR"></div>
+      </div>
+    </div>
+    <script id="__NEXT_DATA__" type="application/json">
+      {
+        "props": {
+          "pageProps": {},
+          "__N_SSG": true
+        },
+        "page": "/",
+        "query": {},
+        "buildId": "_qbKLC8NwpL61siZyGWi2",
+        "runtimeConfig": {
+          "nextPlausiblePublicProxyOptions": {
+            "subdirectory": "hifi",
+            "scriptName": "info",
+            "trailingSlash": false
+          }
+        },
+        "isFallback": false,
+        "gsp": true,
+        "scriptLoader": []
+      }
+    </script>
+  </body>
+</html>
+
+
+
+_BUILDMANIFEST.JS
+
+
+
+
+_SSGMANIFEST.JS
+
+
+
+
+_APP-CCEF8DD21EFCC9F9.JS
+
+
+
+
+INDEX-453BEA2C42B4BDA8.JS
+
+
+
+
+739-32FC889EC63FD09B.JS
+
+
+
+
+837-C19BC76E77D41EF3.JS
+
+
+
+
+MAIN-C0364EC597719817.JS
+
+
+
+
+FRAMEWORK-0BA0DDD33199226D.JS
+
+
+
+
+WEBPACK-FD418F31FE4B0D08.JS
+
+
+
+
+803-7CD30887C5DAAA8A.JS
+
+
+
+
+984-656420980A2B2A72.JS
+
+
+
+
+POLYFILLS-C67A75D1B6F99DC8.JS
+
+
+
+
+75FB90901C2EE1F9.CSS
+
+
+
+
+
+
+
