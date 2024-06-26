@@ -16,12 +16,11 @@
     border: 1px solid black;
 }
 
-
-/* .title-bar {
+.title-bar {
     display: flex;
     justify-content: space-between;
     cursor: move;
-} */
+}
 
 .retro-desktop {
     display: flex;
