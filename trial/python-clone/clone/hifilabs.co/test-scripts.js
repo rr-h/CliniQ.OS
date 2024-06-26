@@ -10,15 +10,11 @@ async function checkScripts(fileUrl, scripts) {
 
         const results = await Promise.all(
             scripts.map(async(script) => {
-                const scriptPath = path.resolve(path.dirname(fileUrl), script);
+                const scriptPath = path.join(path.dirname(fileUrl), script);
                 const result = await page.evaluate((scriptPath) => {
-                    return new Promise((resolve) => {
-                        const element = document.createElement('script');
-                        element.src = scriptPath;
-                        element.onload = () => resolve({ script: scriptPath, loaded: true });
-                        element.onerror = () => resolve({ script: scriptPath, loaded: false });
-                        document.body.appendChild(element);
-                    });
+                    return fetch(scriptPath, { method: 'HEAD' })
+                        .then(res => res.ok ? { script: scriptPath, loaded: true } : { script: scriptPath, loaded: false })
+                        .catch(() => ({ script: scriptPath, loaded: false }));
                 }, scriptPath);
                 return result;
             })
