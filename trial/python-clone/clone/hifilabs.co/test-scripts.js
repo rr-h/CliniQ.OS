@@ -32,7 +32,7 @@ async function checkScripts(url, scripts) {
     }
 }
 
-const url = 'https://yourwebsite.com';
+const url = 'file:///home/rr-h/Documents/Git/Projects/CliniQ.OS/trial/python-clone/clone/hifilabs.co/index.html';
 const scripts = [
     './_next/static/chunks/polyfills-c67a75d1b6f99dc8.js',
     './_next/static/chunks/webpack-fd418f31fe4b0d08.js',
