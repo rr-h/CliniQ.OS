@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 const path = require('path');
 
 async function checkScripts(fileUrl, scripts) {
@@ -8,15 +9,13 @@ async function checkScripts(fileUrl, scripts) {
     try {
         await page.goto(fileUrl, { waitUntil: 'networkidle2' });
 
+        const baseDir = path.dirname(fileUrl.replace('file://', ''));
+
         const results = await Promise.all(
             scripts.map(async(script) => {
-                const scriptPath = path.join(path.dirname(fileUrl), script);
-                const result = await page.evaluate((scriptPath) => {
-                    return fetch(scriptPath, { method: 'HEAD' })
-                        .then(res => res.ok ? { script: scriptPath, loaded: true } : { script: scriptPath, loaded: false })
-                        .catch(() => ({ script: scriptPath, loaded: false }));
-                }, scriptPath);
-                return result;
+                const scriptPath = path.join(baseDir, script);
+                const exists = fs.existsSync(scriptPath);
+                return { script: scriptPath, loaded: exists };
             })
         );
 
