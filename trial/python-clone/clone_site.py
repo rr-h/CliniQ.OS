@@ -36,7 +36,6 @@ def parse_ssg_manifest(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            # Updated regular expression to match the JSON structure
             match = re.search(r"self\.__SSG_MANIFEST\s*=\s*new\s+Set\((\[[\s\S]*?\])\);", content)
             if match:
                 json_str = match.group(1)
