@@ -60,7 +60,7 @@ function openForm(diseaseName) {
                 form.appendChild(formGroup);
             });
 
-            form.onsubmit = generateMarkdown;
+            form.addEventListener('submit', generateMarkdown);
 
             // Display the form container as a modal
             formContainer.style.display = 'block';
@@ -78,37 +78,37 @@ function generateMarkdown(event) {
     const markdownOutput = document.getElementById('markdown-output');
     let markdown = `
 **Chief Complaint:**
-[${formData.get('chiefComplaint')}]
+${formData.get('chiefComplaint')}
 
 **Social History:**
-[${formData.get('socialHistory')}]
+${formData.get('socialHistory')}
 
 **Systems Survey:**
-[${formData.get('systemsSurvey')}]
+${formData.get('systemsSurvey')}
 
 **Vitals**
-[HR - ${formData.get('vitals.hr')}; Temp - ${formData.get('vitals.temp')}°C; BP - ${formData.get('vitals.bp')}; RR - ${formData.get('vitals.rr')}bpm]
+HR - ${formData.get('vitals.hr')}; Temp - ${formData.get('vitals.temp')}°C; BP - ${formData.get('vitals.bp')}; RR - ${formData.get('vitals.rr')}bpm
 
 **Physical Exam:**
-[${formData.get('physicalExam')}]
+${formData.get('physicalExam')}
 
 **Impression:**
-[${formData.get('impression')}]
+${formData.get('impression')}
 
 **DDx:**
-[${formData.get('differentialDiagnosis')}]
+${formData.get('differentialDiagnosis')}
 
 **Allergies:**
-[${formData.get('allergies')}]
+${formData.get('allergies')}
 
 **Pregnancy:**
-[${formData.get('pregnancy')}]
+${formData.get('pregnancy')}
 
 **Treatment Plan:**
-[${formData.get('treatment')} ${formData.get('carePlan')}]
+${formData.get('treatment')} ${formData.get('carePlan')}
 
 **Accurex**
-[${formData.get('accurex')}]
+${formData.get('accurex')}
 `;
     markdownOutput.innerHTML = `<pre>${markdown}</pre>`;
     document.getElementById('copy-button').style.display = 'block';
