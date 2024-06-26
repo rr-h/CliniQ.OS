@@ -54,6 +54,7 @@ def download_static_files():
 def capture_dynamic_content(url, output_path):
     options = uc.ChromeOptions()
     options.headless = True
+    options.binary_location = "/usr/bin/chromedriver"
     driver = uc.Chrome(options=options)
     driver.get(url)
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
