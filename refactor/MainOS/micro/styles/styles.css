@@ -2,7 +2,6 @@
 
 .drawer-content {
     display: none;
-    overflow-y: auto;
 }
 
 .drawer-content.open {
@@ -42,14 +41,23 @@
     margin: auto;
     background-color: rgba(255, 255, 255, 0.55);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    overflow-y: scroll;
+    overflow: hidden;
     border-radius: 20px;
     border: solid 3px black;
 }
 
 .retro-window.minimized {
     height: 40px;
-    overflow-y: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.retro-window.maximized {
+    top: -40px;
+    left: -40px;
+    margin: 20px 20px -10px 10px !important;
+    padding: 10px 10px 10px 10px !important;
+    position: relative;
 }
 
 .title-bar {
@@ -97,5 +105,5 @@
     padding: 5px;
     background: repeating-linear-gradient(45deg, #24242444, #eeeeee3d 1px, #6160603d 1px, #ffffff48 5px);
     height: calc(100% - 30px);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
