@@ -1,13 +1,10 @@
 import os
-import json
 import requests
 from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
-import re
+from urllib.robotparser import RobotFileParser
 
 BASE_URL = "https://hifilabs.co"
-BUILD_MANIFEST_FILE_PATH = "./__BUILD_MANIFEST.js"
-SSG_MANIFEST_FILE_PATH = "./__SSG_MANIFEST.js"
 OUTPUT_DIR = "./clone"
 
 def download_file(url, output_path):
@@ -21,52 +18,35 @@ def download_file(url, output_path):
     except requests.exceptions.RequestException as e:
         print(f"Failed to download {url}: {e}")
 
-def parse_build_manifest(file_path):
+def crawl_and_download(url, depth=0, max_depth=2):
+    rp = RobotFileParser()
+    rp.set_url(f"{BASE_URL}/robots.txt")
+    rp.read()
+    if not rp.can_fetch("*", url):
+        print(f"Crawling {url} is disallowed by robots.txt")
+        return
     try:
-        with open(file_path, 'r') as f:
-            content = f.read()
-            # Extract JSON object from the self-executing function
-            match = re.search(r"self\.__BUILD_MANIFEST\s*=\s*\(function\(.*?\)\s*\{([\s\S]*?)\}\)\(.*?\);", content, re.MULTILINE)
-            if match:
-                json_str = match.group(1)
-                # Convert single quotes to double quotes and remove trailing commas
-                json_str = json_str.replace("'", '"').replace(",\n}", "\n}")
-                return json.loads(json_str)
-            else:
-                raise ValueError(f"Could not find JSON in the __BUILD_MANIFEST file.")
-    except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
-        print(f"Error parsing {file_path}: {e}")
-        return {}
+        response = requests.get(url)
+        response.raise_for_status()
 
-def parse_ssg_manifest(file_path):
-    try:
-        with open(file_path, 'r') as f:
-            content = f.read()
-            # Extract the array from the Set constructor
-            match = re.search(r"self\.__SSG_MANIFEST\s*=\s*new\s+Set\((\[[\s\S]*?\])\);", content)
-            if match:
-                json_str = match.group(1)
-                json_str = json_str.replace("\\u002F", "/")
-                manifest_list = json.loads(json_str)
-                return set(manifest_list)
-            else:
-                raise ValueError(f"Could not find JSON in the __SSG_MANIFEST file.")
-    except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
-        print(f"Error parsing {file_path}: {e}")
-        return set()
-def download_resources(manifest):
-    for route, files in manifest.items():
-        if route in ['__rewrites', 'sortedPages']:
-            continue
-        for file in files:
-            file_url = f'{BASE_URL}/{file}'
-            output_path = os.path.join(OUTPUT_DIR, file)
-            download_file(file_url, output_path)
+        soup = BeautifulSoup(response.content, 'html.parser')
 
-    for rewrite in manifest.get('__rewrites', {}).get('afterFiles', []):
-        file_url = f'{BASE_URL}{rewrite['source']}'
-        output_path = os.path.join(OUTPUT_DIR, rewrite['source'].lstrip('/'))
-        download_file(file_url, output_path)
+        # Download the current page
+        output_path = os.path.join(OUTPUT_DIR, url.replace(BASE_URL, "").lstrip("/"))
+        if not output_path.endswith(".html"):
+            output_path += ".html"
+        download_file(url, output_path)
+
+        if depth < max_depth:
+            # Find links to other pages and crawl them recursively
+            for link in soup.find_all('a', href=True):
+                href = link['href']
+                if href.startswith('/') and not href.startswith('//'):
+                    next_url = BASE_URL + href
+                    crawl_and_download(next_url, depth + 1, max_depth)
+
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to crawl {url}: {e}")
 
 def download_static_files():
     os.system(f'wget --mirror --convert-links --adjust-extension --page-requisites --no-parent {BASE_URL} -P {OUTPUT_DIR}')
@@ -101,21 +81,7 @@ def download_additional_resources(resources):
         download_file(resource, output_path)
 
 def main():
-    build_manifest = parse_build_manifest(BUILD_MANIFEST_FILE_PATH)
-    ssg_manifest = parse_ssg_manifest(SSG_MANIFEST_FILE_PATH)
-
-    if not build_manifest or not ssg_manifest:
-        print('Error: Manifest files could not be parsed or are empty.')
-        return
-
-    download_resources(build_manifest)
-
-    for route in ssg_manifest:
-        route_path = route if route != '/' else '/index.html'
-        file_url = f'{BASE_URL}{route_path}'
-        output_path = os.path.join(OUTPUT_DIR, route_path.lstrip('/'))
-        download_file(file_url, output_path)
-
+    crawl_and_download(BASE_URL)
     download_static_files()
 
     dynamic_urls = [
@@ -134,5 +100,5 @@ def main():
 
     download_additional_resources(additional_resources)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
