@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Geneva 9.2';
-    src: local('Geneva 9.2'), url(../../../fonts/geneva-9-2.woff2) format('woff2');
+    src: local('Geneva 9.2'), url(../../../fonts/geneva-9.2.ttf) format('truetype');
     font-weight: 400 !important;
     font-style: normal;
     font-display: swap;
