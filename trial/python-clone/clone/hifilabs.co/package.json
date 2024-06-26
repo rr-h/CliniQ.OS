@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "nodejs": "^0.0.0",
     "pupeteer": "^0.0.1"
   }
 }
