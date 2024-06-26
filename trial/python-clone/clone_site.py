@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+import bs4
 from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
 import re
@@ -54,6 +55,7 @@ def parse_ssg_manifest(file_path):
     except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
         print(f"Error parsing {file_path}: {e}")
         return set()
+
 
 def download_resources(manifest):
     for route, files in manifest.items():
