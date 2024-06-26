@@ -22,27 +22,27 @@ def download_file(url, output_path):
         print(f"Failed to download {url}: {e}")
 
 def parse_build_manifest(file_path):
-    try:
-        with open(file_path, 'r') as f:
-            content = f.read()
-            json_str = re.search(r'return ({.*?});\s*\}\)\(', content, re.DOTALL).group(1)
-            # Convert single quotes to double quotes and remove trailing commas
-            json_str = json_str.replace("'", '"').replace(",}", "}")
+    with open(file_path, 'r') as f:
+        content = f.read()
+        match = re.search(r"self\.__BUILD_MANIFEST\s*=\s*(\{[\s\S]*?\});", content)
+        if match:
+            json_str = match.group(1)
+            json_str = json_str.replace("'", '"').replace(",\n}", "\n}")
             return json.loads(json_str)
-    except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
-        print(f"Error parsing {file_path}: {e}")
-        return {}
+        else:
+            raise ValueError(f"Could not find JSON in the __BUILD_MANIFEST file.")
 
 def parse_ssg_manifest(file_path):
-    try:
-        with open(file_path, 'r') as f:
-            content = f.read()
-            json_str = re.search(r'new Set\(\[(.*?)\]\);', content, re.DOTALL).group(1)
-            manifest_list = [route.strip().strip("'").strip('"') for route in json_str.split(",")]
-            return {route.replace("\\u002F", "/") for route in manifest_list}
-    except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
-        print(f"Error parsing {file_path}: {e}")
-        return set()
+    with open(file_path, 'r') as f:
+        content = f.read()
+        match = re.search(r"self\.__SSG_MANIFEST\s*=\s*new\s+Set\((\[[\s\S]*?\])\);", content)
+        if match:
+            json_str = match.group(1)
+            json_str = json_str.replace("\\u002F", "/")
+            manifest_list = json.loads(json_str)
+            return set(manifest_list)
+        else:
+            raise ValueError(f"Could not find JSON in the __SSG_MANIFEST file.")
 
 def download_resources(manifest):
     for route, files in manifest.items():
