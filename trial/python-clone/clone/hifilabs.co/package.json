@@ -1,17 +1,19 @@
 {
-  "name": "hifilabs.co",
-  "version": "1.0.0",
-  "main": "test-scripts.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "nodejs": "^0.0.0",
-    "pupeteer": "^0.0.1",
-    "puppeteer": "^22.12.1"
-  }
+    "name": "hifilabs.co",
+    "version": "1.0.0",
+    "main": "test-scripts.js",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "next": "^14.2.4",
+        "nodejs": "^0.0.0",
+        "puppeteer": "^22.12.1"
+    }
 }
