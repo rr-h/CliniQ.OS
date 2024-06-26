@@ -6,15 +6,15 @@ import requests
 BASE_URL = "https://hifilabs.co/"
 
 # Path to the build manifest file
-MANIFEST_FILE_PATH = "./_buildManifest.js"
+MANIFEST_FILE_PATH = "./__BUILD_MANIFEST.js"
 
 # Directory to save the cloned site
-OUTPUT_DIR = "./"
+OUTPUT_DIR = "./clone"
 
 # Read and parse the build manifest file
 with open(MANIFEST_FILE_PATH, 'r') as f:
     content = f.read()
-    manifest_json = content.split("self.__buildManifest = ", 1)[1].rsplit(";", 1)[0]
+    manifest_json = content.split("self.__BUILD_MANIFEST = ", 1)[1].rsplit(";", 1)[0]
     manifest = json.loads(manifest_json)
 
 # Function to download a file
