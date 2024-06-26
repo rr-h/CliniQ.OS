@@ -6,13 +6,13 @@
 @font-face {
     font-family: 'chi';
     font-weight: normal;
-    src: url('../fonts/Chicago.ttf');
+    src: url('../fonts/ChicagoFLF.ttf');
 }
 
 @font-face {
     font-family: 'gen';
     font-weight: normal;
-    src: url('../fonts/px.ttf');
+    src: url('../fonts/Geneva_9.ttf');
 }
 
 body {
