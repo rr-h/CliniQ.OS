@@ -1,17 +1,14 @@
 import os
 import json
 import requests
-import bs4
 from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
 import re
 
 BASE_URL = "https://hifilabs.co"
-script_dir = os.path.dirname(os.path.abspath(__file__))
-# Construct the full paths to the manifest files
-BUILD_MANIFEST_FILE_PATH = os.path.join(script_dir, "__BUILD_MANIFEST.js")
-SSG_MANIFEST_FILE_PATH = os.path.join(script_dir, "__SSG_MANIFEST.js")
-OUTPUT_DIR = './clone'
+BUILD_MANIFEST_FILE_PATH = "./__BUILD_MANIFEST.js"
+SSG_MANIFEST_FILE_PATH = "./__SSG_MANIFEST.js"
+OUTPUT_DIR = "./clone"
 
 def download_file(url, output_path):
     try:
@@ -57,7 +54,6 @@ def parse_ssg_manifest(file_path):
     except (FileNotFoundError, json.JSONDecodeError, ValueError, AttributeError) as e:
         print(f"Error parsing {file_path}: {e}")
         return set()
-
 def download_resources(manifest):
     for route, files in manifest.items():
         if route in ['__rewrites', 'sortedPages']:
