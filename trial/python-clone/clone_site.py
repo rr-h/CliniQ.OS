@@ -27,7 +27,9 @@ def parse_manifest(file_path, key):
             content = f.read()
             start = content.find(f"self.{key} = ") + len(f"self.{key} = ")
             end = content.rfind(";")
-            manifest_json = content[start:end]
+            manifest_json = content[start:end].strip()
+            # Remove trailing commas if any
+            manifest_json = manifest_json.rstrip(',')
             return json.loads(manifest_json)
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Error parsing {file_path}: {e}")
