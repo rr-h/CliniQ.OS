@@ -83,6 +83,5 @@
     background: repeating-linear-gradient( 45deg, #24242444, #eeeeee3d 1px, #6160603d 1px, #ffffff48 5px);
     height: calc(100% - 30px);
     /* Adjust height to fill the window minus the title bar */
-    overflow: auto;
-    /* Ensure content is scrollable if it overflows */
+    overflow-y: scroll;
 }
