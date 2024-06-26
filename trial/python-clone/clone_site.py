@@ -3,7 +3,6 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
-from selenium.webdriver.chrome.options import Options
 
 BASE_URL = "https://hifilabs.co"
 BUILD_MANIFEST_FILE_PATH = "./__BUILD_MANIFEST.js"
@@ -26,8 +25,9 @@ def parse_build_manifest(file_path):
         with open(file_path, 'r') as f:
             content = f.read()
             start = content.find("self.__BUILD_MANIFEST = ") + len("self.__BUILD_MANIFEST = ")
-            end = content.find("),", start)
+            end = content.find("),", start) + 1  # Include the closing parenthesis
             manifest_json = content[start:end].strip()
+            manifest_json = manifest_json.rsplit('(', 1)[-1].rsplit(')', 1)[0]  # Extract JSON object from within function call
             manifest_json = manifest_json + "}"  # Ensure it is a complete JSON object
             return json.loads(manifest_json)
     except (FileNotFoundError, json.JSONDecodeError) as e:
