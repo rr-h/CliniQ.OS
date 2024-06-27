@@ -1,1 +1,1 @@
-import request.html
+from requests_html import HTMLSession
