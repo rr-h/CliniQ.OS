@@ -5,9 +5,9 @@
 .drawer {
     filter: blur(0.5px) sepia(0.2) saturate(1);
     font-weight: bold;
-    font-family: "ArgentPixelCF-Italic";
+    font-family: "mario";
     letter-spacing: 0.2em;
-    font-size: 1.8em;
+    font-size: 2em;
     border-radius: 10px;
     color: #333332;
     text-shadow: -3px 3px 7px rgba(34, 34, 34, 0.219);
@@ -35,8 +35,8 @@
 
 .drawer__item {
     filter: blur(0.1px) sepia(0.3) saturate(1);
-    font-family: "chava";
-    font-size: 0.8em;
+    font-family: "pix";
+    font-size: 0.7em;
     border-radius: 8px;
     color: #202020;
     text-shadow: -3px 3px 7px rgba(34, 34, 34, 0.219);
@@ -61,7 +61,7 @@
 .form {
     margin: auto;
     font-weight: bold;
-    font-family: 'roundedPixel';
+    font-family: 'snes';
     letter-spacing: 0.1em;
     font-size: 2em;
     border-radius: 10px;
@@ -97,7 +97,7 @@
     max-width: 96vw;
     padding: 0.5em 0.2em;
     box-shadow: inset 0 0 5px 5px rgba(0, 0, 0, .1);
-    font-family: 'chava';
+    font-family: 'class_pix_it';
     letter-spacing: 0.1em;
     font-size: 0.5em;
     line-height: 90%;
@@ -114,7 +114,7 @@
     border: none;
     cursor: pointer;
     box-shadow: inset 0.5px 0.5px 0.5px 0.5px #7a7979, 0px 0px 1px 0.5px #6d6a6a, 0px 0px 1px 0.5px #adabab;
-    font-family: 'arcadeClassic';
+    font-family: 'chicago';
     font-size: 1em;
 }
 
@@ -142,7 +142,8 @@
 .window {
     width: 80vw;
     height: 72vh;
-    padding: 10px;
+    border-radius: 12px;
+    padding: 5px;
     background-color: white;
     border: 1px solid black;
     position: absolute;
@@ -154,7 +155,7 @@
     cursor: move;
     background-color: #504d4d52;
     color: rgb(61, 60, 60);
-    font-family: 'arcadeClassic';
+    font-family: 'snes_comic';
     padding: 5px 12px;
     font-size: 1.3em;
     letter-spacing: 0.2em;
