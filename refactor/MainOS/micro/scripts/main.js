@@ -15,7 +15,7 @@ function loadDiseases() {
             drawerContent.innerHTML = ''; // Clear previous content
             data.cardiologyDisease.forEach(disease => {
                 const diseaseCard = document.createElement('div');
-                diseaseCard.className = 'disease-card';
+                diseaseCard.className = 'drawer__item';
                 diseaseCard.innerText = disease.diseaseName;
                 diseaseCard.addEventListener('click', () => openForm(disease.diseaseName));
                 drawerContent.appendChild(diseaseCard);
@@ -26,7 +26,7 @@ function loadDiseases() {
 
 function toggleDrawer() {
     const drawerContent = document.getElementById('drawer-content');
-    drawerContent.classList.toggle('open');
+    drawerContent.classList.toggle('drawer__content--open');
 }
 
 function openForm(diseaseName) {
@@ -45,7 +45,7 @@ function openForm(diseaseName) {
 
             diseaseData.fields.forEach(field => {
                 const formGroup = document.createElement('div');
-                formGroup.className = 'form-group';
+                formGroup.className = 'form__group';
                 const label = document.createElement('label');
                 label.setAttribute('for', field.name);
                 label.innerText = field.label;
@@ -55,6 +55,7 @@ function openForm(diseaseName) {
                 input.name = field.name;
                 input.placeholder = field.placeholder;
                 input.value = field.defaultValue;
+                input.className = 'form__input';
                 formGroup.appendChild(label);
                 formGroup.appendChild(input);
                 form.appendChild(formGroup);
@@ -138,7 +139,7 @@ function makeDraggable(element) {
     let offset = [0, 0];
     let mousePosition;
 
-    const titleBar = element.querySelector('.title-bar');
+    const titleBar = element.querySelector('.window__title-bar');
     titleBar.addEventListener('mousedown', e => {
         isMouseDown = true;
         offset = [element.offsetLeft - e.clientX, element.offsetTop - e.clientY];
