@@ -30,6 +30,11 @@
 }
 
 @font-face {
+    font-family: 'hollow';
+    src: url('../fonts/hollow.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'mario';
     src: url('../fonts/mario.ttf') format('truetype');
 }
@@ -42,6 +47,11 @@
 @font-face {
     font-family: 'pix2';
     src: url('../fonts/pix2.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'pixeloid';
+    src: url('../fonts/pixeloid.ttf') format('truetype');
 }
 
 @font-face {
