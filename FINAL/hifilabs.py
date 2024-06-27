@@ -1,4 +1,4 @@
-from requests_html2 import HTMLSession
+from requests_html import HTMLSession
 
 url = 'https://hifilabs.com/'
 s = HTMLSession()
