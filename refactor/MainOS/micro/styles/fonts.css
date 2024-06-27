@@ -5,6 +5,11 @@
 }
 
 @font-face {
+    font-family: 'chava';
+    src: url('../fonts/chava.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'chicago';
     src: url('../fonts/chicago.woff') format('woff');
 }
