@@ -105,8 +105,8 @@
     text-shadow: -1px 2px 1px rgba(0, 0, 0, .1);
 }
 
-.form__imput:hover {
-    background: rgb(140, 201, 126);
+.form__input:hover {
+    background: rgb(161, 211, 150);
     box-shadow: inset 1px 1px 4px 0px #050505, 0px 0px 4px 2px #000, 0px 0px 4px 2px #777;
 }
 
@@ -119,7 +119,7 @@
     border: none;
     cursor: pointer;
     box-shadow: inset 0.5px 0.5px 0.5px 0.5px #7a7979, 0px 0px 1px 0.5px #6d6a6a, 0px 0px 1px 0.5px #adabab;
-    font-family: 'arcadeClassic';
+    font-family: 'mario';
     font-size: 1em;
 }
 
