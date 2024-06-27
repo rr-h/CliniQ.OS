@@ -2,8 +2,7 @@
 
 /*///////////// Block: drawer ////////////*/
 
-
-/* .drawer {
+.drawer {
     filter: blur(0.5px) sepia(0.2) saturate(1);
     font-weight: bold;
     font-family: "mario";
@@ -28,7 +27,7 @@
 
 .drawer__content {
     display: none;
-} */
+}
 
 .drawer__content--open {
     display: block;
