@@ -5,9 +5,6 @@ MICRO.TXT
 
 INDEX.HTML
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +21,7 @@ INDEX.HTML
                 <div class="window__title-bar" id="main-title-bar">
                     <div class="title">Retro Medical Form</div>
                     <div class="window__controls">
-                        <button id="main-close"><img src="assets/icons/close-48.png" alt="Close" width="16" height="16" /></button>
+                        <button id="main-close"><img src="./assets/icons/close-48.png" alt="Close" width="16" height="16" /></button>
                     </div>
                 </div>
                 <div class="window__content">
@@ -40,7 +37,7 @@ INDEX.HTML
                 <div class="window__title-bar" id="form-title-bar">
                     <div class="title" id="form-title"></div>
                     <div class="window__controls">
-                        <button id="form-close"><img src="assets/icons/close-48.png" alt="Close" width="16" height="16" /></button>
+                        <button id="form-close"><img src="./assets/icons/close-48.png" alt="Close" width="16" height="16" /></button>
                     </div>
                 </div>
                 <div class="window__content">
@@ -57,8 +54,6 @@ INDEX.HTML
         </div>
     </div>
     <script src="./scripts/main.js"></script>
-</body>
-
 
 
 
@@ -337,6 +332,11 @@ STYLES.CSS
     text-shadow: -1px 2px 1px rgba(0, 0, 0, .1);
 }
 
+.form__input:hover {
+    background: rgb(161, 211, 150);
+    box-shadow: inset 1px 1px 4px 0px #050505, 0px 0px 4px 2px #000, 0px 0px 4px 2px #777;
+}
+
 .form__button--submit {
     width: 50%;
     padding: 5px;
@@ -346,7 +346,7 @@ STYLES.CSS
     border: none;
     cursor: pointer;
     box-shadow: inset 0.5px 0.5px 0.5px 0.5px #7a7979, 0px 0px 1px 0.5px #6d6a6a, 0px 0px 1px 0.5px #adabab;
-    font-family: 'chicago';
+    font-family: 'mario';
     font-size: 1em;
 }
 
@@ -375,7 +375,7 @@ STYLES.CSS
     width: 80vw;
     height: 72vh;
     border-radius: 12px;
-    padding: 5px;
+    padding: 10px;
     background-color: white;
     border: 1px solid black;
     position: absolute;
@@ -471,10 +471,15 @@ STYLES.CSS
 
 FONTS.CSS
 
-@import './style.css';
+@import './styles.css';
 @font-face {
     font-family: 'casio';
     src: url('../fonts/casio.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'chava';
+    src: url('../fonts/chava.ttf') format('truetype');
 }
 
 @font-face {
@@ -503,6 +508,11 @@ FONTS.CSS
 }
 
 @font-face {
+    font-family: 'hollow';
+    src: url('../fonts/hollow.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'mario';
     src: url('../fonts/mario.ttf') format('truetype');
 }
@@ -515,6 +525,11 @@ FONTS.CSS
 @font-face {
     font-family: 'pix2';
     src: url('../fonts/pix2.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'pixeloid';
+    src: url('../fonts/pixeloid.ttf') format('truetype');
 }
 
 @font-face {
