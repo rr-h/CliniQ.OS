@@ -1,1 +1,0 @@
-(typeof window !== "undefined" ? window : this).__NEXT_FONT_MANIFEST='{"pages":{},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';

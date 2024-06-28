@@ -1,1 +1,0 @@
-(typeof window !== "undefined" ? window : this).__SSG_MANIFEST=new Set,(typeof window !== "undefined" ? window : this).__SSG_MANIFEST_CB&&(typeof window !== "undefined" ? window : this).__SSG_MANIFEST_CB();

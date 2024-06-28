@@ -1,2 +1,0 @@
-(typeof window !== "undefined" ? window : this).__SSG_MANIFEST = new Set(["\u002F", "\u002F[windowId]", "\u002Fartistlab\u002F[slug]", "\u002Fidealab\u002F[slug]", "\u002Fweb3cohort\u002F[slug]"]);
-(typeof window !== "undefined" ? window : this).__SSG_MANIFEST_CB && (typeof window !== "undefined" ? window : this).__SSG_MANIFEST_CB();

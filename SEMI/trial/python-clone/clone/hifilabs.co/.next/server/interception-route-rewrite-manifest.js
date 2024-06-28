@@ -1,1 +1,0 @@
-(typeof window !== "undefined" ? window : this).__INTERCEPTION_ROUTE_REWRITE_MANIFEST="[]";
