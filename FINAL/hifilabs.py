@@ -8,7 +8,10 @@ def fetch_html_selenium(url):
     """Fetch HTML content from a URL using Selenium and extract product information."""
     options = Options()
     options.binary_location = '/usr/bin/chromium'
-    options.headless = True
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     
     driver.get(url)
