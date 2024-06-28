@@ -2,17 +2,18 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 
 def fetch_html_selenium(url):
     """Fetch HTML content from a URL using Selenium and extract product information."""
     options = Options()
-    options.binary_location = '/usr/bin/chromium'
+    options.binary_location = '/usr/bin/chromium'  # Path to Chromium binary
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    # Explicitly specify the path to chromedriver
+    service = Service('/usr/bin/chromedriver')
+    driver = webdriver.Chrome(service=service, options=options)
     
     driver.get(url)
     
