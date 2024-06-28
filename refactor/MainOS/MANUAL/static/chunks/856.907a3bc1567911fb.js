@@ -115,15 +115,15 @@
         );
       }
       var s = [
-          { id: 'spotify', alt: 'Spotify', iconPath: '/images/HIFILABS/icons/spotify.svg', url: null },
-          { id: 'apple', alt: 'Apple Music', iconPath: '/images/HIFILABS/icons/apple-music.svg', url: null },
-          { id: 'tiktok', alt: 'Tik Tok', iconPath: '/images/HIFILABS/icons/tiktok.svg', url: null },
-          { id: 'instagram', alt: 'Instagram', iconPath: '/images/HIFILABS/icons/instagram.svg', url: null },
-          { id: 'twitter', alt: 'Twitter', iconPath: '/images/HIFILABS/icons/twitter.svg', url: null },
-          { id: 'facebook', alt: 'Facebook', iconPath: '/images/HIFILABS/icons/facebook.svg', url: null },
-          { id: 'discord', alt: 'Discord', iconPath: '/images/HIFILABS/icons/discord.svg', url: null },
-          { id: 'website', alt: 'Website', iconPath: '/images/HIFILABS/icons/world.svg', url: null },
-          { id: 'email', alt: 'email', iconPath: '/images/HIFILABS/icons/email.svg', url: null }
+          { id: 'spotify', alt: 'Spotify', iconPath: './images/HIFILABS/icons/spotify.svg', url: null },
+          { id: 'apple', alt: 'Apple Music', iconPath: './images/HIFILABS/icons/apple-music.svg', url: null },
+          { id: 'tiktok', alt: 'Tik Tok', iconPath: './images/HIFILABS/icons/tiktok.svg', url: null },
+          { id: 'instagram', alt: 'Instagram', iconPath: './images/HIFILABS/icons/instagram.svg', url: null },
+          { id: 'twitter', alt: 'Twitter', iconPath: './images/HIFILABS/icons/twitter.svg', url: null },
+          { id: 'facebook', alt: 'Facebook', iconPath: './images/HIFILABS/icons/facebook.svg', url: null },
+          { id: 'discord', alt: 'Discord', iconPath: './images/HIFILABS/icons/discord.svg', url: null },
+          { id: 'website', alt: 'Website', iconPath: './images/HIFILABS/icons/world.svg', url: null },
+          { id: 'email', alt: 'email', iconPath: './images/HIFILABS/icons/email.svg', url: null }
         ],
         l = c.ZP.div.withConfig({ componentId: 'sc-91b301eb-0' })(u());
       e.C = function(n) {
