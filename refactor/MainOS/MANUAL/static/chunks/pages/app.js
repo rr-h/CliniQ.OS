@@ -719,9 +719,7 @@
                     var r = i.default,
                         a = (null == t ?
                             void 0 :
-                            t.suspense) ?
-                        {} :
-                        {
+                            t.suspense) ? {} : {
                             loading: function(e) {
                                 e.error, e.isLoading;
                                 return e.pastDelay, null;
