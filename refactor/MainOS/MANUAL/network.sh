@@ -28,10 +28,10 @@ process_files() {
 
     # Process each line of the file
     while IFS= read -r line; do
-      # Check if the line is longer than 1000 characters (adjust as needed)
-      if [[ ${#line} -gt 1000 ]]; then
-        echo "Ignoring long base64 line: $line"
-      else
+      # Ignore empty lines
+      if [[ -n "$line" ]]; then
+        # Process the line
+        echo "$line" | tr '[:lower:]' '[:upper:]'
         echo "$line" >> "$tmp_file"
       fi
     done < "$file"
@@ -39,6 +39,7 @@ process_files() {
     # Get the filename in capitals
     filename=$(basename "$file")
     filename_upper=$(echo "$filename" | tr '[:lower:]' '[:upper:]')
+    
 
     # Write the filename to the output file
     echo "$filename_upper" >> "$output_file"
