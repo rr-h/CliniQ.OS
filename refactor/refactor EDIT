@@ -30,8 +30,8 @@
     <meta name="robots" content="index,follow">
     <meta property="og:title" content="Welcome to HIFI Labs | HIFI Labs">
     <meta name="next-head-count" content="28">
-    <link rel="preload" href="./75fb90901c2ee1f9.css" as="style">
-    <link rel="stylesheet" href="./75fb90901c2ee1f9.css" data-n-g=""><noscript data-n-css=""></noscript>
+    <link rel="preload" href="/_next/static/css/75fb90901c2ee1f9.css" as="style">
+    <link rel="stylesheet" href="/_next/static/css/75fb90901c2ee1f9.css" data-n-g=""><noscript data-n-css=""></noscript>
     <script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script>
     <script src="/_next/static/chunks/webpack-fd418f31fe4b0d08.js" defer=""></script>
     <script src="/_next/static/chunks/framework-0ba0ddd33199226d.js" defer=""></script>
