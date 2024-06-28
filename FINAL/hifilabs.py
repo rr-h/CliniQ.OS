@@ -9,7 +9,7 @@ def fetch_html(session, url):
     """Fetch HTML content from a URL and extract product information."""
     response = session.get(url)
     response.html.render(sleep=2, scrolldown=1)
-    products = response.html.xpath('//div[@class="sc-9be8bed7-2 eeAKPq"]')
+    products = response.html.xpath('//div[@class="sc-9be8bed7-2 eeAKPq"]', first=True)
     return products
 
 def main():
