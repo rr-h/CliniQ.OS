@@ -1,14 +1,14 @@
 {
-    "name": "Poolsuite FM",
-    "short_name": "Poolsuite FM",
-    "theme_color": "#f9efe4",
-    "icons": [
-        { "src": "./img/icons/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
-        { "src": "./img/icons/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
-        { "src": "./img/icons/apple-192x192.png", "sizes": "192x192", "type": "image/png" },
-        { "src": "./img/icons/apple-512x512.png", "sizes": "512x512", "type": "image/png" }
-    ],
-    "start_url": "./",
-    "display": "standalone",
-    "background_color": "#f9efe4"
+  "name": "Poolsuite FM",
+  "short_name": "Poolsuite FM",
+  "theme_color": "#f9efe4",
+  "icons": [
+    { "src": "./img/icons/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./img/icons/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "./img/icons/apple-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./img/icons/apple-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f9efe4"
 }
