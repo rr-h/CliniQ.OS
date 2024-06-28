@@ -1914,5 +1914,18 @@
     <script src="./static/chunks/739-32fc889ec63fd09b.js" defer=""></script>
     <script src="./static/manifest/_buildManifest.js" defer=""></script>
     <script src="./static/manifest/_ssgManifest.js" defer=""></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const contentElement = document.getElementById('__next');
+        if (contentElement) {
+          console.log('Content element found:', contentElement);
+          contentElement.style.backgroundColor = 'lightgray';
+        } else {
+          console.error("Element with ID '__next' not found.");
+        }
+
+        document.documentElement.style.scrollBehavior = 'smooth';
+      });
+    </script>
   </body>
 </html>
