@@ -15,7 +15,7 @@ def fetch_html(session, url):
     return products
 
 def main():
-    url = 'https://hifilabs.com/'
+    url = 'https://hifilabs.co/'
     try:
         session = create_session()
         products = fetch_html(session, url)
