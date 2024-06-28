@@ -17,7 +17,5 @@ if __name__ == "__main__":
     try:
         session = create_session()
         html_response = fetch_html(session, url)
-        status_code = get_status_code(html_response)
-        print(f"Status Code: {status_code}")
     except Exception as e:
         print(f"An error occurred: {e}")
