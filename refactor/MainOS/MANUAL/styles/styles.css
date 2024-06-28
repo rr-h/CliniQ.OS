@@ -1,15 +1,15 @@
 @font-face {
   font-family: "Geneva 9.2";
-  src: local("Geneva 9.2"), url(/fonts/geneva-9-2.woff2) format("woff2");
-  font-weight: 400 !important;
+  src: url(../fonts/geneva-9-2.woff2) format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap
 }
 
 @font-face {
   font-family: pixChicago;
-  src: url(/fonts/pixChicago.woff2) format("woff2");
-  font-weight: 400 !important;
+  src: url(../fonts/pixChicago.woff2) format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap
 }
