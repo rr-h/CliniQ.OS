@@ -9,7 +9,7 @@ def fetch_html(session, url):
     """Fetch HTML content from a URL."""
     response = session.get(url)
     response.html.render(sleep=2, scrolldown=1)
-    products = response.html.xpath('/html/body/div/div/div/div/div/div[3]')
+    products = response.html.xpath('/html/body/div/div/div/div/div/div[3]', first=True)    
     return response
 
 def get_status_code(response):
