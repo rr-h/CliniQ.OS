@@ -9,12 +9,8 @@ def fetch_html(session, url):
     """Fetch HTML content from a URL."""
     response = session.get(url)
     response.html.render(sleep=2, scrolldown=1)
-    products = response.html.xpath('//div[@class="sc-9be8bed7-2 eeAKPq"]', first=True)    
-    return response
-
-def get_status_code(response):
-    """Get the status code from the response."""
-    return response.status_code
+    products = response.html.xpath('//div[@class="sc-9be8bed7-2 eeAKPq"]')    
+    print(products)
 
 if __name__ == "__main__":
     url = 'https://hifilabs.com/'
