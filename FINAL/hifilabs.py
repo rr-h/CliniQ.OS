@@ -1,4 +1,4 @@
-import requests
+import requests_html
 from requests_html import HTMLSession
 
 def get_html_from_url(url):
