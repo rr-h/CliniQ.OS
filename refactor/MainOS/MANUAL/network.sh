@@ -4,7 +4,7 @@
 central_digested_code_dir="/home/rr-h/Documents/DigestedCode"
 
 # Get the current directory as the root directory
-root_dir="$(pwd)"
+root_dir="network"
 
 # Define the output file name based on the root directory name
 output_file="$(basename "$root_dir").txt"
