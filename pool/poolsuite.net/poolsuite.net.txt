@@ -349,7 +349,7 @@ ___________________________    __________________________
         </header>
         <section
           class="draggable-bounds"
-          style='background-image: url("../img/1.gif");'
+          style='background-image: url("./img/1.gif");'
         >
           <div>
             <div class="component-outer" style="z-index: 24;">
@@ -1766,7 +1766,7 @@ ___________________________    __________________________
                       title="Action Park 1980's Compilation no music Cannonball loop"
                       width="0"
                       height="0"
-                      src="https://www.youtube-nocookie.com/embed/Heyb3xd1qyE?autoplay=1&amp;mute=1&amp;muted=1&amp;controls=0&amp;modestbranding=1&amp;disablekb=1&amp;playsinline=1&amp;volume=0&amp;start=0&amp;end=0&amp;origin=https%3A%2F%2FCliniQ.OS.net&amp;enablejsapi=1&amp;widgetid=1"
+                      src="https://www.youtube-nocookie.com/embed/Heyb3xd1qyE?autoplay=1&amp;mute=1&amp;muted=1&amp;controls=0&amp;modestbranding=1&amp;disablekb=1&amp;playsinline=1&amp;volume=0&amp;start=0&amp;end=0&amp;origin=https%3A%2F%2Fpoolsuite.net&amp;enablejsapi=1&amp;widgetid=1"
                       id="widget2"
                     ></iframe>
                     <div data-v-16714fa1="" class="overlay"></div>
@@ -2602,6 +2602,23 @@ ___________________________    __________________________
       class="zTJFkmtQvbWPUMEOEfCBavg"
     ></div>
   </body>
+
+
+
+.PRETTIERIGNORE
+
+# Ignore specific directories
+node_modules/
+.nyc_output
+coverage
+dist
+tests/fixtures/
+
+
+# Ignore build artifacts
+*.min.js
+*.bundle.js
+*.min.css
 
 
 
@@ -2958,7 +2975,7 @@ ___________________________    __________________________
         </header>
         <section
           class="draggable-bounds"
-          style='background-image: url("../img/1.gif");'
+          style='background-image: url("./img/1.gif");'
         >
           <div>
             <div class="component-outer" style="z-index: 24;">
@@ -4375,7 +4392,7 @@ ___________________________    __________________________
                       title="Action Park 1980's Compilation no music Cannonball loop"
                       width="0"
                       height="0"
-                      src="https://www.youtube-nocookie.com/embed/Heyb3xd1qyE?autoplay=1&amp;mute=1&amp;muted=1&amp;controls=0&amp;modestbranding=1&amp;disablekb=1&amp;playsinline=1&amp;volume=0&amp;start=0&amp;end=0&amp;origin=https%3A%2F%2FCliniQ.OS.net&amp;enablejsapi=1&amp;widgetid=1"
+                      src="https://www.youtube-nocookie.com/embed/Heyb3xd1qyE?autoplay=1&amp;mute=1&amp;muted=1&amp;controls=0&amp;modestbranding=1&amp;disablekb=1&amp;playsinline=1&amp;volume=0&amp;start=0&amp;end=0&amp;origin=https%3A%2F%2Fpoolsuite.net&amp;enablejsapi=1&amp;widgetid=1"
                       id="widget2"
                     ></iframe>
                     <div data-v-16714fa1="" class="overlay"></div>
@@ -5214,300 +5231,1826 @@ ___________________________    __________________________
 
 
 
+.PRETTIERIGNORE
+
+# Ignore specific directories
+node_modules/
+.nyc_output
+coverage
+dist
+tests/fixtures/
+
+
+# Ignore build artifacts
+*.min.js
+*.bundle.js
+*.min.css
+
+
+
 
 
 
 INDEX.10100C85.JS
 
 (() => {
-  'use strict';
-  var e = {},
-    t = {};
+    'use strict';
+    var e = {},
+        t = {};
 
-  function r(o) {
-    var n = t[o];
-    if (void 0 !== n) return n.exports;
-    var a = (t[o] = { id: o, loaded: !1, exports: {} });
-    return e[o].call(a.exports, a, a.exports, r), (a.loaded = !0), a.exports;
-  }
-  (r.m = e),
+    function r(o) {
+        var n = t[o];
+        if (void 0 !== n) return n.exports;
+        var a = (t[o] = { id: o, loaded: !1, exports: {} });
+        return e[o].call(a.exports, a, a.exports, r), (a.loaded = !0), a.exports;
+    }
+    var linkTag = document.createElement('link');
+    linkTag.rel = 'stylesheet';
+    linkTag.href = './chunk-common.159427c0.js';
+    linkTag.onerror = function() {
+        console.error('Loading CSS chunk failed.');
+    };
+    document.head.appendChild(linkTag);
+    (r.m = e),
     (() => {
-      r.amdO = {};
+        r.amdO = {};
     })(),
     (() => {
-      var e = [];
-      r.O = (t, o, n, a) => {
-        if (!o) {
-          var i = 1 / 0;
-          for (s = 0; s < e.length; s++) {
-            (o = e[s][0]), (n = e[s][1]), (a = e[s][2]);
-            for (var u = !0, l = 0; l < o.length; l++)
-              (!1 & a || i >= a) && Object.keys(r.O).every(e => r.O[e](o[l])) ? o.splice(l--, 1) : ((u = !1), a < i && (i = a));
-            if (u) {
-              e.splice(s--, 1);
-              var d = n();
-              void 0 !== d && (t = d);
-            }
-          }
-          return t;
-        }
-        a = a || 0;
-        for (var s = e.length; s > 0 && e[s - 1][2] > a; s--) e[s] = e[s - 1];
-        e[s] = [o, n, a];
-      };
-    })(),
-    (() => {
-      r.n = e => {
-        var t = e && e.__esModule ? () => e['default'] : () => e;
-        return r.d(t, { a: t }), t;
-      };
-    })(),
-    (() => {
-      var e,
-        t = Object.getPrototypeOf ? e => Object.getPrototypeOf(e) : e => e.__proto__;
-      r.t = function (o, n) {
-        if ((1 & n && (o = this(o)), 8 & n)) return o;
-        if ('object' === typeof o && o) {
-          if (4 & n && o.__esModule) return o;
-          if (16 & n && 'function' === typeof o.then) return o;
-        }
-        var a = Object.create(null);
-        r.r(a);
-        var i = {};
-        e = e || [null, t({}), t([]), t(t)];
-        for (var u = 2 & n && o; 'object' == typeof u && !~e.indexOf(u); u = t(u)) Object.getOwnPropertyNames(u).forEach(e => (i[e] = () => o[e]));
-        return (i['default'] = () => o), r.d(a, i), a;
-      };
-    })(),
-    (() => {
-      r.d = (e, t) => {
-        for (var o in t) r.o(t, o) && !r.o(e, o) && Object.defineProperty(e, o, { enumerable: !0, get: t[o] });
-      };
-    })(),
-    (() => {
-      (r.f = {}), (r.e = e => Promise.all(Object.keys(r.f).reduce((t, o) => (r.f[o](e, t), t), [])));
-    })(),
-    (() => {
-      r.u = e =>
-        'js/' +
-        ({
-          18: 'view-Offline-vue',
-          51: 'view-Cookies-vue',
-          126: 'view-App-vue',
-          185: 'view-Terms-vue',
-          269: 'view-Lounge-vue',
-          444: 'view-iOS-vue',
-          496: 'view-Mac-vue',
-          511: 'view-Recess-vue',
-          517: 'view-Privacy-vue'
-        }[e] || e) +
-        '.' +
-        {
-          18: 'a616c724',
-          51: '6d76aaac',
-          126: '914c41f4',
-          185: '59f81ce4',
-          224: '699d5e50',
-          269: '2e7bfc45',
-          289: '4809541f',
-          343: '55b0783c',
-          391: '63b14af5',
-          444: 'd93767a8',
-          455: '5ec202ca',
-          496: '7c73a870',
-          511: 'e967f180',
-          517: '2ea2bb24'
-        }[e] +
-        '.js';
-    })(),
-    (() => {
-      r.miniCssF = e =>
-        'css/' +
-        {
-          18: 'view-Offline-vue',
-          51: 'view-Cookies-vue',
-          126: 'view-App-vue',
-          185: 'view-Terms-vue',
-          269: 'view-Lounge-vue',
-          444: 'view-iOS-vue',
-          496: 'view-Mac-vue',
-          511: 'view-Recess-vue',
-          517: 'view-Privacy-vue'
-        }[e] +
-        '.' +
-        {
-          18: 'e88c6ccf',
-          51: 'e6b69d17',
-          126: '5d6abf4a',
-          185: '8db9af1a',
-          269: '9b402107',
-          444: '00ab0552',
-          496: 'cc16e1c0',
-          511: '51f07e54',
-          517: 'b6c1fca2'
-        }[e] +
-        '.css';
-    })(),
-    (() => {
-      r.g = (function () {
-        if ('object' === typeof globalThis) return globalThis;
-        try {
-          return this || new Function('return this')();
-        } catch (e) {
-          if ('object' === typeof window) return window;
-        }
-      })();
-    })(),
-    (() => {
-      r.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t);
-    })(),
-    (() => {
-      var e = {},
-        t = 'poolsuite:';
-      r.l = (o, n, a, i) => {
-        if (e[o]) e[o].push(n);
-        else {
-          var u, l;
-          if (void 0 !== a)
-            for (var d = document.getElementsByTagName('script'), s = 0; s < d.length; s++) {
-              var f = d[s];
-              if (f.getAttribute('src') == o || f.getAttribute('data-webpack') == t + a) {
-                u = f;
-                break;
-              }
-            }
-          u ||
-            ((l = !0),
-            (u = document.createElement('script')),
-            (u.charset = 'utf-8'),
-            (u.timeout = 120),
-            r.nc && u.setAttribute('nonce', r.nc),
-            u.setAttribute('data-webpack', t + a),
-            (u.src = o)),
-            (e[o] = [n]);
-          var v = (t, r) => {
-              (u.onerror = u.onload = null), clearTimeout(c);
-              var n = e[o];
-              if ((delete e[o], u.parentNode && u.parentNode.removeChild(u), n && n.forEach(e => e(r)), t)) return t(r);
-            },
-            c = setTimeout(v.bind(null, void 0, { type: 'timeout', target: u }), 12e4);
-          (u.onerror = v.bind(null, u.onerror)), (u.onload = v.bind(null, u.onload)), l && document.head.appendChild(u);
-        }
-      };
-    })(),
-    (() => {
-      r.r = e => {
-        'undefined' !== typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: 'Module' }),
-          Object.defineProperty(e, '__esModule', { value: !0 });
-      };
-    })(),
-    (() => {
-      r.nmd = e => ((e.paths = []), e.children || (e.children = []), e);
-    })(),
-    (() => {
-      r.p = '/';
-    })(),
-    (() => {
-      if ('undefined' !== typeof document) {
-        var e = (e, t, r, o, n) => {
-            var a = document.createElement('link');
-            (a.rel = 'stylesheet'), (a.type = 'text/css');
-            var i = r => {
-              if (((a.onerror = a.onload = null), 'load' === r.type)) o();
-              else {
-                var i = r && ('load' === r.type ? 'missing' : r.type),
-                  u = (r && r.target && r.target.href) || t,
-                  l = new Error('Loading CSS chunk ' + e + ' failed.\n(' + u + ')');
-                (l.code = 'CSS_CHUNK_LOAD_FAILED'), (l.type = i), (l.request = u), a.parentNode && a.parentNode.removeChild(a), n(l);
-              }
-            };
-            return (a.onerror = a.onload = i), (a.href = t), r ? r.parentNode.insertBefore(a, r.nextSibling) : document.head.appendChild(a), a;
-          },
-          t = (e, t) => {
-            for (var r = document.getElementsByTagName('link'), o = 0; o < r.length; o++) {
-              var n = r[o],
-                a = n.getAttribute('data-href') || n.getAttribute('href');
-              if ('stylesheet' === n.rel && (a === e || a === t)) return n;
-            }
-            var i = document.getElementsByTagName('style');
-            for (o = 0; o < i.length; o++) {
-              (n = i[o]), (a = n.getAttribute('data-href'));
-              if (a === e || a === t) return n;
-            }
-          },
-          o = o =>
-            new Promise((n, a) => {
-              var i = r.miniCssF(o),
-                u = r.p + i;
-              if (t(i, u)) return n();
-              e(o, u, null, n, a);
-            }),
-          n = { 826: 0 };
-        r.f.miniCss = (e, t) => {
-          var r = { 18: 1, 51: 1, 126: 1, 185: 1, 269: 1, 444: 1, 496: 1, 511: 1, 517: 1 };
-          n[e]
-            ? t.push(n[e])
-            : 0 !== n[e] &&
-              r[e] &&
-              t.push(
-                (n[e] = o(e).then(
-                  () => {
-                    n[e] = 0;
-                  },
-                  t => {
-                    throw (delete n[e], t);
-                  }
-                ))
-              );
-        };
-      }
-    })(),
-    (() => {
-      var e = { 826: 0 };
-      (r.f.j = (t, o) => {
-        var n = r.o(e, t) ? e[t] : void 0;
-        if (0 !== n)
-          if (n) o.push(n[2]);
-          else {
-            var a = new Promise((r, o) => (n = e[t] = [r, o]));
-            o.push((n[2] = a));
-            var i = r.p + r.u(t),
-              u = new Error(),
-              l = o => {
-                if (r.o(e, t) && ((n = e[t]), 0 !== n && (e[t] = void 0), n)) {
-                  var a = o && ('load' === o.type ? 'missing' : o.type),
-                    i = o && o.target && o.target.src;
-                  (u.message = 'Loading chunk ' + t + ' failed.\n(' + a + ': ' + i + ')'),
-                    (u.name = 'ChunkLoadError'),
-                    (u.type = a),
-                    (u.request = i),
-                    n[1](u);
+        var e = [];
+        r.O = (t, o, n, a) => {
+            if (!o) {
+                var i = 1 / 0;
+                for (s = 0; s < e.length; s++) {
+                    (o = e[s][0]), (n = e[s][1]), (a = e[s][2]);
+                    for (var u = !0, l = 0; l < o.length; l++)
+                        (!1 & a || i >= a) && Object.keys(r.O).every(e => r.O[e](o[l])) ? o.splice(l--, 1) : ((u = !1), a < i && (i = a));
+                    if (u) {
+                        e.splice(s--, 1);
+                        var d = n();
+                        void 0 !== d && (t = d);
+                    }
                 }
-              };
-            r.l(i, l, 'chunk-' + t, t);
-          }
-      }),
+                return t;
+            }
+            a = a || 0;
+            for (var s = e.length; s > 0 && e[s - 1][2] > a; s--) e[s] = e[s - 1];
+            e[s] = [o, n, a];
+        };
+    })(),
+    (() => {
+        r.n = e => {
+            var t = e && e.__esModule ? () => e['default'] : () => e;
+            return r.d(t, { a: t }), t;
+        };
+    })(),
+    (() => {
+        var e,
+            t = Object.getPrototypeOf ? e => Object.getPrototypeOf(e) : e => e.__proto__;
+        r.t = function(o, n) {
+            if ((1 & n && (o = this(o)), 8 & n)) return o;
+            if ('object' === typeof o && o) {
+                if (4 & n && o.__esModule) return o;
+                if (16 & n && 'function' === typeof o.then) return o;
+            }
+            var a = Object.create(null);
+            r.r(a);
+            var i = {};
+            e = e || [null, t({}), t([]), t(t)];
+            for (var u = 2 & n && o;
+                'object' == typeof u && !~e.indexOf(u); u = t(u)) Object.getOwnPropertyNames(u).forEach(e => (i[e] = () => o[e]));
+            return (i['default'] = () => o), r.d(a, i), a;
+        };
+    })(),
+    (() => {
+        r.d = (e, t) => {
+            for (var o in t) r.o(t, o) && !r.o(e, o) && Object.defineProperty(e, o, { enumerable: !0, get: t[o] });
+        };
+    })(),
+    (() => {
+        (r.f = {}), (r.e = e => Promise.all(Object.keys(r.f).reduce((t, o) => (r.f[o](e, t), t), [])));
+    })(),
+    (() => {
+        r.u = e =>
+            'js/' +
+            ({
+                18: 'view-Offline-vue',
+                51: 'view-Cookies-vue',
+                126: 'view-App-vue',
+                185: 'view-Terms-vue',
+                269: 'view-Lounge-vue',
+                444: 'view-iOS-vue',
+                496: 'view-Mac-vue',
+                511: 'view-Recess-vue',
+                517: 'view-Privacy-vue'
+            }[e] || e) +
+            '.' + {
+                18: 'a616c724',
+                51: '6d76aaac',
+                126: '914c41f4',
+                185: '59f81ce4',
+                224: '699d5e50',
+                269: '2e7bfc45',
+                289: '4809541f',
+                343: '55b0783c',
+                391: '63b14af5',
+                444: 'd93767a8',
+                455: '5ec202ca',
+                496: '7c73a870',
+                511: 'e967f180',
+                517: '2ea2bb24'
+            }[e] +
+            '.js';
+    })(),
+    (() => {
+        r.miniCssF = e =>
+            'css/' + {
+                18: 'view-Offline-vue',
+                51: 'view-Cookies-vue',
+                126: 'view-App-vue',
+                185: 'view-Terms-vue',
+                269: 'view-Lounge-vue',
+                444: 'view-iOS-vue',
+                496: 'view-Mac-vue',
+                511: 'view-Recess-vue',
+                517: 'view-Privacy-vue'
+            }[e] +
+            '.' + {
+                18: 'e88c6ccf',
+                51: 'e6b69d17',
+                126: '5d6abf4a',
+                185: '8db9af1a',
+                269: '9b402107',
+                444: '00ab0552',
+                496: 'cc16e1c0',
+                511: '51f07e54',
+                517: 'b6c1fca2'
+            }[e] +
+            '.css';
+    })(),
+    (() => {
+        r.g = (function() {
+            if ('object' === typeof globalThis) return globalThis;
+            try {
+                return this || new Function('return this')();
+            } catch (e) {
+                if ('object' === typeof window) return window;
+            }
+        })();
+    })(),
+    (() => {
+        r.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t);
+    })(),
+    (() => {
+        var e = {},
+            t = 'poolsuite:';
+        r.l = (o, n, a, i) => {
+            if (e[o]) e[o].push(n);
+            else {
+                var u, l;
+                if (void 0 !== a)
+                    for (var d = document.getElementsByTagName('script'), s = 0; s < d.length; s++) {
+                        var f = d[s];
+                        if (f.getAttribute('src') == o || f.getAttribute('data-webpack') == t + a) {
+                            u = f;
+                            break;
+                        }
+                    }
+                u ||
+                    ((l = !0),
+                        (u = document.createElement('script')),
+                        (u.charset = 'utf-8'),
+                        (u.timeout = 120),
+                        r.nc && u.setAttribute('nonce', r.nc),
+                        u.setAttribute('data-webpack', t + a),
+                        (u.src = o)),
+                    (e[o] = [n]);
+                var v = (t, r) => {
+                        (u.onerror = u.onload = null), clearTimeout(c);
+                        var n = e[o];
+                        if ((delete e[o], u.parentNode && u.parentNode.removeChild(u), n && n.forEach(e => e(r)), t)) return t(r);
+                    },
+                    c = setTimeout(v.bind(null, void 0, { type: 'timeout', target: u }), 12e4);
+                (u.onerror = v.bind(null, u.onerror)), (u.onload = v.bind(null, u.onload)), l && document.head.appendChild(u);
+            }
+        };
+    })(),
+    (() => {
+        r.r = e => {
+            'undefined' !== typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: 'Module' }),
+                Object.defineProperty(e, '__esModule', { value: !0 });
+        };
+    })(),
+    (() => {
+        r.nmd = e => ((e.paths = []), e.children || (e.children = []), e);
+    })(),
+    (() => {
+        r.p = '/';
+    })(),
+    (() => {
+        if ('undefined' !== typeof document) {
+            var e = (e, t, r, o, n) => {
+                    var a = document.createElement('link');
+                    (a.rel = 'stylesheet'), (a.type = 'text/css');
+                    var i = r => {
+                        if (((a.onerror = a.onload = null), 'load' === r.type)) o();
+                        else {
+                            var i = r && ('load' === r.type ? 'missing' : r.type),
+                                u = (r && r.target && r.target.href) || t,
+                                l = new Error('Loading CSS chunk ' + e + ' failed.\n(' + u + ')');
+                            (l.code = 'CSS_CHUNK_LOAD_FAILED'), (l.type = i), (l.request = u), a.parentNode && a.parentNode.removeChild(a), n(l);
+                        }
+                    };
+                    return (a.onerror = a.onload = i), (a.href = t), r ? r.parentNode.insertBefore(a, r.nextSibling) : document.head.appendChild(a), a;
+                },
+                t = (e, t) => {
+                    for (var r = document.getElementsByTagName('link'), o = 0; o < r.length; o++) {
+                        var n = r[o],
+                            a = n.getAttribute('data-href') || n.getAttribute('href');
+                        if ('stylesheet' === n.rel && (a === e || a === t)) return n;
+                    }
+                    var i = document.getElementsByTagName('style');
+                    for (o = 0; o < i.length; o++) {
+                        (n = i[o]), (a = n.getAttribute('data-href'));
+                        if (a === e || a === t) return n;
+                    }
+                },
+                o = o =>
+                new Promise((n, a) => {
+                    var i = r.miniCssF(o),
+                        u = r.p + i;
+                    if (t(i, u)) return n();
+                    e(o, u, null, n, a);
+                }),
+                n = { 826: 0 };
+            r.f.miniCss = (e, t) => {
+                var r = { 18: 1, 51: 1, 126: 1, 185: 1, 269: 1, 444: 1, 496: 1, 511: 1, 517: 1 };
+                n[e] ?
+                    t.push(n[e]) :
+                    0 !== n[e] &&
+                    r[e] &&
+                    t.push(
+                        (n[e] = o(e).then(
+                            () => {
+                                n[e] = 0;
+                            },
+                            t => {
+                                throw (delete n[e], t);
+                            }
+                        ))
+                    );
+            };
+        }
+    })(),
+    (() => {
+        var e = { 826: 0 };
+        (r.f.j = (t, o) => {
+            var n = r.o(e, t) ? e[t] : void 0;
+            if (0 !== n)
+                if (n) o.push(n[2]);
+                else {
+                    var a = new Promise((r, o) => (n = e[t] = [r, o]));
+                    o.push((n[2] = a));
+                    var i = r.p + r.u(t),
+                        u = new Error(),
+                        l = o => {
+                            if (r.o(e, t) && ((n = e[t]), 0 !== n && (e[t] = void 0), n)) {
+                                var a = o && ('load' === o.type ? 'missing' : o.type),
+                                    i = o && o.target && o.target.src;
+                                (u.message = 'Loading chunk ' + t + ' failed.\n(' + a + ': ' + i + ')'),
+                                (u.name = 'ChunkLoadError'),
+                                (u.type = a),
+                                (u.request = i),
+                                n[1](u);
+                            }
+                        };
+                    r.l(i, l, 'chunk-' + t, t);
+                }
+        }),
         (r.O.j = t => 0 === e[t]);
-      var t = (t, o) => {
-          var n,
-            a,
-            i = o[0],
-            u = o[1],
-            l = o[2],
-            d = 0;
-          if (i.some(t => 0 !== e[t])) {
-            for (n in u) r.o(u, n) && (r.m[n] = u[n]);
-            if (l) var s = l(r);
-          }
-          for (t && t(o); d < i.length; d++) (a = i[d]), r.o(e, a) && e[a] && e[a][0](), (e[a] = 0);
-          return r.O(s);
-        },
-        o = (self['webpackChunkpoolsuite'] = self['webpackChunkpoolsuite'] || []);
-      o.forEach(t.bind(null, 0)), (o.push = t.bind(null, o.push.bind(o)));
+        var t = (t, o) => {
+                var n,
+                    a,
+                    i = o[0],
+                    u = o[1],
+                    l = o[2],
+                    d = 0;
+                if (i.some(t => 0 !== e[t])) {
+                    for (n in u) r.o(u, n) && (r.m[n] = u[n]);
+                    if (l) var s = l(r);
+                }
+                for (t && t(o); d < i.length; d++)(a = i[d]), r.o(e, a) && e[a] && e[a][0](), (e[a] = 0);
+                return r.O(s);
+            },
+            o = (self['webpackChunkpoolsuite'] = self['webpackChunkpoolsuite'] || []);
+        o.forEach(t.bind(null, 0)), (o.push = t.bind(null, o.push.bind(o)));
     })();
-  var o = r.O(void 0, [998, 64], () => r(37495));
-  o = r.O(o);
-})();
+    var o = r.O(void 0, [998, 64], () => r(37495));
+    o = r.O(o);
+
+
+
+CHUNK-VENDORS.611CB757.JS
+
+(self['webpackChunkpoolsuite'] = self['webpackChunkpoolsuite'] || []).push([
+    [998],
+    {
+        29293: function(e, t, n) {
+            var r;
+            (function(i, o) {
+                'use strict';
+                var s = '0.7.33',
+                    a = '',
+                    u = '?',
+                    c = 'function',
+                    l = 'undefined',
+                    h = 'object',
+                    f = 'string',
+                    d = 'major',
+                    p = 'model',
+                    g = 'name',
+                    m = 'type',
+                    v = 'vendor',
+                    y = 'version',
+                    w = 'architecture',
+                    b = 'console',
+                    _ = 'mobile',
+                    I = 'tablet',
+                    E = 'smarttv',
+                    S = 'wearable',
+                    T = 'embedded',
+                    A = 350,
+                    x = 'Amazon',
+                    C = 'Apple',
+                    k = 'ASUS',
+                    O = 'BlackBerry',
+                    N = 'Browser',
+                    R = 'Chrome',
+                    P = 'Edge',
+                    D = 'Firefox',
+                    L = 'Google',
+                    j = 'Huawei',
+                    M = 'LG',
+                    F = 'Microsoft',
+                    U = 'Motorola',
+                    V = 'Opera',
+                    B = 'Samsung',
+                    $ = 'Sharp',
+                    q = 'Sony',
+                    z = 'Xiaomi',
+                    G = 'Zebra',
+                    W = 'Facebook',
+                    H = function(e, t) {
+                        var n = {};
+                        for (var r in e) t[r] && t[r].length % 2 === 0 ? (n[r] = t[r].concat(e[r])) : (n[r] = e[r]);
+                        return n;
+                    },
+                    K = function(e) {
+                        for (var t = {}, n = 0; n < e.length; n++) t[e[n].toUpperCase()] = e[n];
+                        return t;
+                    },
+                    Q = function(e, t) {
+                        return typeof e === f && -1 !== Y(t).indexOf(Y(e));
+                    },
+                    Y = function(e) {
+                        return e.toLowerCase();
+                    },
+                    X = function(e) {
+                        return typeof e === f ? e.replace(/[^\d\.]/g, a).split('.')[0] : o;
+                    },
+                    J = function(e, t) {
+                        if (typeof e === f) return (e = e.replace(/^\s\s*/, a)), typeof t === l ? e : e.substring(0, A);
+                    },
+                    Z = function(e, t) {
+                        var n,
+                            r,
+                            i,
+                            s,
+                            a,
+                            u,
+                            l = 0;
+                        while (l < t.length && !a) {
+                            var f = t[l],
+                                d = t[l + 1];
+                            n = r = 0;
+                            while (n < f.length && !a)
+                                if (((a = f[n++].exec(e)), a))
+                                    for (i = 0; i < d.length; i++)
+                                        (u = a[++r]),
+                                        (s = d[i]),
+                                        typeof s === h && s.length > 0 ?
+                                        2 === s.length ?
+                                        typeof s[1] == c ?
+                                        (this[s[0]] = s[1].call(this, u)) :
+                                        (this[s[0]] = s[1]) :
+                                        3 === s.length ?
+                                        typeof s[1] !== c || (s[1].exec && s[1].test) ?
+                                        (this[s[0]] = u ? u.replace(s[1], s[2]) : o) :
+                                        (this[s[0]] = u ? s[1].call(this, u, s[2]) : o) :
+                                        4 === s.length && (this[s[0]] = u ? s[3].call(this, u.replace(s[1], s[2])) : o) :
+                                        (this[s] = u || o);
+                            l += 2;
+                        }
+                    },
+                    ee = function(e, t) {
+                        for (var n in t)
+                            if (typeof t[n] === h && t[n].length > 0) {
+                                for (var r = 0; r < t[n].length; r++)
+                                    if (Q(t[n][r], e)) return n === u ? o : n;
+                            } else if (Q(t[n], e)) return n === u ? o : n;
+                        return e;
+                    },
+                    te = { '1.0': '/8', 1.2: '/1', 1.3: '/3', '2.0': '/412', '2.0.2': '/416', '2.0.3': '/417', '2.0.4': '/419', '?': '/' },
+                    ne = {
+                        ME: '4.90',
+                        'NT 3.11': 'NT3.51',
+                        'NT 4.0': 'NT4.0',
+                        2e3: 'NT 5.0',
+                        XP: ['NT 5.1', 'NT 5.2'],
+                        Vista: 'NT 6.0',
+                        7: 'NT 6.1',
+                        8: 'NT 6.2',
+                        8.1: 'NT 6.3',
+                        10: ['NT 6.4', 'NT 10.0'],
+                        RT: 'ARM'
+                    },
+                    re = {
+                        browser: [
+                            [/\b(?:crmo|crios)\/([\w\.]+)/i],
+                            [y, [g, 'Chrome']],
+                            [/edg(?:e|ios|a)?\/([\w\.]+)/i],
+                            [y, [g, 'Edge']],
+                            [/(opera mini)\/([-\w\.]+)/i, /(opera [mobiletab]{3,6})\b.+version\/([-\w\.]+)/i, /(opera)(?:.+version\/|[\/ ]+)([\w\.]+)/i],
+                            [g, y],
+                            [/opios[\/ ]+([\w\.]+)/i],
+                            [y, [g, V + ' Mini']],
+                            [/\bopr\/([\w\.]+)/i],
+                            [y, [g, V]],
+                            [
+                                /(kindle)\/([\w\.]+)/i,
+                                /(lunascape|maxthon|netfront|jasmine|blazer)[\/ ]?([\w\.]*)/i,
+                                /(avant |iemobile|slim)(?:browser)?[\/ ]?([\w\.]*)/i,
+                                /(ba?idubrowser)[\/ ]?([\w\.]+)/i,
+                                /(?:ms|\()(ie) ([\w\.]+)/i,
+                                /(flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark|qupzilla|falkon|rekonq|puffin|brave|whale|qqbrowserlite|qq|duckduckgo)\/([-\w\.]+)/i,
+                                /(weibo)__([\d\.]+)/i
+                            ],
+                            [g, y],
+                            [/(?:\buc? ?browser|(?:juc.+)ucweb)[\/ ]?([\w\.]+)/i],
+                            [y, [g, 'UC' + N]],
+                            [/microm.+\bqbcore\/([\w\.]+)/i, /\bqbcore\/([\w\.]+).+microm/i],
+                            [y, [g, 'WeChat(Win) Desktop']],
+                            [/micromessenger\/([\w\.]+)/i],
+                            [y, [g, 'WeChat']],
+                            [/konqueror\/([\w\.]+)/i],
+                            [y, [g, 'Konqueror']],
+                            [/trident.+rv[: ]([\w\.]{1,9})\b.+like gecko/i],
+                            [y, [g, 'IE']],
+                            [/yabrowser\/([\w\.]+)/i],
+                            [y, [g, 'Yandex']],
+                            [/(avast|avg)\/([\w\.]+)/i],
+                            [
+                                [g, /(.+)/, '$1 Secure ' + N], y
+                            ],
+                            [/\bfocus\/([\w\.]+)/i],
+                            [y, [g, D + ' Focus']],
+                            [/\bopt\/([\w\.]+)/i],
+                            [y, [g, V + ' Touch']],
+                            [/coc_coc\w+\/([\w\.]+)/i],
+                            [y, [g, 'Coc Coc']],
+                            [/dolfin\/([\w\.]+)/i],
+                            [y, [g, 'Dolphin']],
+                            [/coast\/([\w\.]+)/i],
+                            [y, [g, V + ' Coast']],
+                            [/miuibrowser\/([\w\.]+)/i],
+                            [y, [g, 'MIUI ' + N]],
+                            [/fxios\/([-\w\.]+)/i],
+                            [y, [g, D]],
+                            [/\bqihu|(qi?ho?o?|360)browser/i],
+                            [
+                                [g, '360 ' + N]
+                            ],
+                            [/(oculus|samsung|sailfish|huawei)browser\/([\w\.]+)/i],
+                            [
+                                [g, /(.+)/, '$1 ' + N], y
+                            ],
+                            [/(comodo_dragon)\/([\w\.]+)/i],
+                            [
+                                [g, /_/g, ' '], y
+                            ],
+                            [
+                                /(electron)\/([\w\.]+) safari/i,
+                                /(tesla)(?: qtcarbrowser|\/(20\d\d\.[-\w\.]+))/i,
+                                /m?(qqbrowser|baiduboxapp|2345Explorer)[\/ ]?([\w\.]+)/i
+                            ],
+                            [g, y],
+                            [/(metasr)[\/ ]?([\w\.]+)/i, /(lbbrowser)/i, /\[(linkedin)app\]/i],
+                            [g],
+                            [/((?:fban\/fbios|fb_iab\/fb4a)(?!.+fbav)|;fbav\/([\w\.]+);)/i],
+                            [
+                                [g, W], y
+                            ],
+                            [/safari (line)\/([\w\.]+)/i, /\b(line)\/([\w\.]+)\/iab/i, /(chromium|instagram)[\/ ]([-\w\.]+)/i],
+                            [g, y],
+                            [/\bgsa\/([\w\.]+) .*safari\//i],
+                            [y, [g, 'GSA']],
+                            [/headlesschrome(?:\/([\w\.]+)| )/i],
+                            [y, [g, R + ' Headless']],
+                            [/ wv\).+(chrome)\/([\w\.]+)/i],
+                            [
+                                [g, R + ' WebView'], y
+                            ],
+                            [/droid.+ version\/([\w\.]+)\b.+(?:mobile safari|safari)/i],
+                            [y, [g, 'Android ' + N]],
+                            [/(chrome|omniweb|arora|[tizenoka]{5} ?browser)\/v?([\w\.]+)/i],
+                            [g, y],
+                            [/version\/([\w\.\,]+) .*mobile\/\w+ (safari)/i],
+                            [y, [g, 'Mobile Safari']],
+                            [/version\/([\w(\.|\,)]+) .*(mobile ?safari|safari)/i],
+                            [y, g],
+                            [/webkit.+?(mobile ?safari|safari)(\/[\w\.]+)/i],
+                            [g, [y, ee, te]],
+                            [/(webkit|khtml)\/([\w\.]+)/i],
+                            [g, y],
+                            [/(navigator|netscape\d?)\/([-\w\.]+)/i],
+                            [
+                                [g, 'Netscape'], y
+                            ],
+                            [/mobile vr; rv:([\w\.]+)\).+firefox/i],
+                            [y, [g, D + ' Reality']],
+                            [
+                                /ekiohf.+(flow)\/([\w\.]+)/i,
+                                /(swiftfox)/i,
+                                /(icedragon|iceweasel|camino|chimera|fennec|maemo browser|minimo|conkeror|klar)[\/ ]?([\w\.\+]+)/i,
+                                /(seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([-\w\.]+)$/i,
+                                /(firefox)\/([\w\.]+)/i,
+                                /(mozilla)\/([\w\.]+) .+rv\:.+gecko\/\d+/i,
+                                /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir|obigo|mosaic|(?:go|ice|up)[\. ]?browser)[-\/ ]?v?([\w\.]+)/i,
+                                /(links) \(([\w\.]+)/i
+                            ],
+                            [g, y],
+                            [/(cobalt)\/([\w\.]+)/i],
+                            [g, [y, /master.|lts./, '']]
+                        ],
+                        cpu: [
+                            [/(?:(amd|x(?:(?:86|64)[-_])?|wow|win)64)[;\)]/i],
+                            [
+                                [w, 'amd64']
+                            ],
+                            [/(ia32(?=;))/i],
+                            [
+                                [w, Y]
+                            ],
+                            [/((?:i[346]|x)86)[;\)]/i],
+                            [
+                                [w, 'ia32']
+                            ],
+                            [/\b(aarch64|arm(v?8e?l?|_?64))\b/i],
+                            [
+                                [w, 'arm64']
+                            ],
+                            [/\b(arm(?:v[67])?ht?n?[fl]p?)\b/i],
+                            [
+                                [w, 'armhf']
+                            ],
+                            [/windows (ce|mobile); ppc;/i],
+                            [
+                                [w, 'arm']
+                            ],
+                            [/((?:ppc|powerpc)(?:64)?)(?: mac|;|\))/i],
+                            [
+                                [w, /ower/, a, Y]
+                            ],
+                            [/(sun4\w)[;\)]/i],
+                            [
+                                [w, 'sparc']
+                            ],
+                            [/((?:avr32|ia64(?=;))|68k(?=\))|\barm(?=v(?:[1-7]|[5-7]1)l?|;|eabi)|(?=atmel )avr|(?:irix|mips|sparc)(?:64)?\b|pa-risc)/i],
+                            [
+                                [w, Y]
+                            ]
+                        ],
+                        device: [
+                            [/\b(sch-i[89]0\d|shw-m380s|sm-[ptx]\w{2,4}|gt-[pn]\d{2,4}|sgh-t8[56]9|nexus 10)/i],
+                            [p, [v, B],
+                                [m, I]
+                            ],
+                            [/\b((?:s[cgp]h|gt|sm)-\w+|galaxy nexus)/i, /samsung[- ]([-\w]+)/i, /sec-(sgh\w+)/i],
+                            [p, [v, B],
+                                [m, _]
+                            ],
+                            [/((ipod|iphone)\d+,\d+)/i],
+                            [p, [v, C],
+                                [m, _]
+                            ],
+                            [/(ipad\d+,\d+)/i],
+                            [p, [v, C],
+                                [m, I]
+                            ],
+                            [/\((ip(?:hone|od)[\w ]*);/i],
+                            [p, [v, C],
+                                [m, _]
+                            ],
+                            [/\((ipad);[-\w\),; ]+apple/i, /applecoremedia\/[\w\.]+ \((ipad)/i, /\b(ipad)\d\d?,\d\d?[;\]].+ios/i],
+                            [p, [v, C],
+                                [m, I]
+                            ],
+                            [/(macintosh);/i],
+                            [p, [v, C]],
+                            [/\b((?:ag[rs][23]?|bah2?|sht?|btv)-a?[lw]\d{2})\b(?!.+d\/s)/i],
+                            [p, [v, j],
+                                [m, I]
+                            ],
+                            [/(?:huawei|honor)([-\w ]+)[;\)]/i, /\b(nexus 6p|\w{2,4}e?-[atu]?[ln][\dx][012359c][adn]?)\b(?!.+d\/s)/i],
+                            [p, [v, j],
+                                [m, _]
+                            ],
+                            [
+                                /\b(poco[\w ]+)(?: bui|\))/i,
+                                /\b; (\w+) build\/hm\1/i,
+                                /\b(hm[-_ ]?note?[_ ]?(?:\d\w)?) bui/i,
+                                /\b(redmi[\-_ ]?(?:note|k)?[\w_ ]+)(?: bui|\))/i,
+                                /\b(mi[-_ ]?(?:a\d|one|one[_ ]plus|note lte|max|cc)?[_ ]?(?:\d?\w?)[_ ]?(?:plus|se|lite)?)(?: bui|\))/
+                            ],
+                            [
+                                [p, /_/g, ' '],
+                                [v, z],
+                                [m, _]
+                            ],
+                            [/\b(mi[-_ ]?(?:pad)(?:[\w_ ]+))(?: bui|\))/i],
+                            [
+                                [p, /_/g, ' '],
+                                [v, z],
+                                [m, I]
+                            ],
+                            [/; (\w+) bui.+ oppo/i, /\b(cph[12]\d{3}|p(?:af|c[al]|d\w|e[ar])[mt]\d0|x9007|a101op)\b/i],
+                            [p, [v, 'OPPO'],
+                                [m, _]
+                            ],
+                            [/vivo (\w+)(?: bui|\))/i, /\b(v[12]\d{3}\w?[at])(?: bui|;)/i],
+                            [p, [v, 'Vivo'],
+                                [m, _]
+                            ],
+                            [/\b(rmx[12]\d{3})(?: bui|;|\))/i],
+                            [p, [v, 'Realme'],
+                                [m, _]
+                            ],
+                            [
+                                /\b(milestone|droid(?:[2-4x]| (?:bionic|x2|pro|razr))?:?( 4g)?)\b[\w ]+build\//i,
+                                /\bmot(?:orola)?[- ](\w*)/i,
+                                /((?:moto[\w\(\) ]+|xt\d{3,4}|nexus 6)(?= bui|\)))/i
+                            ],
+                            [p, [v, U],
+                                [m, _]
+                            ],
+                            [/\b(mz60\d|xoom[2 ]{0,2}) build\//i],
+                            [p, [v, U],
+                                [m, I]
+                            ],
+                            [/((?=lg)?[vl]k\-?\d{3}) bui| 3\.[-\w; ]{10}lg?-([06cv9]{3,4})/i],
+                            [p, [v, M],
+                                [m, I]
+                            ],
+                            [/(lm(?:-?f100[nv]?|-[\w\.]+)(?= bui|\))|nexus [45])/i, /\blg[-e;\/ ]+((?!browser|netcast|android tv)\w+)/i, /\blg-?([\d\w]+) bui/i],
+                            [p, [v, M],
+                                [m, _]
+                            ],
+                            [/(ideatab[-\w ]+)/i, /lenovo ?(s[56]000[-\w]+|tab(?:[\w ]+)|yt[-\d\w]{6}|tb[-\d\w]{6})/i],
+                            [p, [v, 'Lenovo'],
+                                [m, I]
+                            ],
+                            [/(?:maemo|nokia).*(n900|lumia \d+)/i, /nokia[-_ ]?([-\w\.]*)/i],
+                            [
+                                [p, /_/g, ' '],
+                                [v, 'Nokia'],
+                                [m, _]
+                            ],
+                            [/(pixel c)\b/i],
+                            [p, [v, L],
+                                [m, I]
+                            ],
+                            [/droid.+; (pixel[\daxl ]{0,6})(?: bui|\))/i],
+                            [p, [v, L],
+                                [m, _]
+                            ],
+                            [/droid.+ (a?\d[0-2]{2}so|[c-g]\d{4}|so[-gl]\w+|xq-a\w[4-7][12])(?= bui|\).+chrome\/(?![1-6]{0,1}\d\.))/i],
+                            [p, [v, q],
+                                [m, _]
+                            ],
+                            [/sony tablet [ps]/i, /\b(?:sony)?sgp\w+(?: bui|\))/i],
+                            [
+                                [p, 'Xperia Tablet'],
+                                [v, q],
+                                [m, I]
+                            ],
+                            [/ (kb2005|in20[12]5|be20[12][59])\b/i, /(?:one)?(?:plus)? (a\d0\d\d)(?: b|\))/i],
+                            [p, [v, 'OnePlus'],
+                                [m, _]
+                            ],
+                            [/(alexa)webm/i, /(kf[a-z]{2}wi)( bui|\))/i, /(kf[a-z]+)( bui|\)).+silk\//i],
+                            [p, [v, x],
+                                [m, I]
+                            ],
+                            [/((?:sd|kf)[0349hijorstuw]+)( bui|\)).+silk\//i],
+                            [
+                                [p, /(.+)/g, 'Fire Phone $1'],
+                                [v, x],
+                                [m, _]
+                            ],
+                            [/(playbook);[-\w\),; ]+(rim)/i],
+                            [p, v, [m, I]],
+                            [/\b((?:bb[a-f]|st[hv])100-\d)/i, /\(bb10; (\w+)/i],
+                            [p, [v, O],
+                                [m, _]
+                            ],
+                            [/(?:\b|asus_)(transfo[prime ]{4,10} \w+|eeepc|slider \w+|nexus 7|padfone|p00[cj])/i],
+                            [p, [v, k],
+                                [m, I]
+                            ],
+                            [/ (z[bes]6[027][012][km][ls]|zenfone \d\w?)\b/i],
+                            [p, [v, k],
+                                [m, _]
+                            ],
+                            [/(nexus 9)/i],
+                            [p, [v, 'HTC'],
+                                [m, I]
+                            ],
+                            [
+                                /(htc)[-;_ ]{1,2}([\w ]+(?=\)| bui)|\w+)/i,
+                                /(zte)[- ]([\w ]+?)(?: bui|\/|\))/i,
+                                /(alcatel|geeksphone|nexian|panasonic|sony(?!-bra))[-_ ]?([-\w]*)/i
+                            ],
+                            [v, [p, /_/g, ' '],
+                                [m, _]
+                            ],
+                            [/droid.+; ([ab][1-7]-?[0178a]\d\d?)/i],
+                            [p, [v, 'Acer'],
+                                [m, I]
+                            ],
+                            [/droid.+; (m[1-5] note) bui/i, /\bmz-([-\w]{2,})/i],
+                            [p, [v, 'Meizu'],
+                                [m, _]
+                            ],
+                            [/\b(sh-?[altvz]?\d\d[a-ekm]?)/i],
+                            [p, [v, $],
+                                [m, _]
+                            ],
+                            [
+                                /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[-_ ]?([-\w]*)/i,
+                                /(hp) ([\w ]+\w)/i,
+                                /(asus)-?(\w+)/i,
+                                /(microsoft); (lumia[\w ]+)/i,
+                                /(lenovo)[-_ ]?([-\w]+)/i,
+                                /(jolla)/i,
+                                /(oppo) ?([\w ]+) bui/i
+                            ],
+                            [v, p, [m, _]],
+                            [
+                                /(archos) (gamepad2?)/i,
+                                /(hp).+(touchpad(?!.+tablet)|tablet)/i,
+                                /(kindle)\/([\w\.]+)/i,
+                                /(nook)[\w ]+build\/(\w+)/i,
+                                /(dell) (strea[kpr\d ]*[\dko])/i,
+                                /(le[- ]+pan)[- ]+(\w{1,9}) bui/i,
+                                /(trinity)[- ]*(t\d{3}) bui/i,
+                                /(gigaset)[- ]+(q\w{1,9}) bui/i,
+                                /(vodafone) ([\w ]+)(?:\)| bui)/i
+                            ],
+                            [v, p, [m, I]],
+                            [/(surface duo)/i],
+                            [p, [v, F],
+                                [m, I]
+                            ],
+                            [/droid [\d\.]+; (fp\du?)(?: b|\))/i],
+                            [p, [v, 'Fairphone'],
+                                [m, _]
+                            ],
+                            [/(u304aa)/i],
+                            [p, [v, 'AT&T'],
+                                [m, _]
+                            ],
+                            [/\bsie-(\w*)/i],
+                            [p, [v, 'Siemens'],
+                                [m, _]
+                            ],
+                            [/\b(rct\w+) b/i],
+                            [p, [v, 'RCA'],
+                                [m, I]
+                            ],
+                            [/\b(venue[\d ]{2,7}) b/i],
+                            [p, [v, 'Dell'],
+                                [m, I]
+                            ],
+                            [/\b(q(?:mv|ta)\w+) b/i],
+                            [p, [v, 'Verizon'],
+                                [m, I]
+                            ],
+                            [/\b(?:barnes[& ]+noble |bn[rt])([\w\+ ]*) b/i],
+                            [p, [v, 'Barnes & Noble'],
+                                [m, I]
+                            ],
+                            [/\b(tm\d{3}\w+) b/i],
+                            [p, [v, 'NuVision'],
+                                [m, I]
+                            ],
+                            [/\b(k88) b/i],
+                            [p, [v, 'ZTE'],
+                                [m, I]
+                            ],
+                            [/\b(nx\d{3}j) b/i],
+                            [p, [v, 'ZTE'],
+                                [m, _]
+                            ],
+                            [/\b(gen\d{3}) b.+49h/i],
+                            [p, [v, 'Swiss'],
+                                [m, _]
+                            ],
+                            [/\b(zur\d{3}) b/i],
+                            [p, [v, 'Swiss'],
+                                [m, I]
+                            ],
+                            [/\b((zeki)?tb.*\b) b/i],
+                            [p, [v, 'Zeki'],
+                                [m, I]
+                            ],
+                            [/\b([yr]\d{2}) b/i, /\b(dragon[- ]+touch |dt)(\w{5}) b/i],
+                            [
+                                [v, 'Dragon Touch'], p, [m, I]
+                            ],
+                            [/\b(ns-?\w{0,9}) b/i],
+                            [p, [v, 'Insignia'],
+                                [m, I]
+                            ],
+                            [/\b((nxa|next)-?\w{0,9}) b/i],
+                            [p, [v, 'NextBook'],
+                                [m, I]
+                            ],
+                            [/\b(xtreme\_)?(v(1[045]|2[015]|[3469]0|7[05])) b/i],
+                            [
+                                [v, 'Voice'], p, [m, _]
+                            ],
+                            [/\b(lvtel\-)?(v1[12]) b/i],
+                            [
+                                [v, 'LvTel'], p, [m, _]
+                            ],
+                            [/\b(ph-1) /i],
+                            [p, [v, 'Essential'],
+                                [m, _]
+                            ],
+                            [/\b(v(100md|700na|7011|917g).*\b) b/i],
+                            [p, [v, 'Envizen'],
+                                [m, I]
+                            ],
+                            [/\b(trio[-\w\. ]+) b/i],
+                            [p, [v, 'MachSpeed'],
+                                [m, I]
+                            ],
+                            [/\btu_(1491) b/i],
+                            [p, [v, 'Rotor'],
+                                [m, I]
+                            ],
+                            [/(shield[\w ]+) b/i],
+                            [p, [v, 'Nvidia'],
+                                [m, I]
+                            ],
+                            [/(sprint) (\w+)/i],
+                            [v, p, [m, _]],
+                            [/(kin\.[onetw]{3})/i],
+                            [
+                                [p, /\./g, ' '],
+                                [v, F],
+                                [m, _]
+                            ],
+                            [/droid.+; (cc6666?|et5[16]|mc[239][23]x?|vc8[03]x?)\)/i],
+                            [p, [v, G],
+                                [m, I]
+                            ],
+                            [/droid.+; (ec30|ps20|tc[2-8]\d[kx])\)/i],
+                            [p, [v, G],
+                                [m, _]
+                            ],
+                            [/(ouya)/i, /(nintendo) ([wids3utch]+)/i],
+                            [v, p, [m, b]],
+                            [/droid.+; (shield) bui/i],
+                            [p, [v, 'Nvidia'],
+                                [m, b]
+                            ],
+                            [/(playstation [345portablevi]+)/i],
+                            [p, [v, q],
+                                [m, b]
+                            ],
+                            [/\b(xbox(?: one)?(?!; xbox))[\); ]/i],
+                            [p, [v, F],
+                                [m, b]
+                            ],
+                            [/smart-tv.+(samsung)/i],
+                            [v, [m, E]],
+                            [/hbbtv.+maple;(\d+)/i],
+                            [
+                                [p, /^/, 'SmartTV'],
+                                [v, B],
+                                [m, E]
+                            ],
+                            [/(nux; netcast.+smarttv|lg (netcast\.tv-201\d|android tv))/i],
+                            [
+                                [v, M],
+                                [m, E]
+                            ],
+                            [/(apple) ?tv/i],
+                            [v, [p, C + ' TV'],
+                                [m, E]
+                            ],
+                            [/crkey/i],
+                            [
+                                [p, R + 'cast'],
+                                [v, L],
+                                [m, E]
+                            ],
+                            [/droid.+aft(\w)( bui|\))/i],
+                            [p, [v, x],
+                                [m, E]
+                            ],
+                            [/\(dtv[\);].+(aquos)/i, /(aquos-tv[\w ]+)\)/i],
+                            [p, [v, $],
+                                [m, E]
+                            ],
+                            [/(bravia[\w ]+)( bui|\))/i],
+                            [p, [v, q],
+                                [m, E]
+                            ],
+                            [/(mitv-\w{5}) bui/i],
+                            [p, [v, z],
+                                [m, E]
+                            ],
+                            [/\b(roku)[\dx]*[\)\/]((?:dvp-)?[\d\.]*)/i, /hbbtv\/\d+\.\d+\.\d+ +\([\w ]*; *(\w[^;]*);([^;]*)/i],
+                            [
+                                [v, J],
+                                [p, J],
+                                [m, E]
+                            ],
+                            [/\b(android tv|smart[- ]?tv|opera tv|tv; rv:)\b/i],
+                            [
+                                [m, E]
+                            ],
+                            [/((pebble))app/i],
+                            [v, p, [m, S]],
+                            [/droid.+; (glass) \d/i],
+                            [p, [v, L],
+                                [m, S]
+                            ],
+                            [/droid.+; (wt63?0{2,3})\)/i],
+                            [p, [v, G],
+                                [m, S]
+                            ],
+                            [/(quest( 2)?)/i],
+                            [p, [v, W],
+                                [m, S]
+                            ],
+                            [/(tesla)(?: qtcarbrowser|\/[-\w\.]+)/i],
+                            [v, [m, T]],
+                            [/droid .+?; ([^;]+?)(?: bui|\) applew).+? mobile safari/i],
+                            [p, [m, _]],
+                            [/droid .+?; ([^;]+?)(?: bui|\) applew).+?(?! mobile) safari/i],
+                            [p, [m, I]],
+                            [/\b((tablet|tab)[;\/]|focus\/\d(?!.+mobile))/i],
+                            [
+                                [m, I]
+                            ],
+                            [/(phone|mobile(?:[;\/]| [ \w\/\.]*safari)|pda(?=.+windows ce))/i],
+                            [
+                                [m, _]
+                            ],
+                            [/(android[-\w\. ]{0,9});.+buil/i],
+                            [p, [v, 'Generic']]
+                        ],
+                        engine: [
+                            [/windows.+ edge\/([\w\.]+)/i],
+                            [y, [g, P + 'HTML']],
+                            [/webkit\/537\.36.+chrome\/(?!27)([\w\.]+)/i],
+                            [y, [g, 'Blink']],
+                            [
+                                /(presto)\/([\w\.]+)/i,
+                                /(webkit|trident|netfront|netsurf|amaya|lynx|w3m|goanna)\/([\w\.]+)/i,
+                                /ekioh(flow)\/([\w\.]+)/i,
+                                /(khtml|tasman|links)[\/ ]\(?([\w\.]+)/i,
+                                /(icab)[\/ ]([23]\.[\d\.]+)/i
+                            ],
+                            [g, y],
+                            [/rv\:([\w\.]{1,9})\b.+(gecko)/i],
+                            [y, g]
+                        ],
+                        os: [
+                            [/microsoft (windows) (vista|xp)/i],
+                            [g, y],
+                            [/(windows) nt 6\.2; (arm)/i, /(windows (?:phone(?: os)?|mobile))[\/ ]?([\d\.\w ]*)/i, /(windows)[\/ ]?([ntce\d\. ]+\w)(?!.+xbox)/i],
+                            [g, [y, ee, ne]],
+                            [/(win(?=3|9|n)|win 9x )([nt\d\.]+)/i],
+                            [
+                                [g, 'Windows'],
+                                [y, ee, ne]
+                            ],
+                            [/ip[honead]{2,4}\b(?:.*os ([\w]+) like mac|; opera)/i, /cfnetwork\/.+darwin/i],
+                            [
+                                [y, /_/g, '.'],
+                                [g, 'iOS']
+                            ],
+                            [/(mac os x) ?([\w\. ]*)/i, /(macintosh|mac_powerpc\b)(?!.+haiku)/i],
+                            [
+                                [g, 'Mac OS'],
+                                [y, /_/g, '.']
+                            ],
+                            [/droid ([\w\.]+)\b.+(android[- ]x86|harmonyos)/i],
+                            [y, g],
+                            [
+                                /(android|webos|qnx|bada|rim tablet os|maemo|meego|sailfish)[-\/ ]?([\w\.]*)/i,
+                                /(blackberry)\w*\/([\w\.]*)/i,
+                                /(tizen|kaios)[\/ ]([\w\.]+)/i,
+                                /\((series40);/i
+                            ],
+                            [g, y],
+                            [/\(bb(10);/i],
+                            [y, [g, O]],
+                            [/(?:symbian ?os|symbos|s60(?=;)|series60)[-\/ ]?([\w\.]*)/i],
+                            [y, [g, 'Symbian']],
+                            [/mozilla\/[\d\.]+ \((?:mobile|tablet|tv|mobile; [\w ]+); rv:.+ gecko\/([\w\.]+)/i],
+                            [y, [g, D + ' OS']],
+                            [/web0s;.+rt(tv)/i, /\b(?:hp)?wos(?:browser)?\/([\w\.]+)/i],
+                            [y, [g, 'webOS']],
+                            [/crkey\/([\d\.]+)/i],
+                            [y, [g, R + 'cast']],
+                            [/(cros) [\w]+ ([\w\.]+\w)/i],
+                            [
+                                [g, 'Chromium OS'], y
+                            ],
+                            [
+                                /(nintendo|playstation) ([wids345portablevuch]+)/i,
+                                /(xbox); +xbox ([^\);]+)/i,
+                                /\b(joli|palm)\b ?(?:os)?\/?([\w\.]*)/i,
+                                /(mint)[\/\(\) ]?(\w*)/i,
+                                /(mageia|vectorlinux)[; ]/i,
+                                /([kxln]?ubuntu|debian|suse|opensuse|gentoo|arch(?= linux)|slackware|fedora|mandriva|centos|pclinuxos|red ?hat|zenwalk|linpus|raspbian|plan 9|minix|risc os|contiki|deepin|manjaro|elementary os|sabayon|linspire)(?: gnu\/linux)?(?: enterprise)?(?:[- ]linux)?(?:-gnu)?[-\/ ]?(?!chrom|package)([-\w\.]*)/i,
+                                /(hurd|linux) ?([\w\.]*)/i,
+                                /(gnu) ?([\w\.]*)/i,
+                                /\b([-frentopcghs]{0,5}bsd|dragonfly)[\/ ]?(?!amd|[ix346]{1,2}86)([\w\.]*)/i,
+                                /(haiku) (\w+)/i
+                            ],
+                            [g, y],
+                            [/(sunos) ?([\w\.\d]*)/i],
+                            [
+                                [g, 'Solaris'], y
+                            ],
+                            [
+                                /((?:open)?solaris)[-\/ ]?([\w\.]*)/i,
+                                /(aix) ((\d)(?=\.|\)| )[\w\.])*/i,
+                                /\b(beos|os\/2|amigaos|morphos|openvms|fuchsia|hp-ux)/i,
+                                /(unix) ?([\w\.]*)/i
+                            ],
+                            [g, y]
+                        ]
+                    },
+                    ie = function(e, t) {
+                        if ((typeof e === h && ((t = e), (e = o)), !(this instanceof ie))) return new ie(e, t).getResult();
+                        var n = e || (typeof i !== l && i.navigator && i.navigator.userAgent ? i.navigator.userAgent : a),
+                            r = t ? H(re, t) : re;
+                        return (
+                            (this.getBrowser = function() {
+                                var e = {};
+                                return (e[g] = o), (e[y] = o), Z.call(e, n, r.browser), (e.major = X(e.version)), e;
+                            }),
+                            (this.getCPU = function() {
+                                var e = {};
+                                return (e[w] = o), Z.call(e, n, r.cpu), e;
+                            }),
+                            (this.getDevice = function() {
+                                var e = {};
+                                return (e[v] = o), (e[p] = o), (e[m] = o), Z.call(e, n, r.device), e;
+                            }),
+                            (this.getEngine = function() {
+                                var e = {};
+                                return (e[g] = o), (e[y] = o), Z.call(e, n, r.engine), e;
+                            }),
+                            (this.getOS = function() {
+                                var e = {};
+                                return (e[g] = o), (e[y] = o), Z.call(e, n, r.os), e;
+                            }),
+                            (this.getResult = function() {
+                                return {
+                                    ua: this.getUA(),
+                                    browser: this.getBrowser(),
+                                    engine: this.getEngine(),
+                                    os: this.getOS(),
+                                    device: this.getDevice(),
+                                    cpu: this.getCPU()
+                                };
+                            }),
+                            (this.getUA = function() {
+                                return n;
+                            }),
+                            (this.setUA = function(e) {
+                                return (n = typeof e === f && e.length > A ? J(e, A) : e), this;
+                            }),
+                            this.setUA(n),
+                            this
+                        );
+                    };
+                (ie.VERSION = s),
+                (ie.BROWSER = K([g, y, d])),
+                (ie.CPU = K([w])),
+                (ie.DEVICE = K([p, v, m, b, _, E, I, S, T])),
+                (ie.ENGINE = ie.OS = K([g, y])),
+                typeof t !== l ?
+                    ('object' !== l && e.exports && (t = e.exports = ie), (t.UAParser = ie)) :
+                    'function' === c && n.amdO ?
+                    ((r = function() {
+                            return ie;
+                        }.call(t, n, t, e)),
+                        r === o || (e.exports = r)) :
+                    typeof i !== l && (i.UAParser = ie);
+                var oe = typeof i !== l && (i.jQuery || i.Zepto);
+                if (oe && !oe.ua) {
+                    var se = new ie();
+                    (oe.ua = se.getResult()),
+                    (oe.ua.get = function() {
+                        return se.getUA();
+                    }),
+                    (oe.ua.set = function(e) {
+                        se.setUA(e);
+                        var t = se.getResult();
+                        for (var n in t) oe.ua[n] = t[n];
+                    });
+                }
+            })('object' === typeof window ? window : this);
+        },
+        52621: (e, t, n) => {
+            e.exports = n(48438);
+        },
+        46037: (e, t, n) => {
+            'use strict';
+            var r = n(29123),
+                i = n(28278),
+                o = n(45721),
+                s = n(86870),
+                a = n(80102),
+                u = n(13631),
+                c = n(8119);
+            e.exports = function(e) {
+                return new Promise(function(t, l) {
+                    var h = e.data,
+                        f = e.headers;
+                    r.isFormData(h) && delete f['Content-Type'];
+                    var d = new XMLHttpRequest(),
+                        p = 'onreadystatechange',
+                        g = !1;
+                    if (
+                        ('undefined' === typeof window ||
+                            !window.XDomainRequest ||
+                            'withCredentials' in d ||
+                            a(e.url) ||
+                            ((d = new window.XDomainRequest()), (p = 'onload'), (g = !0), (d.onprogress = function() {}), (d.ontimeout = function() {})),
+                            e.auth)
+                    ) {
+                        var m = e.auth.username || '',
+                            v = e.auth.password || '';
+                        f.Authorization = 'Basic ' + c(m + ':' + v);
+                    }
+                    if (
+                        (d.open(e.method.toUpperCase(), o(e.url, e.params, e.paramsSerializer), !0),
+                            (d.timeout = e.timeout),
+                            (d[p] = function() {
+                                if (d && (4 === d.readyState || g) && (0 !== d.status || (d.responseURL && 0 === d.responseURL.indexOf('file:')))) {
+                                    var n = 'getAllResponseHeaders' in d ? s(d.getAllResponseHeaders()) : null,
+                                        r = e.responseType && 'text' !== e.responseType ? d.response : d.responseText,
+                                        o = {
+                                            data: r,
+                                            status: 1223 === d.status ? 204 : d.status,
+                                            statusText: 1223 === d.status ? 'No Content' : d.statusText,
+                                            headers: n,
+                                            config: e,
+                                            request: d
+                                        };
+                                    i(t, l, o), (d = null);
+                                }
+                            }),
+                            (d.onerror = function() {
+                                l(u('Network Error', e, null, d)), (d = null);
+                            }),
+                            (d.ontimeout = function() {
+                                l(u('timeout of ' + e.timeout + 'ms exceeded', e, 'ECONNABORTED', d)), (d = null);
+                            }),
+                            r.isStandardBrowserEnv())
+                    ) {
+                        var y = n(51297),
+                            w = (e.withCredentials || a(e.url)) && e.xsrfCookieName ? y.read(e.xsrfCookieName) : void 0;
+                        w && (f[e.xsrfHeaderName] = w);
+                    }
+                    if (
+                        ('setRequestHeader' in d &&
+                            r.forEach(f, function(e, t) {
+                                'undefined' === typeof h && 'content-type' === t.toLowerCase() ? delete f[t] : d.setRequestHeader(t, e);
+                            }),
+                            e.withCredentials && (d.withCredentials = !0),
+                            e.responseType)
+                    )
+                        try {
+                            d.responseType = e.responseType;
+                        } catch (b) {
+                            if ('json' !== e.responseType) throw b;
+                        }
+                    'function' === typeof e.onDownloadProgress && d.addEventListener('progress', e.onDownloadProgress),
+                        'function' === typeof e.onUploadProgress && d.upload && d.upload.addEventListener('progress', e.onUploadProgress),
+                        e.cancelToken &&
+                        e.cancelToken.promise.then(function(e) {
+                            d && (d.abort(), l(e), (d = null));
+                        }),
+                        void 0 === h && (h = null),
+                        d.send(h);
+                });
+            };
+        },
+        48438: (e, t, n) => {
+            'use strict';
+            var r = n(29123),
+                i = n(32885),
+                o = n(53544),
+                s = n(90436);
+
+            function a(e) {
+                var t = new o(e),
+                    n = i(o.prototype.request, t);
+                return r.extend(n, o.prototype, t), r.extend(n, t), n;
+            }
+            var u = a(s);
+            (u.Axios = o),
+            (u.create = function(e) {
+                return a(r.merge(s, e));
+            }),
+            (u.Cancel = n(5870)),
+            (u.CancelToken = n(63648)),
+            (u.isCancel = n(32943)),
+            (u.all = function(e) {
+                return Promise.all(e);
+            }),
+            (u.spread = n(38264)),
+            (e.exports = u),
+            (e.exports['default'] = u);
+        },
+        5870: e => {
+            'use strict';
+
+            function t(e) {
+                this.message = e;
+            }
+            (t.prototype.toString = function() {
+                return 'Cancel' + (this.message ? ': ' + this.message : '');
+            }),
+            (t.prototype.__CANCEL__ = !0),
+            (e.exports = t);
+        },
+        63648: (e, t, n) => {
+            'use strict';
+            var r = n(5870);
+
+            function i(e) {
+                if ('function' !== typeof e) throw new TypeError('executor must be a function.');
+                var t;
+                this.promise = new Promise(function(e) {
+                    t = e;
+                });
+                var n = this;
+                e(function(e) {
+                    n.reason || ((n.reason = new r(e)), t(n.reason));
+                });
+            }
+            (i.prototype.throwIfRequested = function() {
+                if (this.reason) throw this.reason;
+            }),
+            (i.source = function() {
+                var e,
+                    t = new i(function(t) {
+                        e = t;
+                    });
+                return { token: t, cancel: e };
+            }),
+            (e.exports = i);
+        },
+        32943: e => {
+            'use strict';
+            e.exports = function(e) {
+                return !(!e || !e.__CANCEL__);
+            };
+        },
+        53544: (e, t, n) => {
+            'use strict';
+            var r = n(90436),
+                i = n(29123),
+                o = n(50488),
+                s = n(54721);
+
+            function a(e) {
+                (this.defaults = e), (this.interceptors = { request: new o(), response: new o() });
+            }
+            (a.prototype.request = function(e) {
+                'string' === typeof e && (e = i.merge({ url: arguments[0] }, arguments[1])),
+                    (e = i.merge(r, this.defaults, { method: 'get' }, e)),
+                    (e.method = e.method.toLowerCase());
+                var t = [s, void 0],
+                    n = Promise.resolve(e);
+                this.interceptors.request.forEach(function(e) {
+                        t.unshift(e.fulfilled, e.rejected);
+                    }),
+                    this.interceptors.response.forEach(function(e) {
+                        t.push(e.fulfilled, e.rejected);
+                    });
+                while (t.length) n = n.then(t.shift(), t.shift());
+                return n;
+            }),
+            i.forEach(['delete', 'get', 'head', 'options'], function(e) {
+                    a.prototype[e] = function(t, n) {
+                        return this.request(i.merge(n || {}, { method: e, url: t }));
+                    };
+                }),
+                i.forEach(['post', 'put', 'patch'], function(e) {
+                    a.prototype[e] = function(t, n, r) {
+                        return this.request(i.merge(r || {}, { method: e, url: t, data: n }));
+                    };
+                }),
+                (e.exports = a);
+        },
+        50488: (e, t, n) => {
+            'use strict';
+            var r = n(29123);
+
+            function i() {
+                this.handlers = [];
+            }
+            (i.prototype.use = function(e, t) {
+                return this.handlers.push({ fulfilled: e, rejected: t }), this.handlers.length - 1;
+            }),
+            (i.prototype.eject = function(e) {
+                this.handlers[e] && (this.handlers[e] = null);
+            }),
+            (i.prototype.forEach = function(e) {
+                r.forEach(this.handlers, function(t) {
+                    null !== t && e(t);
+                });
+            }),
+            (e.exports = i);
+        },
+        13631: (e, t, n) => {
+            'use strict';
+            var r = n(19354);
+            e.exports = function(e, t, n, i, o) {
+                var s = new Error(e);
+                return r(s, t, n, i, o);
+            };
+        },
+        54721: (e, t, n) => {
+            'use strict';
+            var r = n(29123),
+                i = n(85064),
+                o = n(32943),
+                s = n(90436),
+                a = n(17388),
+                u = n(98006);
+
+            function c(e) {
+                e.cancelToken && e.cancelToken.throwIfRequested();
+            }
+            e.exports = function(e) {
+                c(e),
+                    e.baseURL && !a(e.url) && (e.url = u(e.baseURL, e.url)),
+                    (e.headers = e.headers || {}),
+                    (e.data = i(e.data, e.headers, e.transformRequest)),
+                    (e.headers = r.merge(e.headers.common || {}, e.headers[e.method] || {}, e.headers || {})),
+                    r.forEach(['delete', 'get', 'head', 'post', 'put', 'patch', 'common'], function(t) {
+                        delete e.headers[t];
+                    });
+                var t = e.adapter || s.adapter;
+                return t(e).then(
+                    function(t) {
+                        return c(e), (t.data = i(t.data, t.headers, e.transformResponse)), t;
+                    },
+                    function(t) {
+                        return (
+                            o(t) || (c(e), t && t.response && (t.response.data = i(t.response.data, t.response.headers, e.transformResponse))), Promise.reject(t)
+                        );
+                    }
+                );
+            };
+        },
+        19354: e => {
+            'use strict';
+            e.exports = function(e, t, n, r, i) {
+                return (e.config = t), n && (e.code = n), (e.request = r), (e.response = i), e;
+            };
+        },
+        28278: (e, t, n) => {
+            'use strict';
+            var r = n(13631);
+            e.exports = function(e, t, n) {
+                var i = n.config.validateStatus;
+                n.status && i && !i(n.status) ? t(r('Request failed with status code ' + n.status, n.config, null, n.request, n)) : e(n);
+            };
+        },
+        85064: (e, t, n) => {
+            'use strict';
+            var r = n(29123);
+            e.exports = function(e, t, n) {
+                return (
+                    r.forEach(n, function(n) {
+                        e = n(e, t);
+                    }),
+                    e
+                );
+            };
+        },
+        90436: (e, t, n) => {
+            'use strict';
+            var r = n(29123),
+                i = n(10182),
+                o = { 'Content-Type': 'application/x-www-form-urlencoded' };
+
+            function s(e, t) {
+                !r.isUndefined(e) && r.isUndefined(e['Content-Type']) && (e['Content-Type'] = t);
+            }
+
+            function a() {
+                var e;
+                return ('undefined' !== typeof XMLHttpRequest || 'undefined' !== typeof process) && (e = n(46037)), e;
+            }
+            var u = {
+                adapter: a(),
+                transformRequest: [
+                    function(e, t) {
+                        return (
+                            i(t, 'Content-Type'),
+                            r.isFormData(e) || r.isArrayBuffer(e) || r.isBuffer(e) || r.isStream(e) || r.isFile(e) || r.isBlob(e) ?
+                            e :
+                            r.isArrayBufferView(e) ?
+                            e.buffer :
+                            r.isURLSearchParams(e) ?
+                            (s(t, 'application/x-www-form-urlencoded;charset=utf-8'), e.toString()) :
+                            r.isObject(e) ?
+                            (s(t, 'application/json;charset=utf-8'), JSON.stringify(e)) :
+                            e
+                        );
+                    }
+                ],
+                transformResponse: [
+                    function(e) {
+                        if ('string' === typeof e)
+                            try {
+                                e = JSON.parse(e);
+                            } catch (t) {}
+                        return e;
+                    }
+                ],
+                timeout: 0,
+                xsrfCookieName: 'XSRF-TOKEN',
+                xsrfHeaderName: 'X-XSRF-TOKEN',
+                maxContentLength: -1,
+                validateStatus: function(e) {
+                    return e >= 200 && e < 300;
+                },
+                headers: { common: { Accept: 'application/json, text/plain, */*' } }
+            };
+            r.forEach(['delete', 'get', 'head'], function(e) {
+                    u.headers[e] = {};
+                }),
+                r.forEach(['post', 'put', 'patch'], function(e) {
+                    u.headers[e] = r.merge(o);
+                }),
+                (e.exports = u);
+        },
+        32885: e => {
+            'use strict';
+            e.exports = function(e, t) {
+                return function() {
+                    for (var n = new Array(arguments.length), r = 0; r < n.length; r++) n[r] = arguments[r];
+                    return e.apply(t, n);
+                };
+            };
+        },
+        8119: e => {
+            'use strict';
+            var t = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+            function n() {
+                this.message = 'String contains an invalid character';
+            }
+
+            function r(e) {
+                for (var r, i, o = String(e), s = '', a = 0, u = t; o.charAt(0 | a) || ((u = '='), a % 1); s += u.charAt(63 & (r >> (8 - (a % 1) * 8)))) {
+                    if (((i = o.charCodeAt((a += 3 / 4))), i > 255)) throw new n();
+                    r = (r << 8) | i;
+                }
+                return s;
+            }
+            (n.prototype = new Error()), (n.prototype.code = 5), (n.prototype.name = 'InvalidCharacterError'), (e.exports = r);
+        },
+        45721: (e, t, n) => {
+            'use strict';
+            var r = n(29123);
+
+            function i(e) {
+                return encodeURIComponent(e)
+                    .replace(/%40/gi, '@')
+                    .replace(/%3A/gi, ':')
+                    .replace(/%24/g, '$')
+                    .replace(/%2C/gi, ',')
+                    .replace(/%20/g, '+')
+                    .replace(/%5B/gi, '[')
+                    .replace(/%5D/gi, ']');
+            }
+            e.exports = function(e, t, n) {
+                if (!t) return e;
+                var o;
+                if (n) o = n(t);
+                else if (r.isURLSearchParams(t)) o = t.toString();
+                else {
+                    var s = [];
+                    r.forEach(t, function(e, t) {
+                            null !== e &&
+                                'undefined' !== typeof e &&
+                                (r.isArray(e) && (t += '[]'),
+                                    r.isArray(e) || (e = [e]),
+                                    r.forEach(e, function(e) {
+                                        r.isDate(e) ? (e = e.toISOString()) : r.isObject(e) && (e = JSON.stringify(e)), s.push(i(t) + '=' + i(e));
+                                    }));
+                        }),
+                        (o = s.join('&'));
+                }
+                return o && (e += (-1 === e.indexOf('?') ? '?' : '&') + o), e;
+            };
+        },
+        98006: e => {
+            'use strict';
+            e.exports = function(e, t) {
+                return t ? e.replace(/\/+$/, '') + '/' + t.replace(/^\/+/, '') : e;
+            };
+        },
+        51297: (e, t, n) => {
+            'use strict';
+            var r = n(29123);
+            e.exports = r.isStandardBrowserEnv() ?
+                (function() {
+                    return {
+                        write: function(e, t, n, i, o, s) {
+                            var a = [];
+                            a.push(e + '=' + encodeURIComponent(t)),
+                                r.isNumber(n) && a.push('expires=' + new Date(n).toGMTString()),
+                                r.isString(i) && a.push('path=' + i),
+                                r.isString(o) && a.push('domain=' + o), !0 === s && a.push('secure'),
+                                (document.cookie = a.join('; '));
+                        },
+                        read: function(e) {
+                            var t = document.cookie.match(new RegExp('(^|;\\s*)(' + e + ')=([^;]*)'));
+                            return t ? decodeURIComponent(t[3]) : null;
+                        },
+                        remove: function(e) {
+                            this.write(e, '', Date.now() - 864e5);
+                        }
+                    };
+                })() :
+                (function() {
+                    return {
+                        write: function() {},
+                        read: function() {
+                            return null;
+                        },
+                        remove: function() {}
+                    };
+                })();
+        },
+        17388: e => {
+            'use strict';
+            e.exports = function(e) {
+                return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(e);
+            };
+        },
+        80102: (e, t, n) => {
+            'use strict';
+            var r = n(29123);
+            e.exports = r.isStandardBrowserEnv() ?
+                (function() {
+                    var e,
+                        t = /(msie|trident)/i.test(navigator.userAgent),
+                        n = document.createElement('a');
+
+                    function i(e) {
+                        var r = e;
+                        return (
+                            t && (n.setAttribute('href', r), (r = n.href)),
+                            n.setAttribute('href', r), {
+                                href: n.href,
+                                protocol: n.protocol ? n.protocol.replace(/:$/, '') : '',
+                                host: n.host,
+                                search: n.search ? n.search.replace(/^\?/, '') : '',
+                                hash: n.hash ? n.hash.replace(/^#/, '') : '',
+                                hostname: n.hostname,
+                                port: n.port,
+                                pathname: '/' === n.pathname.charAt(0) ? n.pathname : '/' + n.pathname
+                            }
+                        );
+                    }
+                    return (
+                        (e = i(window.location.href)),
+                        function(t) {
+                            var n = r.isString(t) ? i(t) : t;
+                            return n.protocol === e.protocol && n.host === e.host;
+                        }
+                    );
+                })() :
+                (function() {
+                    return function() {
+                        return !0;
+                    };
+                })();
+        },
+        10182: (e, t, n) => {
+            'use strict';
+            var r = n(29123);
+            e.exports = function(e, t) {
+                r.forEach(e, function(n, r) {
+                    r !== t && r.toUpperCase() === t.toUpperCase() && ((e[t] = n), delete e[r]);
+                });
+            };
+        },
+        86870: (e, t, n) => {
+            'use strict';
+            var r = n(29123),
+                i = [
+                    'age',
+                    'authorization',
+                    'content-length',
+                    'content-type',
+                    'etag',
+                    'expires',
+                    'from',
+                    'host',
+                    'if-modified-since',
+                    'if-unmodified-since',
+                    'last-modified',
+                    'location',
+                    'max-forwards',
+                    'proxy-authorization',
+                    'referer',
+                    'retry-after',
+                    'user-agent'
+                ];
+            e.exports = function(e) {
+                var t,
+                    n,
+                    o,
+                    s = {};
+                return e ?
+                    (r.forEach(e.split('\n'), function(e) {
+                            if (((o = e.indexOf(':')), (t = r.trim(e.substr(0, o)).toLowerCase()), (n = r.trim(e.substr(o + 1))), t)) {
+                                if (s[t] && i.indexOf(t) >= 0) return;
+                                s[t] = 'set-cookie' === t ? (s[t] ? s[t] : []).concat([n]) : s[t] ? s[t] + ', ' + n : n;
+                            }
+                        }),
+                        s) :
+                    s;
+            };
+        },
+        38264: e => {
+            'use strict';
+            e.exports = function(e) {
+                return function(t) {
+                    return e.apply(null, t);
+                };
+            };
+        },
+        29123: (e, t, n) => {
+            'use strict';
+            var r = n(32885),
+                i = n(48738),
+                o = Object.prototype.toString;
+
+            function s(e) {
+                return '[object Array]' === o.call(e);
+            }
+
+            function a(e) {
+                return '[object ArrayBuffer]' === o.call(e);
+            }
+
+            function u(e) {
+                return 'undefined' !== typeof FormData && e instanceof FormData;
+            }
+
+            function c(e) {
+                var t;
+                return (
+                    (t = 'undefined' !== typeof ArrayBuffer && ArrayBuffer.isView ? ArrayBuffer.isView(e) : e && e.buffer && e.buffer instanceof ArrayBuffer), t
+                );
+            }
+
+            function l(e) {
+                return 'string' === typeof e;
+            }
+
+            function h(e) {
+                return 'number' === typeof e;
+            }
+
+            function f(e) {
+                return 'undefined' === typeof e;
+            }
+
+            function d(e) {
+                return null !== e && 'object' === typeof e;
+            }
+
+            function p(e) {
+                return '[object Date]' === o.call(e);
+            }
+
+            function g(e) {
+                return '[object File]' === o.call(e);
+            }
+
+            function m(e) {
+                return '[object Blob]' === o.call(e);
+            }
+
+            function v(e) {
+                return '[object Function]' === o.call(e);
+            }
+
+            function y(e) {
+                return d(e) && v(e.pipe);
+            }
+
+            function w(e) {
+                return 'undefined' !== typeof URLSearchParams && e instanceof URLSearchParams;
+            }
+
+            function b(e) {
+                return e.replace(/^\s*/, '').replace(/\s*$/, '');
+            }
+
+            function _() {
+                return (
+                    ('undefined' === typeof navigator || 'ReactNative' !== navigator.product) &&
+                    'undefined' !== typeof window &&
+                    'undefined' !== typeof document
+                );
+            }
+
+            function I(e, t) {
+                if (null !== e && 'undefined' !== typeof e)
+                    if (('object' !== typeof e && (e = [e]), s(e)))
+                        for (var n = 0, r = e.length; n < r; n++) t.call(null, e[n], n, e);
+                    else
+                        for (var i in e) Object.prototype.hasOwnProperty.call(e, i) && t.call(null, e[i], i, e);
+            }
+
+            function E() {
+                var e = {};
+
+                function t(t, n) {
+                    'object' === typeof e[n] && 'object' === typeof t ? (e[n] = E(e[n], t)) : (e[n] = t);
+                }
+                for (var n = 0, r = arguments.length; n < r; n++) I(arguments[n], t);
+                return e;
+            }
+
+            function S(e, t, n) {
+                return (
+                    I(t, function(t, i) {
+                        e[i] = n && 'function' === typeof t ? r(t, n) : t;
+                    }),
+                    e
+                );
+            }
+            e.exports = {
+                isArray: s,
+                isArrayBuffer: a,
+                isBuffer: i,
+                isFormData: u,
+                isArrayBufferView: c,
+                isString: l,
+                isNumber: h,
+                isObject: d,
+                isUndefined: f,
+                isDate: p,
+                isFile: g,
+                isBlob: m,
+                isFunction: v,
+                isStream: y,
+                isURLSearchParams: w,
+                isStandardBrowserEnv: _,
+                forEach: I,
+                merge: E,
+                extend: S,
+                trim: b
+            };
+        },
+
+
+
+    }
 
 
 
@@ -5573,1110 +7116,1094 @@ SCRIPT.JS
 CHUNK-COMMON.159427C0.JS
 
 (self['webpackChunkpoolsuite'] = self['webpackChunkpoolsuite'] || []).push([
-  [64],
-  {
-    37495: (e, t, i) => {
-      'use strict';
-      var n = i(20144),
-        o = function () {
-          var e = this,
-            t = e._self._c;
-          return t('div', { attrs: { id: 'app' } }, [t('router-view')], 1);
-        },
-        a = [],
-        s = { name: 'App' },
-        d = s,
-        r = i(1001),
-        l = (0, r.Z)(d, o, a, !1, null, null, null),
-        h = l.exports,
-        c = i(78345),
-        m = i(60990);
-      const p = new n['default']({
-        data: function () {
-          return { events: !1 };
-        },
-        created() {
-          this.events && this.handleEvents();
-        },
-        methods: {
-          handleEvents() {
-            m.forEach(this.events, e => {
-              window.addEventListener(e, t => {
-                this.EventBus.$emit(`DOM-${e}-fire`, t);
-              });
-            });
-          }
-        }
-      });
-      function u(e) {
-        return () => i(4328)(`./${e}.vue`);
-      }
-      Object.defineProperties(n['default'].prototype, {
-        EventBus: {
-          get: function () {
-            return p;
-          }
-        }
-      }),
-        n['default'].use(c.ZP);
-      const g = new c.ZP({
-        mode: 'history',
-        scrollBehavior(e, t, i) {
-          return i && i.y ? window.scrollTo({ top: i.offsetTop, behavior: 'smooth' }) : window.scrollTo({ top: 0, behavior: 'smooth' });
-        },
-        routes: [
-          { path: '/', name: 'App', component: u('App') },
-          { path: '/lockdown', name: 'Lockdown', component: u('App') },
-          { path: '/reset', name: 'Reset', component: u('App') },
-          { path: '/wallet', name: 'Wallet', component: u('Wallet') },
-          { path: '/offline', name: 'Offline', component: u('Offline') },
-          { path: '/mac', name: 'Mac', component: u('Mac') },
-          { path: '/app', name: 'iOS', component: u('iOS') },
-          { path: '/cellular', name: 'Cellular', component: u('iOS') },
-          { path: '/privacy', name: 'Privacy', component: u('Privacy') },
-          { path: '/recess', name: 'Recess', component: u('Recess') },
-          { path: '/terms', name: 'Terms', component: u('Terms') },
-          { path: '/lounge', name: 'Lounge', component: u('Lounge') },
-          { path: '/cookies', name: 'Cookies', component: u('Cookies') }
-        ]
-      });
-      var y = g,
-        f = (i(57658), i(20629)),
-        v = i(44866);
-      i(87481), i(14673), i(79865);
-      function w(e) {
-        let t,
-          i,
-          n,
-          o,
-          a,
-          s,
-          d,
-          r,
-          l,
-          h,
-          c,
-          m,
-          p,
-          u,
-          g,
-          y = e || document.documentElement.clientWidth;
-        return (
-          y >= 1300 &&
-            ((m = { x: 760, y: 15 }),
-            (p = { x: 760, y: 15 }),
-            (u = {
-              classType: 'is-launcher no-resize hide-graphic',
-              height: 620,
-              width: 600,
-              x: y / 2 - 300,
-              y: 60,
-              collapsed: document.documentElement.clientWidth < 800,
-              draggable: !(document.documentElement.clientWidth < 800)
-            }),
-            (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
-            (i = { classType: 'item-nft-connect', x: 157, y: 100, width: 530, height: 265, minWidth: 530, minHeight: 252 }),
-            (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
-            (o = { x: 455, y: 68, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
-            (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
-            (g = { x: 800, y: 140, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
-            (s = { x: 76, y: 187, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
-            (d = { x: 600, y: 80, width: 650, height: 500, minWidth: 300, minHeight: 300 }),
-            (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
-            (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
-            (h = { x: 300, y: 300, width: 410, height: 410, minWidth: 310, minHeight: 220 }),
-            (c = { x: 300, y: 300, minWidth: 310, minHeight: 220, classType: 'item-folder hide-graphic no-resize', width: 720, height: 305 })),
-          y < 1300 &&
-            y >= 1100 &&
-            ((m = { x: 760, y: 15 }),
-            (p = { x: 760, y: 15 }),
-            (u = {
-              classType: 'is-launcher no-resize hide-graphic',
-              height: 620,
-              width: 600,
-              x: y / 2 - 300,
-              y: 60,
-              collapsed: document.documentElement.clientWidth < 800,
-              draggable: !(document.documentElement.clientWidth < 800)
-            }),
-            (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
-            (i = { classType: 'item-nft-connect', x: 157, y: 100, width: 530, height: 265, minWidth: 530, minHeight: 252 }),
-            (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
-            (o = { x: 455, y: 68, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
-            (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
-            (s = { x: 76, y: 187, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
-            (d = { x: 400, y: 80, width: 550, height: 400, minWidth: 300, minHeight: 300 }),
-            (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
-            (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
-            (g = { x: 650, y: 140, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
-            (h = { x: 300, y: 300, width: 410, height: 410, minWidth: 310, minHeight: 220 }),
-            (c = { x: 300, y: 300, minWidth: 310, minHeight: 220, classType: 'item-folder hide-graphic no-resize', width: 720, height: 305 })),
-          y < 1100 &&
-            y >= 900 &&
-            ((m = { x: 500, y: 15 }),
-            (p = { x: 500, y: 15 }),
-            (u = {
-              classType: 'is-launcher no-resize hide-graphic',
-              height: 620,
-              width: 600,
-              x: y / 2 - 300,
-              y: 60,
-              collapsed: document.documentElement.clientWidth < 800,
-              draggable: !(document.documentElement.clientWidth < 800)
-            }),
-            (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
-            (i = { classType: 'item-nft-connect', x: 157, y: 100, width: 530, height: 265, minWidth: 530, minHeight: 252 }),
-            (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
-            (o = { x: 455, y: 68, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
-            (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
-            (g = { x: 520, y: 105, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
-            (s = { x: 76, y: 187, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
-            (d = { x: 400, y: 80, width: 446, height: 300, minWidth: 300, minHeight: 300 }),
-            (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
-            (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
-            (h = { x: 300, y: 300, width: 310, height: 220, minWidth: 310, minHeight: 220 }),
-            (c = { x: 20, y: 100, minWidth: 310, minHeight: 220, classType: 'item-folder hide-graphic no-resize', width: 720, height: 305 })),
-          y < 900 &&
-            y >= 800 &&
-            ((m = { x: 400, y: 15 }),
-            (p = { x: 400, y: 15 }),
-            (u = {
-              classType: 'is-launcher no-resize hide-graphic',
-              height: 620,
-              width: 600,
-              x: y / 2 - 300,
-              y: 60,
-              collapsed: document.documentElement.clientWidth < 800,
-              draggable: !(document.documentElement.clientWidth < 800)
-            }),
-            (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
-            (i = { classType: 'item-nft-connect', x: 157, y: 100, width: 530, height: 265, minWidth: 530, minHeight: 252 }),
-            (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
-            (o = { x: 455, y: 68, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
-            (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
-            (g = { x: 400, y: 36, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
-            (s = { x: 29, y: 186, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
-            (d = { x: 357, y: 165, width: 388, height: 300, minWidth: 300, minHeight: 300 }),
-            (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
-            (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
-            (h = { x: 300, y: 300, width: 410, height: 410, minWidth: 310, minHeight: 220 }),
-            (c = { x: 20, y: 100, minWidth: 310, minHeight: 220, classType: 'item-folder hide-graphic no-resize', width: 720, height: 305 })),
-          y < 800 &&
-            y >= 700 &&
-            ((m = { x: 300, y: 15 }),
-            (p = { x: 400, y: 15 }),
-            (u = {
-              classType: 'is-launcher no-resize hide-graphic launcher-mobile',
-              height: 200,
-              width: 32,
-              x: y - 32,
-              y: y / 2 - 120,
-              visible: !0,
-              collapsed: document.documentElement.clientWidth < 800,
-              draggable: !(document.documentElement.clientWidth < 800)
-            }),
-            (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
-            (i = { classType: 'item-nft-connect nft-connect-mobile', x: 60, y: 100, width: 252, height: 325, minWidth: 252, minHeight: 325 }),
-            (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
-            (o = { x: 231, y: 88, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
-            (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
-            (g = { x: 320, y: 50, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
-            (s = { x: 29, y: 18, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
-            (d = { x: 29, y: 268, width: 388, height: 300, minWidth: 300, minHeight: 300 }),
-            (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
-            (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
-            (h = { x: 300, y: 300, width: 310, height: 220, minWidth: 310, minHeight: 220 }),
-            (c = {
-              x: 20,
-              y: 50,
-              minWidth: 310,
-              minHeight: 220,
-              classType: 'item-folder hide-graphic no-resize apps-mobile',
-              width: 312,
-              height: 305
-            })),
-          y < 700 &&
-            ((m = { x: 18, y: 18 }),
-            (p = { x: 18, y: 18 }),
-            (u = {
-              classType: 'is-launcher no-resize hide-graphic launcher-mobile',
-              height: 200,
-              width: 32,
-              x: y - 32,
-              y: y / 2 - 120,
-              visible: !0,
-              collapsed: document.documentElement.clientWidth < 800,
-              draggable: !(document.documentElement.clientWidth < 800)
-            }),
-            (t = { x: 57, y: 45, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
-            (i = { classType: 'item-nft-connect nft-connect-mobile', x: 60, y: 100, width: 252, height: 325, minWidth: 252, minHeight: 325 }),
-            (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
-            (o = { x: 20, y: 20, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
-            (a = { x: 20, y: 22, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
-            (g = { x: 20, y: 22, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
-            (s = { x: 29, y: 267, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
-            (d = { x: 29, y: 18, width: 300, height: 220, minWidth: 200, minHeight: 200 }),
-            (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
-            (l = { x: 30, y: 100, width: 360, height: 400, minWidth: 280, minHeight: 400 }),
-            (h = { x: 20, y: 400, width: 310, height: 220, minWidth: 310, minHeight: 220 }),
-            (c = {
-              x: 20,
-              y: 50,
-              minWidth: 310,
-              minHeight: 220,
-              classType: 'item-folder hide-graphic no-resize apps-mobile',
-              width: 312,
-              height: 305
-            })),
-          {
-            connectSizing: t,
-            connectnftSizing: i,
-            aboutSizing: n,
-            settingsSizing: o,
-            guestbookSizing: a,
-            fmSizing: s,
-            tvSizing: d,
-            instagramSizing: r,
-            shopSizing: l,
-            socialSizing: h,
-            appsSizing: c,
-            mixtapePlayerSizing: m,
-            newsletterSizing: p,
-            launcherSizing: u,
-            newsSizing: g
-          }
-        );
-      }
-      n['default'].use(f.ZP);
-      var b = i(96486);
-      const x = new f.ZP.Store({
-        state: {
-          loungeText: [],
-          firestoreProduction: {
-            apiKey: 'AIzaSyBP7Bqn1g9ofbCUcRoJkvF81hfsmGeJKjA',
-            authDomain: 'auth.poolside.fm',
-            databaseURL: 'https://steady-tracer-232015.firebaseio.com',
-            projectId: 'steady-tracer-232015',
-            storageBucket: 'steady-tracer-232015.appspot.com',
-            messagingSenderId: '188097333372',
-            appId: '1:188097333372:web:7728f734b6ebf7db0da1f9',
-            measurementId: 'G-768KXRJM5X'
-          },
-          firestoreDevelopment: {
-            apiKey: 'AIzaSyBIqGBWz2Hl36ewZUY6IbyTskgpH38m6WA',
-            authDomain: 'auth.poolside.fm',
-            databaseURL: 'https://poolside-os-test.firebaseio.com',
-            projectId: 'poolside-os-test',
-            storageBucket: 'poolside-os-test.appspot.com',
-            messagingSenderId: '759950105449',
-            appId: '1:759950105449:web:8517045e1b653cd6847bf8'
-          },
-          limit: !1,
-          currentTrack: {},
-          currentTrackID: !1,
-          showBSOD: !1,
-          lastOpened: !1,
-          loadedStatus: !1,
-          showLoader: !1,
-          radioPlaying: !1,
-          videoPlaying: !1,
-          mixtapePlaying: !1,
-          background: [],
-          guestbookDetails: {},
-          user: !1,
-          connectSignInMode: !0,
-          favMode: !1,
-          soundcloudURLs: {},
-          setVolume: 100,
-          playlistLookup: {},
-          currentMixtape: !1,
-          showingVolume: !1,
-          soundcloudKey: 'T9EbIJ75SnsJK3iX8lOZaDlGIYgQB32G',
-          soundcloudKeys: {},
-          modifiedComponents: {},
-          componentData: {
-            fm: {
-              ...w()['fmSizing'],
-              slug: 'fm',
-              title: 'Poolsuite FM',
-              visible: !1,
-              active: !1,
-              inner: 'radio-player',
-              classType: 'no-resize',
-              data: { tracks: [] }
-            },
-            parties: { slug: 'parties', title: 'Pool Parties', visible: !1, active: !1 },
-            soundcloud: { slug: 'soundcloud', title: 'soundcloud', visible: !1, active: !1 },
-            mixtapePlayer: {
-              ...w()['mixtapePlayerSizing'],
-              slug: 'mixtapePlayer',
-              title: 'Poolsuite Mixtape',
-              visible: !1,
-              height: 496,
-              width: 300,
-              minHeight: 496,
-              minwidth: 300,
-              active: !1,
-              inner: 'mixtape-player',
-              classType: 'no-resize mixtape'
-            },
-            submit: {
-              slug: 'submit',
-              title: 'Submit',
-              visible: !1,
-              active: !1,
-              classType: 'no-resize',
-              inner: 'submit-inner',
-              width: 279,
-              height: 190,
-              minWidth: 279,
-              minHeight: 190,
-              x: 55,
-              y: 58
-            },
-            connect: {
-              ...w()['connectSizing'],
-              slug: 'connect',
-              title: "Let's make it official",
-              visible: !1,
-              active: !1,
-              classType: 'item-note hide-drag',
-              inner: 'connect'
-            },
-            about: {
-              ...w()['aboutSizing'],
-              slug: 'about',
-              title: 'About',
-              visible: !1,
-              active: !1,
-              inner: 'about-page',
-              classType: 'item-about',
-              width: 360,
-              data: { items: [] }
-            },
-            connectnft: {
-              ...w()['connectnftSizing'],
-              slug: 'connectnft',
-              title: 'Connect NFT',
-              visible: !1,
-              active: !1,
-              inner: 'connect-nft-wrapper',
-              data: { items: [] }
-            },
-            nftperks: { slug: 'nftperks', title: 'Executive Member Perks', visible: !1, active: !1, data: {} },
-            newsletter: {
-              ...w()['newsletterSizing'],
-              slug: 'newsletter',
-              title: 'Palm Report',
-              visible: !1,
-              active: !1,
-              inner: 'newsletter-page',
-              classType: 'item-newsletter no-resize',
-              height: 465,
-              width: 314
-            },
-            ios: {
-              slug: 'ios',
-              title: 'Poolsuite for iOS',
-              visible: !1,
-              active: !1,
-              classType: 'item-recess no-resize hide-graphic',
-              height: 550,
-              width: 300
-            },
-            store: { active: !1 },
-            grandleisure: { active: !1 },
-            launcher: {
-              ...w()['launcherSizing'],
-              slug: 'launcher',
-              title: 'The Poolsuite',
-              visible: !0,
-              active: !1,
-              inner: 'launcher',
-              hideClose: !1,
-              collapsable: !0,
-              data: {}
-            },
-            texteditor: {
-              ...w()['aboutSizing'],
-              slug: 'texteditor',
-              title: 'Text Editor',
-              visible: !1,
-              active: !1,
-              inner: 'text-editor',
-              classType: '',
-              height: 200
-            },
-            settings: {
-              ...w()['settingsSizing'],
-              slug: 'settings',
-              title: 'Themes',
-              visible: !1,
-              active: !1,
-              inner: 'settings-inner',
-              classType: 'no-resize',
-              data: { wallpapers: [] }
-            },
-            guestbook: {
-              ...w()['guestbookSizing'],
-              slug: 'guestbook',
-              title: 'Guestbook',
-              visible: !1,
-              active: !1,
-              inner: 'guestbook-inner',
-              classType: 'hide-graphic no-resize'
-            },
-            news: {
-              ...w()['newsSizing'],
-              slug: 'news',
-              title: 'News',
-              visible: !1,
-              active: !1,
-              inner: 'news-inner',
-              classType: 'hide-graphic no-resize',
-              data: {}
-            },
-            tv: {
-              ...w()['tvSizing'],
-              slug: 'tv',
-              title: 'Poolsuite TV',
-              visible: !1,
-              active: !1,
-              inner: 'video-player',
-              classType: 'hide-graphic',
-              data: { videos: [] }
-            },
-            instagram: {
-              ...w()['instagramSizing'],
-              slug: 'instagram',
-              title: 'Instagram',
-              visible: !1,
-              active: !1,
-              inner: 'instagram-inner',
-              classType: 'hide-graphic no-resize',
-              data: { posts: [] }
-            },
-            shop: {
-              ...w()['shopSizing'],
-              slug: 'shop',
-              title: 'Shop',
-              active: !1,
-              visible: !1,
-              inner: 'shop-inner',
-              classType: 'hide-graphic no-resize',
-              data: {}
-            },
-            social: {
-              ...w()['socialSizing'],
-              slug: 'social',
-              title: 'Social',
-              visible: !1,
-              active: !1,
-              classType: 'item-folder',
-              inner: 'folder-wrapper',
-              data: {
-                items: {
-                  facebook: { slug: 'facebook', title: 'Facebook', image: 'facebook.png' },
-                  twitter: { slug: 'twitter', title: 'Twitter', image: 'twitter.png' },
-                  soundcloud: { slug: 'soundcloud', title: 'SoundCloud', image: 'soundcloud.png' }
+    [64],
+    {
+        37495: (e, t, i) => {
+            'use strict';
+            var n = i(20144),
+                o = function() {
+                    var e = this,
+                        t = e._self._c;
+                    return t('div', { attrs: { id: 'app' } }, [t('router-view')], 1);
+                },
+                a = [],
+                s = { name: 'App' },
+                d = s,
+                r = i(1001),
+                l = (0, r.Z)(d, o, a, !1, null, null, null),
+                h = l.exports,
+                c = i(78345),
+                m = i(60990);
+            const p = new n['default']({
+                data: function() {
+                    return { events: !1 };
+                },
+                created() {
+                    this.events && this.handleEvents();
+                },
+                methods: {
+                    handleEvents() {
+                        m.forEach(this.events, e => {
+                            window.addEventListener(e, t => {
+                                this.EventBus.$emit(`DOM-${e}-fire`, t);
+                            });
+                        });
+                    }
                 }
-              }
-            },
-            apps: { ...w()['appsSizing'], slug: 'apps', title: 'Apps', visible: !1, active: !1, inner: 'apps-wrapper', data: {} },
-            mixtapes: {
-              ...w()['socialSizing'],
-              slug: 'mixtapes',
-              title: 'Mixtapes',
-              visible: !1,
-              active: !1,
-              classType: 'item-folder',
-              inner: 'folder-wrapper',
-              data: { type: 'mixtape', items: [] }
-            }
-          }
-        },
-        mutations: {
-          soundcloudKeys(e, t) {
-            e.soundcloudKeys = t;
-          },
-          updateBackground(e, t) {
-            e.background = t;
-          },
-          updateComponentSizes(e) {
-            b.forEach(w(), (t, i) => {
-              void 0 != t.x &&
-                setTimeout(() => {
-                  n['default'].set(e.componentData[i.slice(0, -6)], 'x', t.x);
-                }, 50),
-                void 0 != t.y &&
-                  setTimeout(() => {
-                    n['default'].set(e.componentData[i.slice(0, -6)], 'y', t.y);
-                  }, 50),
-                void 0 != t.height && n['default'].set(e.componentData[i.slice(0, -6)], 'height', t.height),
-                void 0 != t.width && n['default'].set(e.componentData[i.slice(0, -6)], 'width', t.width),
-                void 0 != t.draggable && n['default'].set(e.componentData[i.slice(0, -6)], 'collapsed', t.collapsed),
-                void 0 != t.collapsed && n['default'].set(e.componentData[i.slice(0, -6)], 'draggable', t.draggable),
-                void 0 != t.visible && n['default'].set(e.componentData[i.slice(0, -6)], 'visible', t.visible),
-                void 0 != t.minHeight &&
-                  ('fm' == e.componentData[i.slice(0, -6)].slug
-                    ? e.favMode
-                      ? (n['default'].set(e.componentData[i.slice(0, -6)], 'minHeight', 315),
-                        n['default'].set(e.componentData[i.slice(0, -6)], 'height', 315))
-                      : (n['default'].set(e.componentData[i.slice(0, -6)], 'minHeight', 220),
-                        n['default'].set(e.componentData[i.slice(0, -6)], 'height', 220))
-                    : n['default'].set(e.componentData[i.slice(0, -6)], 'minHeight', t.minHeight)),
-                void 0 != t.minWidth && n['default'].set(e.componentData[i.slice(0, -6)], 'minWidth', t.minWidth),
-                void 0 != t.classType && n['default'].set(e.componentData[i.slice(0, -6)], 'classType', t.classType);
             });
-          },
-          toggleVolume(e, t) {
-            e.showingVolume = t;
-          },
-          setMixtape(e, t) {
-            e.currentMixtape = t;
-          },
-          updateVol(e, t) {
-            e.setVolume = t;
-          },
-          rateLimit(e, t) {
-            e.limit = t;
-          },
-          connectSignInMode(e, t) {
-            'signup' == t
-              ? ((e.componentData.connect.title = "Let's make it official"),
-                (e.componentData.connect.height = 440),
-                (e.componentData.connect.minHeight = 440))
-              : 'forgotpassword' == t
-                ? ((e.componentData.connect.title = 'Forgot password'),
-                  (e.componentData.connect.height = 242),
-                  (e.componentData.connect.minHeight = 242))
-                : ((e.componentData.connect.title = 'Log in to the Pool'),
-                  (e.componentData.connect.height = 392),
-                  (e.componentData.connect.minHeight = 392));
-          },
-          updateFavMode(e, t) {
-            'faves' == t
-              ? ((e.favMode = !0), (e.componentData.fm.height = 315), (e.componentData.fm.minHeight = 315))
-              : ((e.favMode = !1), (e.componentData.fm.height = 220), (e.componentData.fm.minHeight = 220));
-          },
-          toggleBSOD(e, t) {
-            e.showBSOD = t;
-          },
-          toggleLoaded(e, t) {
-            e.loadedStatus = t;
-          },
-          updateLastOpened(e, t) {
-            e.lastOpened = t;
-          },
-          firstClick(e, t) {
-            b.forEach(e.componentData, e => {
-              n['default'].set(e, 'highlight', !1);
-            }),
-              b.forEach(e.modifiedComponents, e => {
-                n['default'].set(e, 'highlight', !1);
-              }),
-              x.commit('resetActive'),
-              (e.componentData[t].active = !0);
-          },
-          secondClick(e, t) {
-            e.componentData[t].visible
-              ? (n['default'].set(e.componentData[t], 'active', !1),
-                b.forEach(e.componentData, e => {
-                  n['default'].set(e, 'highlight', !1);
+
+            function u(e) {
+                return () => i(4328)(`./${e}.vue`);
+            }
+            Object.defineProperties(n['default'].prototype, {
+                    EventBus: {
+                        get: function() {
+                            return p;
+                        }
+                    }
                 }),
-                b.forEach(e.modifiedComponents, e => {
-                  n['default'].set(e, 'highlight', !1);
-                }),
-                n['default'].set(e.componentData[t], 'highlight', !0),
-                n['default'].set(e.modifiedComponents[t], 'highlight', !0),
-                (e.lastOpened = t))
-              : (n['default'].set(e.componentData[t], 'visible', !e.componentData[t].visible),
-                e.modifiedComponents[t] || n['default'].set(e.modifiedComponents, t, {}),
-                n['default'].set(
-                  e.modifiedComponents[t],
-                  'visible',
-                  e.modifiedComponents[t].visible ? e.modifiedComponents[t].visible : !e.modifiedComponents[t].visible
-                ),
-                n['default'].set(e.componentData[t], 'active', !1),
-                (e.lastOpened = t));
-          },
-          handleBypass(e, t) {
-            (e.componentData[t].visible = !e.componentData[t].visible),
-              e.modifiedComponents[t] || n['default'].set(e.modifiedComponents, t, {}),
-              n['default'].set(e.modifiedComponents[t], 'visible', e.componentData[t].visible);
-          },
-          collapseLauncher(e) {
-            if (document.documentElement.clientWidth < 800)
-              if (323 == e.componentData['launcher'].width) {
-                (e.componentData['launcher'].width = 32),
-                  setTimeout(() => {
-                    e.componentData['launcher'].x = document.documentElement.clientWidth - 32;
-                  }, 10),
-                  (e.componentData['launcher'].collapsed = !0);
-                let t = { title: 'Collapsed the launcher', section: 'Launcher', code: 'launcher_collapse' };
-                n['default'].prototype.$logEvent(t.title, t);
-              } else {
-                (e.componentData['launcher'].width = 323),
-                  setTimeout(() => {
-                    e.componentData['launcher'].x = document.documentElement.clientWidth - 323;
-                  }, 10),
-                  (e.componentData['launcher'].collapsed = !1);
-                let t = { title: 'Expanded the launcher', section: 'Launcher', code: 'launcher_expand' };
-                n['default'].prototype.$logEvent(t.title, t);
-              }
-            else if (620 == e.componentData['launcher'].height) {
-              (e.componentData['launcher'].height = 120), (e.componentData['launcher'].collapsed = !0);
-              let t = { title: 'Collapsed the launcher', section: 'Launcher', code: 'launcher_collapse' };
-              n['default'].prototype.$logEvent(t.title, t);
-            } else {
-              (e.componentData['launcher'].height = 620), (e.componentData['launcher'].collapsed = !1);
-              let t = { title: 'Expanded the launcher', section: 'Launcher', code: 'launcher_expand' };
-              n['default'].prototype.$logEvent(t.title, t);
-            }
-          },
-          handleUpsellConnect(e, t) {
-            (e.componentData[t].visible = !0), (e.componentData[t].active = !0), (e.componentData['fm'].active = !1), (e.lastOpened = t);
-          },
-          closeComponent(e, t) {
-            (e.componentData[t].active = !1), (e.componentData[t].visible = !1);
-          },
-          updateActive(e, t) {
-            e.componentData[t.item].active = t.type;
-          },
-          resetActive(e) {
-            b.forEach(e.componentData, e => {
-              e.active = !1;
+                n['default'].use(c.ZP);
+            const g = new c.ZP({
+                mode: 'history',
+                scrollBehavior(e, t, i) {
+                    return i && i.y ? window.scrollTo({ top: i.offsetTop, behavior: 'smooth' }) : window.scrollTo({ top: 0, behavior: 'smooth' });
+                },
+                routes: [
+                    { path: '/', name: 'App', component: u('App') },
+                    { path: '/lockdown', name: 'Lockdown', component: u('App') },
+                    { path: '/reset', name: 'Reset', component: u('App') },
+                    { path: '/wallet', name: 'Wallet', component: u('Wallet') },
+                    { path: '/offline', name: 'Offline', component: u('Offline') },
+                    { path: '/mac', name: 'Mac', component: u('Mac') },
+                    { path: '/app', name: 'iOS', component: u('iOS') },
+                    { path: '/cellular', name: 'Cellular', component: u('iOS') },
+                    { path: '/privacy', name: 'Privacy', component: u('Privacy') },
+                    { path: '/recess', name: 'Recess', component: u('Recess') },
+                    { path: '/terms', name: 'Terms', component: u('Terms') },
+                    { path: '/lounge', name: 'Lounge', component: u('Lounge') },
+                    { path: '/cookies', name: 'Cookies', component: u('Cookies') }
+                ]
             });
-          },
-          updateVisible(e, t) {
-            let i = !1;
-            switch (t.item) {
-              case 'fm':
-                i = 'player';
-                break;
-              case 'connectnft':
-                i = 'connectnft';
-                break;
-              case 'nftperks':
-                i = 'nftperks';
-                break;
-              case 'launcher':
-                i = 'launcher';
-                break;
-              case 'tv':
-                i = 'TV';
-                break;
-              case 'shop':
-                i = 'store';
-                break;
-              case 'social':
-                i = 'social';
-                break;
-              case 'apps':
-                i = 'apps';
-                break;
-              case 'guestbook':
-                i = 'guestbook';
-                break;
-              case 'news':
-                i = 'news';
-                break;
-              case 'connect':
-                i = 'signup';
-                break;
-              case 'instagram':
-                i = 'instagram';
-                break;
-              case 'about':
-                i = 'about';
-                break;
-              case 'submit':
-                i = 'submit';
-                break;
-              case 'texteditor':
-                i = 'textedtior';
-                break;
-              case 'settings':
-                i = 'themes';
-                break;
-              case 'newsletter':
-                i = 'newsletter';
-                break;
-              case 'ios':
-                i = 'ios';
-                break;
-              case 'mixtapes':
-                i = 'mixtapes_folder';
-                break;
-              case 'mixtapePlayer':
-                i = 'mixtapes';
-                break;
+            var y = g,
+                f = (i(57658), i(20629)),
+                v = i(44866);
+            i(87481), i(14673), i(79865);
+
+            function w(e) {
+                let t,
+                    i,
+                    n,
+                    o,
+                    a,
+                    s,
+                    d,
+                    r,
+                    l,
+                    h,
+                    c,
+                    m,
+                    p,
+                    u,
+                    g,
+                    y = e || document.documentElement.clientWidth;
+                return (
+                    y >= 1300 &&
+                    ((m = { x: 760, y: 15 }),
+                        (p = { x: 760, y: 15 }),
+                        (u = {
+                            classType: 'is-launcher no-resize hide-graphic',
+                            height: 620,
+                            width: 600,
+                            x: y / 2 - 300,
+                            y: 60,
+                            collapsed: document.documentElement.clientWidth < 800,
+                            draggable: !(document.documentElement.clientWidth < 800)
+                        }),
+                        (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
+                        (i = { classType: 'item-nft-connect', x: 157, y: 100, width: 530, height: 265, minWidth: 530, minHeight: 252 }),
+                        (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
+                        (o = { x: 455, y: 68, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
+                        (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
+                        (g = { x: 800, y: 140, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
+                        (s = { x: 76, y: 187, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
+                        (d = { x: 600, y: 80, width: 650, height: 500, minWidth: 300, minHeight: 300 }),
+                        (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
+                        (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
+                        (h = { x: 300, y: 300, width: 410, height: 410, minWidth: 310, minHeight: 220 }),
+                        (c = { x: 300, y: 300, minWidth: 310, minHeight: 220, classType: 'item-folder hide-graphic no-resize', width: 720, height: 305 })),
+                    y < 1300 &&
+                    y >= 1100 &&
+                    ((m = { x: 760, y: 15 }),
+                        (p = { x: 760, y: 15 }),
+                        (u = {
+                            classType: 'is-launcher no-resize hide-graphic',
+                            height: 620,
+                            width: 600,
+                            x: y / 2 - 300,
+                            y: 60,
+                            collapsed: document.documentElement.clientWidth < 800,
+                            draggable: !(document.documentElement.clientWidth < 800)
+                        }),
+                        (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
+                        (i = { classType: 'item-nft-connect', x: 157, y: 100, width: 530, height: 265, minWidth: 530, minHeight: 252 }),
+                        (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
+                        (o = { x: 455, y: 68, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
+                        (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
+                        (s = { x: 76, y: 187, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
+                        (d = { x: 400, y: 80, width: 550, height: 400, minWidth: 300, minHeight: 300 }),
+                        (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
+                        (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
+                        (g = { x: 650, y: 140, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
+                        (h = { x: 300, y: 300, width: 410, height: 410, minWidth: 310, minHeight: 220 }),
+                        (c = { x: 300, y: 300, minWidth: 310, minHeight: 220, classType: 'item-folder hide-graphic no-resize', width: 720, height: 305 })),
+                    y < 1100 &&
+                    y >= 900 &&
+                    ((m = { x: 500, y: 15 }),
+                        (p = { x: 500, y: 15 }),
+                        (u = {
+                            classType: 'is-launcher no-resize hide-graphic',
+                            height: 620,
+                            width: 600,
+                            x: y / 2 - 300,
+                            y: 60,
+                            collapsed: document.documentElement.clientWidth < 800,
+                            draggable: !(document.documentElement.clientWidth < 800)
+                        }),
+                        (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
+                        (i = { classType: 'item-nft-connect', x: 157, y: 100, width: 530, height: 265, minWidth: 530, minHeight: 252 }),
+                        (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
+                        (o = { x: 455, y: 68, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
+                        (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
+                        (g = { x: 520, y: 105, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
+                        (s = { x: 76, y: 187, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
+                        (d = { x: 400, y: 80, width: 446, height: 300, minWidth: 300, minHeight: 300 }),
+                        (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
+                        (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
+                        (h = { x: 300, y: 300, width: 310, height: 220, minWidth: 310, minHeight: 220 }),
+                        (c = { x: 20, y: 100, minWidth: 310, minHeight: 220, classType: 'item-folder hide-graphic no-resize', width: 720, height: 305 })),
+                    y < 900 &&
+                    y >= 800 &&
+                    ((m = { x: 400, y: 15 }),
+                        (p = { x: 400, y: 15 }),
+                        (u = {
+                            classType: 'is-launcher no-resize hide-graphic',
+                            height: 620,
+                            width: 600,
+                            x: y / 2 - 300,
+                            y: 60,
+                            collapsed: document.documentElement.clientWidth < 800,
+                            draggable: !(document.documentElement.clientWidth < 800)
+                        }),
+                        (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
+                        (i = { classType: 'item-nft-connect', x: 157, y: 100, width: 530, height: 265, minWidth: 530, minHeight: 252 }),
+                        (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
+                        (o = { x: 455, y: 68, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
+                        (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
+                        (g = { x: 400, y: 36, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
+                        (s = { x: 29, y: 186, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
+                        (d = { x: 357, y: 165, width: 388, height: 300, minWidth: 300, minHeight: 300 }),
+                        (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
+                        (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
+                        (h = { x: 300, y: 300, width: 410, height: 410, minWidth: 310, minHeight: 220 }),
+                        (c = { x: 20, y: 100, minWidth: 310, minHeight: 220, classType: 'item-folder hide-graphic no-resize', width: 720, height: 305 })),
+                    y < 800 &&
+                    y >= 700 &&
+                    ((m = { x: 300, y: 15 }),
+                        (p = { x: 400, y: 15 }),
+                        (u = {
+                            classType: 'is-launcher no-resize hide-graphic launcher-mobile',
+                            height: 200,
+                            width: 32,
+                            x: y - 32,
+                            y: y / 2 - 120,
+                            visible: !0,
+                            collapsed: document.documentElement.clientWidth < 800,
+                            draggable: !(document.documentElement.clientWidth < 800)
+                        }),
+                        (t = { x: 408, y: 173, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
+                        (i = { classType: 'item-nft-connect nft-connect-mobile', x: 60, y: 100, width: 252, height: 325, minWidth: 252, minHeight: 325 }),
+                        (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
+                        (o = { x: 231, y: 88, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
+                        (a = { x: 20, y: 23, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
+                        (g = { x: 320, y: 50, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
+                        (s = { x: 29, y: 18, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
+                        (d = { x: 29, y: 268, width: 388, height: 300, minWidth: 300, minHeight: 300 }),
+                        (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
+                        (l = { x: 300, y: 100, width: 400, height: 400, minWidth: 280, minHeight: 400 }),
+                        (h = { x: 300, y: 300, width: 310, height: 220, minWidth: 310, minHeight: 220 }),
+                        (c = {
+                            x: 20,
+                            y: 50,
+                            minWidth: 310,
+                            minHeight: 220,
+                            classType: 'item-folder hide-graphic no-resize apps-mobile',
+                            width: 312,
+                            height: 305
+                        })),
+                    y < 700 &&
+                    ((m = { x: 18, y: 18 }),
+                        (p = { x: 18, y: 18 }),
+                        (u = {
+                            classType: 'is-launcher no-resize hide-graphic launcher-mobile',
+                            height: 200,
+                            width: 32,
+                            x: y - 32,
+                            y: y / 2 - 120,
+                            visible: !0,
+                            collapsed: document.documentElement.clientWidth < 800,
+                            draggable: !(document.documentElement.clientWidth < 800)
+                        }),
+                        (t = { x: 57, y: 45, width: 240, height: 440, minWidth: 240, minHeight: 440 }),
+                        (i = { classType: 'item-nft-connect nft-connect-mobile', x: 60, y: 100, width: 252, height: 325, minWidth: 252, minHeight: 325 }),
+                        (n = { x: 20, y: 20, width: 360, height: 475, minWidth: 180, minHeight: 170 }),
+                        (o = { x: 20, y: 20, width: 290, height: 420, minWidth: 290, minHeight: 420 }),
+                        (a = { x: 20, y: 22, width: 300, height: 440, minWidth: 300, minHeight: 440 }),
+                        (g = { x: 20, y: 22, width: 340, height: 550, minWidth: 300, minHeight: 440 }),
+                        (s = { x: 29, y: 267, width: 281, height: 220, minWidth: 281, minHeight: 220 }),
+                        (d = { x: 29, y: 18, width: 300, height: 220, minWidth: 200, minHeight: 200 }),
+                        (r = { x: 55, y: 58, width: 300, height: 450, minWidth: 300, minHeight: 450 }),
+                        (l = { x: 30, y: 100, width: 360, height: 400, minWidth: 280, minHeight: 400 }),
+                        (h = { x: 20, y: 400, width: 310, height: 220, minWidth: 310, minHeight: 220 }),
+                        (c = {
+                            x: 20,
+                            y: 50,
+                            minWidth: 310,
+                            minHeight: 220,
+                            classType: 'item-folder hide-graphic no-resize apps-mobile',
+                            width: 312,
+                            height: 305
+                        })), {
+                        connectSizing: t,
+                        connectnftSizing: i,
+                        aboutSizing: n,
+                        settingsSizing: o,
+                        guestbookSizing: a,
+                        fmSizing: s,
+                        tvSizing: d,
+                        instagramSizing: r,
+                        shopSizing: l,
+                        socialSizing: h,
+                        appsSizing: c,
+                        mixtapePlayerSizing: m,
+                        newsletterSizing: p,
+                        launcherSizing: u,
+                        newsSizing: g
+                    }
+                );
             }
-            let o = `${i.charAt(0).toUpperCase() + i.substring(1)}`;
-            if (t.type || t.ignoreEvent);
-            else {
-              let e = o,
-                t = o,
-                a = i;
-              'Mixtapes_folder' == o && ((e = 'Mixtapes folder'), (t = 'Mixtapes'), (a = 'mixtapes_folder'));
-              let s = { title: `Closed ${e}`, section: `${t}`, code: `${a}_close` };
-              n['default'].prototype.$logEvent(s.title, s);
-            }
-            if (
-              ((e.componentData[t.item].visible = t.type),
-              e.modifiedComponents[t.item] || n['default'].set(e.modifiedComponents, t.item, {}),
-              n['default'].set(e.modifiedComponents[t.item], 'visible', t.type),
-              t.secondClick)
-            ) {
-              n['default'].set(e.componentData[t.item], 'active', !1),
-                'launcher' == t.item &&
-                  document.documentElement.clientWidth < 800 &&
-                  ((e.componentData['launcher'].width = 323),
-                  setTimeout(() => {
-                    e.componentData['launcher'].x = document.documentElement.clientWidth - 323;
-                  }, 10),
-                  (e.componentData['launcher'].collapsed = !1));
-            }
-          },
-          addVideos(e, t) {
-            e.componentData['tv'].data.videos = b.shuffle(t);
-          },
-          addLoungeText(e, t) {
-            e.loungeText = t;
-          },
-          addInstagramItems(e, t) {
-            e.componentData['instagram'].data.posts = t;
-          },
-          addTracks(e, t) {
-            e.componentData['fm'].data.tracks = t;
-          },
-          addMixtapes(e, t) {
-            let i = b.sortBy(t, e => e.order);
-            e.componentData['mixtapes'].data.items = i;
-          },
-          addTeam(e, t) {
-            e.componentData['about'].data.items = t;
-          },
-          addNews(e, t) {
-            n['default'].set(e.componentData['news'].data, 'messages', t);
-          },
-          addReviews(e, t) {
-            n['default'].set(e.componentData['apps'].data, 'reviews', t);
-          },
-          addReviewCounts(e, t) {
-            n['default'].set(e.componentData['apps'].data, 'reviewCounts', t);
-          },
-          addLauncherImage(e, t) {
-            n['default'].set(e.componentData['launcher'].data, 'image', t);
-          },
-          addWallpapers(e, t) {
-            b.forEach(t, t => {
-              if ('default' == t.slug) {
-                e.background = t;
-                const i = document.documentElement;
-                i.style.setProperty('--primary', `#${t.primary}`),
-                  i.style.setProperty('--secondary', `#${t.secondary}`),
-                  i.style.setProperty('--tertiary', `#${t.tertiary}`),
-                  document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${t.primary}`),
-                  document.body.style.setProperty('background', `#${t.primary}`),
-                  t.overrideBootColour && i.style.setProperty('--booterOverride', `#${t.overrideBootColour}`);
-              }
-            }),
-              n['default'].set(e.componentData['settings'].data, 'wallpapers', t);
-          },
-          toggleRadio(e, t) {
-            e.radioPlaying = t;
-          },
-          toggleMixtape(e, t) {
-            e.mixtapePlaying = t;
-          },
-          toggleVideo(e, t) {
-            e.videoPlaying = t;
-          },
-          updateGuestbook(e, t) {
-            e.guestbookDetails = t;
-          },
-          initComponents(e, t) {
-            b.forEach(t, (t, i) => {
-              b.forEach(t, (t, o) => {
-                e.componentData[i] && n['default'].set(e.componentData[i], o, t);
-              });
-            }),
-              b.forEach(t, (t, i) => {
-                e.modifiedComponents[i] || n['default'].set(e.modifiedComponents, i, {}),
-                  b.forEach(t, (t, o) => {
-                    n['default'].set(e.modifiedComponents[i], o, t);
-                  });
-              });
-          },
-          updateSize(e, t) {
-            e.modifiedComponents[t.element] || n['default'].set(e.modifiedComponents, t.element, {}),
-              n['default'].set(e.modifiedComponents[t.element], 'width', t.width),
-              n['default'].set(e.modifiedComponents[t.element], 'height', t.height);
-          },
-          updatePosition(e, t) {
-            e.modifiedComponents[t.element] || n['default'].set(e.modifiedComponents, t.element, {}),
-              n['default'].set(e.modifiedComponents[t.element], 'x', t.x),
-              n['default'].set(e.modifiedComponents[t.element], 'y', t.y);
-          },
-          updateUser(e, t) {
-            e.user = t;
-          },
-          toggleLoader(e, t) {
-            e.showLoader = t;
-          },
-          addSoundCloudURLS(e, t) {
-            if ('faves' == t.slug) {
-              let i = [];
-              b.forEach(t.data, e => {
-                i.push({
-                  artist: e.songArtist,
-                  duration_ms: e.songLength,
-                  id: e.id,
-                  soundcloud_id: e.id,
-                  playlist: e.playlist,
-                  title: e.songTitle,
-                  waveform_url: !!e.waveform_url && e.waveform_url,
-                  permalink_url: !!e.permalink_url && e.permalink_url
-                });
-              }),
-                n['default'].set(e.soundcloudURLs, t.slug, i);
-            } else
-              n['default'].set(e.soundcloudURLs, t.slug, t.data),
-                n['default'].set(e.playlistLookup, t.slug, { slug: t.slug, name: t.name, new: t.new, order: t.order });
-          }
-        },
-        getters: {
-          primaryNFTType(e, t) {
-            return t.user && t['nft/primaryNFTType'];
-          },
-          userNFTs(e, t) {
-            return t.user && t['nft/userNFTs'];
-          },
-          ethereumProvider(e) {
-            return e.nft.ethereumProvider;
-          },
-          walletConnectionState(e) {
-            return e.nft.connectionState;
-          },
-          soundcloudKeys(e) {
-            return e.soundcloudKeys;
-          },
-          firestoreConfig: e => t => {
-            let i = t.charAt(0).toUpperCase() + t.slice(1);
-            return e[`firestore${i}`];
-          },
-          currentMixtape(e) {
-            return e.currentMixtape || e.componentData['mixtapes'].data.items[0];
-          },
-          rateLimit(e) {
-            return e.limit;
-          },
-          playlistNames(e) {
-            return e.playlistLookup;
-          },
-          showingVolume(e) {
-            return e.showingVolume;
-          },
-          clientID(e) {
-            return { radio: e.soundcloudKey, mixtape: e.soundcloudKey };
-          },
-          getVolume(e) {
-            return e.setVolume;
-          },
-          BSODState(e) {
-            return e.showBSOD;
-          },
-          user(e) {
-            return e.user;
-          },
-          guestbookDetails(e) {
-            return e.guestbookDetails;
-          },
-          componentData(e) {
-            return e.componentData;
-          },
-          getNews(e) {
-            return e.componentData['news'].data.messages;
-          },
-          modifiedComponents(e) {
-            return e.modifiedComponents;
-          },
-          loadedStatus(e) {
-            return e.loadedStatus;
-          },
-          lastOpened(e) {
-            return e.lastOpened;
-          },
-          radioPlaying(e) {
-            return e.radioPlaying;
-          },
-          mixtapePlaying(e) {
-            return e.mixtapePlaying;
-          },
-          videoPlaying(e) {
-            return e.videoPlaying;
-          },
-          currentBackground(e) {
-            return e.background;
-          },
-          allWallpapers(e, t) {
-            let i = [];
-            return (
-              t.primaryNFTType
-                ? b.forEach(e.componentData['settings'].data.wallpapers, (e, n) => {
-                    (e.nftType && e.nftType != t.primaryNFTType) || i.push(e);
-                  })
-                : b.forEach(e.componentData['settings'].data.wallpapers, (e, t) => {
-                    e.nftType || i.push(e);
-                  }),
-              i
-            );
-          },
-          showLoader(e) {
-            return e.showLoader;
-          },
-          soundcloudURLs(e) {
-            return e.soundcloudURLs;
-          },
-          loungeText(e) {
-            return e.loungeText;
-          },
-          getMixtape: e => t => e.componentData['mixtapes'].data.items.find(e => e.order === +t)
-        },
-        actions: {
-          updateBackground({ getters: e, commit: t }, i) {
-            if (i.tertiary) {
-              let n = e.componentData['settings'].data.wallpapers;
-              b.forEach(n, n => {
-                if (i.nftType && !e.primaryNFTType) {
-                  if ('default' == n.slug) {
-                    t('updateBackground', n);
-                    const i = document.documentElement;
-                    i.style.setProperty('--primary', `#${n.primary}`),
-                      i.style.setProperty('--secondary', `#${n.secondary}`),
-                      i.style.setProperty('--tertiary', `#${n.tertiary}`),
-                      document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${n.primary}`),
-                      document.body.style.setProperty('background', `#${n.primary}`),
-                      n.overrideBootColour && i.style.setProperty('--booterOverride', `#${n.overrideBootColour}`);
-                    let o = v.Z.firestore();
-                    e.user.uid &&
-                      o
-                        .collection('settings')
-                        .doc(e.user.uid)
-                        .set({ background: !1 }, { merge: !0 })
-                        .then(() => {});
-                  }
-                } else if (void 0 != i.nftType && i.nftType != e.primaryNFTType) {
-                  if (n.slug == e.primaryNFTType) {
-                    t('updateBackground', n);
-                    const i = document.documentElement;
-                    i.style.setProperty('--primary', `#${n.primary}`),
-                      i.style.setProperty('--secondary', `#${n.secondary}`),
-                      i.style.setProperty('--tertiary', `#${n.tertiary}`),
-                      document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${n.primary}`),
-                      document.body.style.setProperty('background', `#${n.primary}`),
-                      n.overrideBootColour && i.style.setProperty('--booterOverride', `#${n.overrideBootColour}`);
-                    let o = v.Z.firestore();
-                    e.user.uid &&
-                      o
-                        .collection('settings')
-                        .doc(e.user.uid)
-                        .set({ background: n }, { merge: !0 })
-                        .then(() => {});
-                  }
-                } else if (n.title == i.title) {
-                  t('updateBackground', n);
-                  const e = document.documentElement;
-                  e.style.setProperty('--primary', `#${n.primary}`),
-                    e.style.setProperty('--secondary', `#${n.secondary}`),
-                    e.style.setProperty('--tertiary', `#${n.tertiary}`),
-                    document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${n.primary}`),
-                    document.body.style.setProperty('background', `#${n.primary}`),
-                    n.overrideBootColour && e.style.setProperty('--booterOverride', `#${n.overrideBootColour}`);
+            n['default'].use(f.ZP);
+            var b = i(96486);
+            const x = new f.ZP.Store({
+                state: {
+                    loungeText: [],
+                    limit: !1,
+                    currentTrack: {},
+                    currentTrackID: !1,
+                    showBSOD: !1,
+                    lastOpened: !1,
+                    loadedStatus: !1,
+                    showLoader: !1,
+                    radioPlaying: !1,
+                    videoPlaying: !1,
+                    mixtapePlaying: !1,
+                    background: [],
+                    guestbookDetails: {},
+                    user: !1,
+                    connectSignInMode: !0,
+                    favMode: !1,
+                    soundcloudURLs: {},
+                    setVolume: 100,
+                    playlistLookup: {},
+                    currentMixtape: !1,
+                    showingVolume: !1,
+                    soundcloudKey: 'T9EbIJ75SnsJK3iX8lOZaDlGIYgQB32G',
+                    soundcloudKeys: {},
+                    modifiedComponents: {},
+                    componentData: {
+                        fm: {
+                            ...w()['fmSizing'],
+                            slug: 'fm',
+                            title: 'Poolsuite FM',
+                            visible: !1,
+                            active: !1,
+                            inner: 'radio-player',
+                            classType: 'no-resize',
+                            data: { tracks: [] }
+                        },
+                        parties: { slug: 'parties', title: 'Pool Parties', visible: !1, active: !1 },
+                        soundcloud: { slug: 'soundcloud', title: 'soundcloud', visible: !1, active: !1 },
+                        mixtapePlayer: {
+                            ...w()['mixtapePlayerSizing'],
+                            slug: 'mixtapePlayer',
+                            title: 'Poolsuite Mixtape',
+                            visible: !1,
+                            height: 496,
+                            width: 300,
+                            minHeight: 496,
+                            minwidth: 300,
+                            active: !1,
+                            inner: 'mixtape-player',
+                            classType: 'no-resize mixtape'
+                        },
+                        submit: {
+                            slug: 'submit',
+                            title: 'Submit',
+                            visible: !1,
+                            active: !1,
+                            classType: 'no-resize',
+                            inner: 'submit-inner',
+                            width: 279,
+                            height: 190,
+                            minWidth: 279,
+                            minHeight: 190,
+                            x: 55,
+                            y: 58
+                        },
+                        connect: {
+                            ...w()['connectSizing'],
+                            slug: 'connect',
+                            title: "Let's make it official",
+                            visible: !1,
+                            active: !1,
+                            classType: 'item-note hide-drag',
+                            inner: 'connect'
+                        },
+                        about: {
+                            ...w()['aboutSizing'],
+                            slug: 'about',
+                            title: 'About',
+                            visible: !1,
+                            active: !1,
+                            inner: 'about-page',
+                            classType: 'item-about',
+                            width: 360,
+                            data: { items: [] }
+                        },
+                        connectnft: {
+                            ...w()['connectnftSizing'],
+                            slug: 'connectnft',
+                            title: 'Connect NFT',
+                            visible: !1,
+                            active: !1,
+                            inner: 'connect-nft-wrapper',
+                            data: { items: [] }
+                        },
+                        nftperks: { slug: 'nftperks', title: 'Executive Member Perks', visible: !1, active: !1, data: {} },
+                        newsletter: {
+                            ...w()['newsletterSizing'],
+                            slug: 'newsletter',
+                            title: 'Palm Report',
+                            visible: !1,
+                            active: !1,
+                            inner: 'newsletter-page',
+                            classType: 'item-newsletter no-resize',
+                            height: 465,
+                            width: 314
+                        },
+                        ios: {
+                            slug: 'ios',
+                            title: 'Poolsuite for iOS',
+                            visible: !1,
+                            active: !1,
+                            classType: 'item-recess no-resize hide-graphic',
+                            height: 550,
+                            width: 300
+                        },
+                        store: { active: !1 },
+                        grandleisure: { active: !1 },
+                        launcher: {
+                            ...w()['launcherSizing'],
+                            slug: 'launcher',
+                            title: 'The Poolsuite',
+                            visible: !0,
+                            active: !1,
+                            inner: 'launcher',
+                            hideClose: !1,
+                            collapsable: !0,
+                            data: {}
+                        },
+                        texteditor: {
+                            ...w()['aboutSizing'],
+                            slug: 'texteditor',
+                            title: 'Text Editor',
+                            visible: !1,
+                            active: !1,
+                            inner: 'text-editor',
+                            classType: '',
+                            height: 200
+                        },
+                        settings: {
+                            ...w()['settingsSizing'],
+                            slug: 'settings',
+                            title: 'Themes',
+                            visible: !1,
+                            active: !1,
+                            inner: 'settings-inner',
+                            classType: 'no-resize',
+                            data: { wallpapers: [] }
+                        },
+                        guestbook: {
+                            ...w()['guestbookSizing'],
+                            slug: 'guestbook',
+                            title: 'Guestbook',
+                            visible: !1,
+                            active: !1,
+                            inner: 'guestbook-inner',
+                            classType: 'hide-graphic no-resize'
+                        },
+                        news: {
+                            ...w()['newsSizing'],
+                            slug: 'news',
+                            title: 'News',
+                            visible: !1,
+                            active: !1,
+                            inner: 'news-inner',
+                            classType: 'hide-graphic no-resize',
+                            data: {}
+                        },
+                        tv: {
+                            ...w()['tvSizing'],
+                            slug: 'tv',
+                            title: 'Poolsuite TV',
+                            visible: !1,
+                            active: !1,
+                            inner: 'video-player',
+                            classType: 'hide-graphic',
+                            data: { videos: [] }
+                        },
+                        instagram: {
+                            ...w()['instagramSizing'],
+                            slug: 'instagram',
+                            title: 'Instagram',
+                            visible: !1,
+                            active: !1,
+                            inner: 'instagram-inner',
+                            classType: 'hide-graphic no-resize',
+                            data: { posts: [] }
+                        },
+                        shop: {
+                            ...w()['shopSizing'],
+                            slug: 'shop',
+                            title: 'Shop',
+                            active: !1,
+                            visible: !1,
+                            inner: 'shop-inner',
+                            classType: 'hide-graphic no-resize',
+                            data: {}
+                        },
+                        social: {
+                            ...w()['socialSizing'],
+                            slug: 'social',
+                            title: 'Social',
+                            visible: !1,
+                            active: !1,
+                            classType: 'item-folder',
+                            inner: 'folder-wrapper',
+                            data: {
+                                items: {
+                                    facebook: { slug: 'facebook', title: 'Facebook', image: 'facebook.png' },
+                                    twitter: { slug: 'twitter', title: 'Twitter', image: 'twitter.png' },
+                                    soundcloud: { slug: 'soundcloud', title: 'SoundCloud', image: 'soundcloud.png' }
+                                }
+                            }
+                        },
+                        apps: {...w()['appsSizing'], slug: 'apps', title: 'Apps', visible: !1, active: !1, inner: 'apps-wrapper', data: {} },
+                        mixtapes: {
+                            ...w()['socialSizing'],
+                            slug: 'mixtapes',
+                            title: 'Mixtapes',
+                            visible: !1,
+                            active: !1,
+                            classType: 'item-folder',
+                            inner: 'folder-wrapper',
+                            data: { type: 'mixtape', items: [] }
+                        }
+                    }
+                },
+                mutations: {
+                    soundcloudKeys(e, t) {
+                        e.soundcloudKeys = t;
+                    },
+                    updateBackground(e, t) {
+                        e.background = t;
+                    },
+                    updateComponentSizes(e) {
+                        b.forEach(w(), (t, i) => {
+                            void 0 != t.x &&
+                                setTimeout(() => {
+                                    n['default'].set(e.componentData[i.slice(0, -6)], 'x', t.x);
+                                }, 50),
+                                void 0 != t.y &&
+                                setTimeout(() => {
+                                    n['default'].set(e.componentData[i.slice(0, -6)], 'y', t.y);
+                                }, 50),
+                                void 0 != t.height && n['default'].set(e.componentData[i.slice(0, -6)], 'height', t.height),
+                                void 0 != t.width && n['default'].set(e.componentData[i.slice(0, -6)], 'width', t.width),
+                                void 0 != t.draggable && n['default'].set(e.componentData[i.slice(0, -6)], 'collapsed', t.collapsed),
+                                void 0 != t.collapsed && n['default'].set(e.componentData[i.slice(0, -6)], 'draggable', t.draggable),
+                                void 0 != t.visible && n['default'].set(e.componentData[i.slice(0, -6)], 'visible', t.visible),
+                                void 0 != t.minHeight &&
+                                ('fm' == e.componentData[i.slice(0, -6)].slug ?
+                                    e.favMode ?
+                                    (n['default'].set(e.componentData[i.slice(0, -6)], 'minHeight', 315),
+                                        n['default'].set(e.componentData[i.slice(0, -6)], 'height', 315)) :
+                                    (n['default'].set(e.componentData[i.slice(0, -6)], 'minHeight', 220),
+                                        n['default'].set(e.componentData[i.slice(0, -6)], 'height', 220)) :
+                                    n['default'].set(e.componentData[i.slice(0, -6)], 'minHeight', t.minHeight)),
+                                void 0 != t.minWidth && n['default'].set(e.componentData[i.slice(0, -6)], 'minWidth', t.minWidth),
+                                void 0 != t.classType && n['default'].set(e.componentData[i.slice(0, -6)], 'classType', t.classType);
+                        });
+                    },
+                    toggleVolume(e, t) {
+                        e.showingVolume = t;
+                    },
+                    setMixtape(e, t) {
+                        e.currentMixtape = t;
+                    },
+                    updateVol(e, t) {
+                        e.setVolume = t;
+                    },
+                    rateLimit(e, t) {
+                        e.limit = t;
+                    },
+                    connectSignInMode(e, t) {
+                        'signup' == t
+                            ?
+                            ((e.componentData.connect.title = "Let's make it official"),
+                                (e.componentData.connect.height = 440),
+                                (e.componentData.connect.minHeight = 440)) :
+                            'forgotpassword' == t ?
+                            ((e.componentData.connect.title = 'Forgot password'),
+                                (e.componentData.connect.height = 242),
+                                (e.componentData.connect.minHeight = 242)) :
+                            ((e.componentData.connect.title = 'Log in to the Pool'),
+                                (e.componentData.connect.height = 392),
+                                (e.componentData.connect.minHeight = 392));
+                    },
+                    updateFavMode(e, t) {
+                        'faves' == t
+                            ?
+                            ((e.favMode = !0), (e.componentData.fm.height = 315), (e.componentData.fm.minHeight = 315)) :
+                            ((e.favMode = !1), (e.componentData.fm.height = 220), (e.componentData.fm.minHeight = 220));
+                    },
+                    toggleBSOD(e, t) {
+                        e.showBSOD = t;
+                    },
+                    toggleLoaded(e, t) {
+                        e.loadedStatus = t;
+                    },
+                    updateLastOpened(e, t) {
+                        e.lastOpened = t;
+                    },
+                    firstClick(e, t) {
+                        b.forEach(e.componentData, e => {
+                                n['default'].set(e, 'highlight', !1);
+                            }),
+                            b.forEach(e.modifiedComponents, e => {
+                                n['default'].set(e, 'highlight', !1);
+                            }),
+                            x.commit('resetActive'),
+                            (e.componentData[t].active = !0);
+                    },
+                    secondClick(e, t) {
+                        e.componentData[t].visible ?
+                            (n['default'].set(e.componentData[t], 'active', !1),
+                                b.forEach(e.componentData, e => {
+                                    n['default'].set(e, 'highlight', !1);
+                                }),
+                                b.forEach(e.modifiedComponents, e => {
+                                    n['default'].set(e, 'highlight', !1);
+                                }),
+                                n['default'].set(e.componentData[t], 'highlight', !0),
+                                n['default'].set(e.modifiedComponents[t], 'highlight', !0),
+                                (e.lastOpened = t)) :
+                            (n['default'].set(e.componentData[t], 'visible', !e.componentData[t].visible),
+                                e.modifiedComponents[t] || n['default'].set(e.modifiedComponents, t, {}),
+                                n['default'].set(
+                                    e.modifiedComponents[t],
+                                    'visible',
+                                    e.modifiedComponents[t].visible ? e.modifiedComponents[t].visible : !e.modifiedComponents[t].visible
+                                ),
+                                n['default'].set(e.componentData[t], 'active', !1),
+                                (e.lastOpened = t));
+                    },
+                    handleBypass(e, t) {
+                        (e.componentData[t].visible = !e.componentData[t].visible),
+                        e.modifiedComponents[t] || n['default'].set(e.modifiedComponents, t, {}),
+                            n['default'].set(e.modifiedComponents[t], 'visible', e.componentData[t].visible);
+                    },
+                    collapseLauncher(e) {
+                        if (document.documentElement.clientWidth < 800)
+                            if (323 == e.componentData['launcher'].width) {
+                                (e.componentData['launcher'].width = 32),
+                                setTimeout(() => {
+                                        e.componentData['launcher'].x = document.documentElement.clientWidth - 32;
+                                    }, 10),
+                                    (e.componentData['launcher'].collapsed = !0);
+                                let t = { title: 'Collapsed the launcher', section: 'Launcher', code: 'launcher_collapse' };
+                                n['default'].prototype.$logEvent(t.title, t);
+                            } else {
+                                (e.componentData['launcher'].width = 323),
+                                setTimeout(() => {
+                                        e.componentData['launcher'].x = document.documentElement.clientWidth - 323;
+                                    }, 10),
+                                    (e.componentData['launcher'].collapsed = !1);
+                                let t = { title: 'Expanded the launcher', section: 'Launcher', code: 'launcher_expand' };
+                                n['default'].prototype.$logEvent(t.title, t);
+                            }
+                        else if (620 == e.componentData['launcher'].height) {
+                            (e.componentData['launcher'].height = 120), (e.componentData['launcher'].collapsed = !0);
+                            let t = { title: 'Collapsed the launcher', section: 'Launcher', code: 'launcher_collapse' };
+                            n['default'].prototype.$logEvent(t.title, t);
+                        } else {
+                            (e.componentData['launcher'].height = 620), (e.componentData['launcher'].collapsed = !1);
+                            let t = { title: 'Expanded the launcher', section: 'Launcher', code: 'launcher_expand' };
+                            n['default'].prototype.$logEvent(t.title, t);
+                        }
+                    },
+                    handleUpsellConnect(e, t) {
+                        (e.componentData[t].visible = !0), (e.componentData[t].active = !0), (e.componentData['fm'].active = !1), (e.lastOpened = t);
+                    },
+                    closeComponent(e, t) {
+                        (e.componentData[t].active = !1), (e.componentData[t].visible = !1);
+                    },
+                    updateActive(e, t) {
+                        e.componentData[t.item].active = t.type;
+                    },
+                    resetActive(e) {
+                        b.forEach(e.componentData, e => {
+                            e.active = !1;
+                        });
+                    },
+                    updateVisible(e, t) {
+                        let i = !1;
+                        switch (t.item) {
+                            case 'fm':
+                                i = 'player';
+                                break;
+                            case 'connectnft':
+                                i = 'connectnft';
+                                break;
+                            case 'nftperks':
+                                i = 'nftperks';
+                                break;
+                            case 'launcher':
+                                i = 'launcher';
+                                break;
+                            case 'tv':
+                                i = 'TV';
+                                break;
+                            case 'shop':
+                                i = 'store';
+                                break;
+                            case 'social':
+                                i = 'social';
+                                break;
+                            case 'apps':
+                                i = 'apps';
+                                break;
+                            case 'guestbook':
+                                i = 'guestbook';
+                                break;
+                            case 'news':
+                                i = 'news';
+                                break;
+                            case 'connect':
+                                i = 'signup';
+                                break;
+                            case 'instagram':
+                                i = 'instagram';
+                                break;
+                            case 'about':
+                                i = 'about';
+                                break;
+                            case 'submit':
+                                i = 'submit';
+                                break;
+                            case 'texteditor':
+                                i = 'textedtior';
+                                break;
+                            case 'settings':
+                                i = 'themes';
+                                break;
+                            case 'newsletter':
+                                i = 'newsletter';
+                                break;
+                            case 'ios':
+                                i = 'ios';
+                                break;
+                            case 'mixtapes':
+                                i = 'mixtapes_folder';
+                                break;
+                            case 'mixtapePlayer':
+                                i = 'mixtapes';
+                                break;
+                        }
+                        let o = `${i.charAt(0).toUpperCase() + i.substring(1)}`;
+                        if (t.type || t.ignoreEvent);
+                        else {
+                            let e = o,
+                                t = o,
+                                a = i;
+                            'Mixtapes_folder' == o && ((e = 'Mixtapes folder'), (t = 'Mixtapes'), (a = 'mixtapes_folder'));
+                            let s = { title: `Closed ${e}`, section: `${t}`, code: `${a}_close` };
+                            n['default'].prototype.$logEvent(s.title, s);
+                        }
+                        if (
+                            ((e.componentData[t.item].visible = t.type),
+                                e.modifiedComponents[t.item] || n['default'].set(e.modifiedComponents, t.item, {}),
+                                n['default'].set(e.modifiedComponents[t.item], 'visible', t.type),
+                                t.secondClick)
+                        ) {
+                            n['default'].set(e.componentData[t.item], 'active', !1),
+                                'launcher' == t.item &&
+                                document.documentElement.clientWidth < 800 &&
+                                ((e.componentData['launcher'].width = 323),
+                                    setTimeout(() => {
+                                        e.componentData['launcher'].x = document.documentElement.clientWidth - 323;
+                                    }, 10),
+                                    (e.componentData['launcher'].collapsed = !1));
+                        }
+                    },
+                    addVideos(e, t) {
+                        e.componentData['tv'].data.videos = b.shuffle(t);
+                    },
+                    addLoungeText(e, t) {
+                        e.loungeText = t;
+                    },
+                    addInstagramItems(e, t) {
+                        e.componentData['instagram'].data.posts = t;
+                    },
+                    addTracks(e, t) {
+                        e.componentData['fm'].data.tracks = t;
+                    },
+                    addMixtapes(e, t) {
+                        let i = b.sortBy(t, e => e.order);
+                        e.componentData['mixtapes'].data.items = i;
+                    },
+                    addTeam(e, t) {
+                        e.componentData['about'].data.items = t;
+                    },
+                    addNews(e, t) {
+                        n['default'].set(e.componentData['news'].data, 'messages', t);
+                    },
+                    addReviews(e, t) {
+                        n['default'].set(e.componentData['apps'].data, 'reviews', t);
+                    },
+                    addReviewCounts(e, t) {
+                        n['default'].set(e.componentData['apps'].data, 'reviewCounts', t);
+                    },
+                    addLauncherImage(e, t) {
+                        n['default'].set(e.componentData['launcher'].data, 'image', t);
+                    },
+                    addWallpapers(e, t) {
+                        b.forEach(t, t => {
+                                if ('default' == t.slug) {
+                                    e.background = t;
+                                    const i = document.documentElement;
+                                    i.style.setProperty('--primary', `#${t.primary}`),
+                                        i.style.setProperty('--secondary', `#${t.secondary}`),
+                                        i.style.setProperty('--tertiary', `#${t.tertiary}`),
+                                        document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${t.primary}`),
+                                        document.body.style.setProperty('background', `#${t.primary}`),
+                                        t.overrideBootColour && i.style.setProperty('--booterOverride', `#${t.overrideBootColour}`);
+                                }
+                            }),
+                            n['default'].set(e.componentData['settings'].data, 'wallpapers', t);
+                    },
+                    toggleRadio(e, t) {
+                        e.radioPlaying = t;
+                    },
+                    toggleMixtape(e, t) {
+                        e.mixtapePlaying = t;
+                    },
+                    toggleVideo(e, t) {
+                        e.videoPlaying = t;
+                    },
+                    updateGuestbook(e, t) {
+                        e.guestbookDetails = t;
+                    },
+                    initComponents(e, t) {
+                        b.forEach(t, (t, i) => {
+                                b.forEach(t, (t, o) => {
+                                    e.componentData[i] && n['default'].set(e.componentData[i], o, t);
+                                });
+                            }),
+                            b.forEach(t, (t, i) => {
+                                e.modifiedComponents[i] || n['default'].set(e.modifiedComponents, i, {}),
+                                    b.forEach(t, (t, o) => {
+                                        n['default'].set(e.modifiedComponents[i], o, t);
+                                    });
+                            });
+                    },
+                    updateSize(e, t) {
+                        e.modifiedComponents[t.element] || n['default'].set(e.modifiedComponents, t.element, {}),
+                            n['default'].set(e.modifiedComponents[t.element], 'width', t.width),
+                            n['default'].set(e.modifiedComponents[t.element], 'height', t.height);
+                    },
+                    updatePosition(e, t) {
+                        e.modifiedComponents[t.element] || n['default'].set(e.modifiedComponents, t.element, {}),
+                            n['default'].set(e.modifiedComponents[t.element], 'x', t.x),
+                            n['default'].set(e.modifiedComponents[t.element], 'y', t.y);
+                    },
+                    updateUser(e, t) {
+                        e.user = t;
+                    },
+                    toggleLoader(e, t) {
+                        e.showLoader = t;
+                    },
+                    addSoundCloudURLS(e, t) {
+                        if ('faves' == t.slug) {
+                            let i = [];
+                            b.forEach(t.data, e => {
+                                    i.push({
+                                        artist: e.songArtist,
+                                        duration_ms: e.songLength,
+                                        id: e.id,
+                                        soundcloud_id: e.id,
+                                        playlist: e.playlist,
+                                        title: e.songTitle,
+                                        waveform_url: !!e.waveform_url && e.waveform_url,
+                                        permalink_url: !!e.permalink_url && e.permalink_url
+                                    });
+                                }),
+                                n['default'].set(e.soundcloudURLs, t.slug, i);
+                        } else
+                            n['default'].set(e.soundcloudURLs, t.slug, t.data),
+                            n['default'].set(e.playlistLookup, t.slug, { slug: t.slug, name: t.name, new: t.new, order: t.order });
+                    }
+                },
+                getters: {
+                    primaryNFTType(e, t) {
+                        return t.user && t['nft/primaryNFTType'];
+                    },
+                    userNFTs(e, t) {
+                        return t.user && t['nft/userNFTs'];
+                    },
+                    ethereumProvider(e) {
+                        return e.nft.ethereumProvider;
+                    },
+                    walletConnectionState(e) {
+                        return e.nft.connectionState;
+                    },
+                    soundcloudKeys(e) {
+                        return e.soundcloudKeys;
+                    },
+                    currentMixtape(e) {
+                        return e.currentMixtape || e.componentData['mixtapes'].data.items[0];
+                    },
+                    rateLimit(e) {
+                        return e.limit;
+                    },
+                    playlistNames(e) {
+                        return e.playlistLookup;
+                    },
+                    showingVolume(e) {
+                        return e.showingVolume;
+                    },
+                    clientID(e) {
+                        return { radio: e.soundcloudKey, mixtape: e.soundcloudKey };
+                    },
+                    getVolume(e) {
+                        return e.setVolume;
+                    },
+                    BSODState(e) {
+                        return e.showBSOD;
+                    },
+                    user(e) {
+                        return e.user;
+                    },
+                    guestbookDetails(e) {
+                        return e.guestbookDetails;
+                    },
+                    componentData(e) {
+                        return e.componentData;
+                    },
+                    getNews(e) {
+                        return e.componentData['news'].data.messages;
+                    },
+                    modifiedComponents(e) {
+                        return e.modifiedComponents;
+                    },
+                    loadedStatus(e) {
+                        return e.loadedStatus;
+                    },
+                    lastOpened(e) {
+                        return e.lastOpened;
+                    },
+                    radioPlaying(e) {
+                        return e.radioPlaying;
+                    },
+                    mixtapePlaying(e) {
+                        return e.mixtapePlaying;
+                    },
+                    videoPlaying(e) {
+                        return e.videoPlaying;
+                    },
+                    currentBackground(e) {
+                        return e.background;
+                    },
+                    allWallpapers(e, t) {
+                        let i = [];
+                        return (
+                            t.primaryNFTType ?
+                            b.forEach(e.componentData['settings'].data.wallpapers, (e, n) => {
+                                (e.nftType && e.nftType != t.primaryNFTType) || i.push(e);
+                            }) :
+                            b.forEach(e.componentData['settings'].data.wallpapers, (e, t) => {
+                                e.nftType || i.push(e);
+                            }),
+                            i
+                        );
+                    },
+                    showLoader(e) {
+                        return e.showLoader;
+                    },
+                    soundcloudURLs(e) {
+                        return e.soundcloudURLs;
+                    },
+                    loungeText(e) {
+                        return e.loungeText;
+                    },
+                    getMixtape: e => t => e.componentData['mixtapes'].data.items.find(e => e.order === +t)
+                },
+                actions: {
+                    updateBackground({ getters: e, commit: t }, i) {
+                        if (i.tertiary) {
+                            let n = e.componentData['settings'].data.wallpapers;
+                            b.forEach(n, n => {
+                                if (i.nftType && !e.primaryNFTType) {
+                                    if ('default' == n.slug) {
+                                        t('updateBackground', n);
+                                        const i = document.documentElement;
+                                        i.style.setProperty('--primary', `#${n.primary}`),
+                                            i.style.setProperty('--secondary', `#${n.secondary}`),
+                                            i.style.setProperty('--tertiary', `#${n.tertiary}`),
+                                            document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${n.primary}`),
+                                            document.body.style.setProperty('background', `#${n.primary}`),
+                                            n.overrideBootColour && i.style.setProperty('--booterOverride', `#${n.overrideBootColour}`);
+                                    }
+                                } else if (void 0 != i.nftType && i.nftType != e.primaryNFTType) {
+                                    if (n.slug == e.primaryNFTType) {
+                                        t('updateBackground', n);
+                                        const i = document.documentElement;
+                                        i.style.setProperty('--primary', `#${n.primary}`),
+                                            i.style.setProperty('--secondary', `#${n.secondary}`),
+                                            i.style.setProperty('--tertiary', `#${n.tertiary}`),
+                                            document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${n.primary}`),
+                                            document.body.style.setProperty('background', `#${n.primary}`),
+                                            n.overrideBootColour && i.style.setProperty('--booterOverride', `#${n.overrideBootColour}`);
+
+                                    }
+                                } else if (n.title == i.title) {
+                                    t('updateBackground', n);
+                                    const e = document.documentElement;
+                                    e.style.setProperty('--primary', `#${n.primary}`),
+                                        e.style.setProperty('--secondary', `#${n.secondary}`),
+                                        e.style.setProperty('--tertiary', `#${n.tertiary}`),
+                                        document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${n.primary}`),
+                                        document.body.style.setProperty('background', `#${n.primary}`),
+                                        n.overrideBootColour && e.style.setProperty('--booterOverride', `#${n.overrideBootColour}`);
+                                }
+                            });
+                        } else {
+                            let i = e.componentData['settings'].data.wallpapers;
+                            b.forEach(i, e => {
+                                if ('default' == e.slug) {
+                                    t('updateBackground', e);
+                                    const i = document.documentElement;
+                                    i.style.setProperty('--primary', `#${e.primary}`),
+                                        i.style.setProperty('--secondary', `#${e.secondary}`),
+                                        i.style.setProperty('--tertiary', `#${e.tertiary}`),
+                                        document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${e.primary}`),
+                                        document.body.style.setProperty('background', `#${e.primary}`),
+                                        e.overrideBootColour && i.style.setProperty('--booterOverride', `#${e.overrideBootColour}`);
+                                }
+                            });
+                        }
+                    }
                 }
-              });
-            } else {
-              let i = e.componentData['settings'].data.wallpapers;
-              b.forEach(i, e => {
-                if ('default' == e.slug) {
-                  t('updateBackground', e);
-                  const i = document.documentElement;
-                  i.style.setProperty('--primary', `#${e.primary}`),
-                    i.style.setProperty('--secondary', `#${e.secondary}`),
-                    i.style.setProperty('--tertiary', `#${e.tertiary}`),
-                    document.querySelector('meta[name="theme-color"]').setAttribute('content', `#${e.primary}`),
-                    document.body.style.setProperty('background', `#${e.primary}`),
-                    e.overrideBootColour && i.style.setProperty('--booterOverride', `#${e.overrideBootColour}`);
-                }
-              });
+            });
+            var D = x,
+                W = i(40764),
+                T = i.n(W),
+                k = i(91652),
+                H = i.n(k),
+                S = i(70712),
+                C = i.n(S),
+                P = i(54252),
+                E = i(64429),
+                z = {
+                    install(e, t) {
+                        !t || t.apiKey;
+                        const { apiKey: i, userId: n } = t;
+                        n ? E.Z.getInstance().init(i, n) : E.Z.getInstance().init(i),
+                            (e.prototype.$logEvent = this.logEvent),
+                            (e.prototype.$setUserID = this.setUserID);
+                    },
+                    logEvent(e, t) {
+                        t ? E.Z.getInstance().logEvent(e, t) : E.Z.getInstance().logEvent(e);
+                    },
+                    setUserID(e, t) {
+                        E.Z.getInstance().setUserId(e), new E.Z.Identify();
+                        var i = new E.Z.Identify().set('email', t);
+                        E.Z.getInstance().identify(i);
+                    }
+                };
+            n['default'].component('VueDraggableResizable', T()),
+                n['default'].use(H()),
+                n['default'].use(C()),
+                n['default'].use(P.Z, { space: 'hsst7dmi6ghe', accessToken: '452OGQVYT021J2XrtM7IZHpLfuN58MpB8pTqKXOwXD0' });
+            let $ = 'f7a7a035af61c508db393a44a69fe7cd';
+            n['default'].use(z, { apiKey: $ }),
+                (n['default'].config.productionTip = !1),
+                (n['default'].config.performance = !0),
+                new n['default']({ render: e => e(h), store: D, router: y }).$mount('#app');
+        },
+        4328: (e, t, i) => {
+            var n = {
+                './App.vue': [70454, 224, 289, 126],
+                './Cookies.vue': [23338, 51],
+                './Lounge.vue': [97268, 269],
+                './Mac.vue': [42844, 496],
+                './Offline.vue': [61428, 224, 455, 18],
+                './Privacy.vue': [24870, 517],
+                './Recess.vue': [32901, 455, 289, 511],
+                './Terms.vue': [50102, 185],
+                './iOS.vue': [28865, 444]
+            };
+
+            function o(e) {
+                if (!i.o(n, e))
+                    return Promise.resolve().then(() => {
+                        var t = new Error("Cannot find module '" + e + "'");
+                        throw ((t.code = 'MODULE_NOT_FOUND'), t);
+                    });
+                var t = n[e],
+                    o = t[0];
+                return Promise.all(t.slice(1).map(i.e)).then(() => i(o));
             }
-          }
-        }
-      });
-      var D = x,
-        W = i(40764),
-        T = i.n(W),
-        k = i(91652),
-        H = i.n(k),
-        S = i(70712),
-        C = i.n(S),
-        P = i(54252),
-        E = i(64429),
-        z = {
-          install(e, t) {
-            !t || t.apiKey;
-            const { apiKey: i, userId: n } = t;
-            n ? E.Z.getInstance().init(i, n) : E.Z.getInstance().init(i),
-              (e.prototype.$logEvent = this.logEvent),
-              (e.prototype.$setUserID = this.setUserID);
-          },
-          logEvent(e, t) {
-            t ? E.Z.getInstance().logEvent(e, t) : E.Z.getInstance().logEvent(e);
-          },
-          setUserID(e, t) {
-            E.Z.getInstance().setUserId(e), new E.Z.Identify();
-            var i = new E.Z.Identify().set('email', t);
-            E.Z.getInstance().identify(i);
-          }
-        };
-      n['default'].component('VueDraggableResizable', T()),
-        n['default'].use(H()),
-        n['default'].use(C()),
-        n['default'].use(P.Z, { space: 'hsst7dmi6ghe', accessToken: '452OGQVYT021J2XrtM7IZHpLfuN58MpB8pTqKXOwXD0' });
-      let $ = 'f7a7a035af61c508db393a44a69fe7cd';
-      n['default'].use(z, { apiKey: $ }),
-        (n['default'].config.productionTip = !1),
-        (n['default'].config.performance = !0),
-        new n['default']({ render: e => e(h), store: D, router: y }).$mount('#app');
-    },
-    4328: (e, t, i) => {
-      var n = {
-        './App.vue': [70454, 224, 289, 126],
-        './Cookies.vue': [23338, 51],
-        './Lounge.vue': [97268, 269],
-        './Mac.vue': [42844, 496],
-        './Offline.vue': [61428, 224, 455, 18],
-        './Privacy.vue': [24870, 517],
-        './Recess.vue': [32901, 455, 289, 511],
-        './Terms.vue': [50102, 185],
-        './iOS.vue': [28865, 444]
-      };
-      function o(e) {
-        if (!i.o(n, e))
-          return Promise.resolve().then(() => {
-            var t = new Error("Cannot find module '" + e + "'");
-            throw ((t.code = 'MODULE_NOT_FOUND'), t);
-          });
-        var t = n[e],
-          o = t[0];
-        return Promise.all(t.slice(1).map(i.e)).then(() => i(o));
-      }
-      (o.keys = () => Object.keys(n)), (o.id = 4328), (e.exports = o);
-    },
-    24654: () => {}
-  }
-]);
+            (o.keys = () => Object.keys(n)), (o.id = 4328), (e.exports = o);
+        },
+        24654: () => {}
+    }
+]);             './iOS.vue': [28865, 444]
+            };
+
+            function o(e) {
+                if (!i.o(n, e))
+                    return Promise.resolve().then(() => {
+                        var t = new Error("Cannot find module '" + e + "'");
+                        throw ((t.code = 'MODULE_NOT_FOUND'), t);
+                    });
+                var t = n[e],
+                    o = t[0];
+                return Promise.all(t.slice(1).map(i.e)).then(() => i(o));
+            }
+            (o.keys = () => Object.keys(n)), (o.id = 4328), (e.exports = o);
+        },
+        24654: () => {}
+    }
 
 
 
@@ -6721,10 +8248,6 @@ body {
 * {
     box-sizing: border-box;
     cursor: url(../img/cursor.7a94a6c4.svg), auto !important;
-    font-smooth: never;
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: none;
-    -webkit-font-smoothing: antialiased;
 }
 
 input[type='email'],
