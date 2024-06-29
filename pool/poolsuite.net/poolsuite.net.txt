@@ -349,7 +349,7 @@ ___________________________    __________________________
         </header>
         <section
           class="draggable-bounds"
-          style='background-image: url("images.ctfassets.net/hsst7dmi6ghe/485OaQSumrI0eBGnrAddx9/68882d2bc30e782a6b5000d941ec04af/1.gif");'
+          style='background-image: url("../img/1.gif");'
         >
           <div>
             <div class="component-outer" style="z-index: 24;">
@@ -549,7 +549,7 @@ ___________________________    __________________________
                           data-v-d8731062=""
                           id="cdplayer"
                           class="inner-spinner spinning-track-artwork paused"
-                          style='background-image: url("./images.ctfassets.net/hsst7dmi6ghe/6xYPY9qGsun5DL3WTAc8qp/bf450fc24c9be7189c6fb7d67aaf2e34/01-web.jpg");'
+                          style='background-image: url("./img/01-web.jpg");'
                         >
                           <div data-v-d8731062="" class="spinning-track-center"></div>
                         </div>
@@ -1146,7 +1146,7 @@ ___________________________    __________________________
                     <div data-v-7205c128="" class="computer-overlay">
                       <span
                         data-v-7205c128=""
-                        style='background-image: url("./img/12.gif);'
+                        style='background-image: url("./img/12.gif");'
                       ></span>
                     </div>
                     <h2 data-v-7205c128="">Select a desktop theme</h2>
@@ -1224,7 +1224,7 @@ ___________________________    __________________________
                       </ul>
                     </div>
                     <div data-v-7205c128="" class="actions">
-                      <a data-v-7205c128="" target="_blank" download="" href="https://CliniQ.OS.net/wallpapers/poolside-fm-poolside-os.png">
+                      <a data-v-7205c128="" target="_blank" download="" href="./img/poolside-fm-poolside-os.png">
                         Download wallpaper
                       </a>
                       <button data-v-7205c128="" class="apply">Apply</button>
@@ -1813,7 +1813,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/449046791_299199566619464_2446201540829392299_n.jpg?_nc_cat=104&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=6SgnIQ7qmkMQ7kNvgFxzL0a&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDa8pPIt6jvorJA1r5FirGI5H2Akx37oHiFKG5fyJ2rUw&amp;oe=6684033C"
+                            src="./img/01-web.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -1839,7 +1839,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/448974556_835619437976527_6314061997868944794_n.jpg?_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=z9HKrtvr4ysQ7kNvgFwv8Zw&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDzbfGQqSDBmSNZKAfq7iCvBnzApVWypmNE1qmbnzbnig&amp;oe=6683FBDA"
+                            src="./img/448974556_835619437976527_6314061997868944794_n.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -1865,7 +1865,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/448494769_7625997247494252_7002520365431528571_n.jpg?_nc_cat=104&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=jN80cMuxujgQ7kNvgFogtg8&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYCh7ydit5BbCm6gj3bHoVc3aE5SL0XcqP_q2xDkt1DRCg&amp;oe=6684097B"
+                            src="./img/449046791_299199566619464_2446201540829392299_n.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -1891,7 +1891,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/448436170_1566208630663503_881953270678933338_n.jpg?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=iA3ftkVuz_AQ7kNvgGOHD61&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDwu2HzibCciscyJ2fDYASrEHSNwSZPPrsQsO9MQtAyuQ&amp;oe=6683F970"
+                            src="./img/412510894_330935956378512_571888138487262885_n.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -1917,7 +1917,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/448593088_1183910046387089_6437105372917459156_n.jpg?_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=vjXIeNBQaMcQ7kNvgFznRVP&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDPaecgYLr8iAVdUqgt3vbxDFW65HziOVhjz_mt_aUY_A&amp;oe=6683D9AF"
+                            src="./img/449046791_299199566619464_2446201540829392299_n.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -1931,225 +1931,6 @@ ___________________________    __________________________
                             </div>
                           </div>
                         </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C76krfTt35i/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">21 days ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/447920477_1648751208998870_8954490960223470305_n.jpg?_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=1J9uAclvahcQ7kNvgF0ptXG&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYBYRRgNDNjmaMvpDXwQuFBzsmH2NeQoQ8HEZrIfoWlrVQ&amp;oe=6683F755"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">23324147 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">29935515 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">How I'm tryna live right now</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C7Xfv-NteL4/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">a month ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/445574846_991739605814293_1628760395758818902_n.jpg?_nc_cat=100&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=nrD2-fUh7NsQ7kNvgFctkqm&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYBfTCZdOUDPRaU2k5DRWtkJihZFRwDEd2rQw5br3Rw2ww&amp;oe=668405B9"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">5016171 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">42205477 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">Ok now that's marketing</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C7FSnWjLsFk/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">a month ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/443915340_2643175642508376_2574161113764854832_n.jpg?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=PrjM55TBx1wQ7kNvgFi56BP&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDfwJ7yz2wfAYQgqbdhB7AaLIrSvNtMwa98BlHACgoZHQ&amp;oe=6683F744"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">42273072 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">81550084 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">The good life. What more do you need?</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C684MYINui3/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">a month ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/443240516_2428750614181105_1136332955200759701_n.jpg?_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=adqc_oasDh4Q7kNvgEVWHCx&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYCyyiPLW5xbvvW16qpfd38V_hXJwyQU60tQupqSzrcqyA&amp;oe=6683E6FD"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">16461117 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">80654516 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">
-                                This is actually the optimal home theatre experience but some of you 4K Blu Ray clowns simply aren't willing to hear
-                                it
-                              </span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C2ff7c6riP7/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">5 months ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/420671140_774087098074464_3387977819663465579_n.jpg?_nc_cat=102&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=NgsAq9QagMYQ7kNvgHYlcPl&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYBG3vWBPlacZItC4NppT55SesXnf9_sIGbwnd4wLagLFQ&amp;oe=6684003F"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">50244487 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">7843617 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">I'm with the French on this one</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C1FL-KCtMV3/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">6 months ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/412510894_330935956378512_571888138487262885_n.jpg?_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=wgwar6VrP4gQ7kNvgF30akl&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDkSew6qh-4vzibDg4g10_V39ogHfD6sDO16vfGnmffrQ&amp;oe=668406F2"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">87382529 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">44712247 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">Now that's a police officer I can almost respect</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C0b_ER8NNYl/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">7 months ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/408058140_1092831968730359_5560634474046476555_n.jpg?_nc_cat=102&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=Puzc--sNXHoQ7kNvgHKF7XB&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDlYfXM207uYCnlDyx8H5QPDz1slAf6ETIyuyxQphGrJg&amp;oe=66840FCD"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">65145924 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">36695148 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">
-                                MIAMI FRIENDS &amp; ART BASEL CREW — HOPE TO SEE U THIS SATURDAY ❤️‍🔥 ticket link in bio! The event is set at the
-                                exquisite ZeyZey, the new destination from the team behind Los Felix Michelin star restaurant, quickly garnering a
-                                reputation for its vibrant atmosphere, craft cocktails &amp; natural wines: “ZeyZey looks like it could be a friend's
-                                bohemian bungalow—if your friend had their own natural wine gazebo, custom sound system and vinyl listening room,
-                                shipping container cocktail bar and mainstage for live – Time Out Let's get it @boysnoize @yungbae @raphaelfutura
-                                @zeyzeymiami Artwork by @univaries 🪄 #artbasel #artbaselmiami #miamiartbasel #miami #artbasel2023 #artbasel23
-                              </span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C0JyVmRNZSC/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">7 months ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/404637431_873171877937737_7969764436149215707_n.jpg?_nc_cat=108&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=sP92Hm8LEZEQ7kNvgEZAm_3&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYC1-dIEixpJ5EfH5V5mtVwkCdKmB355JwxSo8kD_y9yOA&amp;oe=66840166"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">24165392 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">57984146 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">WAITING FOR GRANDMA TO COME MEET MY NEW GIRL 🥰</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
                     </div>
                   </div>
                 </div>
@@ -3177,7 +2958,7 @@ ___________________________    __________________________
         </header>
         <section
           class="draggable-bounds"
-          style='background-image: url("images.ctfassets.net/hsst7dmi6ghe/485OaQSumrI0eBGnrAddx9/68882d2bc30e782a6b5000d941ec04af/1.gif");'
+          style='background-image: url("../img/1.gif");'
         >
           <div>
             <div class="component-outer" style="z-index: 24;">
@@ -3377,7 +3158,7 @@ ___________________________    __________________________
                           data-v-d8731062=""
                           id="cdplayer"
                           class="inner-spinner spinning-track-artwork paused"
-                          style='background-image: url("./images.ctfassets.net/hsst7dmi6ghe/6xYPY9qGsun5DL3WTAc8qp/bf450fc24c9be7189c6fb7d67aaf2e34/01-web.jpg");'
+                          style='background-image: url("./img/01-web.jpg");'
                         >
                           <div data-v-d8731062="" class="spinning-track-center"></div>
                         </div>
@@ -3974,7 +3755,7 @@ ___________________________    __________________________
                     <div data-v-7205c128="" class="computer-overlay">
                       <span
                         data-v-7205c128=""
-                        style='background-image: url("./img/12.gif);'
+                        style='background-image: url("./img/12.gif");'
                       ></span>
                     </div>
                     <h2 data-v-7205c128="">Select a desktop theme</h2>
@@ -4052,7 +3833,7 @@ ___________________________    __________________________
                       </ul>
                     </div>
                     <div data-v-7205c128="" class="actions">
-                      <a data-v-7205c128="" target="_blank" download="" href="https://CliniQ.OS.net/wallpapers/poolside-fm-poolside-os.png">
+                      <a data-v-7205c128="" target="_blank" download="" href="./img/poolside-fm-poolside-os.png">
                         Download wallpaper
                       </a>
                       <button data-v-7205c128="" class="apply">Apply</button>
@@ -4641,7 +4422,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/449046791_299199566619464_2446201540829392299_n.jpg?_nc_cat=104&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=6SgnIQ7qmkMQ7kNvgFxzL0a&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDa8pPIt6jvorJA1r5FirGI5H2Akx37oHiFKG5fyJ2rUw&amp;oe=6684033C"
+                            src="./img/01-web.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -4667,7 +4448,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/448974556_835619437976527_6314061997868944794_n.jpg?_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=z9HKrtvr4ysQ7kNvgFwv8Zw&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDzbfGQqSDBmSNZKAfq7iCvBnzApVWypmNE1qmbnzbnig&amp;oe=6683FBDA"
+                            src="./img/448974556_835619437976527_6314061997868944794_n.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -4693,7 +4474,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/448494769_7625997247494252_7002520365431528571_n.jpg?_nc_cat=104&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=jN80cMuxujgQ7kNvgFogtg8&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYCh7ydit5BbCm6gj3bHoVc3aE5SL0XcqP_q2xDkt1DRCg&amp;oe=6684097B"
+                            src="./img/449046791_299199566619464_2446201540829392299_n.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -4719,7 +4500,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/448436170_1566208630663503_881953270678933338_n.jpg?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=iA3ftkVuz_AQ7kNvgGOHD61&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDwu2HzibCciscyJ2fDYASrEHSNwSZPPrsQsO9MQtAyuQ&amp;oe=6683F970"
+                            src="./img/412510894_330935956378512_571888138487262885_n.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -4745,7 +4526,7 @@ ___________________________    __________________________
                           </div>
                           <img
                             data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/448593088_1183910046387089_6437105372917459156_n.jpg?_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=vjXIeNBQaMcQ7kNvgFznRVP&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDPaecgYLr8iAVdUqgt3vbxDFW65HziOVhjz_mt_aUY_A&amp;oe=6683D9AF"
+                            src="./img/449046791_299199566619464_2446201540829392299_n.jpg"
                             class="feed-item"
                           />
                           <div data-v-7fe17c11="" class="comments">
@@ -4759,225 +4540,6 @@ ___________________________    __________________________
                             </div>
                           </div>
                         </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C76krfTt35i/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">21 days ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/447920477_1648751208998870_8954490960223470305_n.jpg?_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=1J9uAclvahcQ7kNvgF0ptXG&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYBYRRgNDNjmaMvpDXwQuFBzsmH2NeQoQ8HEZrIfoWlrVQ&amp;oe=6683F755"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">23324147 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">29935515 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">How I'm tryna live right now</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C7Xfv-NteL4/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">a month ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/445574846_991739605814293_1628760395758818902_n.jpg?_nc_cat=100&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=nrD2-fUh7NsQ7kNvgFctkqm&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYBfTCZdOUDPRaU2k5DRWtkJihZFRwDEd2rQw5br3Rw2ww&amp;oe=668405B9"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">5016171 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">42205477 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">Ok now that's marketing</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C7FSnWjLsFk/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">a month ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/443915340_2643175642508376_2574161113764854832_n.jpg?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=PrjM55TBx1wQ7kNvgFi56BP&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDfwJ7yz2wfAYQgqbdhB7AaLIrSvNtMwa98BlHACgoZHQ&amp;oe=6683F744"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">42273072 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">81550084 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">The good life. What more do you need?</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C684MYINui3/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">a month ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/443240516_2428750614181105_1136332955200759701_n.jpg?_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=adqc_oasDh4Q7kNvgEVWHCx&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYCyyiPLW5xbvvW16qpfd38V_hXJwyQU60tQupqSzrcqyA&amp;oe=6683E6FD"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">16461117 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">80654516 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">
-                                This is actually the optimal home theatre experience but some of you 4K Blu Ray clowns simply aren't willing to hear
-                                it
-                              </span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C2ff7c6riP7/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">5 months ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/420671140_774087098074464_3387977819663465579_n.jpg?_nc_cat=102&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=NgsAq9QagMYQ7kNvgHYlcPl&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYBG3vWBPlacZItC4NppT55SesXnf9_sIGbwnd4wLagLFQ&amp;oe=6684003F"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">50244487 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">7843617 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">I'm with the French on this one</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C1FL-KCtMV3/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">6 months ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-2.cdninstagram.com/v/t51.29350-15/412510894_330935956378512_571888138487262885_n.jpg?_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=wgwar6VrP4gQ7kNvgF30akl&amp;_nc_ht=scontent-iad3-2.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDkSew6qh-4vzibDg4g10_V39ogHfD6sDO16vfGnmffrQ&amp;oe=668406F2"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">87382529 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">44712247 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">Now that's a police officer I can almost respect</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C0b_ER8NNYl/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">7 months ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/408058140_1092831968730359_5560634474046476555_n.jpg?_nc_cat=102&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=Puzc--sNXHoQ7kNvgHKF7XB&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYDlYfXM207uYCnlDyx8H5QPDz1slAf6ETIyuyxQphGrJg&amp;oe=66840FCD"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">65145924 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">36695148 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">
-                                MIAMI FRIENDS &amp; ART BASEL CREW — HOPE TO SEE U THIS SATURDAY ❤️‍🔥 ticket link in bio! The event is set at the
-                                exquisite ZeyZey, the new destination from the team behind Los Felix Michelin star restaurant, quickly garnering a
-                                reputation for its vibrant atmosphere, craft cocktails &amp; natural wines: “ZeyZey looks like it could be a friend's
-                                bohemian bungalow—if your friend had their own natural wine gazebo, custom sound system and vinyl listening room,
-                                shipping container cocktail bar and mainstage for live – Time Out Let's get it @boysnoize @yungbae @raphaelfutura
-                                @zeyzeymiami Artwork by @univaries 🪄 #artbasel #artbaselmiami #miamiartbasel #miami #artbasel2023 #artbasel23
-                              </span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li data-v-7fe17c11="">
-                        <a data-v-7fe17c11="" href="https://www.instagram.com/p/C0JyVmRNZSC/" target="_blank">
-                          <div data-v-7fe17c11="" class="details">
-                            <div data-v-7fe17c11="" class="user">
-                              <span data-v-7fe17c11="" class="user-item"><img data-v-7fe17c11="" src="./img/instagramicon.583ee2c5.jpg" /></span>
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                            </div>
-                            <span data-v-7fe17c11="" class="time">7 months ago</span>
-                          </div>
-                          <img
-                            data-v-7fe17c11=""
-                            src="https://scontent-iad3-1.cdninstagram.com/v/t51.29350-15/404637431_873171877937737_7969764436149215707_n.jpg?_nc_cat=108&amp;ccb=1-7&amp;_nc_sid=18de74&amp;_nc_ohc=sP92Hm8LEZEQ7kNvgEZAm_3&amp;_nc_ht=scontent-iad3-1.cdninstagram.com&amp;edm=ANo9K5cEAAAA&amp;oh=00_AYC1-dIEixpJ5EfH5V5mtVwkCdKmB355JwxSo8kD_y9yOA&amp;oe=66840166"
-                            class="feed-item"
-                          />
-                          <div data-v-7fe17c11="" class="comments">
-                            <div data-v-7fe17c11="" class="likes-banner">
-                              <span data-v-7fe17c11="" class="likes-icon">24165392 likes</span>
-                              <span data-v-7fe17c11="" class="comments-icon">57984146 comments</span>
-                            </div>
-                            <div data-v-7fe17c11="" class="comments-banner">
-                              <h2 data-v-7fe17c11="">CliniQ.OS</h2>
-                              <span data-v-7fe17c11="">WAITING FOR GRANDMA TO COME MEET MY NEW GIRL 🥰</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
                     </div>
                   </div>
                 </div>
