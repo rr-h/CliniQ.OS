@@ -47,7 +47,7 @@ span[data-v-c559aa8a] {
     text-align: left;
     color: #000;
     margin: 0;
-    font-family: Perfect DOS VGA\437;
+    font-family: PerfectDosVGA437;
     font-size: 16px;
 }
 
@@ -268,14 +268,14 @@ span[data-v-c559aa8a] {
 }
 
 @font-face {
-    font-family: Perfect DOS VGA\437;
-    src: url(../fonts/PerfectDOSVGA437.bfbcfb6f.woff2) format('woff2'), url(../fonts/PerfectDOSVGA437.30b3c1a1.woff) format('woff');
+    font-family: PerfectDosVGA437;
+    src: url(../fonts/PerfectDOSVGA437.woff2) format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 
 .bsod-wrapper[data-v-48886395] {
-    font-family: Perfect DOS VGA\437;
+    font-family: PerfectDosVGA437;
     background: #1013a0;
     position: fixed;
     top: 0;
