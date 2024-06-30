@@ -1,0 +1,500 @@
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class kl {
+        constructor(e, t) {
+          (this.referenceDelegate = e), (this.serializer = t);
+        }
+        allocateTargetId(e) {
+          return this.$n(e).next(t => {
+            const n = new Cl(t.highestTargetId);
+            return (t.highestTargetId = n.next()), this.On(e, t).next(() => t.highestTargetId);
+          });
+        }
+        getLastRemoteSnapshotVersion(e) {
+          return this.$n(e).next(e => Ai.fromTimestamp(new Ti(e.lastRemoteSnapshotVersion.seconds, e.lastRemoteSnapshotVersion.nanoseconds)));
+        }
+        getHighestSequenceNumber(e) {
+          return this.$n(e).next(e => e.highestListenSequenceNumber);
+        }
+        setTargetsMetadata(e, t, n) {
+          return this.$n(e).next(
+            r => (
+              (r.highestListenSequenceNumber = t),
+              n && (r.lastRemoteSnapshotVersion = n.toTimestamp()),
+              t > r.highestListenSequenceNumber && (r.highestListenSequenceNumber = t),
+              this.On(e, r)
+            )
+          );
+        }
+        addTargetData(e, t) {
+          return this.Fn(e, t).next(() => this.$n(e).next(n => ((n.targetCount += 1), this.Bn(t, n), this.On(e, n))));
+        }
+        updateTargetData(e, t) {
+          return this.Fn(e, t);
+        }
+        removeTargetData(e, t) {
+          return this.removeMatchingKeysForTargetId(e, t.targetId)
+            .next(() => Ol(e).delete(t.targetId))
+            .next(() => this.$n(e))
+            .next(t => (si(t.targetCount > 0), (t.targetCount -= 1), this.On(e, t)));
+        }
+        removeTargets(e, t, n) {
+          let r = 0;
+          const i = [];
+          return Ol(e)
+            .X((o, s) => {
+              const a = Pc(s);
+              a.sequenceNumber <= t && null === n.get(a.targetId) && (r++, i.push(this.removeTargetData(e, a)));
+            })
+            .next(() => zi.waitFor(i))
+            .next(() => r);
+        }
+        forEachTarget(e, t) {
+          return Ol(e).X((e, n) => {
+            const r = Pc(n);
+            t(r);
+          });
+        }
+        $n(e) {
+          return Nl(e)
+            .get('targetGlobalKey')
+            .next(e => (si(null !== e), e));
+        }
+        On(e, t) {
+          return Nl(e).put('targetGlobalKey', t);
+        }
+        Fn(e, t) {
+          return Ol(e).put(Dc(this.serializer, t));
+        }
+        Bn(e, t) {
+          let n = !1;
+          return (
+            e.targetId > t.highestTargetId && ((t.highestTargetId = e.targetId), (n = !0)),
+            e.sequenceNumber > t.highestListenSequenceNumber && ((t.highestListenSequenceNumber = e.sequenceNumber), (n = !0)),
+            n
+          );
+        }
+        getTargetCount(e) {
+          return this.$n(e).next(e => e.targetCount);
+        }
+        getTargetData(e, t) {
+          const n = ea(t),
+            r = IDBKeyRange.bound([n, Number.NEGATIVE_INFINITY], [n, Number.POSITIVE_INFINITY]);
+          let i = null;
+          return Ol(e)
+            .X({ range: r, index: 'queryTargetsIndex' }, (e, n, r) => {
+              const o = Pc(n);
+              ta(t, o.target) && ((i = o), r.done());
+            })
+            .next(() => i);
+        }
+        addMatchingKeys(e, t, n) {
+          const r = [],
+            i = Rl(e);
+          return (
+            t.forEach(t => {
+              const o = so(t.path);
+              r.push(i.put({ targetId: n, path: o })), r.push(this.referenceDelegate.addReference(e, n, t));
+            }),
+            zi.waitFor(r)
+          );
+        }
+        removeMatchingKeys(e, t, n) {
+          const r = Rl(e);
+          return zi.forEach(t, t => {
+            const i = so(t.path);
+            return zi.waitFor([r.delete([n, i]), this.referenceDelegate.removeReference(e, n, t)]);
+          });
+        }
+        removeMatchingKeysForTargetId(e, t) {
+          const n = Rl(e),
+            r = IDBKeyRange.bound([t], [t + 1], !1, !0);
+          return n.delete(r);
+        }
+        getMatchingKeysForTargetId(e, t) {
+          const n = IDBKeyRange.bound([t], [t + 1], !1, !0),
+            r = Rl(e);
+          let i = La();
+          return r
+            .X({ range: n, Y: !0 }, (e, t, n) => {
+              const r = co(e[1]),
+                o = new Ni(r);
+              i = i.add(o);
+            })
+            .next(() => i);
+        }
+        containsKey(e, t) {
+          const n = so(t.path),
+            r = IDBKeyRange.bound([n], [Si(n)], !1, !0);
+          let i = 0;
+          return Rl(e)
+            .X({ index: 'documentTargetsIndex', Y: !0, range: r }, ([e, t], n, r) => {
+              0 !== e && (i++, r.done());
+            })
+            .next(() => i > 0);
+        }
+        le(e, t) {
+          return Ol(e)
+            .get(t)
+            .next(e => (e ? Pc(e) : null));
+        }
+      }
+      function Ol(e) {
+        return Lo(e, 'targets');
+      }
+      function Nl(e) {
+        return Lo(e, 'targetGlobal');
+      }
+      function Rl(e) {
+        return Lo(e, 'targetDocuments');
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Pl([e, t], [n, r]) {
+        const i = Ii(e, n);
+        return 0 === i ? Ii(t, r) : i;
+      }
+      class Dl {
+        constructor(e) {
+          (this.Ln = e), (this.buffer = new $o(Pl)), (this.qn = 0);
+        }
+        Un() {
+          return ++this.qn;
+        }
+        Kn(e) {
+          const t = [e, this.Un()];
+          if (this.buffer.size < this.Ln) this.buffer = this.buffer.add(t);
+          else {
+            const e = this.buffer.last();
+            Pl(t, e) < 0 && (this.buffer = this.buffer.delete(e).add(t));
+          }
+        }
+        get maxValue() {
+          return this.buffer.last()[0];
+        }
+      }
+      class Ll {
+        constructor(e, t, n) {
+          (this.garbageCollector = e), (this.asyncQueue = t), (this.localStore = n), (this.Gn = null);
+        }
+        start() {
+          -1 !== this.garbageCollector.params.cacheSizeCollectionThreshold && this.Qn(6e4);
+        }
+        stop() {
+          this.Gn && (this.Gn.cancel(), (this.Gn = null));
+        }
+        get started() {
+          return null !== this.Gn;
+        }
+        Qn(e) {
+          ti('LruGarbageCollector', `Garbage collection scheduled in ${e}ms`),
+            (this.Gn = this.asyncQueue.enqueueAfterDelay('lru_garbage_collection', e, async () => {
+              this.Gn = null;
+              try {
+                await this.localStore.collectGarbage(this.garbageCollector);
+              } catch (e) {
+                Qi(e) ? ti('LruGarbageCollector', 'Ignoring IndexedDB error during garbage collection: ', e) : await qi(e);
+              }
+              await this.Qn(3e5);
+            }));
+        }
+      }
+      class jl {
+        constructor(e, t) {
+          (this.jn = e), (this.params = t);
+        }
+        calculateTargetCount(e, t) {
+          return this.jn.zn(e).next(e => Math.floor((t / 100) * e));
+        }
+        nthSequenceNumber(e, t) {
+          if (0 === t) return zi.resolve(no.ct);
+          const n = new Dl(t);
+          return this.jn
+            .forEachTarget(e, e => n.Kn(e.sequenceNumber))
+            .next(() => this.jn.Wn(e, e => n.Kn(e)))
+            .next(() => n.maxValue);
+        }
+        removeTargets(e, t, n) {
+          return this.jn.removeTargets(e, t, n);
+        }
+        removeOrphanedDocuments(e, t) {
+          return this.jn.removeOrphanedDocuments(e, t);
+        }
+        collect(e, t) {
+          return -1 === this.params.cacheSizeCollectionThreshold
+            ? (ti('LruGarbageCollector', 'Garbage collection skipped; disabled'), zi.resolve(wl))
+            : this.getCacheSize(e).next(n =>
+                n < this.params.cacheSizeCollectionThreshold
+                  ? (ti(
+                      'LruGarbageCollector',
+                      `Garbage collection skipped; Cache size ${n} is lower than threshold ${this.params.cacheSizeCollectionThreshold}`
+                    ),
+                    wl)
+                  : this.Hn(e, t)
+              );
+        }
+        getCacheSize(e) {
+          return this.jn.getCacheSize(e);
+        }
+        Hn(e, t) {
+          let n, r, i, o, s, u, c;
+          const l = Date.now();
+          return this.calculateTargetCount(e, this.params.percentileToCollect)
+            .next(
+              t => (
+                t > this.params.maximumSequenceNumbersToCollect
+                  ? (ti(
+                      'LruGarbageCollector',
+                      `Capping sequence numbers to collect down to the maximum of ${this.params.maximumSequenceNumbersToCollect} from ${t}`
+                    ),
+                    (r = this.params.maximumSequenceNumbersToCollect))
+                  : (r = t),
+                (o = Date.now()),
+                this.nthSequenceNumber(e, r)
+              )
+            )
+            .next(r => ((n = r), (s = Date.now()), this.removeTargets(e, n, t)))
+            .next(t => ((i = t), (u = Date.now()), this.removeOrphanedDocuments(e, n)))
+            .next(
+              e => (
+                (c = Date.now()),
+                Zr() <= a['in'].DEBUG &&
+                  ti(
+                    'LruGarbageCollector',
+                    `LRU Garbage Collection\n\tCounted targets in ${o - l}ms\n\tDetermined least recently used ${r} in ` +
+                      (s - o) +
+                      'ms\n' +
+                      `\tRemoved ${i} targets in ` +
+                      (u - s) +
+                      'ms\n' +
+                      `\tRemoved ${e} documents in ` +
+                      (c - u) +
+                      'ms\n' +
+                      `Total Duration: ${c - l}ms`
+                  ),
+                zi.resolve({ didRun: !0, sequenceNumbersCollected: r, targetsRemoved: i, documentsRemoved: e })
+              )
+            );
+        }
+      }
+      function Ml(e, t) {
+        return new jl(e, t);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Fl {
+        constructor(e, t) {
+          (this.db = e), (this.garbageCollector = Ml(this, t));
+        }
+        zn(e) {
+          const t = this.Jn(e);
+          return this.db
+            .getTargetCache()
+            .getTargetCount(e)
+            .next(e => t.next(t => e + t));
+        }
+        Jn(e) {
+          let t = 0;
+          return this.Wn(e, e => {
+            t++;
+          }).next(() => t);
+        }
+        forEachTarget(e, t) {
+          return this.db.getTargetCache().forEachTarget(e, t);
+        }
+        Wn(e, t) {
+          return this.Yn(e, (e, n) => t(n));
+        }
+        addReference(e, t, n) {
+          return Ul(e, n);
+        }
+        removeReference(e, t, n) {
+          return Ul(e, n);
+        }
+        removeTargets(e, t, n) {
+          return this.db.getTargetCache().removeTargets(e, t, n);
+        }
+        markPotentiallyOrphaned(e, t) {
+          return Ul(e, t);
+        }
+        Xn(e, t) {
+          return (function (e, t) {
+            let n = !1;
+            return xl(e)
+              .Z(r => Sl(e, r, t).next(e => (e && (n = !0), zi.resolve(!e))))
+              .next(() => n);
+          })(e, t);
+        }
+        removeOrphanedDocuments(e, t) {
+          const n = this.db.getRemoteDocumentCache().newChangeBuffer(),
+            r = [];
+          let i = 0;
+          return this.Yn(e, (o, s) => {
+            if (s <= t) {
+              const t = this.Xn(e, o).next(t => {
+                if (!t) return i++, n.getEntry(e, o).next(() => (n.removeEntry(o, Ai.min()), Rl(e).delete([0, so(o.path)])));
+              });
+              r.push(t);
+            }
+          })
+            .next(() => zi.waitFor(r))
+            .next(() => n.apply(e))
+            .next(() => i);
+        }
+        removeTarget(e, t) {
+          const n = t.withSequenceNumber(e.currentSequenceNumber);
+          return this.db.getTargetCache().updateTargetData(e, n);
+        }
+        updateLimboDocument(e, t) {
+          return Ul(e, t);
+        }
+        Yn(e, t) {
+          const n = Rl(e);
+          let r,
+            i = no.ct;
+          return n
+            .X({ index: 'documentTargetsIndex' }, ([e, n], { path: o, sequenceNumber: s }) => {
+              0 === e ? (i !== no.ct && t(new Ni(co(r)), i), (i = s), (r = o)) : (i = no.ct);
+            })
+            .next(() => {
+              i !== no.ct && t(new Ni(co(r)), i);
+            });
+        }
+        getCacheSize(e) {
+          return this.db.getRemoteDocumentCache().getSize(e);
+        }
+      }
+      function Ul(e, t) {
+        return Rl(e).put(
+          (function (e, t) {
+            return { targetId: 0, path: so(e.path), sequenceNumber: t };
+          })(t, e.currentSequenceNumber)
+        );
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Vl {
+        constructor() {
+          (this.changes = new Sa(
+            e => e.toString(),
+            (e, t) => e.isEqual(t)
+          )),
+            (this.changesApplied = !1);
+        }
+        addEntry(e) {
+          this.assertNotApplied(), this.changes.set(e.key, e);
+        }
+        removeEntry(e, t) {
+          this.assertNotApplied(), this.changes.set(e, xs.newInvalidDocument(e).setReadTime(t));
+        }
+        getEntry(e, t) {
+          this.assertNotApplied();
+          const n = this.changes.get(t);
+          return void 0 !== n ? zi.resolve(n) : this.getFromCache(e, t);
+        }
+        getEntries(e, t) {
+          return this.getAllFromCache(e, t);
+        }
+        apply(e) {
+          return this.assertNotApplied(), (this.changesApplied = !0), this.applyChanges(e);
+        }
+        assertNotApplied() {}
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Bl {
+        constructor(e) {
+          this.serializer = e;
+        }
+        setIndexManager(e) {
+          this.indexManager = e;
+        }
+        addEntry(e, t, n) {
+          return Gl(e).put(n);
+        }
+        removeEntry(e, t, n) {
+          return Gl(e).delete(
+            (function (e, t) {
+              const n = e.path.toArray();
+              return [n.slice(0, n.length - 2), n[n.length - 2], kc(t), n[n.length - 1]];
+            })(t, n)
+          );
+        }
+        updateMetadata(e, t) {
+          return this.getMetadata(e).next(n => ((n.byteSize += t), this.Zn(e, n)));
+        }
+        getEntry(e, t) {
+          let n = xs.newInvalidDocument(t);
+          return Gl(e)
+            .X({ index: 'documentKeyIndex', range: IDBKeyRange.only(Wl(t)) }, (e, r) => {
+              n = this.ts(t, r);
+            })
+            .next(() => n);
+        }
+        es(e, t) {
+          let n = { size: 0, document: xs.newInvalidDocument(t) };

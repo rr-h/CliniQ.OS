@@ -1,0 +1,500 @@
+              (e.onsuccess = e => {
+                const i = e.target.result;
+                if (!i) return void r();
+                const o = new Hi(i),
+                  s = t(i.primaryKey, i.value, o);
+                if (s instanceof zi) {
+                  const e = s.catch(e => (o.done(), zi.reject(e)));
+                  n.push(e);
+                }
+                o.isDone ? r() : null === o.K ? i.continue() : i.continue(o.K);
+              });
+          }).next(() => zi.waitFor(n));
+        }
+        options(e, t) {
+          let n;
+          return void 0 !== e && ('string' == typeof e ? (n = e) : (t = e)), { index: n, range: t };
+        }
+        cursor(e) {
+          let t = 'next';
+          if ((e.reverse && (t = 'prev'), e.index)) {
+            const n = this.store.index(e.index);
+            return e.Y ? n.openKeyCursor(e.range, t) : n.openCursor(e.range, t);
+          }
+          return this.store.openCursor(e.range, t);
+        }
+      }
+      function Xi(e) {
+        return new zi((t, n) => {
+          (e.onsuccess = e => {
+            const n = e.target.result;
+            t(n);
+          }),
+            (e.onerror = e => {
+              const t = Zi(e.target.error);
+              n(t);
+            });
+        });
+      }
+      let Ji = !1;
+      function Zi(e) {
+        const t = Wi.S((0, u.z$)());
+        if (t >= 12.2 && t < 13) {
+          const t = 'An internal error was encountered in the Indexed Database server';
+          if (e.message.indexOf(t) >= 0) {
+            const e = new li(
+              'internal',
+              `IOS_INDEXEDDB_BUG1: IndexedDb has thrown '${t}'. This is likely due to an unavoidable bug in iOS. See https://stackoverflow.com/q/56496296/110915 for details and a potential workaround.`
+            );
+            return (
+              Ji ||
+                ((Ji = !0),
+                setTimeout(() => {
+                  throw e;
+                }, 0)),
+              e
+            );
+          }
+        }
+        return e;
+      }
+      class eo {
+        constructor(e, t) {
+          (this.asyncQueue = e), (this.tt = t), (this.task = null);
+        }
+        start() {
+          this.et(15e3);
+        }
+        stop() {
+          this.task && (this.task.cancel(), (this.task = null));
+        }
+        get started() {
+          return null !== this.task;
+        }
+        et(e) {
+          ti('IndexBackiller', `Scheduled in ${e}ms`),
+            (this.task = this.asyncQueue.enqueueAfterDelay('index_backfill', e, async () => {
+              this.task = null;
+              try {
+                ti('IndexBackiller', `Documents written: ${await this.tt.nt()}`);
+              } catch (e) {
+                Qi(e) ? ti('IndexBackiller', 'Ignoring IndexedDB error during index backfill: ', e) : await qi(e);
+              }
+              await this.et(6e4);
+            }));
+        }
+      }
+      class to {
+        constructor(e, t) {
+          (this.localStore = e), (this.persistence = t);
+        }
+        async nt(e = 50) {
+          return this.persistence.runTransaction('Backfill Indexes', 'readwrite-primary', t => this.st(t, e));
+        }
+        st(e, t) {
+          const n = new Set();
+          let r = t,
+            i = !0;
+          return zi
+            .doWhile(
+              () => !0 === i && r > 0,
+              () =>
+                this.localStore.indexManager.getNextCollectionGroupToUpdate(e).next(t => {
+                  if (null !== t && !n.has(t))
+                    return (
+                      ti('IndexBackiller', `Processing collection: ${t}`),
+                      this.it(e, t, r).next(e => {
+                        (r -= e), n.add(t);
+                      })
+                    );
+                  i = !1;
+                })
+            )
+            .next(() => t - r);
+        }
+        it(e, t, n) {
+          return this.localStore.indexManager.getMinOffsetFromCollectionGroup(e, t).next(r =>
+            this.localStore.localDocuments.getNextDocuments(e, t, r, n).next(n => {
+              const i = n.changes;
+              return this.localStore.indexManager
+                .updateIndexEntries(e, i)
+                .next(() => this.rt(r, n))
+                .next(n => (ti('IndexBackiller', `Updating offset: ${n}`), this.localStore.indexManager.updateCollectionGroup(e, t, n)))
+                .next(() => i.size);
+            })
+          );
+        }
+        rt(e, t) {
+          let n = e;
+          return (
+            t.changes.forEach((e, t) => {
+              const r = Fi(t);
+              Vi(r, n) > 0 && (n = r);
+            }),
+            new Ui(n.readTime, n.documentKey, Math.max(t.batchId, e.largestBatchId))
+          );
+        }
+      }
+      /**
+       * @license
+       * Copyright 2018 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class no {
+        constructor(e, t) {
+          (this.previousValue = e), t && ((t.sequenceNumberHandler = e => this.ot(e)), (this.ut = e => t.writeSequenceNumber(e)));
+        }
+        ot(e) {
+          return (this.previousValue = Math.max(e, this.previousValue)), this.previousValue;
+        }
+        next() {
+          const e = ++this.previousValue;
+          return this.ut && this.ut(e), e;
+        }
+      }
+      function ro(e) {
+        return null == e;
+      }
+      function io(e) {
+        return 0 === e && 1 / e == -1 / 0;
+      }
+      function oo(e) {
+        return 'number' == typeof e && Number.isInteger(e) && !io(e) && e <= Number.MAX_SAFE_INTEGER && e >= Number.MIN_SAFE_INTEGER;
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function so(e) {
+        let t = '';
+        for (let n = 0; n < e.length; n++) t.length > 0 && (t = uo(t)), (t = ao(e.get(n), t));
+        return uo(t);
+      }
+      function ao(e, t) {
+        let n = t;
+        const r = e.length;
+        for (let i = 0; i < r; i++) {
+          const t = e.charAt(i);
+          switch (t) {
+            case '\0':
+              n += '';
+              break;
+            case '':
+              n += '';
+              break;
+            default:
+              n += t;
+          }
+        }
+        return n;
+      }
+      function uo(e) {
+        return e + '';
+      }
+      function co(e) {
+        const t = e.length;
+        if ((si(t >= 2), 2 === t)) return si('' === e.charAt(0) && '' === e.charAt(1)), Ci.emptyPath();
+        const n = t - 2,
+          r = [];
+        let i = '';
+        for (let o = 0; o < t; ) {
+          const t = e.indexOf('', o);
+          switch (((t < 0 || t > n) && oi(), e.charAt(t + 1))) {
+            case '':
+              const n = e.substring(o, t);
+              let s;
+              0 === i.length ? (s = n) : ((i += n), (s = i), (i = '')), r.push(s);
+              break;
+            case '':
+              (i += e.substring(o, t)), (i += '\0');
+              break;
+            case '':
+              i += e.substring(o, t + 1);
+              break;
+            default:
+              oi();
+          }
+          o = t + 2;
+        }
+        return new Ci(r);
+      }
+      /**
+       * @license
+       * Copyright 2022 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ no.ct = -1;
+      const lo = ['userId', 'batchId'];
+      /**
+       * @license
+       * Copyright 2022 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function ho(e, t) {
+        return [e, so(t)];
+      }
+      function fo(e, t, n) {
+        return [e, so(t), n];
+      }
+      const po = {},
+        go = ['prefixPath', 'collectionGroup', 'readTime', 'documentId'],
+        mo = ['prefixPath', 'collectionGroup', 'documentId'],
+        vo = ['collectionGroup', 'readTime', 'prefixPath', 'documentId'],
+        yo = ['canonicalId', 'targetId'],
+        wo = ['targetId', 'path'],
+        bo = ['path', 'targetId'],
+        _o = ['collectionId', 'parent'],
+        Io = ['indexId', 'uid'],
+        Eo = ['uid', 'sequenceNumber'],
+        So = ['indexId', 'uid', 'arrayValue', 'directionalValue', 'orderedDocumentKey', 'documentKey'],
+        To = ['indexId', 'uid', 'orderedDocumentKey'],
+        Ao = ['userId', 'collectionPath', 'documentId'],
+        xo = ['userId', 'collectionPath', 'largestBatchId'],
+        Co = ['userId', 'collectionGroup', 'largestBatchId'],
+        ko = [
+          'mutationQueues',
+          'mutations',
+          'documentMutations',
+          'remoteDocuments',
+          'targets',
+          'owner',
+          'targetGlobal',
+          'targetDocuments',
+          'clientMetadata',
+          'remoteDocumentGlobal',
+          'collectionParents',
+          'bundles',
+          'namedQueries'
+        ],
+        Oo = [...ko, 'documentOverlays'],
+        No = [
+          'mutationQueues',
+          'mutations',
+          'documentMutations',
+          'remoteDocumentsV14',
+          'targets',
+          'owner',
+          'targetGlobal',
+          'targetDocuments',
+          'clientMetadata',
+          'remoteDocumentGlobal',
+          'collectionParents',
+          'bundles',
+          'namedQueries',
+          'documentOverlays'
+        ],
+        Ro = No,
+        Po = [...Ro, 'indexConfiguration', 'indexState', 'indexEntries'];
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Do extends $i {
+        constructor(e, t) {
+          super(), (this.ht = e), (this.currentSequenceNumber = t);
+        }
+      }
+      function Lo(e, t) {
+        const n = ui(e);
+        return Wi.M(n.ht, t);
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function jo(e) {
+        let t = 0;
+        for (const n in e) Object.prototype.hasOwnProperty.call(e, n) && t++;
+        return t;
+      }
+      function Mo(e, t) {
+        for (const n in e) Object.prototype.hasOwnProperty.call(e, n) && t(n, e[n]);
+      }
+      function Fo(e) {
+        for (const t in e) if (Object.prototype.hasOwnProperty.call(e, t)) return !1;
+        return !0;
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Uo {
+        constructor(e, t) {
+          (this.comparator = e), (this.root = t || Bo.EMPTY);
+        }
+        insert(e, t) {
+          return new Uo(this.comparator, this.root.insert(e, t, this.comparator).copy(null, null, Bo.BLACK, null, null));
+        }
+        remove(e) {
+          return new Uo(this.comparator, this.root.remove(e, this.comparator).copy(null, null, Bo.BLACK, null, null));
+        }
+        get(e) {
+          let t = this.root;
+          for (; !t.isEmpty(); ) {
+            const n = this.comparator(e, t.key);
+            if (0 === n) return t.value;
+            n < 0 ? (t = t.left) : n > 0 && (t = t.right);
+          }
+          return null;
+        }
+        indexOf(e) {
+          let t = 0,
+            n = this.root;
+          for (; !n.isEmpty(); ) {
+            const r = this.comparator(e, n.key);
+            if (0 === r) return t + n.left.size;
+            r < 0 ? (n = n.left) : ((t += n.left.size + 1), (n = n.right));
+          }
+          return -1;
+        }
+        isEmpty() {
+          return this.root.isEmpty();
+        }
+        get size() {
+          return this.root.size;
+        }
+        minKey() {
+          return this.root.minKey();
+        }
+        maxKey() {
+          return this.root.maxKey();
+        }
+        inorderTraversal(e) {
+          return this.root.inorderTraversal(e);
+        }
+        forEach(e) {
+          this.inorderTraversal((t, n) => (e(t, n), !1));
+        }
+        toString() {
+          const e = [];
+          return this.inorderTraversal((t, n) => (e.push(`${t}:${n}`), !1)), `{${e.join(', ')}}`;
+        }
+        reverseTraversal(e) {
+          return this.root.reverseTraversal(e);
+        }
+        getIterator() {
+          return new Vo(this.root, null, this.comparator, !1);
+        }
+        getIteratorFrom(e) {
+          return new Vo(this.root, e, this.comparator, !1);
+        }
+        getReverseIterator() {
+          return new Vo(this.root, null, this.comparator, !0);
+        }
+        getReverseIteratorFrom(e) {
+          return new Vo(this.root, e, this.comparator, !0);
+        }
+      }
+      class Vo {
+        constructor(e, t, n, r) {
+          (this.isReverse = r), (this.nodeStack = []);
+          let i = 1;
+          for (; !e.isEmpty(); )
+            if (((i = t ? n(e.key, t) : 1), t && r && (i *= -1), i < 0)) e = this.isReverse ? e.left : e.right;
+            else {
+              if (0 === i) {
+                this.nodeStack.push(e);
+                break;
+              }
+              this.nodeStack.push(e), (e = this.isReverse ? e.right : e.left);
+            }
+        }
+        getNext() {
+          let e = this.nodeStack.pop();
+          const t = { key: e.key, value: e.value };
+          if (this.isReverse) for (e = e.left; !e.isEmpty(); ) this.nodeStack.push(e), (e = e.right);
+          else for (e = e.right; !e.isEmpty(); ) this.nodeStack.push(e), (e = e.left);
+          return t;
+        }
+        hasNext() {
+          return this.nodeStack.length > 0;
+        }
+        peek() {
+          if (0 === this.nodeStack.length) return null;
+          const e = this.nodeStack[this.nodeStack.length - 1];
+          return { key: e.key, value: e.value };
+        }
+      }
+      class Bo {
+        constructor(e, t, n, r, i) {
+          (this.key = e),
+            (this.value = t),
+            (this.color = null != n ? n : Bo.RED),
+            (this.left = null != r ? r : Bo.EMPTY),
+            (this.right = null != i ? i : Bo.EMPTY),
+            (this.size = this.left.size + 1 + this.right.size);
+        }

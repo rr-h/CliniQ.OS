@@ -1,4 +1,4 @@
-(self['webpackChunkpoolsuite'] = self['webpackChunkpoolsuite'] || []).push([
+                                                              (self['webpackChunkpoolsuite'] = self['webpackChunkpoolsuite'] || []).push([
   [998],
   {
     29293: function (e, t, n) {

@@ -1,0 +1,500 @@
+        }
+        sendSignInLinkToEmail(e, t) {
+          return fn(this._delegate, e, t);
+        }
+        sendPasswordResetEmail(e, t) {
+          return on(this._delegate, e, t || void 0);
+        }
+        async setPersistence(e) {
+          let t;
+          switch ((ds(this._delegate, e), e)) {
+            case ls.SESSION:
+              t = Xn;
+              break;
+            case ls.LOCAL:
+              const e = await he(Ir)._isAvailable();
+              t = e ? Ir : Qn;
+              break;
+            case ls.NONE:
+              t = de;
+              break;
+            default:
+              return w('argument-error', { appName: this._delegate.name });
+          }
+          return this._delegate.setPersistence(t);
+        }
+        signInAndRetrieveDataWithCredential(e) {
+          return this.signInWithCredential(e);
+        }
+        signInAnonymously() {
+          return Ss(this._delegate, Vt(this._delegate));
+        }
+        signInWithCredential(e) {
+          return Ss(this._delegate, Qt(this._delegate, e));
+        }
+        signInWithCustomToken(e) {
+          return Ss(this._delegate, Zt(this._delegate, e));
+        }
+        signInWithEmailAndPassword(e, t) {
+          return Ss(this._delegate, hn(this._delegate, e, t));
+        }
+        signInWithEmailLink(e, t) {
+          return Ss(this._delegate, pn(this._delegate, e, t));
+        }
+        signInWithPhoneNumber(e, t) {
+          return Ts(this._delegate, qr(this._delegate, e, t));
+        }
+        async signInWithPopup(e) {
+          return Cs(ss(), this._delegate, 'operation-not-supported-in-this-environment'), Ss(this._delegate, ni(this._delegate, e, ys));
+        }
+        async signInWithRedirect(e) {
+          return Cs(ss(), this._delegate, 'operation-not-supported-in-this-environment'), await ps(this._delegate), gi(this._delegate, e, ys);
+        }
+        updateCurrentUser(e) {
+          return this._delegate.updateCurrentUser(e);
+        }
+        verifyPasswordResetCode(e) {
+          return cn(this._delegate, e);
+        }
+        unwrap() {
+          return this._delegate;
+        }
+        _delete() {
+          return this._delegate._delete();
+        }
+        linkUnderlyingAuth() {
+          this._delegate.wrapped = () => this;
+        }
+      }
+      function Os(e, t, n) {
+        let r = e;
+        'function' !== typeof e && ({ next: r, error: t, complete: n } = e);
+        const i = r,
+          o = e => i(e && xs.getOrCreate(e));
+        return { next: o, error: t, complete: n };
+      }
+      function Ns(e, t) {
+        const n = gs(e, t);
+        if (('undefined' === typeof self || n.includes(Ir) || n.push(Ir), 'undefined' !== typeof window))
+          for (const r of [Qn, Xn]) n.includes(r) || n.push(r);
+        return n.includes(de) || n.push(de), n;
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ ks.Persistence = ls;
+      class Rs {
+        constructor() {
+          (this.providerId = 'phone'), (this._delegate = new Kr(ws(r.Z.auth())));
+        }
+        static credential(e, t) {
+          return Kr.credential(e, t);
+        }
+        verifyPhoneNumber(e, t) {
+          return this._delegate.verifyPhoneNumber(e, t);
+        }
+        unwrap() {
+          return this._delegate;
+        }
+      }
+      (Rs.PHONE_SIGN_IN_METHOD = Kr.PHONE_SIGN_IN_METHOD), (Rs.PROVIDER_ID = Kr.PROVIDER_ID);
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      const Ps = S;
+      class Ds {
+        constructor(e, t, n = r.Z.app()) {
+          var i;
+          Ps(null === (i = n.options) || void 0 === i ? void 0 : i.apiKey, 'invalid-api-key', { appName: n.name }),
+            (this._delegate = new Vr(e, t, n.auth())),
+            (this.type = this._delegate.type);
+        }
+        clear() {
+          this._delegate.clear();
+        }
+        render() {
+          return this._delegate.render();
+        }
+        verify() {
+          return this._delegate.verify();
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Ls = 'auth-compat';
+      function js(e) {
+        e.INTERNAL.registerComponent(
+          new u.wA(
+            Ls,
+            e => {
+              const t = e.getProvider('app-compat').getImmediate(),
+                n = e.getProvider('auth');
+              return new ks(t, n);
+            },
+            'PUBLIC'
+          )
+            .setServiceProps({
+              ActionCodeInfo: {
+                Operation: {
+                  EMAIL_SIGNIN: l.EMAIL_SIGNIN,
+                  PASSWORD_RESET: l.PASSWORD_RESET,
+                  RECOVER_EMAIL: l.RECOVER_EMAIL,
+                  REVERT_SECOND_FACTOR_ADDITION: l.REVERT_SECOND_FACTOR_ADDITION,
+                  VERIFY_AND_CHANGE_EMAIL: l.VERIFY_AND_CHANGE_EMAIL,
+                  VERIFY_EMAIL: l.VERIFY_EMAIL
+                }
+              },
+              EmailAuthProvider: Tt,
+              FacebookAuthProvider: kt,
+              GithubAuthProvider: Nt,
+              GoogleAuthProvider: Ot,
+              OAuthProvider: Ct,
+              SAMLAuthProvider: Lt,
+              PhoneAuthProvider: Rs,
+              PhoneMultiFactorGenerator: lo,
+              RecaptchaVerifier: Ds,
+              TwitterAuthProvider: jt,
+              Auth: ks,
+              AuthCredential: et,
+              Error: i.ZR
+            })
+            .setInstantiationMode('LAZY')
+            .setMultipleInstances(!1)
+        ),
+          e.registerVersion(Ko, Qo);
+      }
+      js(r.Z);
+    },
+    14673: (e, t, n) => {
+      'use strict';
+      var r,
+        i = n(98180),
+        o = n(25816),
+        s = n(8463),
+        a = n(53333),
+        u = n(74444),
+        c =
+          'undefined' !== typeof globalThis
+            ? globalThis
+            : 'undefined' !== typeof window
+              ? window
+              : 'undefined' !== typeof global
+                ? global
+                : 'undefined' !== typeof self
+                  ? self
+                  : {},
+        l = {},
+        h = h || {},
+        f = c || self;
+      function d(e) {
+        var t = typeof e;
+        return (
+          (t = 'object' != t ? t : e ? (Array.isArray(e) ? 'array' : t) : 'null'), 'array' == t || ('object' == t && 'number' == typeof e.length)
+        );
+      }
+      function p(e) {
+        var t = typeof e;
+        return ('object' == t && null != e) || 'function' == t;
+      }
+      function g(e) {
+        return (Object.prototype.hasOwnProperty.call(e, m) && e[m]) || (e[m] = ++v);
+      }
+      var m = 'closure_uid_' + ((1e9 * Math.random()) >>> 0),
+        v = 0;
+      function y(e, t, n) {
+        return e.call.apply(e.bind, arguments);
+      }
+      function w(e, t, n) {
+        if (!e) throw Error();
+        if (2 < arguments.length) {
+          var r = Array.prototype.slice.call(arguments, 2);
+          return function () {
+            var n = Array.prototype.slice.call(arguments);
+            return Array.prototype.unshift.apply(n, r), e.apply(t, n);
+          };
+        }
+        return function () {
+          return e.apply(t, arguments);
+        };
+      }
+      function b(e, t, n) {
+        return (b = Function.prototype.bind && -1 != Function.prototype.bind.toString().indexOf('native code') ? y : w), b.apply(null, arguments);
+      }
+      function _(e, t) {
+        var n = Array.prototype.slice.call(arguments, 1);
+        return function () {
+          var t = n.slice();
+          return t.push.apply(t, arguments), e.apply(this, t);
+        };
+      }
+      function I(e, t) {
+        function n() {}
+        (n.prototype = t.prototype),
+          (e.$ = t.prototype),
+          (e.prototype = new n()),
+          (e.prototype.constructor = e),
+          (e.ac = function (e, n, r) {
+            for (var i = Array(arguments.length - 2), o = 2; o < arguments.length; o++) i[o - 2] = arguments[o];
+            return t.prototype[n].apply(e, i);
+          });
+      }
+      function E() {
+        (this.s = this.s), (this.o = this.o);
+      }
+      var S = 0;
+      (E.prototype.s = !1),
+        (E.prototype.sa = function () {
+          this.s || ((this.s = !0), this.N(), 0 == S) || g(this);
+        }),
+        (E.prototype.N = function () {
+          if (this.o) for (; this.o.length; ) this.o.shift()();
+        });
+      const T = Array.prototype.indexOf
+        ? function (e, t) {
+            return Array.prototype.indexOf.call(e, t, void 0);
+          }
+        : function (e, t) {
+            if ('string' === typeof e) return 'string' !== typeof t || 1 != t.length ? -1 : e.indexOf(t, 0);
+            for (let n = 0; n < e.length; n++) if (n in e && e[n] === t) return n;
+            return -1;
+          };
+      function A(e) {
+        const t = e.length;
+        if (0 < t) {
+          const n = Array(t);
+          for (let r = 0; r < t; r++) n[r] = e[r];
+          return n;
+        }
+        return [];
+      }
+      function x(e, t) {
+        for (let n = 1; n < arguments.length; n++) {
+          const t = arguments[n];
+          if (d(t)) {
+            const n = e.length || 0,
+              r = t.length || 0;
+            e.length = n + r;
+            for (let i = 0; i < r; i++) e[n + i] = t[i];
+          } else e.push(t);
+        }
+      }
+      function C(e, t) {
+        (this.type = e), (this.g = this.target = t), (this.defaultPrevented = !1);
+      }
+      C.prototype.h = function () {
+        this.defaultPrevented = !0;
+      };
+      var k = (function () {
+        if (!f.addEventListener || !Object.defineProperty) return !1;
+        var e = !1,
+          t = Object.defineProperty({}, 'passive', {
+            get: function () {
+              e = !0;
+            }
+          });
+        try {
+          f.addEventListener('test', () => {}, t), f.removeEventListener('test', () => {}, t);
+        } catch (n) {}
+        return e;
+      })();
+      function O(e) {
+        return /^[\s\xa0]*$/.test(e);
+      }
+      function N() {
+        var e = f.navigator;
+        return e && (e = e.userAgent) ? e : '';
+      }
+      function R(e) {
+        return -1 != N().indexOf(e);
+      }
+      function P(e) {
+        return P[' '](e), e;
+      }
+      function D(e, t) {
+        var n = _r;
+        return Object.prototype.hasOwnProperty.call(n, e) ? n[e] : (n[e] = t(e));
+      }
+      P[' '] = function () {};
+      var L,
+        j,
+        M = R('Opera'),
+        F = R('Trident') || R('MSIE'),
+        U = R('Edge'),
+        V = U || F,
+        B = R('Gecko') && !(-1 != N().toLowerCase().indexOf('webkit') && !R('Edge')) && !(R('Trident') || R('MSIE')) && !R('Edge'),
+        $ = -1 != N().toLowerCase().indexOf('webkit') && !R('Edge');
+      function q() {
+        var e = f.document;
+        return e ? e.documentMode : void 0;
+      }
+      e: {
+        var z = '',
+          G = (function () {
+            var e = N();
+            return B
+              ? /rv:([^\);]+)(\)|;)/.exec(e)
+              : U
+                ? /Edge\/([\d\.]+)/.exec(e)
+                : F
+                  ? /\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/.exec(e)
+                  : $
+                    ? /WebKit\/(\S+)/.exec(e)
+                    : M
+                      ? /(?:Version)[ \/]?(\S+)/.exec(e)
+                      : void 0;
+          })();
+        if ((G && (z = G ? G[1] : ''), F)) {
+          var W = q();
+          if (null != W && W > parseFloat(z)) {
+            L = String(W);
+            break e;
+          }
+        }
+        L = z;
+      }
+      if (f.document && F) {
+        var H = q();
+        j = H || parseInt(L, 10) || void 0;
+      } else j = void 0;
+      var K = j;
+      function Q(e, t) {
+        if (
+          (C.call(this, e ? e.type : ''),
+          (this.relatedTarget = this.g = this.target = null),
+          (this.button = this.screenY = this.screenX = this.clientY = this.clientX = 0),
+          (this.key = ''),
+          (this.metaKey = this.shiftKey = this.altKey = this.ctrlKey = !1),
+          (this.state = null),
+          (this.pointerId = 0),
+          (this.pointerType = ''),
+          (this.i = null),
+          e)
+        ) {
+          var n = (this.type = e.type),
+            r = e.changedTouches && e.changedTouches.length ? e.changedTouches[0] : null;
+          if (((this.target = e.target || e.srcElement), (this.g = t), (t = e.relatedTarget))) {
+            if (B) {
+              e: {
+                try {
+                  P(t.nodeName);
+                  var i = !0;
+                  break e;
+                } catch (o) {}
+                i = !1;
+              }
+              i || (t = null);
+            }
+          } else 'mouseover' == n ? (t = e.fromElement) : 'mouseout' == n && (t = e.toElement);
+          (this.relatedTarget = t),
+            r
+              ? ((this.clientX = void 0 !== r.clientX ? r.clientX : r.pageX),
+                (this.clientY = void 0 !== r.clientY ? r.clientY : r.pageY),
+                (this.screenX = r.screenX || 0),
+                (this.screenY = r.screenY || 0))
+              : ((this.clientX = void 0 !== e.clientX ? e.clientX : e.pageX),
+                (this.clientY = void 0 !== e.clientY ? e.clientY : e.pageY),
+                (this.screenX = e.screenX || 0),
+                (this.screenY = e.screenY || 0)),
+            (this.button = e.button),
+            (this.key = e.key || ''),
+            (this.ctrlKey = e.ctrlKey),
+            (this.altKey = e.altKey),
+            (this.shiftKey = e.shiftKey),
+            (this.metaKey = e.metaKey),
+            (this.pointerId = e.pointerId || 0),
+            (this.pointerType = 'string' === typeof e.pointerType ? e.pointerType : Y[e.pointerType] || ''),
+            (this.state = e.state),
+            (this.i = e),
+            e.defaultPrevented && Q.$.h.call(this);
+        }
+      }
+      I(Q, C);
+      var Y = { 2: 'touch', 3: 'pen', 4: 'mouse' };
+      Q.prototype.h = function () {
+        Q.$.h.call(this);
+        var e = this.i;
+        e.preventDefault ? e.preventDefault() : (e.returnValue = !1);
+      };
+      var X = 'closure_listenable_' + ((1e6 * Math.random()) | 0),
+        J = 0;
+      function Z(e, t, n, r, i) {
+        (this.listener = e),
+          (this.proxy = null),
+          (this.src = t),
+          (this.type = n),
+          (this.capture = !!r),
+          (this.la = i),
+          (this.key = ++J),
+          (this.fa = this.ia = !1);
+      }
+      function ee(e) {
+        (e.fa = !0), (e.listener = null), (e.proxy = null), (e.src = null), (e.la = null);
+      }
+      function te(e, t, n) {
+        for (const r in e) t.call(n, e[r], r, e);
+      }
+      function ne(e, t) {
+        for (const n in e) t.call(void 0, e[n], n, e);
+      }
+      function re(e) {
+        const t = {};
+        for (const n in e) t[n] = e[n];
+        return t;
+      }
+      const ie = 'constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf'.split(' ');
+      function oe(e, t) {
+        let n, r;
+        for (let i = 1; i < arguments.length; i++) {
+          for (n in ((r = arguments[i]), r)) e[n] = r[n];
+          for (let t = 0; t < ie.length; t++) (n = ie[t]), Object.prototype.hasOwnProperty.call(r, n) && (e[n] = r[n]);
+        }
+      }
+      function se(e) {
+        (this.src = e), (this.g = {}), (this.h = 0);
+      }
+      function ae(e, t) {
+        var n = t.type;
+        if (n in e.g) {
+          var r,
+            i = e.g[n],
+            o = T(i, t);
+          (r = 0 <= o) && Array.prototype.splice.call(i, o, 1), r && (ee(t), 0 == e.g[n].length && (delete e.g[n], e.h--));
+        }

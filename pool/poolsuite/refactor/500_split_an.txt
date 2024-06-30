@@ -1,0 +1,500 @@
+          function (e) {
+            throw e;
+          }
+        );
+      }
+      function ue(e) {
+        return {
+          entries: e.filter(function (e) {
+            return 'Entry' === e.sys.type;
+          }),
+          assets: e.filter(function (e) {
+            return 'Asset' === e.sys.type;
+          }),
+          deletedEntries: e.filter(function (e) {
+            return 'DeletedEntry' === e.sys.type;
+          }),
+          deletedAssets: e.filter(function (e) {
+            return 'DeletedAsset' === e.sys.type;
+          })
+        };
+      }
+      function ce(e, t, n) {
+        return (
+          n.nextSyncToken && ((n.sync_token = n.nextSyncToken), delete n.nextSyncToken),
+          n.sync_token && (delete n.initial, delete n.type, delete n.content_type),
+          e.get('sync', I({ query: n })).then(function (r) {
+            var i = r.data;
+            return (
+              (t = t.concat(i.items)),
+              i.nextPageUrl
+                ? (delete n.initial, (n.sync_token = le(i.nextPageUrl)), ce(e, t, n))
+                : i.nextSyncUrl
+                  ? { items: t, nextSyncToken: le(i.nextSyncUrl) }
+                  : void 0
+            );
+          })
+        );
+      }
+      function le(e) {
+        var t = e.split('?');
+        return t.length > 0 ? t[1].replace('sync_token=', '') : '';
+      }
+      function he(e) {
+        var t = e.http,
+          n = e.getGlobalOptions,
+          r = se.space.wrapSpace,
+          i = se.contentType,
+          o = i.wrapContentType,
+          s = i.wrapContentTypeCollection,
+          a = se.entry,
+          u = a.wrapEntry,
+          c = a.wrapEntryCollection,
+          l = se.asset,
+          h = l.wrapAsset,
+          f = l.wrapAssetCollection;
+        function d(e) {
+          if (e.data) throw e.data;
+          throw e;
+        }
+        function p() {
+          return t.get('').then(function (e) {
+            return r(e.data);
+          }, d);
+        }
+        function g(e) {
+          return t.get('content_types/' + e).then(function (e) {
+            return o(e.data);
+          }, d);
+        }
+        function m() {
+          var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+          return t.get('content_types', I({ query: e })).then(function (e) {
+            return s(e.data);
+          }, d);
+        }
+        function v(e) {
+          var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+          return (
+            S(n),
+            t.get('entries/' + e, I({ query: n })).then(function (e) {
+              return u(e.data);
+            }, d)
+          );
+        }
+        function y() {
+          var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
+            r = n(e),
+            i = r.resolveLinks,
+            o = r.removeUnresolved;
+          return (
+            S(e),
+            t.get('entries', I({ query: e })).then(function (e) {
+              return c(e.data, { resolveLinks: i, removeUnresolved: o });
+            }, d)
+          );
+        }
+        function w(e) {
+          var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+          return (
+            S(n),
+            t.get('assets/' + e, I({ query: n })).then(function (e) {
+              return h(e.data);
+            }, d)
+          );
+        }
+        function b() {
+          var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+          return (
+            S(e),
+            t.get('assets', I({ query: e })).then(function (e) {
+              return f(e.data);
+            }, d)
+          );
+        }
+        function _() {
+          var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
+            r = n(e),
+            i = r.resolveLinks,
+            o = r.removeUnresolved;
+          return ae(t, e, { resolveLinks: i, removeUnresolved: o });
+        }
+        function E(e) {
+          var t = n({}),
+            r = t.resolveLinks,
+            i = t.removeUnresolved;
+          return c(e, { resolveLinks: r, removeUnresolved: i });
+        }
+        function S(e) {
+          e.select && !/sys/i.test(e.select) && (e.select += ',sys');
+        }
+        return {
+          getSpace: p,
+          getContentType: g,
+          getContentTypes: m,
+          getEntry: v,
+          getEntries: y,
+          getAsset: w,
+          getAssets: b,
+          parseEntries: E,
+          sync: _
+        };
+      }
+      function fe(e) {
+        return function (t) {
+          return Object.assign({}, e, t);
+        };
+      }
+      var de =
+        Object.assign ||
+        function (e) {
+          for (var t = 1; t < arguments.length; t++) {
+            var n = arguments[t];
+            for (var r in n) Object.prototype.hasOwnProperty.call(n, r) && (e[r] = n[r]);
+          }
+          return e;
+        };
+      function pe(e) {
+        if (!e.accessToken) throw new TypeError('Expected parameter accessToken');
+        if (!e.space) throw new TypeError('Expected parameter space');
+        var t = !('resolveLinks' in e && !e.resolveLinks),
+          n = !!e.removeUnresolved,
+          r = fe({ resolveLinks: t, removeUnresolved: n }),
+          i = N('contentful.js/5.1.3', e.application, e.integration);
+        (e.defaultHostname = 'cdn.contentful.com'),
+          (e.headers = de({}, e.headers, { 'Content-Type': 'application/vnd.contentful.delivery.v1+json', 'X-Contentful-User-Agent': i }));
+        var o = _(u(), e);
+        return he({ http: o, getGlobalOptions: r });
+      }
+      let ge = null;
+      const me = {
+        install(e, t) {
+          (ge = pe({ space: t.space, accessToken: t.accessToken })), (e.prototype.$contentful = ge);
+        }
+      };
+      var ve = me;
+    },
+    19662: (e, t, n) => {
+      var r = n(60614),
+        i = n(66330),
+        o = TypeError;
+      e.exports = function (e) {
+        if (r(e)) return e;
+        throw o(i(e) + ' is not a function');
+      };
+    },
+    19670: (e, t, n) => {
+      var r = n(70111),
+        i = String,
+        o = TypeError;
+      e.exports = function (e) {
+        if (r(e)) return e;
+        throw o(i(e) + ' is not an object');
+      };
+    },
+    41318: (e, t, n) => {
+      var r = n(45656),
+        i = n(51400),
+        o = n(26244),
+        s = function (e) {
+          return function (t, n, s) {
+            var a,
+              u = r(t),
+              c = o(u),
+              l = i(s, c);
+            if (e && n != n) {
+              while (c > l) if (((a = u[l++]), a != a)) return !0;
+            } else for (; c > l; l++) if ((e || l in u) && u[l] === n) return e || l || 0;
+            return !e && -1;
+          };
+        };
+      e.exports = { includes: s(!0), indexOf: s(!1) };
+    },
+    83658: (e, t, n) => {
+      'use strict';
+      var r = n(19781),
+        i = n(43157),
+        o = TypeError,
+        s = Object.getOwnPropertyDescriptor,
+        a =
+          r &&
+          !(function () {
+            if (void 0 !== this) return !0;
+            try {
+              Object.defineProperty([], 'length', { writable: !1 }).length = 1;
+            } catch (e) {
+              return e instanceof TypeError;
+            }
+          })();
+      e.exports = a
+        ? function (e, t) {
+            if (i(e) && !s(e, 'length').writable) throw o('Cannot set read only .length');
+            return (e.length = t);
+          }
+        : function (e, t) {
+            return (e.length = t);
+          };
+    },
+    84326: (e, t, n) => {
+      var r = n(1702),
+        i = r({}.toString),
+        o = r(''.slice);
+      e.exports = function (e) {
+        return o(i(e), 8, -1);
+      };
+    },
+    99920: (e, t, n) => {
+      var r = n(92597),
+        i = n(53887),
+        o = n(31236),
+        s = n(3070);
+      e.exports = function (e, t, n) {
+        for (var a = i(t), u = s.f, c = o.f, l = 0; l < a.length; l++) {
+          var h = a[l];
+          r(e, h) || (n && r(n, h)) || u(e, h, c(t, h));
+        }
+      };
+    },
+    68880: (e, t, n) => {
+      var r = n(19781),
+        i = n(3070),
+        o = n(79114);
+      e.exports = r
+        ? function (e, t, n) {
+            return i.f(e, t, o(1, n));
+          }
+        : function (e, t, n) {
+            return (e[t] = n), e;
+          };
+    },
+    79114: e => {
+      e.exports = function (e, t) {
+        return { enumerable: !(1 & e), configurable: !(2 & e), writable: !(4 & e), value: t };
+      };
+    },
+    98052: (e, t, n) => {
+      var r = n(60614),
+        i = n(3070),
+        o = n(56339),
+        s = n(13072);
+      e.exports = function (e, t, n, a) {
+        a || (a = {});
+        var u = a.enumerable,
+          c = void 0 !== a.name ? a.name : t;
+        if ((r(n) && o(n, c, a), a.global)) u ? (e[t] = n) : s(t, n);
+        else {
+          try {
+            a.unsafe ? e[t] && (u = !0) : delete e[t];
+          } catch (l) {}
+          u ? (e[t] = n) : i.f(e, t, { value: n, enumerable: !1, configurable: !a.nonConfigurable, writable: !a.nonWritable });
+        }
+        return e;
+      };
+    },
+    13072: (e, t, n) => {
+      var r = n(17854),
+        i = Object.defineProperty;
+      e.exports = function (e, t) {
+        try {
+          i(r, e, { value: t, configurable: !0, writable: !0 });
+        } catch (n) {
+          r[e] = t;
+        }
+        return t;
+      };
+    },
+    19781: (e, t, n) => {
+      var r = n(47293);
+      e.exports = !r(function () {
+        return (
+          7 !=
+          Object.defineProperty({}, 1, {
+            get: function () {
+              return 7;
+            }
+          })[1]
+        );
+      });
+    },
+    4154: e => {
+      var t = 'object' == typeof document && document.all,
+        n = 'undefined' == typeof t && void 0 !== t;
+      e.exports = { all: t, IS_HTMLDDA: n };
+    },
+    80317: (e, t, n) => {
+      var r = n(17854),
+        i = n(70111),
+        o = r.document,
+        s = i(o) && i(o.createElement);
+      e.exports = function (e) {
+        return s ? o.createElement(e) : {};
+      };
+    },
+    7207: e => {
+      var t = TypeError,
+        n = 9007199254740991;
+      e.exports = function (e) {
+        if (e > n) throw t('Maximum allowed index exceeded');
+        return e;
+      };
+    },
+    88113: e => {
+      e.exports = ('undefined' != typeof navigator && String(navigator.userAgent)) || '';
+    },
+    7392: (e, t, n) => {
+      var r,
+        i,
+        o = n(17854),
+        s = n(88113),
+        a = o.process,
+        u = o.Deno,
+        c = (a && a.versions) || (u && u.version),
+        l = c && c.v8;
+      l && ((r = l.split('.')), (i = r[0] > 0 && r[0] < 4 ? 1 : +(r[0] + r[1]))),
+        !i && s && ((r = s.match(/Edge\/(\d+)/)), (!r || r[1] >= 74) && ((r = s.match(/Chrome\/(\d+)/)), r && (i = +r[1]))),
+        (e.exports = i);
+    },
+    80748: e => {
+      e.exports = ['constructor', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable', 'toLocaleString', 'toString', 'valueOf'];
+    },
+    82109: (e, t, n) => {
+      var r = n(17854),
+        i = n(31236).f,
+        o = n(68880),
+        s = n(98052),
+        a = n(13072),
+        u = n(99920),
+        c = n(54705);
+      e.exports = function (e, t) {
+        var n,
+          l,
+          h,
+          f,
+          d,
+          p,
+          g = e.target,
+          m = e.global,
+          v = e.stat;
+        if (((l = m ? r : v ? r[g] || a(g, {}) : (r[g] || {}).prototype), l))
+          for (h in t) {
+            if (
+              ((d = t[h]),
+              e.dontCallGetSet ? ((p = i(l, h)), (f = p && p.value)) : (f = l[h]),
+              (n = c(m ? h : g + (v ? '.' : '#') + h, e.forced)),
+              !n && void 0 !== f)
+            ) {
+              if (typeof d == typeof f) continue;
+              u(d, f);
+            }
+            (e.sham || (f && f.sham)) && o(d, 'sham', !0), s(l, h, d, e);
+          }
+      };
+    },
+    47293: e => {
+      e.exports = function (e) {
+        try {
+          return !!e();
+        } catch (t) {
+          return !0;
+        }
+      };
+    },
+    34374: (e, t, n) => {
+      var r = n(47293);
+      e.exports = !r(function () {
+        var e = function () {}.bind();
+        return 'function' != typeof e || e.hasOwnProperty('prototype');
+      });
+    },
+    46916: (e, t, n) => {
+      var r = n(34374),
+        i = Function.prototype.call;
+      e.exports = r
+        ? i.bind(i)
+        : function () {
+            return i.apply(i, arguments);
+          };
+    },
+    76530: (e, t, n) => {
+      var r = n(19781),
+        i = n(92597),
+        o = Function.prototype,
+        s = r && Object.getOwnPropertyDescriptor,
+        a = i(o, 'name'),
+        u = a && 'something' === function () {}.name,
+        c = a && (!r || (r && s(o, 'name').configurable));
+      e.exports = { EXISTS: a, PROPER: u, CONFIGURABLE: c };
+    },
+    1702: (e, t, n) => {
+      var r = n(34374),
+        i = Function.prototype,
+        o = i.call,
+        s = r && i.bind.bind(o, o);
+      e.exports = r
+        ? s
+        : function (e) {
+            return function () {
+              return o.apply(e, arguments);
+            };
+          };
+    },
+    35005: (e, t, n) => {
+      var r = n(17854),
+        i = n(60614),
+        o = function (e) {
+          return i(e) ? e : void 0;
+        };
+      e.exports = function (e, t) {
+        return arguments.length < 2 ? o(r[e]) : r[e] && r[e][t];
+      };
+    },
+    58173: (e, t, n) => {
+      var r = n(19662),
+        i = n(68554);
+      e.exports = function (e, t) {
+        var n = e[t];
+        return i(n) ? void 0 : r(n);
+      };
+    },
+    17854: function (e, t, n) {
+      var r = function (e) {
+        return e && e.Math == Math && e;
+      };
+      e.exports =
+        r('object' == typeof globalThis && globalThis) ||
+        r('object' == typeof window && window) ||
+        r('object' == typeof self && self) ||
+        r('object' == typeof n.g && n.g) ||
+        (function () {
+          return this;
+        })() ||
+        this ||
+        Function('return this')();
+    },
+    92597: (e, t, n) => {
+      var r = n(1702),
+        i = n(47908),
+        o = r({}.hasOwnProperty);
+      e.exports =
+        Object.hasOwn ||
+        function (e, t) {
+          return o(i(e), t);
+        };
+    },
+    3501: e => {
+      e.exports = {};
+    },
+    64664: (e, t, n) => {
+      var r = n(19781),
+        i = n(47293),
+        o = n(80317);
+      e.exports =
+        !r &&
+        !i(function () {
+          return (
+            7 !=
+            Object.defineProperty(o('div'), 'a', {
+              get: function () {
+                return 7;
+              }
+            }).a

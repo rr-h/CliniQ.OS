@@ -1,0 +1,500 @@
+        cancel() {
+          null !== this.Do && (this.Do.cancel(), (this.Do = null));
+        }
+        ko() {
+          return (Math.random() - 0.5) * this.So;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class tf {
+        constructor(e, t, n, r, i, o, s, a) {
+          (this.ii = e),
+            (this.$o = n),
+            (this.Oo = r),
+            (this.connection = i),
+            (this.authCredentialsProvider = o),
+            (this.appCheckCredentialsProvider = s),
+            (this.listener = a),
+            (this.state = 0),
+            (this.Fo = 0),
+            (this.Bo = null),
+            (this.Lo = null),
+            (this.stream = null),
+            (this.qo = new ef(e, t));
+        }
+        Uo() {
+          return 1 === this.state || 5 === this.state || this.Ko();
+        }
+        Ko() {
+          return 2 === this.state || 3 === this.state;
+        }
+        start() {
+          4 !== this.state ? this.auth() : this.Go();
+        }
+        async stop() {
+          this.Uo() && (await this.close(0));
+        }
+        Qo() {
+          (this.state = 0), this.qo.reset();
+        }
+        jo() {
+          this.Ko() && null === this.Bo && (this.Bo = this.ii.enqueueAfterDelay(this.$o, 6e4, () => this.zo()));
+        }
+        Wo(e) {
+          this.Ho(), this.stream.send(e);
+        }
+        async zo() {
+          if (this.Ko()) return this.close(0);
+        }
+        Ho() {
+          this.Bo && (this.Bo.cancel(), (this.Bo = null));
+        }
+        Jo() {
+          this.Lo && (this.Lo.cancel(), (this.Lo = null));
+        }
+        async close(e, t) {
+          this.Ho(),
+            this.Jo(),
+            this.qo.cancel(),
+            this.Fo++,
+            4 !== e
+              ? this.qo.reset()
+              : t && t.code === ci.RESOURCE_EXHAUSTED
+                ? (ni(t.toString()), ni('Using maximum backoff delay to prevent overloading the backend.'), this.qo.xo())
+                : t &&
+                  t.code === ci.UNAUTHENTICATED &&
+                  3 !== this.state &&
+                  (this.authCredentialsProvider.invalidateToken(), this.appCheckCredentialsProvider.invalidateToken()),
+            null !== this.stream && (this.Yo(), this.stream.close(), (this.stream = null)),
+            (this.state = e),
+            await this.listener.ao(t);
+        }
+        Yo() {}
+        auth() {
+          this.state = 1;
+          const e = this.Xo(this.Fo),
+            t = this.Fo;
+          Promise.all([this.authCredentialsProvider.getToken(), this.appCheckCredentialsProvider.getToken()]).then(
+            ([e, n]) => {
+              this.Fo === t && this.Zo(e, n);
+            },
+            t => {
+              e(() => {
+                const e = new li(ci.UNKNOWN, 'Fetching auth token failed: ' + t.message);
+                return this.tu(e);
+              });
+            }
+          );
+        }
+        Zo(e, t) {
+          const n = this.Xo(this.Fo);
+          (this.stream = this.eu(e, t)),
+            this.stream.uo(() => {
+              n(
+                () => (
+                  (this.state = 2),
+                  (this.Lo = this.ii.enqueueAfterDelay(this.Oo, 1e4, () => (this.Ko() && (this.state = 3), Promise.resolve()))),
+                  this.listener.uo()
+                )
+              );
+            }),
+            this.stream.ao(e => {
+              n(() => this.tu(e));
+            }),
+            this.stream.onMessage(e => {
+              n(() => this.onMessage(e));
+            });
+        }
+        Go() {
+          (this.state = 5),
+            this.qo.No(async () => {
+              (this.state = 0), this.start();
+            });
+        }
+        tu(e) {
+          return ti('PersistentStream', `close with error: ${e}`), (this.stream = null), this.close(4, e);
+        }
+        Xo(e) {
+          return t => {
+            this.ii.enqueueAndForget(() =>
+              this.Fo === e ? t() : (ti('PersistentStream', 'stream callback skipped by getCloseGuardedDispatcher.'), Promise.resolve())
+            );
+          };
+        }
+      }
+      class nf extends tf {
+        constructor(e, t, n, r, i, o) {
+          super(e, 'listen_stream_connection_backoff', 'listen_stream_idle', 'health_check_timeout', t, n, r, o), (this.serializer = i);
+        }
+        eu(e, t) {
+          return this.connection.Ro('Listen', e, t);
+        }
+        onMessage(e) {
+          this.qo.reset();
+          const t = uc(this.serializer, e),
+            n = (function (e) {
+              if (!('targetChange' in e)) return Ai.min();
+              const t = e.targetChange;
+              return t.targetIds && t.targetIds.length ? Ai.min() : t.readTime ? Yu(t.readTime) : Ai.min();
+            })(e);
+          return this.listener.nu(t, n);
+        }
+        su(e) {
+          const t = {};
+          (t.database = rc(this.serializer)),
+            (t.addTarget = (function (e, t) {
+              let n;
+              const r = t.target;
+              if (((n = na(r) ? { documents: fc(e, r) } : { query: dc(e, r) }), (n.targetId = t.targetId), t.resumeToken.approximateByteSize() > 0)) {
+                n.resumeToken = Ku(e, t.resumeToken);
+                const r = Wu(e, t.expectedCount);
+                null !== r && (n.expectedCount = r);
+              } else if (t.snapshotVersion.compareTo(Ai.min()) > 0) {
+                n.readTime = Hu(e, t.snapshotVersion.toTimestamp());
+                const r = Wu(e, t.expectedCount);
+                null !== r && (n.expectedCount = r);
+              }
+              return n;
+            })(this.serializer, e));
+          const n = gc(this.serializer, e);
+          n && (t.labels = n), this.Wo(t);
+        }
+        iu(e) {
+          const t = {};
+          (t.database = rc(this.serializer)), (t.removeTarget = e), this.Wo(t);
+        }
+      }
+      class rf extends tf {
+        constructor(e, t, n, r, i, o) {
+          super(e, 'write_stream_connection_backoff', 'write_stream_idle', 'health_check_timeout', t, n, r, o), (this.serializer = i), (this.ru = !1);
+        }
+        get ou() {
+          return this.ru;
+        }
+        start() {
+          (this.ru = !1), (this.lastStreamToken = void 0), super.start();
+        }
+        Yo() {
+          this.ru && this.uu([]);
+        }
+        eu(e, t) {
+          return this.connection.Ro('Write', e, t);
+        }
+        onMessage(e) {
+          if ((si(!!e.streamToken), (this.lastStreamToken = e.streamToken), this.ru)) {
+            this.qo.reset();
+            const t = hc(e.writeResults, e.commitTime),
+              n = Yu(e.commitTime);
+            return this.listener.cu(n, t);
+          }
+          return si(!e.writeResults || 0 === e.writeResults.length), (this.ru = !0), this.listener.au();
+        }
+        hu() {
+          const e = {};
+          (e.database = rc(this.serializer)), this.Wo(e);
+        }
+        uu(e) {
+          const t = { streamToken: this.lastStreamToken, writes: e.map(e => cc(this.serializer, e)) };
+          this.Wo(t);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class of extends class {} {
+        constructor(e, t, n, r) {
+          super(), (this.authCredentials = e), (this.appCheckCredentials = t), (this.connection = n), (this.serializer = r), (this.lu = !1);
+        }
+        fu() {
+          if (this.lu) throw new li(ci.FAILED_PRECONDITION, 'The client has already been terminated.');
+        }
+        Io(e, t, n) {
+          return (
+            this.fu(),
+            Promise.all([this.authCredentials.getToken(), this.appCheckCredentials.getToken()])
+              .then(([r, i]) => this.connection.Io(e, t, n, r, i))
+              .catch(e => {
+                throw 'FirebaseError' === e.name
+                  ? (e.code === ci.UNAUTHENTICATED && (this.authCredentials.invalidateToken(), this.appCheckCredentials.invalidateToken()), e)
+                  : new li(ci.UNKNOWN, e.toString());
+              })
+          );
+        }
+        vo(e, t, n, r) {
+          return (
+            this.fu(),
+            Promise.all([this.authCredentials.getToken(), this.appCheckCredentials.getToken()])
+              .then(([i, o]) => this.connection.vo(e, t, n, i, o, r))
+              .catch(e => {
+                throw 'FirebaseError' === e.name
+                  ? (e.code === ci.UNAUTHENTICATED && (this.authCredentials.invalidateToken(), this.appCheckCredentials.invalidateToken()), e)
+                  : new li(ci.UNKNOWN, e.toString());
+              })
+          );
+        }
+        terminate() {
+          this.lu = !0;
+        }
+      }
+      class sf {
+        constructor(e, t) {
+          (this.asyncQueue = e), (this.onlineStateHandler = t), (this.state = 'Unknown'), (this.wu = 0), (this._u = null), (this.mu = !0);
+        }
+        gu() {
+          0 === this.wu &&
+            (this.yu('Unknown'),
+            (this._u = this.asyncQueue.enqueueAfterDelay(
+              'online_state_timeout',
+              1e4,
+              () => ((this._u = null), this.pu("Backend didn't respond within 10 seconds."), this.yu('Offline'), Promise.resolve())
+            )));
+        }
+        Iu(e) {
+          'Online' === this.state
+            ? this.yu('Unknown')
+            : (this.wu++, this.wu >= 1 && (this.Tu(), this.pu(`Connection failed 1 times. Most recent error: ${e.toString()}`), this.yu('Offline')));
+        }
+        set(e) {
+          this.Tu(), (this.wu = 0), 'Online' === e && (this.mu = !1), this.yu(e);
+        }
+        yu(e) {
+          e !== this.state && ((this.state = e), this.onlineStateHandler(e));
+        }
+        pu(e) {
+          const t = `Could not reach Cloud Firestore backend. ${e}\nThis typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.`;
+          this.mu ? (ni(t), (this.mu = !1)) : ti('OnlineStateTracker', t);
+        }
+        Tu() {
+          null !== this._u && (this._u.cancel(), (this._u = null));
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class af {
+        constructor(e, t, n, r, i) {
+          (this.localStore = e),
+            (this.datastore = t),
+            (this.asyncQueue = n),
+            (this.remoteSyncer = {}),
+            (this.Eu = []),
+            (this.Au = new Map()),
+            (this.vu = new Set()),
+            (this.Ru = []),
+            (this.Pu = i),
+            this.Pu.Yr(e => {
+              n.enqueueAndForget(async () => {
+                mf(this) &&
+                  (ti('RemoteStore', 'Restarting streams for network reachability change.'),
+                  await (async function (e) {
+                    const t = ui(e);
+                    t.vu.add(4), await cf(t), t.bu.set('Unknown'), t.vu.delete(4), await uf(t);
+                  })(this));
+              });
+            }),
+            (this.bu = new sf(n, r));
+        }
+      }
+      async function uf(e) {
+        if (mf(e)) for (const t of e.Ru) await t(!0);
+      }
+      async function cf(e) {
+        for (const t of e.Ru) await t(!1);
+      }
+      function lf(e, t) {
+        const n = ui(e);
+        n.Au.has(t.targetId) || (n.Au.set(t.targetId, t), gf(n) ? pf(n) : Df(n).Ko() && ff(n, t));
+      }
+      function hf(e, t) {
+        const n = ui(e),
+          r = Df(n);
+        n.Au.delete(t), r.Ko() && df(n, t), 0 === n.Au.size && (r.Ko() ? r.jo() : mf(n) && n.bu.set('Unknown'));
+      }
+      function ff(e, t) {
+        if ((e.Vu.qt(t.targetId), t.resumeToken.approximateByteSize() > 0 || t.snapshotVersion.compareTo(Ai.min()) > 0)) {
+          const n = e.remoteSyncer.getRemoteKeysForTarget(t.targetId).size;
+          t = t.withExpectedCount(n);
+        }
+        Df(e).su(t);
+      }
+      function df(e, t) {
+        e.Vu.qt(t), Df(e).iu(t);
+      }
+      function pf(e) {
+        (e.Vu = new Uu({
+          getRemoteKeysForTarget: t => e.remoteSyncer.getRemoteKeysForTarget(t),
+          le: t => e.Au.get(t) || null,
+          ue: () => e.datastore.serializer.databaseId
+        })),
+          Df(e).start(),
+          e.bu.gu();
+      }
+      function gf(e) {
+        return mf(e) && !Df(e).Uo() && e.Au.size > 0;
+      }
+      function mf(e) {
+        return 0 === ui(e).vu.size;
+      }
+      function vf(e) {
+        e.Vu = void 0;
+      }
+      async function yf(e) {
+        e.Au.forEach((t, n) => {
+          ff(e, t);
+        });
+      }
+      async function wf(e, t) {
+        vf(e), gf(e) ? (e.bu.Iu(t), pf(e)) : e.bu.set('Unknown');
+      }
+      async function bf(e, t, n) {
+        if ((e.bu.set('Online'), t instanceof Mu && 2 === t.state && t.cause))
+          try {
+            await (async function (e, t) {
+              const n = t.cause;
+              for (const r of t.targetIds) e.Au.has(r) && (await e.remoteSyncer.rejectListen(r, n), e.Au.delete(r), e.Vu.removeTarget(r));
+            })(e, t);
+          } catch (n) {
+            ti('RemoteStore', 'Failed to remove targets %s: %s ', t.targetIds.join(','), n), await _f(e, n);
+          }
+        else if ((t instanceof Lu ? e.Vu.Ht(t) : t instanceof ju ? e.Vu.ne(t) : e.Vu.Xt(t), !n.isEqual(Ai.min())))
+          try {
+            const t = await _h(e.localStore);
+            n.compareTo(t) >= 0 &&
+              (await (function (e, t) {
+                const n = e.Vu.ce(t);
+                return (
+                  n.targetChanges.forEach((n, r) => {
+                    if (n.resumeToken.approximateByteSize() > 0) {
+                      const i = e.Au.get(r);
+                      i && e.Au.set(r, i.withResumeToken(n.resumeToken, t));
+                    }
+                  }),
+                  n.targetMismatches.forEach((t, n) => {
+                    const r = e.Au.get(t);
+                    if (!r) return;
+                    e.Au.set(t, r.withResumeToken(Ko.EMPTY_BYTE_STRING, r.snapshotVersion)), df(e, t);
+                    const i = new Tc(r.target, t, n, r.sequenceNumber);
+                    ff(e, i);
+                  }),
+                  e.remoteSyncer.applyRemoteEvent(n)
+                );
+              })(e, n));
+          } catch (t) {
+            ti('RemoteStore', 'Failed to raise snapshot:', t), await _f(e, t);
+          }
+      }
+      async function _f(e, t, n) {
+        if (!Qi(t)) throw t;
+        e.vu.add(1),
+          await cf(e),
+          e.bu.set('Offline'),
+          n || (n = () => _h(e.localStore)),
+          e.asyncQueue.enqueueRetryable(async () => {
+            ti('RemoteStore', 'Retrying IndexedDB access'), await n(), e.vu.delete(1), await uf(e);
+          });
+      }
+      function If(e, t) {
+        return t().catch(n => _f(e, n, t));
+      }
+      async function Ef(e) {
+        const t = ui(e),
+          n = Lf(t);
+        let r = t.Eu.length > 0 ? t.Eu[t.Eu.length - 1].batchId : -1;
+        for (; Sf(t); )
+          try {
+            const e = await Sh(t.localStore, r);
+            if (null === e) {
+              0 === t.Eu.length && n.jo();
+              break;
+            }
+            (r = e.batchId), Tf(t, e);
+          } catch (e) {
+            await _f(t, e);
+          }
+        Af(t) && xf(t);
+      }
+      function Sf(e) {
+        return mf(e) && e.Eu.length < 10;
+      }
+      function Tf(e, t) {
+        e.Eu.push(t);
+        const n = Lf(e);
+        n.Ko() && n.ou && n.uu(t.mutations);
+      }
+      function Af(e) {
+        return mf(e) && !Lf(e).Uo() && e.Eu.length > 0;
+      }
+      function xf(e) {
+        Lf(e).start();
+      }
+      async function Cf(e) {
+        Lf(e).hu();
+      }
+      async function kf(e) {
+        const t = Lf(e);
+        for (const n of e.Eu) t.uu(n.mutations);
+      }
+      async function Of(e, t, n) {
+        const r = e.Eu.shift(),
+          i = yu.from(r, t, n);
+        await If(e, () => e.remoteSyncer.applySuccessfulWrite(i)), await Ef(e);
+      }
+      async function Nf(e, t) {
+        t &&
+          Lf(e).ou &&
+          (await (async function (e, t) {
+            if (((n = t.code), Eu(n) && n !== ci.ABORTED)) {
+              const n = e.Eu.shift();
+              Lf(e).Qo(), await If(e, () => e.remoteSyncer.rejectFailedWrite(n.batchId, t)), await Ef(e);
+            }
+            var n;
+          })(e, t)),
+          Af(e) && xf(e);
+      }
+      async function Rf(e, t) {
+        const n = ui(e);
+        n.asyncQueue.verifyOperationInProgress(), ti('RemoteStore', 'RemoteStore received new credentials');
+        const r = mf(n);
+        n.vu.add(3), await cf(n), r && n.bu.set('Unknown'), await n.remoteSyncer.handleCredentialChange(t), n.vu.delete(3), await uf(n);
+      }
+      async function Pf(e, t) {
+        const n = ui(e);
+        t ? (n.vu.delete(2), await uf(n)) : t || (n.vu.add(2), await cf(n), n.bu.set('Unknown'));

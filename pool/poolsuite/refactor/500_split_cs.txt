@@ -1,0 +1,500 @@
+        var e;
+        return (null === (e = null === self || void 0 === self ? void 0 : self.location) || void 0 === e ? void 0 : e.protocol) || null;
+      }
+      function Jo() {
+        return 'http:' === Xo() || 'https:' === Xo();
+      }
+      function Zo(e = (0, i.z$)()) {
+        return !(('file:' !== Xo() && 'ionic:' !== Xo() && 'capacitor:' !== Xo()) || !e.toLowerCase().match(/iphone|ipad|ipod|android/));
+      }
+      function es() {
+        return (0, i.b$)() || (0, i.UG)();
+      }
+      function ts() {
+        return (0, i.w1)() && 11 === (null === document || void 0 === document ? void 0 : document.documentMode);
+      }
+      function ns(e = (0, i.z$)()) {
+        return /Edge\/\d+/.test(e);
+      }
+      function rs(e = (0, i.z$)()) {
+        return ts() || ns(e);
+      }
+      function is() {
+        try {
+          const e = self.localStorage,
+            t = er();
+          if (e) return e['setItem'](t, '1'), e['removeItem'](t), !rs() || (0, i.hl)();
+        } catch (e) {
+          return os() && (0, i.hl)();
+        }
+        return !1;
+      }
+      function os() {
+        return 'undefined' !== typeof n.g && 'WorkerGlobalScope' in n.g && 'importScripts' in n.g;
+      }
+      function ss() {
+        return (Jo() || (0, i.ru)() || Zo()) && !es() && is() && !os();
+      }
+      function as() {
+        return Zo() && 'undefined' !== typeof document;
+      }
+      async function us() {
+        return (
+          !!as() &&
+          new Promise(e => {
+            const t = setTimeout(() => {
+              e(!1);
+            }, Yo);
+            document.addEventListener('deviceready', () => {
+              clearTimeout(t), e(!0);
+            });
+          })
+        );
+      }
+      function cs() {
+        return 'undefined' !== typeof window ? window : null;
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const ls = { LOCAL: 'local', NONE: 'none', SESSION: 'session' },
+        hs = S,
+        fs = 'persistence';
+      function ds(e, t) {
+        hs(Object.values(ls).includes(t), e, 'invalid-persistence-type'),
+          (0, i.b$)()
+            ? hs(t !== ls.SESSION, e, 'unsupported-persistence-type')
+            : (0, i.UG)()
+              ? hs(t === ls.NONE, e, 'unsupported-persistence-type')
+              : os()
+                ? hs(t === ls.NONE || (t === ls.LOCAL && (0, i.hl)()), e, 'unsupported-persistence-type')
+                : hs(t === ls.NONE || is(), e, 'unsupported-persistence-type');
+      }
+      async function ps(e) {
+        await e._initializationPromise;
+        const t = ms(),
+          n = pe(fs, e.config.apiKey, e.name);
+        t && t.setItem(n, e._getPersistence());
+      }
+      function gs(e, t) {
+        const n = ms();
+        if (!n) return [];
+        const r = pe(fs, e, t),
+          i = n.getItem(r);
+        switch (i) {
+          case ls.NONE:
+            return [de];
+          case ls.LOCAL:
+            return [Ir, Xn];
+          case ls.SESSION:
+            return [Xn];
+          default:
+            return [];
+        }
+      }
+      function ms() {
+        var e;
+        try {
+          return (null === (e = cs()) || void 0 === e ? void 0 : e.sessionStorage) || null;
+        } catch (t) {
+          return null;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const vs = S;
+      class ys {
+        constructor() {
+          (this.browserResolver = he(ao)),
+            (this.cordovaResolver = he(Go)),
+            (this.underlyingResolver = null),
+            (this._redirectPersistence = Xn),
+            (this._completeRedirectFn = Ii),
+            (this._overrideRedirectResult = fi);
+        }
+        async _initialize(e) {
+          return await this.selectUnderlyingResolver(), this.assertedUnderlyingResolver._initialize(e);
+        }
+        async _openPopup(e, t, n, r) {
+          return await this.selectUnderlyingResolver(), this.assertedUnderlyingResolver._openPopup(e, t, n, r);
+        }
+        async _openRedirect(e, t, n, r) {
+          return await this.selectUnderlyingResolver(), this.assertedUnderlyingResolver._openRedirect(e, t, n, r);
+        }
+        _isIframeWebStorageSupported(e, t) {
+          this.assertedUnderlyingResolver._isIframeWebStorageSupported(e, t);
+        }
+        _originValidation(e) {
+          return this.assertedUnderlyingResolver._originValidation(e);
+        }
+        get _shouldInitProactively() {
+          return as() || this.browserResolver._shouldInitProactively;
+        }
+        get assertedUnderlyingResolver() {
+          return vs(this.underlyingResolver, 'internal-error'), this.underlyingResolver;
+        }
+        async selectUnderlyingResolver() {
+          if (this.underlyingResolver) return;
+          const e = await us();
+          this.underlyingResolver = e ? this.cordovaResolver : this.browserResolver;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function ws(e) {
+        return e.unwrap();
+      }
+      function bs(e) {
+        return e.wrapped();
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function _s(e) {
+        return Es(e);
+      }
+      function Is(e, t) {
+        var n;
+        const r = null === (n = t.customData) || void 0 === n ? void 0 : n._tokenResponse;
+        if ('auth/multi-factor-auth-required' === (null === t || void 0 === t ? void 0 : t.code)) {
+          const n = t;
+          n.resolver = new As(e, Dn(e, t));
+        } else if (r) {
+          const e = Es(t),
+            n = t;
+          e && ((n.credential = e), (n.tenantId = r.tenantId || void 0), (n.email = r.email || void 0), (n.phoneNumber = r.phoneNumber || void 0));
+        }
+      }
+      function Es(e) {
+        const { _tokenResponse: t } = e instanceof i.ZR ? e.customData : e;
+        if (!t) return null;
+        if (!(e instanceof i.ZR) && 'temporaryProof' in t && 'phoneNumber' in t) return Kr.credentialFromResult(e);
+        const n = t.providerId;
+        if (!n || n === c.PASSWORD) return null;
+        let r;
+        switch (n) {
+          case c.GOOGLE:
+            r = Ot;
+            break;
+          case c.FACEBOOK:
+            r = kt;
+            break;
+          case c.GITHUB:
+            r = Nt;
+            break;
+          case c.TWITTER:
+            r = jt;
+            break;
+          default:
+            const { oauthIdToken: e, oauthAccessToken: i, oauthTokenSecret: o, pendingToken: s, nonce: a } = t;
+            return i || o || e || s
+              ? s
+                ? n.startsWith('saml.')
+                  ? Pt._create(n, s)
+                  : gt._fromParams({ providerId: n, signInMethod: n, pendingToken: s, idToken: e, accessToken: i })
+                : new Ct(n).credential({ idToken: e, accessToken: i, rawNonce: a })
+              : null;
+        }
+        return e instanceof i.ZR ? r.credentialFromError(e) : r.credentialFromResult(e);
+      }
+      function Ss(e, t) {
+        return t
+          .catch(t => {
+            throw (t instanceof i.ZR && Is(e, t), t);
+          })
+          .then(e => {
+            const t = e.operationType,
+              n = e.user;
+            return { operationType: t, credential: _s(e), additionalUserInfo: Nn(e), user: xs.getOrCreate(n) };
+          });
+      }
+      async function Ts(e, t) {
+        const n = await t;
+        return { verificationId: n.verificationId, confirm: t => Ss(e, n.confirm(t)) };
+      }
+      class As {
+        constructor(e, t) {
+          (this.resolver = t), (this.auth = bs(e));
+        }
+        get session() {
+          return this.resolver.session;
+        }
+        get hints() {
+          return this.resolver.hints;
+        }
+        resolveSignIn(e) {
+          return Ss(ws(this.auth), this.resolver.resolveSignIn(e));
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class xs {
+        constructor(e) {
+          (this._delegate = e), (this.multiFactor = $n(e));
+        }
+        static getOrCreate(e) {
+          return xs.USER_MAP.has(e) || xs.USER_MAP.set(e, new xs(e)), xs.USER_MAP.get(e);
+        }
+        delete() {
+          return this._delegate.delete();
+        }
+        reload() {
+          return this._delegate.reload();
+        }
+        toJSON() {
+          return this._delegate.toJSON();
+        }
+        getIdTokenResult(e) {
+          return this._delegate.getIdTokenResult(e);
+        }
+        getIdToken(e) {
+          return this._delegate.getIdToken(e);
+        }
+        linkAndRetrieveDataWithCredential(e) {
+          return this.linkWithCredential(e);
+        }
+        async linkWithCredential(e) {
+          return Ss(this.auth, Yt(this._delegate, e));
+        }
+        async linkWithPhoneNumber(e, t) {
+          return Ts(this.auth, zr(this._delegate, e, t));
+        }
+        async linkWithPopup(e) {
+          return Ss(this.auth, ii(this._delegate, e, ys));
+        }
+        async linkWithRedirect(e) {
+          return await ps(We(this.auth)), wi(this._delegate, e, ys);
+        }
+        reauthenticateAndRetrieveDataWithCredential(e) {
+          return this.reauthenticateWithCredential(e);
+        }
+        async reauthenticateWithCredential(e) {
+          return Ss(this.auth, Xt(this._delegate, e));
+        }
+        reauthenticateWithPhoneNumber(e, t) {
+          return Ts(this.auth, Gr(this._delegate, e, t));
+        }
+        reauthenticateWithPopup(e) {
+          return Ss(this.auth, ri(this._delegate, e, ys));
+        }
+        async reauthenticateWithRedirect(e) {
+          return await ps(We(this.auth)), vi(this._delegate, e, ys);
+        }
+        sendEmailVerification(e) {
+          return vn(this._delegate, e);
+        }
+        async unlink(e) {
+          return await zt(this._delegate, e), this;
+        }
+        updateEmail(e) {
+          return _n(this._delegate, e);
+        }
+        updatePassword(e) {
+          return In(this._delegate, e);
+        }
+        updatePhoneNumber(e) {
+          return Hr(this._delegate, e);
+        }
+        updateProfile(e) {
+          return bn(this._delegate, e);
+        }
+        verifyBeforeUpdateEmail(e, t) {
+          return yn(this._delegate, e, t);
+        }
+        get emailVerified() {
+          return this._delegate.emailVerified;
+        }
+        get isAnonymous() {
+          return this._delegate.isAnonymous;
+        }
+        get metadata() {
+          return this._delegate.metadata;
+        }
+        get phoneNumber() {
+          return this._delegate.phoneNumber;
+        }
+        get providerData() {
+          return this._delegate.providerData;
+        }
+        get refreshToken() {
+          return this._delegate.refreshToken;
+        }
+        get tenantId() {
+          return this._delegate.tenantId;
+        }
+        get displayName() {
+          return this._delegate.displayName;
+        }
+        get email() {
+          return this._delegate.email;
+        }
+        get photoURL() {
+          return this._delegate.photoURL;
+        }
+        get providerId() {
+          return this._delegate.providerId;
+        }
+        get uid() {
+          return this._delegate.uid;
+        }
+        get auth() {
+          return this._delegate.auth;
+        }
+      }
+      xs.USER_MAP = new WeakMap();
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      const Cs = S;
+      class ks {
+        constructor(e, t) {
+          if (((this.app = e), t.isInitialized())) return (this._delegate = t.getImmediate()), void this.linkUnderlyingAuth();
+          const { apiKey: n } = e.options;
+          Cs(n, 'invalid-api-key', { appName: e.name }), Cs(n, 'invalid-api-key', { appName: e.name });
+          const r = 'undefined' !== typeof window ? ys : void 0;
+          (this._delegate = t.initialize({ options: { persistence: Ns(n, e.name), popupRedirectResolver: r } })),
+            this._delegate._updateErrorMap(d),
+            this.linkUnderlyingAuth();
+        }
+        get emulatorConfig() {
+          return this._delegate.emulatorConfig;
+        }
+        get currentUser() {
+          return this._delegate.currentUser ? xs.getOrCreate(this._delegate.currentUser) : null;
+        }
+        get languageCode() {
+          return this._delegate.languageCode;
+        }
+        set languageCode(e) {
+          this._delegate.languageCode = e;
+        }
+        get settings() {
+          return this._delegate.settings;
+        }
+        get tenantId() {
+          return this._delegate.tenantId;
+        }
+        set tenantId(e) {
+          this._delegate.tenantId = e;
+        }
+        useDeviceLanguage() {
+          this._delegate.useDeviceLanguage();
+        }
+        signOut() {
+          return this._delegate.signOut();
+        }
+        useEmulator(e, t) {
+          Qe(this._delegate, e, t);
+        }
+        applyActionCode(e) {
+          return an(this._delegate, e);
+        }
+        checkActionCode(e) {
+          return un(this._delegate, e);
+        }
+        confirmPasswordReset(e, t) {
+          return sn(this._delegate, e, t);
+        }
+        async createUserWithEmailAndPassword(e, t) {
+          return Ss(this._delegate, ln(this._delegate, e, t));
+        }
+        fetchProvidersForEmail(e) {
+          return this.fetchSignInMethodsForEmail(e);
+        }
+        fetchSignInMethodsForEmail(e) {
+          return mn(this._delegate, e);
+        }
+        isSignInWithEmailLink(e) {
+          return dn(this._delegate, e);
+        }
+        async getRedirectResult() {
+          Cs(ss(), this._delegate, 'operation-not-supported-in-this-environment');
+          const e = await _i(this._delegate, ys);
+          return e ? Ss(this._delegate, Promise.resolve(e)) : { credential: null, user: null };
+        }
+        addFrameworkForLogging(e) {
+          Ho(this._delegate, e);
+        }
+        onAuthStateChanged(e, t, n) {
+          const { next: r, error: i, complete: o } = Os(e, t, n);
+          return this._delegate.onAuthStateChanged(r, i, o);
+        }
+        onIdTokenChanged(e, t, n) {
+          const { next: r, error: i, complete: o } = Os(e, t, n);
+          return this._delegate.onIdTokenChanged(r, i, o);

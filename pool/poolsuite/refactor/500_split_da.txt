@@ -1,0 +1,500 @@
+        return 0 !== n ? n : ((n = Ni.comparator(e.documentKey, t.documentKey)), 0 !== n ? n : Ii(e.largestBatchId, t.largestBatchId));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Bi = 'The current tab is not in the required state to perform this operation. It might be necessary to refresh the browser tab.';
+      class $i {
+        constructor() {
+          this.onCommittedListeners = [];
+        }
+        addOnCommittedListener(e) {
+          this.onCommittedListeners.push(e);
+        }
+        raiseOnCommittedEvent() {
+          this.onCommittedListeners.forEach(e => e());
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function qi(e) {
+        if (e.code !== ci.FAILED_PRECONDITION || e.message !== Bi) throw e;
+        ti('LocalStore', 'Unexpectedly lost primary lease');
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class zi {
+        constructor(e) {
+          (this.nextCallback = null),
+            (this.catchCallback = null),
+            (this.result = void 0),
+            (this.error = void 0),
+            (this.isDone = !1),
+            (this.callbackAttached = !1),
+            e(
+              e => {
+                (this.isDone = !0), (this.result = e), this.nextCallback && this.nextCallback(e);
+              },
+              e => {
+                (this.isDone = !0), (this.error = e), this.catchCallback && this.catchCallback(e);
+              }
+            );
+        }
+        catch(e) {
+          return this.next(void 0, e);
+        }
+        next(e, t) {
+          return (
+            this.callbackAttached && oi(),
+            (this.callbackAttached = !0),
+            this.isDone
+              ? this.error
+                ? this.wrapFailure(t, this.error)
+                : this.wrapSuccess(e, this.result)
+              : new zi((n, r) => {
+                  (this.nextCallback = t => {
+                    this.wrapSuccess(e, t).next(n, r);
+                  }),
+                    (this.catchCallback = e => {
+                      this.wrapFailure(t, e).next(n, r);
+                    });
+                })
+          );
+        }
+        toPromise() {
+          return new Promise((e, t) => {
+            this.next(e, t);
+          });
+        }
+        wrapUserFunction(e) {
+          try {
+            const t = e();
+            return t instanceof zi ? t : zi.resolve(t);
+          } catch (e) {
+            return zi.reject(e);
+          }
+        }
+        wrapSuccess(e, t) {
+          return e ? this.wrapUserFunction(() => e(t)) : zi.resolve(t);
+        }
+        wrapFailure(e, t) {
+          return e ? this.wrapUserFunction(() => e(t)) : zi.reject(t);
+        }
+        static resolve(e) {
+          return new zi((t, n) => {
+            t(e);
+          });
+        }
+        static reject(e) {
+          return new zi((t, n) => {
+            n(e);
+          });
+        }
+        static waitFor(e) {
+          return new zi((t, n) => {
+            let r = 0,
+              i = 0,
+              o = !1;
+            e.forEach(e => {
+              ++r,
+                e.next(
+                  () => {
+                    ++i, o && i === r && t();
+                  },
+                  e => n(e)
+                );
+            }),
+              (o = !0),
+              i === r && t();
+          });
+        }
+        static or(e) {
+          let t = zi.resolve(!1);
+          for (const n of e) t = t.next(e => (e ? zi.resolve(e) : n()));
+          return t;
+        }
+        static forEach(e, t) {
+          const n = [];
+          return (
+            e.forEach((e, r) => {
+              n.push(t.call(this, e, r));
+            }),
+            this.waitFor(n)
+          );
+        }
+        static mapArray(e, t) {
+          return new zi((n, r) => {
+            const i = e.length,
+              o = new Array(i);
+            let s = 0;
+            for (let a = 0; a < i; a++) {
+              const u = a;
+              t(e[u]).next(
+                e => {
+                  (o[u] = e), ++s, s === i && n(o);
+                },
+                e => r(e)
+              );
+            }
+          });
+        }
+        static doWhile(e, t) {
+          return new zi((n, r) => {
+            const i = () => {
+              !0 === e()
+                ? t().next(() => {
+                    i();
+                  }, r)
+                : n();
+            };
+            i();
+          });
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Gi {
+        constructor(e, t) {
+          (this.action = e),
+            (this.transaction = t),
+            (this.aborted = !1),
+            (this.v = new hi()),
+            (this.transaction.oncomplete = () => {
+              this.v.resolve();
+            }),
+            (this.transaction.onabort = () => {
+              t.error ? this.v.reject(new Ki(e, t.error)) : this.v.resolve();
+            }),
+            (this.transaction.onerror = t => {
+              const n = Zi(t.target.error);
+              this.v.reject(new Ki(e, n));
+            });
+        }
+        static open(e, t, n, r) {
+          try {
+            return new Gi(t, e.transaction(r, n));
+          } catch (e) {
+            throw new Ki(t, e);
+          }
+        }
+        get R() {
+          return this.v.promise;
+        }
+        abort(e) {
+          e && this.v.reject(e),
+            this.aborted ||
+              (ti('SimpleDb', 'Aborting transaction:', e ? e.message : 'Client-initiated abort'), (this.aborted = !0), this.transaction.abort());
+        }
+        P() {
+          const e = this.transaction;
+          this.aborted || 'function' != typeof e.commit || e.commit();
+        }
+        store(e) {
+          const t = this.transaction.objectStore(e);
+          return new Yi(t);
+        }
+      }
+      class Wi {
+        constructor(e, t, n) {
+          (this.name = e),
+            (this.version = t),
+            (this.V = n),
+            12.2 === Wi.S((0, u.z$)()) &&
+              ni(
+                'Firestore persistence suffers from a bug in iOS 12.2 Safari that may cause your app to stop working. See https://stackoverflow.com/q/56496296/110915 for details and a potential workaround.'
+              );
+        }
+        static delete(e) {
+          return ti('SimpleDb', 'Removing database:', e), Xi(window.indexedDB.deleteDatabase(e)).toPromise();
+        }
+        static D() {
+          if (!(0, u.hl)()) return !1;
+          if (Wi.C()) return !0;
+          const e = (0, u.z$)(),
+            t = Wi.S(e),
+            n = 0 < t && t < 10,
+            r = Wi.N(e),
+            i = 0 < r && r < 4.5;
+          return !(e.indexOf('MSIE ') > 0 || e.indexOf('Trident/') > 0 || e.indexOf('Edge/') > 0 || n || i);
+        }
+        static C() {
+          var e;
+          return (
+            'undefined' != typeof process &&
+            'YES' ===
+              (null ===
+                (e = {
+                  VUE_APP_RPC_URL: 'https://eth-mainnet.alchemyapi.io/v2/liXRp8m5CdTqRuv13chxc-JNUCI7RDzW',
+                  VUE_APP_POOLSUITE_API_KEY: 'ZT4OmZbR5dAuXCfXOZaHxhge3CfgXXvB',
+                  VUE_APP_POOLSUITE_HOST: 'https://api-dev.poolsuite.net',
+                  NODE_ENV: 'production',
+                  BASE_URL: '/'
+                }) || void 0 === e
+                ? void 0
+                : e.k)
+          );
+        }
+        static M(e, t) {
+          return e.store(t);
+        }
+        static S(e) {
+          const t = e.match(/i(?:phone|pad|pod) os ([\d_]+)/i),
+            n = t ? t[1].split('_').slice(0, 2).join('.') : '-1';
+          return Number(n);
+        }
+        static N(e) {
+          const t = e.match(/Android ([\d.]+)/i),
+            n = t ? t[1].split('.').slice(0, 2).join('.') : '-1';
+          return Number(n);
+        }
+        async $(e) {
+          return (
+            this.db ||
+              (ti('SimpleDb', 'Opening database:', this.name),
+              (this.db = await new Promise((t, n) => {
+                const r = indexedDB.open(this.name, this.version);
+                (r.onsuccess = e => {
+                  const n = e.target.result;
+                  t(n);
+                }),
+                  (r.onblocked = () => {
+                    n(
+                      new Ki(
+                        e,
+                        'Cannot upgrade IndexedDB schema while another tab is open. Close all tabs that access Firestore and reload this page to proceed.'
+                      )
+                    );
+                  }),
+                  (r.onerror = t => {
+                    const r = t.target.error;
+                    'VersionError' === r.name
+                      ? n(
+                          new li(
+                            ci.FAILED_PRECONDITION,
+                            'A newer version of the Firestore SDK was previously used and so the persisted data is not compatible with the version of the SDK you are now using. The SDK will operate with persistence disabled. If you need persistence, please re-upgrade to a newer version of the SDK or else clear the persisted IndexedDB data for your app to start fresh.'
+                          )
+                        )
+                      : 'InvalidStateError' === r.name
+                        ? n(
+                            new li(
+                              ci.FAILED_PRECONDITION,
+                              'Unable to open an IndexedDB connection. This could be due to running in a private browsing session on a browser whose private browsing sessions do not support IndexedDB: ' +
+                                r
+                            )
+                          )
+                        : n(new Ki(e, r));
+                  }),
+                  (r.onupgradeneeded = e => {
+                    ti('SimpleDb', 'Database "' + this.name + '" requires upgrade from version:', e.oldVersion);
+                    const t = e.target.result;
+                    this.V.O(t, r.transaction, e.oldVersion, this.version).next(() => {
+                      ti('SimpleDb', 'Database upgrade to version ' + this.version + ' complete');
+                    });
+                  });
+              }))),
+            this.F && (this.db.onversionchange = e => this.F(e)),
+            this.db
+          );
+        }
+        B(e) {
+          (this.F = e), this.db && (this.db.onversionchange = t => e(t));
+        }
+        async runTransaction(e, t, n, r) {
+          const i = 'readonly' === t;
+          let o = 0;
+          for (;;) {
+            ++o;
+            try {
+              this.db = await this.$(e);
+              const t = Gi.open(this.db, e, i ? 'readonly' : 'readwrite', n),
+                o = r(t)
+                  .next(e => (t.P(), e))
+                  .catch(e => (t.abort(e), zi.reject(e)))
+                  .toPromise();
+              return o.catch(() => {}), await t.R, o;
+            } catch (e) {
+              const t = e,
+                n = 'FirebaseError' !== t.name && o < 3;
+              if ((ti('SimpleDb', 'Transaction failed with error:', t.message, 'Retrying:', n), this.close(), !n)) return Promise.reject(t);
+            }
+          }
+        }
+        close() {
+          this.db && this.db.close(), (this.db = void 0);
+        }
+      }
+      class Hi {
+        constructor(e) {
+          (this.L = e), (this.q = !1), (this.U = null);
+        }
+        get isDone() {
+          return this.q;
+        }
+        get K() {
+          return this.U;
+        }
+        set cursor(e) {
+          this.L = e;
+        }
+        done() {
+          this.q = !0;
+        }
+        G(e) {
+          this.U = e;
+        }
+        delete() {
+          return Xi(this.L.delete());
+        }
+      }
+      class Ki extends li {
+        constructor(e, t) {
+          super(ci.UNAVAILABLE, `IndexedDB transaction '${e}' failed: ${t}`), (this.name = 'IndexedDbTransactionError');
+        }
+      }
+      function Qi(e) {
+        return 'IndexedDbTransactionError' === e.name;
+      }
+      class Yi {
+        constructor(e) {
+          this.store = e;
+        }
+        put(e, t) {
+          let n;
+          return (
+            void 0 !== t
+              ? (ti('SimpleDb', 'PUT', this.store.name, e, t), (n = this.store.put(t, e)))
+              : (ti('SimpleDb', 'PUT', this.store.name, '<auto-key>', e), (n = this.store.put(e))),
+            Xi(n)
+          );
+        }
+        add(e) {
+          return ti('SimpleDb', 'ADD', this.store.name, e, e), Xi(this.store.add(e));
+        }
+        get(e) {
+          return Xi(this.store.get(e)).next(t => (void 0 === t && (t = null), ti('SimpleDb', 'GET', this.store.name, e, t), t));
+        }
+        delete(e) {
+          return ti('SimpleDb', 'DELETE', this.store.name, e), Xi(this.store.delete(e));
+        }
+        count() {
+          return ti('SimpleDb', 'COUNT', this.store.name), Xi(this.store.count());
+        }
+        j(e, t) {
+          const n = this.options(e, t);
+          if (n.index || 'function' != typeof this.store.getAll) {
+            const e = this.cursor(n),
+              t = [];
+            return this.W(e, (e, n) => {
+              t.push(n);
+            }).next(() => t);
+          }
+          {
+            const e = this.store.getAll(n.range);
+            return new zi((t, n) => {
+              (e.onerror = e => {
+                n(e.target.error);
+              }),
+                (e.onsuccess = e => {
+                  t(e.target.result);
+                });
+            });
+          }
+        }
+        H(e, t) {
+          const n = this.store.getAll(e, null === t ? void 0 : t);
+          return new zi((e, t) => {
+            (n.onerror = e => {
+              t(e.target.error);
+            }),
+              (n.onsuccess = t => {
+                e(t.target.result);
+              });
+          });
+        }
+        J(e, t) {
+          ti('SimpleDb', 'DELETE ALL', this.store.name);
+          const n = this.options(e, t);
+          n.Y = !1;
+          const r = this.cursor(n);
+          return this.W(r, (e, t, n) => n.delete());
+        }
+        X(e, t) {
+          let n;
+          t ? (n = e) : ((n = {}), (t = e));
+          const r = this.cursor(n);
+          return this.W(r, t);
+        }
+        Z(e) {
+          const t = this.cursor({});
+          return new zi((n, r) => {
+            (t.onerror = e => {
+              const t = Zi(e.target.error);
+              r(t);
+            }),
+              (t.onsuccess = t => {
+                const r = t.target.result;
+                r
+                  ? e(r.primaryKey, r.value).next(e => {
+                      e ? r.continue() : n();
+                    })
+                  : n();
+              });
+          });
+        }
+        W(e, t) {
+          const n = [];
+          return new zi((r, i) => {
+            (e.onerror = e => {
+              i(e.target.error);
+            }),

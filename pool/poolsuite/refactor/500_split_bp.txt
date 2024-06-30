@@ -1,0 +1,500 @@
+        return $e(e, t, Me.aborted, 'Navigation aborted from "' + e.fullPath + '" to "' + t.fullPath + '" via a navigation guard.');
+      }
+      function $e(e, t, n, r) {
+        var i = new Error(r);
+        return (i._isRouter = !0), (i.from = e), (i.to = t), (i.type = n), i;
+      }
+      var qe = ['params', 'query', 'hash'];
+      function ze(e) {
+        if ('string' === typeof e) return e;
+        if ('path' in e) return e.path;
+        var t = {};
+        return (
+          qe.forEach(function (n) {
+            n in e && (t[n] = e[n]);
+          }),
+          JSON.stringify(t, null, 2)
+        );
+      }
+      function Ge(e) {
+        return Object.prototype.toString.call(e).indexOf('Error') > -1;
+      }
+      function We(e, t) {
+        return Ge(e) && e._isRouter && (null == t || e.type === t);
+      }
+      function He(e, t, n) {
+        var r = function (i) {
+          i >= e.length
+            ? n()
+            : e[i]
+              ? t(e[i], function () {
+                  r(i + 1);
+                })
+              : r(i + 1);
+        };
+        r(0);
+      }
+      function Ke(e) {
+        return function (t, n, r) {
+          var i = !1,
+            o = 0,
+            s = null;
+          Qe(e, function (e, t, n, a) {
+            if ('function' === typeof e && void 0 === e.cid) {
+              (i = !0), o++;
+              var u,
+                c = Ze(function (t) {
+                  Je(t) && (t = t.default), (e.resolved = 'function' === typeof t ? t : ee.extend(t)), (n.components[a] = t), o--, o <= 0 && r();
+                }),
+                l = Ze(function (e) {
+                  var t = 'Failed to resolve async component ' + a + ': ' + e;
+                  s || ((s = Ge(e) ? e : new Error(t)), r(s));
+                });
+              try {
+                u = e(c, l);
+              } catch (f) {
+                l(f);
+              }
+              if (u)
+                if ('function' === typeof u.then) u.then(c, l);
+                else {
+                  var h = u.component;
+                  h && 'function' === typeof h.then && h.then(c, l);
+                }
+            }
+          }),
+            i || r();
+        };
+      }
+      function Qe(e, t) {
+        return Ye(
+          e.map(function (e) {
+            return Object.keys(e.components).map(function (n) {
+              return t(e.components[n], e.instances[n], e, n);
+            });
+          })
+        );
+      }
+      function Ye(e) {
+        return Array.prototype.concat.apply([], e);
+      }
+      var Xe = 'function' === typeof Symbol && 'symbol' === typeof Symbol.toStringTag;
+      function Je(e) {
+        return e.__esModule || (Xe && 'Module' === e[Symbol.toStringTag]);
+      }
+      function Ze(e) {
+        var t = !1;
+        return function () {
+          var n = [],
+            r = arguments.length;
+          while (r--) n[r] = arguments[r];
+          if (!t) return (t = !0), e.apply(this, n);
+        };
+      }
+      var et = function (e, t) {
+        (this.router = e),
+          (this.base = tt(t)),
+          (this.current = m),
+          (this.pending = null),
+          (this.ready = !1),
+          (this.readyCbs = []),
+          (this.readyErrorCbs = []),
+          (this.errorCbs = []),
+          (this.listeners = []);
+      };
+      function tt(e) {
+        if (!e)
+          if (ue) {
+            var t = document.querySelector('base');
+            (e = (t && t.getAttribute('href')) || '/'), (e = e.replace(/^https?:\/\/[^\/]+/, ''));
+          } else e = '/';
+        return '/' !== e.charAt(0) && (e = '/' + e), e.replace(/\/$/, '');
+      }
+      function nt(e, t) {
+        var n,
+          r = Math.max(e.length, t.length);
+        for (n = 0; n < r; n++) if (e[n] !== t[n]) break;
+        return { updated: t.slice(0, n), activated: t.slice(n), deactivated: e.slice(n) };
+      }
+      function rt(e, t, n, r) {
+        var i = Qe(e, function (e, r, i, o) {
+          var s = it(e, t);
+          if (s)
+            return Array.isArray(s)
+              ? s.map(function (e) {
+                  return n(e, r, i, o);
+                })
+              : n(s, r, i, o);
+        });
+        return Ye(r ? i.reverse() : i);
+      }
+      function it(e, t) {
+        return 'function' !== typeof e && (e = ee.extend(e)), e.options[t];
+      }
+      function ot(e) {
+        return rt(e, 'beforeRouteLeave', at, !0);
+      }
+      function st(e) {
+        return rt(e, 'beforeRouteUpdate', at);
+      }
+      function at(e, t) {
+        if (t)
+          return function () {
+            return e.apply(t, arguments);
+          };
+      }
+      function ut(e) {
+        return rt(e, 'beforeRouteEnter', function (e, t, n, r) {
+          return ct(e, n, r);
+        });
+      }
+      function ct(e, t, n) {
+        return function (r, i, o) {
+          return e(r, i, function (e) {
+            'function' === typeof e && (t.enteredCbs[n] || (t.enteredCbs[n] = []), t.enteredCbs[n].push(e)), o(e);
+          });
+        };
+      }
+      (et.prototype.listen = function (e) {
+        this.cb = e;
+      }),
+        (et.prototype.onReady = function (e, t) {
+          this.ready ? e() : (this.readyCbs.push(e), t && this.readyErrorCbs.push(t));
+        }),
+        (et.prototype.onError = function (e) {
+          this.errorCbs.push(e);
+        }),
+        (et.prototype.transitionTo = function (e, t, n) {
+          var r,
+            i = this;
+          try {
+            r = this.router.match(e, this.current);
+          } catch (s) {
+            throw (
+              (this.errorCbs.forEach(function (e) {
+                e(s);
+              }),
+              s)
+            );
+          }
+          var o = this.current;
+          this.confirmTransition(
+            r,
+            function () {
+              i.updateRoute(r),
+                t && t(r),
+                i.ensureURL(),
+                i.router.afterHooks.forEach(function (e) {
+                  e && e(r, o);
+                }),
+                i.ready ||
+                  ((i.ready = !0),
+                  i.readyCbs.forEach(function (e) {
+                    e(r);
+                  }));
+            },
+            function (e) {
+              n && n(e),
+                e &&
+                  !i.ready &&
+                  ((We(e, Me.redirected) && o === m) ||
+                    ((i.ready = !0),
+                    i.readyErrorCbs.forEach(function (t) {
+                      t(e);
+                    })));
+            }
+          );
+        }),
+        (et.prototype.confirmTransition = function (e, t, n) {
+          var r = this,
+            i = this.current;
+          this.pending = e;
+          var o = function (e) {
+              !We(e) &&
+                Ge(e) &&
+                (r.errorCbs.length
+                  ? r.errorCbs.forEach(function (t) {
+                      t(e);
+                    })
+                  : console.error(e)),
+                n && n(e);
+            },
+            s = e.matched.length - 1,
+            a = i.matched.length - 1;
+          if (w(e, i) && s === a && e.matched[s] === i.matched[a]) return this.ensureURL(), e.hash && Ee(this.router, i, e, !1), o(Ue(i, e));
+          var u = nt(this.current.matched, e.matched),
+            c = u.updated,
+            l = u.deactivated,
+            h = u.activated,
+            f = [].concat(
+              ot(l),
+              this.router.beforeHooks,
+              st(c),
+              h.map(function (e) {
+                return e.beforeEnter;
+              }),
+              Ke(h)
+            ),
+            d = function (t, n) {
+              if (r.pending !== e) return o(Ve(i, e));
+              try {
+                t(e, i, function (t) {
+                  !1 === t
+                    ? (r.ensureURL(!0), o(Be(i, e)))
+                    : Ge(t)
+                      ? (r.ensureURL(!0), o(t))
+                      : 'string' === typeof t || ('object' === typeof t && ('string' === typeof t.path || 'string' === typeof t.name))
+                        ? (o(Fe(i, e)), 'object' === typeof t && t.replace ? r.replace(t) : r.push(t))
+                        : n(t);
+                });
+              } catch (s) {
+                o(s);
+              }
+            };
+          He(f, d, function () {
+            var n = ut(h),
+              s = n.concat(r.router.resolveHooks);
+            He(s, d, function () {
+              if (r.pending !== e) return o(Ve(i, e));
+              (r.pending = null),
+                t(e),
+                r.router.app &&
+                  r.router.app.$nextTick(function () {
+                    E(e);
+                  });
+            });
+          });
+        }),
+        (et.prototype.updateRoute = function (e) {
+          (this.current = e), this.cb && this.cb(e);
+        }),
+        (et.prototype.setupListeners = function () {}),
+        (et.prototype.teardown = function () {
+          this.listeners.forEach(function (e) {
+            e();
+          }),
+            (this.listeners = []),
+            (this.current = m),
+            (this.pending = null);
+        });
+      var lt = (function (e) {
+        function t(t, n) {
+          e.call(this, t, n), (this._startLocation = ht(this.base));
+        }
+        return (
+          e && (t.__proto__ = e),
+          (t.prototype = Object.create(e && e.prototype)),
+          (t.prototype.constructor = t),
+          (t.prototype.setupListeners = function () {
+            var e = this;
+            if (!(this.listeners.length > 0)) {
+              var t = this.router,
+                n = t.options.scrollBehavior,
+                r = De && n;
+              r && this.listeners.push(Ie());
+              var i = function () {
+                var n = e.current,
+                  i = ht(e.base);
+                (e.current === m && i === e._startLocation) ||
+                  e.transitionTo(i, function (e) {
+                    r && Ee(t, e, n, !0);
+                  });
+              };
+              window.addEventListener('popstate', i),
+                this.listeners.push(function () {
+                  window.removeEventListener('popstate', i);
+                });
+            }
+          }),
+          (t.prototype.go = function (e) {
+            window.history.go(e);
+          }),
+          (t.prototype.push = function (e, t, n) {
+            var r = this,
+              i = this,
+              o = i.current;
+            this.transitionTo(
+              e,
+              function (e) {
+                Le(k(r.base + e.fullPath)), Ee(r.router, e, o, !1), t && t(e);
+              },
+              n
+            );
+          }),
+          (t.prototype.replace = function (e, t, n) {
+            var r = this,
+              i = this,
+              o = i.current;
+            this.transitionTo(
+              e,
+              function (e) {
+                je(k(r.base + e.fullPath)), Ee(r.router, e, o, !1), t && t(e);
+              },
+              n
+            );
+          }),
+          (t.prototype.ensureURL = function (e) {
+            if (ht(this.base) !== this.current.fullPath) {
+              var t = k(this.base + this.current.fullPath);
+              e ? Le(t) : je(t);
+            }
+          }),
+          (t.prototype.getCurrentLocation = function () {
+            return ht(this.base);
+          }),
+          t
+        );
+      })(et);
+      function ht(e) {
+        var t = window.location.pathname,
+          n = t.toLowerCase(),
+          r = e.toLowerCase();
+        return !e || (n !== r && 0 !== n.indexOf(k(r + '/'))) || (t = t.slice(e.length)), (t || '/') + window.location.search + window.location.hash;
+      }
+      var ft = (function (e) {
+        function t(t, n, r) {
+          e.call(this, t, n), (r && dt(this.base)) || pt();
+        }
+        return (
+          e && (t.__proto__ = e),
+          (t.prototype = Object.create(e && e.prototype)),
+          (t.prototype.constructor = t),
+          (t.prototype.setupListeners = function () {
+            var e = this;
+            if (!(this.listeners.length > 0)) {
+              var t = this.router,
+                n = t.options.scrollBehavior,
+                r = De && n;
+              r && this.listeners.push(Ie());
+              var i = function () {
+                  var t = e.current;
+                  pt() &&
+                    e.transitionTo(gt(), function (n) {
+                      r && Ee(e.router, n, t, !0), De || yt(n.fullPath);
+                    });
+                },
+                o = De ? 'popstate' : 'hashchange';
+              window.addEventListener(o, i),
+                this.listeners.push(function () {
+                  window.removeEventListener(o, i);
+                });
+            }
+          }),
+          (t.prototype.push = function (e, t, n) {
+            var r = this,
+              i = this,
+              o = i.current;
+            this.transitionTo(
+              e,
+              function (e) {
+                vt(e.fullPath), Ee(r.router, e, o, !1), t && t(e);
+              },
+              n
+            );
+          }),
+          (t.prototype.replace = function (e, t, n) {
+            var r = this,
+              i = this,
+              o = i.current;
+            this.transitionTo(
+              e,
+              function (e) {
+                yt(e.fullPath), Ee(r.router, e, o, !1), t && t(e);
+              },
+              n
+            );
+          }),
+          (t.prototype.go = function (e) {
+            window.history.go(e);
+          }),
+          (t.prototype.ensureURL = function (e) {
+            var t = this.current.fullPath;
+            gt() !== t && (e ? vt(t) : yt(t));
+          }),
+          (t.prototype.getCurrentLocation = function () {
+            return gt();
+          }),
+          t
+        );
+      })(et);
+      function dt(e) {
+        var t = ht(e);
+        if (!/^\/#/.test(t)) return window.location.replace(k(e + '/#' + t)), !0;
+      }
+      function pt() {
+        var e = gt();
+        return '/' === e.charAt(0) || (yt('/' + e), !1);
+      }
+      function gt() {
+        var e = window.location.href,
+          t = e.indexOf('#');
+        return t < 0 ? '' : ((e = e.slice(t + 1)), e);
+      }
+      function mt(e) {
+        var t = window.location.href,
+          n = t.indexOf('#'),
+          r = n >= 0 ? t.slice(0, n) : t;
+        return r + '#' + e;
+      }
+      function vt(e) {
+        De ? Le(mt(e)) : (window.location.hash = e);
+      }
+      function yt(e) {
+        De ? je(mt(e)) : window.location.replace(mt(e));
+      }
+      var wt = (function (e) {
+          function t(t, n) {
+            e.call(this, t, n), (this.stack = []), (this.index = -1);
+          }
+          return (
+            e && (t.__proto__ = e),
+            (t.prototype = Object.create(e && e.prototype)),
+            (t.prototype.constructor = t),
+            (t.prototype.push = function (e, t, n) {
+              var r = this;
+              this.transitionTo(
+                e,
+                function (e) {
+                  (r.stack = r.stack.slice(0, r.index + 1).concat(e)), r.index++, t && t(e);
+                },
+                n
+              );
+            }),
+            (t.prototype.replace = function (e, t, n) {
+              var r = this;
+              this.transitionTo(
+                e,
+                function (e) {
+                  (r.stack = r.stack.slice(0, r.index).concat(e)), t && t(e);
+                },
+                n
+              );
+            }),
+            (t.prototype.go = function (e) {
+              var t = this,
+                n = this.index + e;
+              if (!(n < 0 || n >= this.stack.length)) {
+                var r = this.stack[n];
+                this.confirmTransition(
+                  r,
+                  function () {
+                    var e = t.current;
+                    (t.index = n),
+                      t.updateRoute(r),
+                      t.router.afterHooks.forEach(function (t) {
+                        t && t(r, e);
+                      });
+                  },
+                  function (e) {
+                    We(e, Me.duplicated) && (t.index = n);
+                  }
+                );
+              }
+            }),
+            (t.prototype.getCurrentLocation = function () {
+              var e = this.stack[this.stack.length - 1];
+              return e ? e.fullPath : '/';
+            }),
+            (t.prototype.ensureURL = function () {}),
+            t
+          );

@@ -1,0 +1,500 @@
+                e();
+              } catch (r) {}
+            throw this.auth._errorFactory.create('login-blocked', { originalMessage: null === n || void 0 === n ? void 0 : n.message });
+          }
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Ge {
+        constructor(e, t, n, r) {
+          (this.app = e),
+            (this.heartbeatServiceProvider = t),
+            (this.appCheckServiceProvider = n),
+            (this.config = r),
+            (this.currentUser = null),
+            (this.emulatorConfig = null),
+            (this.operations = Promise.resolve()),
+            (this.authStateSubscription = new He(this)),
+            (this.idTokenSubscription = new He(this)),
+            (this.beforeStateQueue = new ze(this)),
+            (this.redirectUser = null),
+            (this.isProactiveRefreshEnabled = !1),
+            (this._canInitEmulator = !0),
+            (this._isInitialized = !1),
+            (this._deleted = !1),
+            (this._initializationPromise = null),
+            (this._popupRedirectResolver = null),
+            (this._errorFactory = g),
+            (this._agentRecaptchaConfig = null),
+            (this._tenantRecaptchaConfigs = {}),
+            (this.lastNotifiedUid = void 0),
+            (this.languageCode = null),
+            (this.tenantId = null),
+            (this.settings = { appVerificationDisabledForTesting: !1 }),
+            (this.frameworks = []),
+            (this.name = e.name),
+            (this.clientVersion = r.sdkClientVersion);
+        }
+        _initializeWithPersistence(e, t) {
+          return (
+            t && (this._popupRedirectResolver = he(t)),
+            (this._initializationPromise = this.queue(async () => {
+              var n, r;
+              if (!this._deleted && ((this.persistenceManager = await ge.create(this, e)), !this._deleted)) {
+                if (null === (n = this._popupRedirectResolver) || void 0 === n ? void 0 : n._shouldInitProactively)
+                  try {
+                    await this._popupRedirectResolver._initialize(this);
+                  } catch (i) {}
+                await this.initializeCurrentUser(t),
+                  (this.lastNotifiedUid = (null === (r = this.currentUser) || void 0 === r ? void 0 : r.uid) || null),
+                  this._deleted || (this._isInitialized = !0);
+              }
+            })),
+            this._initializationPromise
+          );
+        }
+        async _onStorageEvent() {
+          if (this._deleted) return;
+          const e = await this.assertedPersistence.getCurrentUser();
+          return this.currentUser || e
+            ? this.currentUser && e && this.currentUser.uid === e.uid
+              ? (this._currentUser._assign(e), void (await this.currentUser.getIdToken()))
+              : void (await this._updateCurrentUser(e, !0))
+            : void 0;
+        }
+        async initializeCurrentUser(e) {
+          var t;
+          const n = await this.assertedPersistence.getCurrentUser();
+          let r = n,
+            i = !1;
+          if (e && this.config.authDomain) {
+            await this.getOrInitRedirectPersistenceManager();
+            const n = null === (t = this.redirectUser) || void 0 === t ? void 0 : t._redirectEventId,
+              o = null === r || void 0 === r ? void 0 : r._redirectEventId,
+              s = await this.tryRedirectSignIn(e);
+            (n && n !== o) || !(null === s || void 0 === s ? void 0 : s.user) || ((r = s.user), (i = !0));
+          }
+          if (!r) return this.directlySetCurrentUser(null);
+          if (!r._redirectEventId) {
+            if (i)
+              try {
+                await this.beforeStateQueue.runMiddleware(r);
+              } catch (o) {
+                (r = n), this._popupRedirectResolver._overrideRedirectResult(this, () => Promise.reject(o));
+              }
+            return r ? this.reloadAndSetCurrentUserOrClear(r) : this.directlySetCurrentUser(null);
+          }
+          return (
+            S(this._popupRedirectResolver, this, 'argument-error'),
+            await this.getOrInitRedirectPersistenceManager(),
+            this.redirectUser && this.redirectUser._redirectEventId === r._redirectEventId
+              ? this.directlySetCurrentUser(r)
+              : this.reloadAndSetCurrentUserOrClear(r)
+          );
+        }
+        async tryRedirectSignIn(e) {
+          let t = null;
+          try {
+            t = await this._popupRedirectResolver._completeRedirectFn(this, e, !0);
+          } catch (n) {
+            await this._setRedirectUser(null);
+          }
+          return t;
+        }
+        async reloadAndSetCurrentUserOrClear(e) {
+          try {
+            await ne(e);
+          } catch (t) {
+            if ('auth/network-request-failed' !== (null === t || void 0 === t ? void 0 : t.code)) return this.directlySetCurrentUser(null);
+          }
+          return this.directlySetCurrentUser(e);
+        }
+        useDeviceLanguage() {
+          this.languageCode = N();
+        }
+        async _delete() {
+          this._deleted = !0;
+        }
+        async updateCurrentUser(e) {
+          const t = e ? (0, i.m9)(e) : null;
+          return t && S(t.auth.config.apiKey === this.config.apiKey, this, 'invalid-user-token'), this._updateCurrentUser(t && t._clone(this));
+        }
+        async _updateCurrentUser(e, t = !1) {
+          if (!this._deleted)
+            return (
+              e && S(this.tenantId === e.tenantId, this, 'tenant-id-mismatch'),
+              t || (await this.beforeStateQueue.runMiddleware(e)),
+              this.queue(async () => {
+                await this.directlySetCurrentUser(e), this.notifyAuthListeners();
+              })
+            );
+        }
+        async signOut() {
+          return (
+            await this.beforeStateQueue.runMiddleware(null),
+            (this.redirectPersistenceManager || this._popupRedirectResolver) && (await this._setRedirectUser(null)),
+            this._updateCurrentUser(null, !0)
+          );
+        }
+        setPersistence(e) {
+          return this.queue(async () => {
+            await this.assertedPersistence.setPersistence(he(e));
+          });
+        }
+        async initializeRecaptchaConfig() {
+          const e = await Re(this, { clientType: 'CLIENT_TYPE_WEB', version: 'RECAPTCHA_ENTERPRISE' }),
+            t = new Le(e);
+          if (
+            (null == this.tenantId ? (this._agentRecaptchaConfig = t) : (this._tenantRecaptchaConfigs[this.tenantId] = t), t.emailPasswordEnabled)
+          ) {
+            const e = new $e(this);
+            e.verify();
+          }
+        }
+        _getRecaptchaConfig() {
+          return null == this.tenantId ? this._agentRecaptchaConfig : this._tenantRecaptchaConfigs[this.tenantId];
+        }
+        _getPersistence() {
+          return this.assertedPersistence.persistence.type;
+        }
+        _updateErrorMap(e) {
+          this._errorFactory = new i.LL('auth', 'Firebase', e());
+        }
+        onAuthStateChanged(e, t, n) {
+          return this.registerStateListener(this.authStateSubscription, e, t, n);
+        }
+        beforeAuthStateChanged(e, t) {
+          return this.beforeStateQueue.pushCallback(e, t);
+        }
+        onIdTokenChanged(e, t, n) {
+          return this.registerStateListener(this.idTokenSubscription, e, t, n);
+        }
+        toJSON() {
+          var e;
+          return {
+            apiKey: this.config.apiKey,
+            authDomain: this.config.authDomain,
+            appName: this.name,
+            currentUser: null === (e = this._currentUser) || void 0 === e ? void 0 : e.toJSON()
+          };
+        }
+        async _setRedirectUser(e, t) {
+          const n = await this.getOrInitRedirectPersistenceManager(t);
+          return null === e ? n.removeCurrentUser() : n.setCurrentUser(e);
+        }
+        async getOrInitRedirectPersistenceManager(e) {
+          if (!this.redirectPersistenceManager) {
+            const t = (e && he(e)) || this._popupRedirectResolver;
+            S(t, this, 'argument-error'),
+              (this.redirectPersistenceManager = await ge.create(this, [he(t._redirectPersistence)], 'redirectUser')),
+              (this.redirectUser = await this.redirectPersistenceManager.getCurrentUser());
+          }
+          return this.redirectPersistenceManager;
+        }
+        async _redirectUserForId(e) {
+          var t, n;
+          return (
+            this._isInitialized && (await this.queue(async () => {})),
+            (null === (t = this._currentUser) || void 0 === t ? void 0 : t._redirectEventId) === e
+              ? this._currentUser
+              : (null === (n = this.redirectUser) || void 0 === n ? void 0 : n._redirectEventId) === e
+                ? this.redirectUser
+                : null
+          );
+        }
+        async _persistUserIfCurrent(e) {
+          if (e === this.currentUser) return this.queue(async () => this.directlySetCurrentUser(e));
+        }
+        _notifyListenersIfCurrent(e) {
+          e === this.currentUser && this.notifyAuthListeners();
+        }
+        _key() {
+          return `${this.config.authDomain}:${this.config.apiKey}:${this.name}`;
+        }
+        _startProactiveRefresh() {
+          (this.isProactiveRefreshEnabled = !0), this.currentUser && this._currentUser._startProactiveRefresh();
+        }
+        _stopProactiveRefresh() {
+          (this.isProactiveRefreshEnabled = !1), this.currentUser && this._currentUser._stopProactiveRefresh();
+        }
+        get _currentUser() {
+          return this.currentUser;
+        }
+        notifyAuthListeners() {
+          var e, t;
+          if (!this._isInitialized) return;
+          this.idTokenSubscription.next(this.currentUser);
+          const n = null !== (t = null === (e = this.currentUser) || void 0 === e ? void 0 : e.uid) && void 0 !== t ? t : null;
+          this.lastNotifiedUid !== n && ((this.lastNotifiedUid = n), this.authStateSubscription.next(this.currentUser));
+        }
+        registerStateListener(e, t, n, r) {
+          if (this._deleted) return () => {};
+          const i = 'function' === typeof t ? t : t.next.bind(t),
+            o = this._isInitialized ? Promise.resolve() : this._initializationPromise;
+          return S(o, this, 'internal-error'), o.then(() => i(this.currentUser)), 'function' === typeof t ? e.addObserver(t, n, r) : e.addObserver(t);
+        }
+        async directlySetCurrentUser(e) {
+          this.currentUser && this.currentUser !== e && this._currentUser._stopProactiveRefresh(),
+            e && this.isProactiveRefreshEnabled && e._startProactiveRefresh(),
+            (this.currentUser = e),
+            e ? await this.assertedPersistence.setCurrentUser(e) : await this.assertedPersistence.removeCurrentUser();
+        }
+        queue(e) {
+          return (this.operations = this.operations.then(e, e)), this.operations;
+        }
+        get assertedPersistence() {
+          return S(this.persistenceManager, this, 'internal-error'), this.persistenceManager;
+        }
+        _logFramework(e) {
+          e &&
+            !this.frameworks.includes(e) &&
+            (this.frameworks.push(e), this.frameworks.sort(), (this.clientVersion = Oe(this.config.clientPlatform, this._getFrameworks())));
+        }
+        _getFrameworks() {
+          return this.frameworks;
+        }
+        async _getAdditionalHeaders() {
+          var e;
+          const t = { ['X-Client-Version']: this.clientVersion };
+          this.app.options.appId && (t['X-Firebase-gmpid'] = this.app.options.appId);
+          const n = await (null === (e = this.heartbeatServiceProvider.getImmediate({ optional: !0 })) || void 0 === e
+            ? void 0
+            : e.getHeartbeatsHeader());
+          n && (t['X-Firebase-Client'] = n);
+          const r = await this._getAppCheckToken();
+          return r && (t['X-Firebase-AppCheck'] = r), t;
+        }
+        async _getAppCheckToken() {
+          var e;
+          const t = await (null === (e = this.appCheckServiceProvider.getImmediate({ optional: !0 })) || void 0 === e ? void 0 : e.getToken());
+          return (
+            (null === t || void 0 === t ? void 0 : t.error) && v(`Error while retrieving App Check token: ${t.error}`),
+            null === t || void 0 === t ? void 0 : t.token
+          );
+        }
+      }
+      function We(e) {
+        return (0, i.m9)(e);
+      }
+      class He {
+        constructor(e) {
+          (this.auth = e), (this.observer = null), (this.addObserver = (0, i.ne)(e => (this.observer = e)));
+        }
+        get next() {
+          return S(this.observer, this.auth, 'internal-error'), this.observer.next.bind(this.observer);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Ke(e, t) {
+        const n = (null === t || void 0 === t ? void 0 : t.persistence) || [],
+          r = (Array.isArray(n) ? n : [n]).map(he);
+        (null === t || void 0 === t ? void 0 : t.errorMap) && e._updateErrorMap(t.errorMap),
+          e._initializeWithPersistence(r, null === t || void 0 === t ? void 0 : t.popupRedirectResolver);
+      }
+      function Qe(e, t, n) {
+        const r = We(e);
+        S(r._canInitEmulator, r, 'emulator-config-failed'), S(/^https?:\/\//.test(t), r, 'invalid-emulator-scheme');
+        const i = !!(null === n || void 0 === n ? void 0 : n.disableWarnings),
+          o = Ye(t),
+          { host: s, port: a } = Xe(t),
+          u = null === a ? '' : `:${a}`;
+        (r.config.emulator = { url: `${o}//${s}${u}/` }),
+          (r.settings.appVerificationDisabledForTesting = !0),
+          (r.emulatorConfig = Object.freeze({ host: s, port: a, protocol: o.replace(':', ''), options: Object.freeze({ disableWarnings: i }) })),
+          i || Ze();
+      }
+      function Ye(e) {
+        const t = e.indexOf(':');
+        return t < 0 ? '' : e.substr(0, t + 1);
+      }
+      function Xe(e) {
+        const t = Ye(e),
+          n = /(\/\/)?([^?#/]+)/.exec(e.substr(t.length));
+        if (!n) return { host: '', port: null };
+        const r = n[2].split('@').pop() || '',
+          i = /^(\[[^\]]+\])(:|$)/.exec(r);
+        if (i) {
+          const e = i[1];
+          return { host: e, port: Je(r.substr(e.length + 1)) };
+        }
+        {
+          const [e, t] = r.split(':');
+          return { host: e, port: Je(t) };
+        }
+      }
+      function Je(e) {
+        if (!e) return null;
+        const t = Number(e);
+        return isNaN(t) ? null : t;
+      }
+      function Ze() {
+        function e() {
+          const e = document.createElement('p'),
+            t = e.style;
+          (e.innerText = 'Running in emulator mode. Do not use with production credentials.'),
+            (t.position = 'fixed'),
+            (t.width = '100%'),
+            (t.backgroundColor = '#ffffff'),
+            (t.border = '.1em solid #000000'),
+            (t.color = '#b50000'),
+            (t.bottom = '0px'),
+            (t.left = '0px'),
+            (t.margin = '0px'),
+            (t.zIndex = '10000'),
+            (t.textAlign = 'center'),
+            e.classList.add('firebase-emulator-warning'),
+            document.body.appendChild(e);
+        }
+        'undefined' !== typeof console &&
+          'function' === typeof console.info &&
+          console.info(
+            'WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials.'
+          ),
+          'undefined' !== typeof window &&
+            'undefined' !== typeof document &&
+            ('loading' === document.readyState ? window.addEventListener('DOMContentLoaded', e) : e());
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class et {
+        constructor(e, t) {
+          (this.providerId = e), (this.signInMethod = t);
+        }
+        toJSON() {
+          return T('not implemented');
+        }
+        _getIdTokenResponse(e) {
+          return T('not implemented');
+        }
+        _linkToIdToken(e, t) {
+          return T('not implemented');
+        }
+        _getReauthenticationResolver(e) {
+          return T('not implemented');
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function tt(e, t) {
+        return F(e, 'POST', '/v1/accounts:resetPassword', M(e, t));
+      }
+      async function nt(e, t) {
+        return F(e, 'POST', '/v1/accounts:update', t);
+      }
+      async function rt(e, t) {
+        return F(e, 'POST', '/v1/accounts:update', M(e, t));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function it(e, t) {
+        return V(e, 'POST', '/v1/accounts:signInWithPassword', M(e, t));
+      }
+      async function ot(e, t) {
+        return F(e, 'POST', '/v1/accounts:sendOobCode', M(e, t));
+      }
+      async function st(e, t) {
+        return ot(e, t);
+      }
+      async function at(e, t) {
+        return ot(e, t);
+      }
+      async function ut(e, t) {
+        return ot(e, t);
+      }
+      async function ct(e, t) {
+        return ot(e, t);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function lt(e, t) {
+        return V(e, 'POST', '/v1/accounts:signInWithEmailLink', M(e, t));
+      }
+      async function ht(e, t) {
+        return V(e, 'POST', '/v1/accounts:signInWithEmailLink', M(e, t));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.

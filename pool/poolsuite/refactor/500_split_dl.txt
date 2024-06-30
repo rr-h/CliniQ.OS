@@ -1,0 +1,500 @@
+                      return new Ri(e.indexId, e.collectionGroup, r, n);
+                    })(e, n)
+                  );
+                })
+              )
+              .next(() => t);
+          });
+        }
+        getNextCollectionGroupToUpdate(e) {
+          return this.getFieldIndexes(e).next(e =>
+            0 === e.length
+              ? null
+              : (e.sort((e, t) => {
+                  const n = e.indexState.sequenceNumber - t.indexState.sequenceNumber;
+                  return 0 !== n ? n : Ii(e.collectionGroup, t.collectionGroup);
+                }),
+                e[0].collectionGroup)
+          );
+        }
+        updateCollectionGroup(e, t, n) {
+          const r = ml(e),
+            i = vl(e);
+          return this.Tn(e).next(e =>
+            r.j('collectionGroupIndex', IDBKeyRange.bound(t, t)).next(t => zi.forEach(t, t => i.put(Fc(t.indexId, this.user, e, n))))
+          );
+        }
+        updateIndexEntries(e, t) {
+          const n = new Map();
+          return zi.forEach(t, (t, r) => {
+            const i = n.get(t.collectionGroup);
+            return (i ? zi.resolve(i) : this.getFieldIndexes(e, t.collectionGroup)).next(
+              i => (
+                n.set(t.collectionGroup, i),
+                zi.forEach(i, n =>
+                  this.En(e, t, n).next(t => {
+                    const i = this.An(r, n);
+                    return t.isEqual(i) ? zi.resolve() : this.vn(e, r, n, t, i);
+                  })
+                )
+              )
+            );
+          });
+        }
+        Rn(e, t, n, r) {
+          return gl(e).put({
+            indexId: r.indexId,
+            uid: this.uid,
+            arrayValue: r.arrayValue,
+            directionalValue: r.directionalValue,
+            orderedDocumentKey: this.gn(n, t.key),
+            documentKey: t.key.path.toArray()
+          });
+        }
+        Pn(e, t, n, r) {
+          return gl(e).delete([r.indexId, this.uid, r.arrayValue, r.directionalValue, this.gn(n, t.key), t.key.path.toArray()]);
+        }
+        En(e, t, n) {
+          const r = gl(e);
+          let i = new $o(Jc);
+          return r
+            .X({ index: 'documentKeyIndex', range: IDBKeyRange.only([n.indexId, this.uid, this.gn(n, t)]) }, (e, r) => {
+              i = i.add(new Xc(n.indexId, t, r.arrayValue, r.directionalValue));
+            })
+            .next(() => i);
+        }
+        An(e, t) {
+          let n = new $o(Jc);
+          const r = this.mn(t, e);
+          if (null == r) return n;
+          const i = Pi(t);
+          if (null != i) {
+            const o = e.data.field(i.fieldPath);
+            if (gs(o)) for (const i of o.arrayValue.values || []) n = n.add(new Xc(t.indexId, e.key, this.dn(i), r));
+          } else n = n.add(new Xc(t.indexId, e.key, fl, r));
+          return n;
+        }
+        vn(e, t, n, r, i) {
+          ti('IndexedDbIndexManager', "Updating index entries for document '%s'", t.key);
+          const o = [];
+          return (
+            (function (e, t, n, r, i) {
+              const o = e.getIterator(),
+                s = t.getIterator();
+              let a = zo(o),
+                u = zo(s);
+              for (; a || u; ) {
+                let e = !1,
+                  t = !1;
+                if (a && u) {
+                  const r = n(a, u);
+                  r < 0 ? (t = !0) : r > 0 && (e = !0);
+                } else null != a ? (t = !0) : (e = !0);
+                e ? (r(u), (u = zo(s))) : t ? (i(a), (a = zo(o))) : ((a = zo(o)), (u = zo(s)));
+              }
+            })(
+              r,
+              i,
+              Jc,
+              r => {
+                o.push(this.Rn(e, t, n, r));
+              },
+              r => {
+                o.push(this.Pn(e, t, n, r));
+              }
+            ),
+            zi.waitFor(o)
+          );
+        }
+        Tn(e) {
+          let t = 1;
+          return vl(e)
+            .X({ index: 'sequenceNumberIndex', reverse: !0, range: IDBKeyRange.upperBound([this.uid, Number.MAX_SAFE_INTEGER]) }, (e, n, r) => {
+              r.done(), (t = n.sequenceNumber + 1);
+            })
+            .next(() => t);
+        }
+        createRange(e, t, n) {
+          n = n.sort((e, t) => Jc(e, t)).filter((e, t, n) => !t || 0 !== Jc(e, n[t - 1]));
+          const r = [];
+          r.push(e);
+          for (const o of n) {
+            const n = Jc(o, e),
+              i = Jc(o, t);
+            if (0 === n) r[0] = e.Je();
+            else if (n > 0 && i < 0) r.push(o), r.push(o.Je());
+            else if (i > 0) break;
+          }
+          r.push(t);
+          const i = [];
+          for (let o = 0; o < r.length; o += 2) {
+            if (this.bn(r[o], r[o + 1])) return [];
+            const e = [r[o].indexId, this.uid, r[o].arrayValue, r[o].directionalValue, fl, []],
+              t = [r[o + 1].indexId, this.uid, r[o + 1].arrayValue, r[o + 1].directionalValue, fl, []];
+            i.push(IDBKeyRange.bound(e, t));
+          }
+          return i;
+        }
+        bn(e, t) {
+          return Jc(e, t) > 0;
+        }
+        getMinOffsetFromCollectionGroup(e, t) {
+          return this.getFieldIndexes(e, t).next(yl);
+        }
+        getMinOffset(e, t) {
+          return zi.mapArray(this.cn(t), t => this.an(e, t).next(e => e || oi())).next(yl);
+        }
+      }
+      function pl(e) {
+        return Lo(e, 'collectionParents');
+      }
+      function gl(e) {
+        return Lo(e, 'indexEntries');
+      }
+      function ml(e) {
+        return Lo(e, 'indexConfiguration');
+      }
+      function vl(e) {
+        return Lo(e, 'indexState');
+      }
+      function yl(e) {
+        si(0 !== e.length);
+        let t = e[0].indexState.offset,
+          n = t.largestBatchId;
+        for (let r = 1; r < e.length; r++) {
+          const i = e[r].indexState.offset;
+          Vi(i, t) < 0 && (t = i), n < i.largestBatchId && (n = i.largestBatchId);
+        }
+        return new Ui(t.readTime, t.documentKey, n);
+      }
+      /**
+       * @license
+       * Copyright 2018 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const wl = { didRun: !1, sequenceNumbersCollected: 0, targetsRemoved: 0, documentsRemoved: 0 };
+      class bl {
+        constructor(e, t, n) {
+          (this.cacheSizeCollectionThreshold = e), (this.percentileToCollect = t), (this.maximumSequenceNumbersToCollect = n);
+        }
+        static withCacheSize(e) {
+          return new bl(e, bl.DEFAULT_COLLECTION_PERCENTILE, bl.DEFAULT_MAX_SEQUENCE_NUMBERS_TO_COLLECT);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function _l(e, t, n) {
+        const r = e.store('mutations'),
+          i = e.store('documentMutations'),
+          o = [],
+          s = IDBKeyRange.only(n.batchId);
+        let a = 0;
+        const u = r.X({ range: s }, (e, t, n) => (a++, n.delete()));
+        o.push(
+          u.next(() => {
+            si(1 === a);
+          })
+        );
+        const c = [];
+        for (const l of n.mutations) {
+          const e = fo(t, l.key.path, n.batchId);
+          o.push(i.delete(e)), c.push(l.key);
+        }
+        return zi.waitFor(o).next(() => c);
+      }
+      function Il(e) {
+        if (!e) return 0;
+        let t;
+        if (e.document) t = e.document;
+        else if (e.unknownDocument) t = e.unknownDocument;
+        else {
+          if (!e.noDocument) throw oi();
+          t = e.noDocument;
+        }
+        return JSON.stringify(t).length;
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ (bl.DEFAULT_COLLECTION_PERCENTILE = 10),
+        (bl.DEFAULT_MAX_SEQUENCE_NUMBERS_TO_COLLECT = 1e3),
+        (bl.DEFAULT = new bl(41943040, bl.DEFAULT_COLLECTION_PERCENTILE, bl.DEFAULT_MAX_SEQUENCE_NUMBERS_TO_COLLECT)),
+        (bl.DISABLED = new bl(-1, 0, 0));
+      class El {
+        constructor(e, t, n, r) {
+          (this.userId = e), (this.serializer = t), (this.indexManager = n), (this.referenceDelegate = r), (this.Vn = {});
+        }
+        static de(e, t, n, r) {
+          si('' !== e.uid);
+          const i = e.isAuthenticated() ? e.uid : '';
+          return new El(i, t, n, r);
+        }
+        checkEmpty(e) {
+          let t = !0;
+          const n = IDBKeyRange.bound([this.userId, Number.NEGATIVE_INFINITY], [this.userId, Number.POSITIVE_INFINITY]);
+          return Tl(e)
+            .X({ index: 'userMutationsIndex', range: n }, (e, n, r) => {
+              (t = !1), r.done();
+            })
+            .next(() => t);
+        }
+        addMutationBatch(e, t, n, r) {
+          const i = Al(e),
+            o = Tl(e);
+          return o.add({}).next(s => {
+            si('number' == typeof s);
+            const a = new vu(s, t, n, r),
+              u = (function (e, t, n) {
+                const r = n.baseMutations.map(t => cc(e.fe, t)),
+                  i = n.mutations.map(t => cc(e.fe, t));
+                return { userId: t, batchId: n.batchId, localWriteTimeMs: n.localWriteTime.toMillis(), baseMutations: r, mutations: i };
+              })(this.serializer, this.userId, a),
+              c = [];
+            let l = new $o((e, t) => Ii(e.canonicalString(), t.canonicalString()));
+            for (const e of r) {
+              const t = fo(this.userId, e.key.path, s);
+              (l = l.add(e.key.path.popLast())), c.push(o.put(u)), c.push(i.put(t, po));
+            }
+            return (
+              l.forEach(t => {
+                c.push(this.indexManager.addToCollectionParentIndex(e, t));
+              }),
+              e.addOnCommittedListener(() => {
+                this.Vn[s] = a.keys();
+              }),
+              zi.waitFor(c).next(() => a)
+            );
+          });
+        }
+        lookupMutationBatch(e, t) {
+          return Tl(e)
+            .get(t)
+            .next(e => (e ? (si(e.userId === this.userId), Rc(this.serializer, e)) : null));
+        }
+        Sn(e, t) {
+          return this.Vn[t]
+            ? zi.resolve(this.Vn[t])
+            : this.lookupMutationBatch(e, t).next(e => {
+                if (e) {
+                  const n = e.keys();
+                  return (this.Vn[t] = n), n;
+                }
+                return null;
+              });
+        }
+        getNextMutationBatchAfterBatchId(e, t) {
+          const n = t + 1,
+            r = IDBKeyRange.lowerBound([this.userId, n]);
+          let i = null;
+          return Tl(e)
+            .X({ index: 'userMutationsIndex', range: r }, (e, t, r) => {
+              t.userId === this.userId && (si(t.batchId >= n), (i = Rc(this.serializer, t))), r.done();
+            })
+            .next(() => i);
+        }
+        getHighestUnacknowledgedBatchId(e) {
+          const t = IDBKeyRange.upperBound([this.userId, Number.POSITIVE_INFINITY]);
+          let n = -1;
+          return Tl(e)
+            .X({ index: 'userMutationsIndex', range: t, reverse: !0 }, (e, t, r) => {
+              (n = t.batchId), r.done();
+            })
+            .next(() => n);
+        }
+        getAllMutationBatches(e) {
+          const t = IDBKeyRange.bound([this.userId, -1], [this.userId, Number.POSITIVE_INFINITY]);
+          return Tl(e)
+            .j('userMutationsIndex', t)
+            .next(e => e.map(e => Rc(this.serializer, e)));
+        }
+        getAllMutationBatchesAffectingDocumentKey(e, t) {
+          const n = ho(this.userId, t.path),
+            r = IDBKeyRange.lowerBound(n),
+            i = [];
+          return Al(e)
+            .X({ range: r }, (n, r, o) => {
+              const [s, a, u] = n,
+                c = co(a);
+              if (s === this.userId && t.path.isEqual(c))
+                return Tl(e)
+                  .get(u)
+                  .next(e => {
+                    if (!e) throw oi();
+                    si(e.userId === this.userId), i.push(Rc(this.serializer, e));
+                  });
+              o.done();
+            })
+            .next(() => i);
+        }
+        getAllMutationBatchesAffectingDocumentKeys(e, t) {
+          let n = new $o(Ii);
+          const r = [];
+          return (
+            t.forEach(t => {
+              const i = ho(this.userId, t.path),
+                o = IDBKeyRange.lowerBound(i),
+                s = Al(e).X({ range: o }, (e, r, i) => {
+                  const [o, s, a] = e,
+                    u = co(s);
+                  o === this.userId && t.path.isEqual(u) ? (n = n.add(a)) : i.done();
+                });
+              r.push(s);
+            }),
+            zi.waitFor(r).next(() => this.Dn(e, n))
+          );
+        }
+        getAllMutationBatchesAffectingQuery(e, t) {
+          const n = t.path,
+            r = n.length + 1,
+            i = ho(this.userId, n),
+            o = IDBKeyRange.lowerBound(i);
+          let s = new $o(Ii);
+          return Al(e)
+            .X({ range: o }, (e, t, i) => {
+              const [o, a, u] = e,
+                c = co(a);
+              o === this.userId && n.isPrefixOf(c) ? c.length === r && (s = s.add(u)) : i.done();
+            })
+            .next(() => this.Dn(e, s));
+        }
+        Dn(e, t) {
+          const n = [],
+            r = [];
+          return (
+            t.forEach(t => {
+              r.push(
+                Tl(e)
+                  .get(t)
+                  .next(e => {
+                    if (null === e) throw oi();
+                    si(e.userId === this.userId), n.push(Rc(this.serializer, e));
+                  })
+              );
+            }),
+            zi.waitFor(r).next(() => n)
+          );
+        }
+        removeMutationBatch(e, t) {
+          return _l(e.ht, this.userId, t).next(
+            n => (
+              e.addOnCommittedListener(() => {
+                this.Cn(t.batchId);
+              }),
+              zi.forEach(n, t => this.referenceDelegate.markPotentiallyOrphaned(e, t))
+            )
+          );
+        }
+        Cn(e) {
+          delete this.Vn[e];
+        }
+        performConsistencyCheck(e) {
+          return this.checkEmpty(e).next(t => {
+            if (!t) return zi.resolve();
+            const n = IDBKeyRange.lowerBound([this.userId]),
+              r = [];
+            return Al(e)
+              .X({ range: n }, (e, t, n) => {
+                if (e[0] === this.userId) {
+                  const t = co(e[1]);
+                  r.push(t);
+                } else n.done();
+              })
+              .next(() => {
+                si(0 === r.length);
+              });
+          });
+        }
+        containsKey(e, t) {
+          return Sl(e, this.userId, t);
+        }
+        xn(e) {
+          return xl(e)
+            .get(this.userId)
+            .next(e => e || { userId: this.userId, lastAcknowledgedBatchId: -1, lastStreamToken: '' });
+        }
+      }
+      function Sl(e, t, n) {
+        const r = ho(t, n.path),
+          i = r[1],
+          o = IDBKeyRange.lowerBound(r);
+        let s = !1;
+        return Al(e)
+          .X({ range: o, Y: !0 }, (e, n, r) => {
+            const [o, a, u] = e;
+            o === t && a === i && (s = !0), r.done();
+          })
+          .next(() => s);
+      }
+      function Tl(e) {
+        return Lo(e, 'mutations');
+      }
+      function Al(e) {
+        return Lo(e, 'documentMutations');
+      }
+      function xl(e) {
+        return Lo(e, 'mutationQueues');
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Cl {
+        constructor(e) {
+          this.Nn = e;
+        }
+        next() {
+          return (this.Nn += 2), this.Nn;
+        }
+        static kn() {
+          return new Cl(0);
+        }
+        static Mn() {
+          return new Cl(-1);
+        }
+      }

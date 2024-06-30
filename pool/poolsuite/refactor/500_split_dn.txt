@@ -1,0 +1,500 @@
+          return Gl(e)
+            .X({ index: 'documentKeyIndex', range: IDBKeyRange.only(Wl(t)) }, (e, r) => {
+              n = { document: this.ts(t, r), size: Il(r) };
+            })
+            .next(() => n);
+        }
+        getEntries(e, t) {
+          let n = Aa();
+          return this.ns(e, t, (e, t) => {
+            const r = this.ts(e, t);
+            n = n.insert(e, r);
+          }).next(() => n);
+        }
+        ss(e, t) {
+          let n = Aa(),
+            r = new Uo(Ni.comparator);
+          return this.ns(e, t, (e, t) => {
+            const i = this.ts(e, t);
+            (n = n.insert(e, i)), (r = r.insert(e, Il(t)));
+          }).next(() => ({ documents: n, rs: r }));
+        }
+        ns(e, t, n) {
+          if (t.isEmpty()) return zi.resolve();
+          let r = new $o(Kl);
+          t.forEach(e => (r = r.add(e)));
+          const i = IDBKeyRange.bound(Wl(r.first()), Wl(r.last())),
+            o = r.getIterator();
+          let s = o.getNext();
+          return Gl(e)
+            .X({ index: 'documentKeyIndex', range: i }, (e, t, r) => {
+              const i = Ni.fromSegments([...t.prefixPath, t.collectionGroup, t.documentId]);
+              for (; s && Kl(s, i) < 0; ) n(s, null), (s = o.getNext());
+              s && s.isEqual(i) && (n(s, t), (s = o.hasNext() ? o.getNext() : null)), s ? r.G(Wl(s)) : r.done();
+            })
+            .next(() => {
+              for (; s; ) n(s, null), (s = o.hasNext() ? o.getNext() : null);
+            });
+        }
+        getDocumentsMatchingQuery(e, t, n, r) {
+          const i = t.path,
+            o = [i.popLast().toArray(), i.lastSegment(), kc(n.readTime), n.documentKey.path.isEmpty() ? '' : n.documentKey.path.lastSegment()],
+            s = [i.popLast().toArray(), i.lastSegment(), [Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER], ''];
+          return Gl(e)
+            .j(IDBKeyRange.bound(o, s, !0))
+            .next(e => {
+              let n = Aa();
+              for (const i of e) {
+                const e = this.ts(Ni.fromSegments(i.prefixPath.concat(i.collectionGroup, i.documentId)), i);
+                e.isFoundDocument() && (ba(t, e) || r.has(e.key)) && (n = n.insert(e.key, e));
+              }
+              return n;
+            });
+        }
+        getAllFromCollectionGroup(e, t, n, r) {
+          let i = Aa();
+          const o = Hl(t, n),
+            s = Hl(t, Ui.max());
+          return Gl(e)
+            .X({ index: 'collectionGroupIndex', range: IDBKeyRange.bound(o, s, !0) }, (e, t, n) => {
+              const o = this.ts(Ni.fromSegments(t.prefixPath.concat(t.collectionGroup, t.documentId)), t);
+              (i = i.insert(o.key, o)), i.size === r && n.done();
+            })
+            .next(() => i);
+        }
+        newChangeBuffer(e) {
+          return new ql(this, !!e && e.trackRemovals);
+        }
+        getSize(e) {
+          return this.getMetadata(e).next(e => e.byteSize);
+        }
+        getMetadata(e) {
+          return zl(e)
+            .get('remoteDocumentGlobalKey')
+            .next(e => (si(!!e), e));
+        }
+        Zn(e, t) {
+          return zl(e).put('remoteDocumentGlobalKey', t);
+        }
+        ts(e, t) {
+          if (t) {
+            const e = xc(this.serializer, t);
+            if (!e.isNoDocument() || !e.version.isEqual(Ai.min())) return e;
+          }
+          return xs.newInvalidDocument(e);
+        }
+      }
+      function $l(e) {
+        return new Bl(e);
+      }
+      class ql extends Vl {
+        constructor(e, t) {
+          super(),
+            (this.os = e),
+            (this.trackRemovals = t),
+            (this.us = new Sa(
+              e => e.toString(),
+              (e, t) => e.isEqual(t)
+            ));
+        }
+        applyChanges(e) {
+          const t = [];
+          let n = 0,
+            r = new $o((e, t) => Ii(e.canonicalString(), t.canonicalString()));
+          return (
+            this.changes.forEach((i, o) => {
+              const s = this.us.get(i);
+              if ((t.push(this.os.removeEntry(e, i, s.readTime)), o.isValidDocument())) {
+                const a = Cc(this.os.serializer, o);
+                r = r.add(i.path.popLast());
+                const u = Il(a);
+                (n += u - s.size), t.push(this.os.addEntry(e, i, a));
+              } else if (((n -= s.size), this.trackRemovals)) {
+                const n = Cc(this.os.serializer, o.convertToNoDocument(Ai.min()));
+                t.push(this.os.addEntry(e, i, n));
+              }
+            }),
+            r.forEach(n => {
+              t.push(this.os.indexManager.addToCollectionParentIndex(e, n));
+            }),
+            t.push(this.os.updateMetadata(e, n)),
+            zi.waitFor(t)
+          );
+        }
+        getFromCache(e, t) {
+          return this.os.es(e, t).next(e => (this.us.set(t, { size: e.size, readTime: e.document.readTime }), e.document));
+        }
+        getAllFromCache(e, t) {
+          return this.os.ss(e, t).next(
+            ({ documents: e, rs: t }) => (
+              t.forEach((t, n) => {
+                this.us.set(t, { size: n, readTime: e.get(t).readTime });
+              }),
+              e
+            )
+          );
+        }
+      }
+      function zl(e) {
+        return Lo(e, 'remoteDocumentGlobal');
+      }
+      function Gl(e) {
+        return Lo(e, 'remoteDocumentsV14');
+      }
+      function Wl(e) {
+        const t = e.path.toArray();
+        return [t.slice(0, t.length - 2), t[t.length - 2], t[t.length - 1]];
+      }
+      function Hl(e, t) {
+        const n = t.documentKey.path.toArray();
+        return [e, kc(t.readTime), n.slice(0, n.length - 2), n.length > 0 ? n[n.length - 1] : ''];
+      }
+      function Kl(e, t) {
+        const n = e.path.toArray(),
+          r = t.path.toArray();
+        let i = 0;
+        for (let o = 0; o < n.length - 2 && o < r.length - 2; ++o) if (((i = Ii(n[o], r[o])), i)) return i;
+        return (i = Ii(n.length, r.length)), i || ((i = Ii(n[n.length - 2], r[r.length - 2])), i || Ii(n[n.length - 1], r[r.length - 1]));
+        /**
+         * @license
+         * Copyright 2017 Google LLC
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *   http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+        /**
+         * @license
+         * Copyright 2022 Google LLC
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *   http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+      }
+      class Ql {
+        constructor(e, t) {
+          (this.overlayedDocument = e), (this.mutatedFields = t);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Yl {
+        constructor(e, t, n, r) {
+          (this.remoteDocumentCache = e), (this.mutationQueue = t), (this.documentOverlayCache = n), (this.indexManager = r);
+        }
+        getDocument(e, t) {
+          let n = null;
+          return this.documentOverlayCache
+            .getOverlay(e, t)
+            .next(r => ((n = r), this.remoteDocumentCache.getEntry(e, t)))
+            .next(e => (null !== n && au(n.mutation, e, Go.empty(), Ti.now()), e));
+        }
+        getDocuments(e, t) {
+          return this.remoteDocumentCache.getEntries(e, t).next(t => this.getLocalViewOfDocuments(e, t, La()).next(() => t));
+        }
+        getLocalViewOfDocuments(e, t, n = La()) {
+          const r = Oa();
+          return this.populateOverlays(e, r, t).next(() =>
+            this.computeViews(e, t, r, n).next(e => {
+              let t = Ca();
+              return (
+                e.forEach((e, n) => {
+                  t = t.insert(e, n.overlayedDocument);
+                }),
+                t
+              );
+            })
+          );
+        }
+        getOverlayedDocuments(e, t) {
+          const n = Oa();
+          return this.populateOverlays(e, n, t).next(() => this.computeViews(e, t, n, La()));
+        }
+        populateOverlays(e, t, n) {
+          const r = [];
+          return (
+            n.forEach(e => {
+              t.has(e) || r.push(e);
+            }),
+            this.documentOverlayCache.getOverlays(e, r).next(e => {
+              e.forEach((e, n) => {
+                t.set(e, n);
+              });
+            })
+          );
+        }
+        computeViews(e, t, n, r) {
+          let i = Aa();
+          const o = Ra(),
+            s = Ra();
+          return (
+            t.forEach((e, t) => {
+              const s = n.get(t.key);
+              r.has(t.key) && (void 0 === s || s.mutation instanceof hu)
+                ? (i = i.insert(t.key, t))
+                : void 0 !== s
+                  ? (o.set(t.key, s.mutation.getFieldMask()), au(s.mutation, t, s.mutation.getFieldMask(), Ti.now()))
+                  : o.set(t.key, Go.empty());
+            }),
+            this.recalculateAndSaveOverlays(e, i).next(
+              e => (
+                e.forEach((e, t) => o.set(e, t)),
+                t.forEach((e, t) => {
+                  var n;
+                  return s.set(e, new Ql(t, null !== (n = o.get(e)) && void 0 !== n ? n : null));
+                }),
+                s
+              )
+            )
+          );
+        }
+        recalculateAndSaveOverlays(e, t) {
+          const n = Ra();
+          let r = new Uo((e, t) => e - t),
+            i = La();
+          return this.mutationQueue
+            .getAllMutationBatchesAffectingDocumentKeys(e, t)
+            .next(e => {
+              for (const i of e)
+                i.keys().forEach(e => {
+                  const o = t.get(e);
+                  if (null === o) return;
+                  let s = n.get(e) || Go.empty();
+                  (s = i.applyToLocalView(o, s)), n.set(e, s);
+                  const a = (r.get(i.batchId) || La()).add(e);
+                  r = r.insert(i.batchId, a);
+                });
+            })
+            .next(() => {
+              const o = [],
+                s = r.getReverseIterator();
+              for (; s.hasNext(); ) {
+                const r = s.getNext(),
+                  a = r.key,
+                  u = r.value,
+                  c = Na();
+                u.forEach(e => {
+                  if (!i.has(e)) {
+                    const r = ou(t.get(e), n.get(e));
+                    null !== r && c.set(e, r), (i = i.add(e));
+                  }
+                }),
+                  o.push(this.documentOverlayCache.saveOverlays(e, a, c));
+              }
+              return zi.waitFor(o);
+            })
+            .next(() => n);
+        }
+        recalculateAndSaveOverlaysForDocumentKeys(e, t) {
+          return this.remoteDocumentCache.getEntries(e, t).next(t => this.recalculateAndSaveOverlays(e, t));
+        }
+        getDocumentsMatchingQuery(e, t, n) {
+          return (function (e) {
+            return Ni.isDocumentKey(e.path) && null === e.collectionGroup && 0 === e.filters.length;
+          })(t)
+            ? this.getDocumentsMatchingDocumentQuery(e, t.path)
+            : fa(t)
+              ? this.getDocumentsMatchingCollectionGroupQuery(e, t, n)
+              : this.getDocumentsMatchingCollectionQuery(e, t, n);
+        }
+        getNextDocuments(e, t, n, r) {
+          return this.remoteDocumentCache.getAllFromCollectionGroup(e, t, n, r).next(i => {
+            const o = r - i.size > 0 ? this.documentOverlayCache.getOverlaysForCollectionGroup(e, t, n.largestBatchId, r - i.size) : zi.resolve(Oa());
+            let s = -1,
+              a = i;
+            return o.next(t =>
+              zi
+                .forEach(
+                  t,
+                  (t, n) => (
+                    s < n.largestBatchId && (s = n.largestBatchId),
+                    i.get(t)
+                      ? zi.resolve()
+                      : this.remoteDocumentCache.getEntry(e, t).next(e => {
+                          a = a.insert(t, e);
+                        })
+                  )
+                )
+                .next(() => this.populateOverlays(e, t, i))
+                .next(() => this.computeViews(e, a, t, La()))
+                .next(e => ({ batchId: s, changes: ka(e) }))
+            );
+          });
+        }
+        getDocumentsMatchingDocumentQuery(e, t) {
+          return this.getDocument(e, new Ni(t)).next(e => {
+            let t = Ca();
+            return e.isFoundDocument() && (t = t.insert(e.key, e)), t;
+          });
+        }
+        getDocumentsMatchingCollectionGroupQuery(e, t, n) {
+          const r = t.collectionGroup;
+          let i = Ca();
+          return this.indexManager.getCollectionParents(e, r).next(o =>
+            zi
+              .forEach(o, o => {
+                const s = (function (e, t) {
+                  return new sa(t, null, e.explicitOrderBy.slice(), e.filters.slice(), e.limit, e.limitType, e.startAt, e.endAt);
+                })(t, o.child(r));
+                return this.getDocumentsMatchingCollectionQuery(e, s, n).next(e => {
+                  e.forEach((e, t) => {
+                    i = i.insert(e, t);
+                  });
+                });
+              })
+              .next(() => i)
+          );
+        }
+        getDocumentsMatchingCollectionQuery(e, t, n) {
+          let r;
+          return this.documentOverlayCache
+            .getOverlaysForCollection(e, t.path, n.largestBatchId)
+            .next(i => ((r = i), this.remoteDocumentCache.getDocumentsMatchingQuery(e, t, n, r)))
+            .next(e => {
+              r.forEach((t, n) => {
+                const r = n.getKey();
+                null === e.get(r) && (e = e.insert(r, xs.newInvalidDocument(r)));
+              });
+              let n = Ca();
+              return (
+                e.forEach((e, i) => {
+                  const o = r.get(e);
+                  void 0 !== o && au(o.mutation, i, Go.empty(), Ti.now()), ba(t, i) && (n = n.insert(e, i));
+                }),
+                n
+              );
+            });
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Xl {
+        constructor(e) {
+          (this.serializer = e), (this.cs = new Map()), (this.hs = new Map());
+        }
+        getBundleMetadata(e, t) {
+          return zi.resolve(this.cs.get(t));
+        }
+        saveBundleMetadata(e, t) {
+          var n;
+          return this.cs.set(t.id, { id: (n = t).id, version: n.version, createTime: Yu(n.createTime) }), zi.resolve();
+        }
+        getNamedQuery(e, t) {
+          return zi.resolve(this.hs.get(t));
+        }
+        saveNamedQuery(e, t) {
+          return (
+            this.hs.set(
+              t.name,
+              (function (e) {
+                return { name: e.name, query: Lc(e.bundledQuery), readTime: Yu(e.readTime) };
+              })(t)
+            ),
+            zi.resolve()
+          );
+        }
+      }
+      /**
+       * @license
+       * Copyright 2022 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Jl {
+        constructor() {
+          (this.overlays = new Uo(Ni.comparator)), (this.ls = new Map());
+        }
+        getOverlay(e, t) {
+          return zi.resolve(this.overlays.get(t));
+        }
+        getOverlays(e, t) {
+          const n = Oa();
+          return zi
+            .forEach(t, t =>
+              this.getOverlay(e, t).next(e => {
+                null !== e && n.set(t, e);
+              })
+            )
+            .next(() => n);
+        }
+        saveOverlays(e, t, n) {
+          return (
+            n.forEach((n, r) => {
+              this.we(e, t, r);
+            }),
+            zi.resolve()
+          );
+        }
+        removeOverlaysForBatchId(e, t, n) {
+          const r = this.ls.get(n);
+          return void 0 !== r && (r.forEach(e => (this.overlays = this.overlays.remove(e))), this.ls.delete(n)), zi.resolve();
+        }
+        getOverlaysForCollection(e, t, n) {
+          const r = Oa(),
+            i = t.length + 1,
+            o = new Ni(t.child('')),
+            s = this.overlays.getIteratorFrom(o);
+          for (; s.hasNext(); ) {
+            const e = s.getNext().value,
+              o = e.getKey();
+            if (!t.isPrefixOf(o.path)) break;
+            o.path.length === i && e.largestBatchId > n && r.set(e.getKey(), e);
+          }
+          return zi.resolve(r);
+        }
+        getOverlaysForCollectionGroup(e, t, n, r) {
+          let i = new Uo((e, t) => e - t);
+          const o = this.overlays.getIterator();
+          for (; o.hasNext(); ) {

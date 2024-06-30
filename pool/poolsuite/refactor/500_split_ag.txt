@@ -1,0 +1,500 @@
+            }
+          return n;
+        },
+        De = ['nan', 'function', 'arguments', 'regexp', 'element'],
+        Le = function e(t, n) {
+          var r = ye(n);
+          if (-1 !== De.indexOf(r)) Se.warn('WARNING: Property key "' + t + '" with invalid value type ' + r + ', ignoring'), (n = null);
+          else if ('undefined' === r) n = null;
+          else if ('error' === r) (n = String(n)), Se.warn('WARNING: Property key "' + t + '" with value type error, coercing to ' + n);
+          else if ('array' === r) {
+            for (var i = [], o = 0; o < n.length; o++) {
+              var s = n[o],
+                a = ye(s);
+              'array' !== a
+                ? 'object' === a
+                  ? i.push(Pe(s))
+                  : i.push(e(t, s))
+                : Se.warn('WARNING: Cannot have ' + a + ' nested in an array property value, skipping');
+            }
+            n = i;
+          } else 'object' === r && (n = Pe(n));
+          return n;
+        },
+        je = function (e) {
+          var t = ye(e);
+          if ('object' !== t) return Se.error('Error: invalid groups format. Expecting Javascript object, received ' + t + ', ignoring'), {};
+          var n = {};
+          for (var r in e)
+            if (Object.prototype.hasOwnProperty.call(e, r)) {
+              var i = r,
+                o = ye(i);
+              'string' !== o && ((i = String(i)), Se.warn('WARNING: Non-string groupType, received type ' + o + ', coercing to string "' + i + '"'));
+              var s = Me(i, e[r]);
+              null !== s && (n[i] = s);
+            }
+          return n;
+        },
+        Me = function (e, t) {
+          var n = ye(t);
+          if ('string' === n) return t;
+          if ('date' === n || 'number' === n || 'boolean' === n)
+            return (t = String(t)), Se.warn('WARNING: Non-string groupName, received type ' + n + ', coercing to string "' + t + '"'), t;
+          if ('array' === n) {
+            for (var r = [], i = 0; i < t.length; i++) {
+              var o = t[i],
+                s = ye(o);
+              'array' !== s && 'object' !== s
+                ? 'string' === s
+                  ? r.push(o)
+                  : ('date' !== s && 'number' !== s && 'boolean' !== s) ||
+                    ((o = String(o)), Se.warn('WARNING: Non-string groupName, received type ' + s + ', coercing to string "' + o + '"'), r.push(o))
+                : Se.warn('WARNING: Skipping nested ' + s + ' in array groupName');
+            }
+            return r;
+          }
+          Se.warn('WARNING: Non-string groupName, received type ' + n + '. Please use strings or array of strings for groupName');
+        },
+        Fe = function (e, t) {
+          e = e.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+          var n = new RegExp('[\\?&]' + e + '=([^&#]*)'),
+            r = n.exec(t);
+          return null === r ? void 0 : decodeURIComponent(r[1].replace(/\+/g, ' '));
+        },
+        Ue = function () {
+          return 'undefined' !== typeof WorkerGlobalScope;
+        },
+        Ve = function (e) {
+          return (
+            !!(Oe(e, 'sessionId', 'number') && new Date(e).getTime() > 0) ||
+            (Se.error('sessionId value must in milliseconds since epoch (Unix Timestamp)'), !1)
+          );
+        },
+        Be = function () {
+          return ge.location;
+        },
+        $e = function (e) {
+          var t = ge.location ? ge.location.hostname : '';
+          if (e) {
+            if ('undefined' !== typeof document) {
+              var n = document.createElement('a');
+              return (n.href = e), n.hostname || t;
+            }
+            if ('function' === typeof URL) {
+              var r = new URL(e);
+              return r.hostname || t;
+            }
+          }
+          return t;
+        },
+        qe = {
+          setLogLevel: Ie,
+          getLogLevel: Ee,
+          logLevels: be,
+          log: Se,
+          isEmptyString: Ae,
+          isWebWorkerEnvironment: Ue,
+          getQueryParam: Fe,
+          sessionStorageEnabled: xe,
+          truncate: Ce,
+          validateGroups: je,
+          validateInput: Oe,
+          validateProperties: Pe,
+          validateDeviceId: Ne,
+          validateTransport: Re,
+          validateSessionId: Ve,
+          getLocation: Be,
+          getHost: $e
+        },
+        ze = function (e) {
+          try {
+            for (var t = document.cookie.split(';'), n = null, r = 0; r < t.length; r++) {
+              var i = t[r];
+              while (' ' === i.charAt(0)) i = i.substring(1, i.length);
+              if (0 === i.indexOf(e)) {
+                n = i.substring(e.length, i.length);
+                break;
+              }
+            }
+            return n;
+          } catch (o) {
+            return null;
+          }
+        },
+        Ge = function (e) {
+          try {
+            var t,
+              n = document.cookie.split(';').map(function (e) {
+                return e.trimStart();
+              }),
+              r = [],
+              i = le(n);
+            try {
+              for (i.s(); !(t = i.n()).done; ) {
+                var o = t.value;
+                while (' ' === o.charAt(0)) o = o.substring(1);
+                0 === o.indexOf(e) && r.push(o.substring(e.length));
+              }
+            } catch (s) {
+              i.e(s);
+            } finally {
+              i.f();
+            }
+            return r;
+          } catch (a) {
+            return [];
+          }
+        },
+        We = function (e, t, n) {
+          var r = null !== t ? n.expirationDays : -1;
+          if (r) {
+            var i = new Date();
+            i.setTime(i.getTime() + 24 * r * 60 * 60 * 1e3), (r = i);
+          }
+          var o = e + '=' + t;
+          r && (o += '; expires=' + r.toUTCString()),
+            (o += '; path=/'),
+            n.domain && (o += '; domain=' + n.domain),
+            n.secure && (o += '; Secure'),
+            n.sameSite && (o += '; SameSite=' + n.sameSite),
+            (document.cookie = o);
+        },
+        He = function () {
+          var e,
+            t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : '',
+            n = t.split('.')[de.LAST_EVENT_TIME_INDEX];
+          return n && (e = parseInt(n, 32)), e || (qe.log.warn('unable to parse malformed cookie: '.concat(t)), 0);
+        },
+        Ke = function (e) {
+          return ie(e).sort(function (e, t) {
+            var n = He(e),
+              r = He(t);
+            return r - n;
+          });
+        },
+        Qe = function () {
+          var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
+            t = de.COOKIE_TEST_PREFIX;
+          if ('undefined' === typeof document) return !1;
+          var n = !1;
+          try {
+            var r = String(Date.now());
+            We(t, r, e), qe.log.info('Testing if cookies available'), (n = ze(t + '=') === r);
+          } catch (i) {
+            qe.log.warn('Error thrown when checking for cookies. Reason: "'.concat(i, '"'));
+          } finally {
+            qe.log.info('Cleaning up cookies availability test'), We(t, null, e);
+          }
+          return n;
+        },
+        Ye = { set: We, get: ze, getAll: Ge, getLastEventTime: He, sortByEventTime: Ke, areCookiesEnabled: Qe },
+        Xe = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_',
+        Je = function () {
+          for (var e = '', t = 0; t < 22; ++t) e += Xe.charAt(Math.floor(64 * Math.random()));
+          return e;
+        },
+        Ze = function (e) {
+          var t = qe.getHost(e),
+            n = t.split('.'),
+            r = [],
+            i = '_tldtest_' + Je();
+          if (qe.isWebWorkerEnvironment()) return '';
+          for (var o = n.length - 2; o >= 0; --o) r.push(n.slice(o).join('.'));
+          for (var s = 0; s < r.length; ++s) {
+            var a = r[s],
+              u = { domain: '.' + a };
+            if ((Ye.set(i, 1, u), Ye.get(i))) return Ye.set(i, null, u), a;
+          }
+          return '';
+        },
+        et = { expirationDays: void 0, domain: void 0 },
+        tt = function () {
+          et = { expirationDays: void 0, domain: void 0 };
+        },
+        nt = function (e) {
+          if (0 === arguments.length) return et;
+          (e = e || {}), (et.expirationDays = e.expirationDays), (et.secure = e.secure), (et.sameSite = e.sameSite);
+          var t = qe.isEmptyString(e.domain) ? '.' + Ze(qe.getLocation().href) : e.domain,
+            n = Math.random();
+          (et.domain = t), ot('amplitude_test', n);
+          var r = it('amplitude_test');
+          return (r && r === n) || (t = null), ut('amplitude_test'), (et.domain = t), et;
+        },
+        rt = function (e) {
+          var t = '';
+          return et.domain && (t = '.' === et.domain.charAt(0) ? et.domain.substring(1) : et.domain), e + t;
+        },
+        it = function (e) {
+          var t = rt(e) + '=',
+            n = Ye.get(t);
+          try {
+            if (n) return JSON.parse(me.decode(n));
+          } catch (r) {
+            return null;
+          }
+          return null;
+        },
+        ot = function (e, t) {
+          try {
+            return Ye.set(rt(e), me.encode(JSON.stringify(t)), et), !0;
+          } catch (n) {
+            return !1;
+          }
+        },
+        st = function (e, t) {
+          try {
+            return Ye.set(rt(e), t, et), !0;
+          } catch (n) {
+            return !1;
+          }
+        },
+        at = function (e) {
+          var t = rt(e) + '=';
+          return Ye.get(t);
+        },
+        ut = function (e) {
+          try {
+            return Ye.set(rt(e), null, et), !0;
+          } catch (t) {
+            return !1;
+          }
+        },
+        ct = { reset: tt, options: nt, get: it, set: ot, remove: ut, setRaw: st, getRaw: at },
+        lt = (function () {
+          function e() {
+            ee(this, e), (this.map = new Map()), (this.length = 0);
+          }
+          return (
+            ne(e, [
+              {
+                key: 'key',
+                value: function (e) {
+                  var t = Array.from(this.map.keys()),
+                    n = t[e];
+                  return this.map.get(n);
+                }
+              },
+              {
+                key: 'getItem',
+                value: function (e) {
+                  return this.map.get(e);
+                }
+              },
+              {
+                key: 'setItem',
+                value: function (e, t) {
+                  this.map.has(e) || (this.length += 1), this.map.set(e, t);
+                }
+              },
+              {
+                key: 'removeItem',
+                value: function (e) {
+                  this.map.has(e) && ((this.length -= 1), this.map['delete'](e));
+                }
+              },
+              {
+                key: 'clear',
+                value: function () {
+                  this.map.clear(), (this.length = 0);
+                }
+              }
+            ]),
+            e
+          );
+        })(),
+        ht = function () {
+          var e,
+            t = new Date();
+          try {
+            return ge.localStorage.setItem(t, t), (e = ge.localStorage.getItem(t) === String(t)), ge.localStorage.removeItem(t), e;
+          } catch (n) {}
+          return !1;
+        };
+      if (ht()) we = ge.localStorage;
+      else if ('undefined' !== typeof ge && ge.globalStorage)
+        try {
+          we = ge.globalStorage[ge.location.hostname];
+        } catch (fn) {}
+      else if ('undefined' !== typeof document) {
+        var ft = document.createElement('div'),
+          dt = 'localStorage';
+        (ft.style.display = 'none'),
+          document.getElementsByTagName('head')[0].appendChild(ft),
+          ft.addBehavior &&
+            (ft.addBehavior('#default#userdata'),
+            (we = {
+              length: 0,
+              setItem: function (e, t) {
+                ft.load(dt), ft.getAttribute(e) || this.length++, ft.setAttribute(e, t), ft.save(dt);
+              },
+              getItem: function (e) {
+                return ft.load(dt), ft.getAttribute(e);
+              },
+              removeItem: function (e) {
+                ft.load(dt), ft.getAttribute(e) && this.length--, ft.removeAttribute(e), ft.save(dt);
+              },
+              clear: function () {
+                ft.load(dt);
+                var e,
+                  t = 0;
+                while ((e = ft.XMLDocument.documentElement.attributes[t++])) ft.removeAttribute(e.name);
+                ft.save(dt), (this.length = 0);
+              },
+              key: function (e) {
+                return ft.load(dt), ft.XMLDocument.documentElement.attributes[e];
+              }
+            }),
+            ft.load(dt),
+            (we.length = ft.XMLDocument.documentElement.attributes.length));
+      } else qe.isWebWorkerEnvironment() && (we = new lt());
+      we ||
+        (we = {
+          length: 0,
+          setItem: function (e, t) {},
+          getItem: function (e) {},
+          removeItem: function (e) {},
+          clear: function () {},
+          key: function (e) {}
+        });
+      var pt,
+        gt = we,
+        mt = function () {
+          this.storage = null;
+        };
+      mt.prototype.getStorage = function (e) {
+        if (null !== this.storage) return this.storage;
+        if (!e && Ye.areCookiesEnabled()) this.storage = ct;
+        else {
+          var t = 'amp_cookiestore_';
+          this.storage = {
+            _options: { expirationDays: void 0, domain: void 0, secure: !1 },
+            reset: function () {
+              this._options = { expirationDays: void 0, domain: void 0, secure: !1 };
+            },
+            options: function (e) {
+              return 0 === arguments.length
+                ? this._options
+                : ((e = e || {}),
+                  (this._options.expirationDays = e.expirationDays || this._options.expirationDays),
+                  (this._options.domain = e.domain || this._options.domain || (ge && ge.location && ge.location.hostname)),
+                  (this._options.secure = e.secure || !1));
+            },
+            get: function (e) {
+              try {
+                return JSON.parse(gt.getItem(t + e));
+              } catch (fn) {}
+              return null;
+            },
+            set: function (e, n) {
+              try {
+                return gt.setItem(t + e, JSON.stringify(n)), !0;
+              } catch (fn) {}
+              return !1;
+            },
+            remove: function (e) {
+              try {
+                gt.removeItem(t + e);
+              } catch (fn) {
+                return !1;
+              }
+            }
+          };
+        }
+        return this.storage;
+      };
+      var vt =
+          ((pt = {}), re(pt, de.STORAGE_COOKIES, !0), re(pt, de.STORAGE_NONE, !0), re(pt, de.STORAGE_LOCAL, !0), re(pt, de.STORAGE_SESSION, !0), pt),
+        yt = (function () {
+          function e(t) {
+            var n = t.storageKey,
+              r = t.disableCookies,
+              i = t.domain,
+              o = t.secure,
+              s = t.sameSite,
+              a = t.expirationDays,
+              u = t.storage;
+            ee(this, e),
+              (this.storageKey = n),
+              (this.domain = i),
+              (this.secure = o),
+              (this.sameSite = s),
+              (this.expirationDays = a),
+              (this.cookieDomain = '');
+            var c = qe.getLocation() ? qe.getLocation().href : void 0,
+              l = r ? '' : Ze(c);
+            if (((this.cookieDomain = i || (l ? '.' + l : null)), vt[u])) this.storage = u;
+            else {
+              var h =
+                r ||
+                !Ye.areCookiesEnabled({
+                  domain: this.cookieDomain,
+                  secure: this.secure,
+                  sameSite: this.sameSite,
+                  expirationDays: this.expirationDays
+                });
+              this.storage = h ? de.STORAGE_LOCAL : de.STORAGE_COOKIES;
+            }
+          }
+          return (
+            ne(e, [
+              {
+                key: 'getCookieStorageKey',
+                value: function () {
+                  if (!this.domain) return this.storageKey;
+                  var e = '.' === this.domain.charAt(0) ? this.domain.substring(1) : this.domain;
+                  return ''.concat(this.storageKey).concat(e ? '_'.concat(e) : '');
+                }
+              },
+              {
+                key: 'save',
+                value: function (e) {
+                  var t = e.deviceId,
+                    n = e.userId,
+                    r = e.optOut,
+                    i = e.sessionId,
+                    o = e.lastEventTime,
+                    s = e.eventId,
+                    a = e.identifyId,
+                    u = e.sequenceNumber;
+                  if (this.storage !== de.STORAGE_NONE) {
+                    var c = [
+                      t,
+                      me.encode(n || ''),
+                      r ? '1' : '',
+                      i ? i.toString(32) : '0',
+                      o ? o.toString(32) : '0',
+                      s ? s.toString(32) : '0',
+                      a ? a.toString(32) : '0',
+                      u ? u.toString(32) : '0'
+                    ].join('.');
+                    switch (this.storage) {
+                      case de.STORAGE_SESSION:
+                        ge.sessionStorage && ge.sessionStorage.setItem(this.storageKey, c);
+                        break;
+                      case de.STORAGE_LOCAL:
+                        gt.setItem(this.storageKey, c);
+                        break;
+                      case de.STORAGE_COOKIES:
+                        this.saveCookie(c);
+                        break;
+                    }
+                  }
+                }
+              },
+              {
+                key: 'saveCookie',
+                value: function (e) {
+                  Ye.set(this.getCookieStorageKey(), e, {
+                    domain: this.cookieDomain,
+                    secure: this.secure,
+                    sameSite: this.sameSite,
+                    expirationDays: this.expirationDays
+                  });
+                }
+              },
+              {
+                key: 'load',
+                value: function () {
+                  var e,
+                    t = this;
+                  if (this.storage === de.STORAGE_COOKIES) {

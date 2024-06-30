@@ -1,0 +1,500 @@
+        }
+        setLogLevel(e) {
+          this._logLevel = 'string' === typeof e ? o[e] : e;
+        }
+        get logHandler() {
+          return this._logHandler;
+        }
+        set logHandler(e) {
+          if ('function' !== typeof e) throw new TypeError('Value assigned to `logHandler` must be a function');
+          this._logHandler = e;
+        }
+        get userLogHandler() {
+          return this._userLogHandler;
+        }
+        set userLogHandler(e) {
+          this._userLogHandler = e;
+        }
+        debug(...e) {
+          this._userLogHandler && this._userLogHandler(this, i.DEBUG, ...e), this._logHandler(this, i.DEBUG, ...e);
+        }
+        log(...e) {
+          this._userLogHandler && this._userLogHandler(this, i.VERBOSE, ...e), this._logHandler(this, i.VERBOSE, ...e);
+        }
+        info(...e) {
+          this._userLogHandler && this._userLogHandler(this, i.INFO, ...e), this._logHandler(this, i.INFO, ...e);
+        }
+        warn(...e) {
+          this._userLogHandler && this._userLogHandler(this, i.WARN, ...e), this._logHandler(this, i.WARN, ...e);
+        }
+        error(...e) {
+          this._userLogHandler && this._userLogHandler(this, i.ERROR, ...e), this._logHandler(this, i.ERROR, ...e);
+        }
+      }
+      function l(e) {
+        r.forEach(t => {
+          t.setLogLevel(e);
+        });
+      }
+      function h(e, t) {
+        for (const n of r) {
+          let r = null;
+          t && t.level && (r = o[t.level]),
+            (n.userLogHandler =
+              null === e
+                ? null
+                : (t, n, ...o) => {
+                    const s = o
+                      .map(e => {
+                        if (null == e) return null;
+                        if ('string' === typeof e) return e;
+                        if ('number' === typeof e || 'boolean' === typeof e) return e.toString();
+                        if (e instanceof Error) return e.message;
+                        try {
+                          return JSON.stringify(e);
+                        } catch (t) {
+                          return null;
+                        }
+                      })
+                      .filter(e => e)
+                      .join(' ');
+                    n >= (null !== r && void 0 !== r ? r : t.logLevel) && e({ level: i[n].toLowerCase(), message: s, args: o, type: t.name });
+                  });
+        }
+      }
+    },
+    79865: (e, t, n) => {
+      'use strict';
+      var r = n(98180),
+        i = n(25816),
+        o = n(53333),
+        s = n(74444),
+        a = n(8463);
+      const u = (e, t) => t.some(t => e instanceof t);
+      let c, l;
+      function h() {
+        return c || (c = [IDBDatabase, IDBObjectStore, IDBIndex, IDBCursor, IDBTransaction]);
+      }
+      function f() {
+        return l || (l = [IDBCursor.prototype.advance, IDBCursor.prototype.continue, IDBCursor.prototype.continuePrimaryKey]);
+      }
+      const d = new WeakMap(),
+        p = new WeakMap(),
+        g = new WeakMap(),
+        m = new WeakMap(),
+        v = new WeakMap();
+      function y(e) {
+        const t = new Promise((t, n) => {
+          const r = () => {
+              e.removeEventListener('success', i), e.removeEventListener('error', o);
+            },
+            i = () => {
+              t(S(e.result)), r();
+            },
+            o = () => {
+              n(e.error), r();
+            };
+          e.addEventListener('success', i), e.addEventListener('error', o);
+        });
+        return (
+          t
+            .then(t => {
+              t instanceof IDBCursor && d.set(t, e);
+            })
+            .catch(() => {}),
+          v.set(t, e),
+          t
+        );
+      }
+      function w(e) {
+        if (p.has(e)) return;
+        const t = new Promise((t, n) => {
+          const r = () => {
+              e.removeEventListener('complete', i), e.removeEventListener('error', o), e.removeEventListener('abort', o);
+            },
+            i = () => {
+              t(), r();
+            },
+            o = () => {
+              n(e.error || new DOMException('AbortError', 'AbortError')), r();
+            };
+          e.addEventListener('complete', i), e.addEventListener('error', o), e.addEventListener('abort', o);
+        });
+        p.set(e, t);
+      }
+      let b = {
+        get(e, t, n) {
+          if (e instanceof IDBTransaction) {
+            if ('done' === t) return p.get(e);
+            if ('objectStoreNames' === t) return e.objectStoreNames || g.get(e);
+            if ('store' === t) return n.objectStoreNames[1] ? void 0 : n.objectStore(n.objectStoreNames[0]);
+          }
+          return S(e[t]);
+        },
+        set(e, t, n) {
+          return (e[t] = n), !0;
+        },
+        has(e, t) {
+          return (e instanceof IDBTransaction && ('done' === t || 'store' === t)) || t in e;
+        }
+      };
+      function _(e) {
+        b = e(b);
+      }
+      function I(e) {
+        return e !== IDBDatabase.prototype.transaction || 'objectStoreNames' in IDBTransaction.prototype
+          ? f().includes(e)
+            ? function (...t) {
+                return e.apply(T(this), t), S(d.get(this));
+              }
+            : function (...t) {
+                return S(e.apply(T(this), t));
+              }
+          : function (t, ...n) {
+              const r = e.call(T(this), t, ...n);
+              return g.set(r, t.sort ? t.sort() : [t]), S(r);
+            };
+      }
+      function E(e) {
+        return 'function' === typeof e ? I(e) : (e instanceof IDBTransaction && w(e), u(e, h()) ? new Proxy(e, b) : e);
+      }
+      function S(e) {
+        if (e instanceof IDBRequest) return y(e);
+        if (m.has(e)) return m.get(e);
+        const t = E(e);
+        return t !== e && (m.set(e, t), v.set(t, e)), t;
+      }
+      const T = e => v.get(e);
+      function A(e, t, { blocked: n, upgrade: r, blocking: i, terminated: o } = {}) {
+        const s = indexedDB.open(e, t),
+          a = S(s);
+        return (
+          r &&
+            s.addEventListener('upgradeneeded', e => {
+              r(S(s.result), e.oldVersion, e.newVersion, S(s.transaction));
+            }),
+          n && s.addEventListener('blocked', () => n()),
+          a
+            .then(e => {
+              o && e.addEventListener('close', () => o()), i && e.addEventListener('versionchange', () => i());
+            })
+            .catch(() => {}),
+          a
+        );
+      }
+      const x = ['get', 'getKey', 'getAll', 'getAllKeys', 'count'],
+        C = ['put', 'add', 'delete', 'clear'],
+        k = new Map();
+      function O(e, t) {
+        if (!(e instanceof IDBDatabase) || t in e || 'string' !== typeof t) return;
+        if (k.get(t)) return k.get(t);
+        const n = t.replace(/FromIndex$/, ''),
+          r = t !== n,
+          i = C.includes(n);
+        if (!(n in (r ? IDBIndex : IDBObjectStore).prototype) || (!i && !x.includes(n))) return;
+        const o = async function (e, ...t) {
+          const o = this.transaction(e, i ? 'readwrite' : 'readonly');
+          let s = o.store;
+          return r && (s = s.index(t.shift())), (await Promise.all([s[n](...t), i && o.done]))[0];
+        };
+        return k.set(t, o), o;
+      }
+      _(e => ({ ...e, get: (t, n, r) => O(t, n) || e.get(t, n, r), has: (t, n) => !!O(t, n) || e.has(t, n) }));
+      const N = '@firebase/installations',
+        R = '0.6.4',
+        P = 1e4,
+        D = `w:${R}`,
+        L = 'FIS_v2',
+        j = 'https://firebaseinstallations.googleapis.com/v1',
+        M = 36e5,
+        F = 'installations',
+        U = 'Installations',
+        V = {
+          ['missing-app-config-values']: 'Missing App configuration value: "{$valueName}"',
+          ['not-registered']: 'Firebase Installation is not registered.',
+          ['installation-not-found']: 'Firebase Installation not found.',
+          ['request-failed']: '{$requestName} request failed with error "{$serverCode} {$serverStatus}: {$serverMessage}"',
+          ['app-offline']: 'Could not process request. Application offline.',
+          ['delete-pending-registration']: "Can't delete installation while there is a pending registration request."
+        },
+        B = new s.LL(F, U, V);
+      function $(e) {
+        return e instanceof s.ZR && e.code.includes('request-failed');
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function q({ projectId: e }) {
+        return `${j}/projects/${e}/installations`;
+      }
+      function z(e) {
+        return { token: e.token, requestStatus: 2, expiresIn: Q(e.expiresIn), creationTime: Date.now() };
+      }
+      async function G(e, t) {
+        const n = await t.json(),
+          r = n.error;
+        return B.create('request-failed', { requestName: e, serverCode: r.code, serverMessage: r.message, serverStatus: r.status });
+      }
+      function W({ apiKey: e }) {
+        return new Headers({ 'Content-Type': 'application/json', Accept: 'application/json', 'x-goog-api-key': e });
+      }
+      function H(e, { refreshToken: t }) {
+        const n = W(e);
+        return n.append('Authorization', Y(t)), n;
+      }
+      async function K(e) {
+        const t = await e();
+        return t.status >= 500 && t.status < 600 ? e() : t;
+      }
+      function Q(e) {
+        return Number(e.replace('s', '000'));
+      }
+      function Y(e) {
+        return `${L} ${e}`;
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function X({ appConfig: e, heartbeatServiceProvider: t }, { fid: n }) {
+        const r = q(e),
+          i = W(e),
+          o = t.getImmediate({ optional: !0 });
+        if (o) {
+          const e = await o.getHeartbeatsHeader();
+          e && i.append('x-firebase-client', e);
+        }
+        const s = { fid: n, authVersion: L, appId: e.appId, sdkVersion: D },
+          a = { method: 'POST', headers: i, body: JSON.stringify(s) },
+          u = await K(() => fetch(r, a));
+        if (u.ok) {
+          const e = await u.json(),
+            t = { fid: e.fid || n, registrationStatus: 2, refreshToken: e.refreshToken, authToken: z(e.authToken) };
+          return t;
+        }
+        throw await G('Create Installation', u);
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function J(e) {
+        return new Promise(t => {
+          setTimeout(t, e);
+        });
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Z(e) {
+        const t = btoa(String.fromCharCode(...e));
+        return t.replace(/\+/g, '-').replace(/\//g, '_');
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const ee = /^[cdef][\w-]{21}$/,
+        te = '';
+      function ne() {
+        try {
+          const e = new Uint8Array(17),
+            t = self.crypto || self.msCrypto;
+          t.getRandomValues(e), (e[0] = 112 + (e[0] % 16));
+          const n = re(e);
+          return ee.test(n) ? n : te;
+        } catch (e) {
+          return te;
+        }
+      }
+      function re(e) {
+        const t = Z(e);
+        return t.substr(0, 22);
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function ie(e) {
+        return `${e.appName}!${e.appId}`;
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const oe = new Map();
+      function se(e, t) {
+        const n = ie(e);
+        ae(n, t), ue(n, t);
+      }
+      function ae(e, t) {
+        const n = oe.get(e);
+        if (n) for (const r of n) r(t);
+      }
+      function ue(e, t) {
+        const n = le();
+        n && n.postMessage({ key: e, fid: t }), he();
+      }
+      let ce = null;
+      function le() {
+        return (
+          !ce &&
+            'BroadcastChannel' in self &&
+            ((ce = new BroadcastChannel('[Firebase] FID Change')),
+            (ce.onmessage = e => {
+              ae(e.data.key, e.data.fid);
+            })),
+          ce
+        );
+      }
+      function he() {
+        0 === oe.size && ce && (ce.close(), (ce = null));
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const fe = 'firebase-installations-database',
+        de = 1,
+        pe = 'firebase-installations-store';
+      let ge = null;
+      function me() {
+        return (
+          ge ||
+            (ge = A(fe, de, {
+              upgrade: (e, t) => {
+                switch (t) {
+                  case 0:
+                    e.createObjectStore(pe);
+                }
+              }
+            })),
+          ge
+        );
+      }
+      async function ve(e, t) {
+        const n = ie(e),
+          r = await me(),
+          i = r.transaction(pe, 'readwrite'),
+          o = i.objectStore(pe),
+          s = await o.get(n);
+        return await o.put(t, n), await i.done, (s && s.fid === t.fid) || se(e, t.fid), t;
+      }
+      async function ye(e) {
+        const t = ie(e),
+          n = await me(),
+          r = n.transaction(pe, 'readwrite');
+        await r.objectStore(pe).delete(t), await r.done;
+      }
+      async function we(e, t) {
+        const n = ie(e),
+          r = await me(),
+          i = r.transaction(pe, 'readwrite'),
+          o = i.objectStore(pe),
+          s = await o.get(n),
+          a = t(s);
+        return void 0 === a ? await o.delete(n) : await o.put(a, n), await i.done, !a || (s && s.fid === a.fid) || se(e, a.fid), a;
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
