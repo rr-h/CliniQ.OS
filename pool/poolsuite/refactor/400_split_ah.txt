@@ -1,3 +1,4 @@
+          remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
                 : r > 127 && r < 2048
                   ? ((t += String.fromCharCode((r >> 6) | 192)), (t += String.fromCharCode((63 & r) | 128)))
                   : ((t += String.fromCharCode((r >> 12) | 224)),

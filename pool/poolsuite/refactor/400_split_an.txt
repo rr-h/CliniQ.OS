@@ -1,3 +1,4 @@
+       remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
         if (t < 0 || e.byteLength < t) throw new RangeError('"offset" is outside of buffer bounds');
         if (e.byteLength < t + (n || 0)) throw new RangeError('"length" is outside of buffer bounds');
         var r;

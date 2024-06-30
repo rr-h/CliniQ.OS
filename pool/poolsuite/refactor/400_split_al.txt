@@ -1,3 +1,4 @@
+        remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
             if (Object.keys(e.userPropertiesOperations).length > 0)
               return this._logEvent(de.IDENTIFY_EVENT, null, null, e.userPropertiesOperations, null, null, null, t, n, r);
             sn(t, n, 0, 'No request sent', { reason: 'No user property operations' });
