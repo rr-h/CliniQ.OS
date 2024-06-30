@@ -52,8 +52,8 @@
                 }
                 if (fulfilled) {
                     queue.splice(i--, 1);
-                    const result = fn();
-                    if (result !== undefined) result = result;
+                    const res = fn();
+                    if (res !== undefined) result = res;
                 }
             }
             return result;
