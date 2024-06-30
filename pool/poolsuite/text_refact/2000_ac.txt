@@ -1,0 +1,2001 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+                'function' === ye(r) && r(this);
+              var f = this.options.onExitPage;
+              if ('function' === ye(f) && ge.addEventListener && !this.pageHandlersAdded) {
+                this.pageHandlersAdded = !0;
+                var d = function () {
+                  var e = s.options.transport;
+                  s.setTransport(de.TRANSPORT_BEACON), f(), s.setTransport(e);
+                };
+                ge.addEventListener(
+                  'pagehide',
+                  function () {
+                    d();
+                  },
+                  !1
+                );
+              }
+              this._connector.eventBridge.setEventReceiver(function (e) {
+                s._logEvent(e.eventType, e.eventProperties, e.userProperties);
+              });
+              var p = this._connector.identityStore.editIdentity();
+              this.options.deviceId && p.setDeviceId(this.options.deviceId), this.options.userId && p.setUserId(this.options.userId), p.commit();
+            } catch (g) {
+              qe.log.error(g), n && 'function' === ye(n.onError) && n.onError(g);
+            }
+        }),
+        (Gt.prototype._runNewSessionStartCallbacks = function () {
+          for (var e = 0; e < this._onNewSessionStartCallbacks.length; e++) this._onNewSessionStartCallbacks[e](this);
+        }),
+        (Gt.prototype.deleteLowerLevelDomainCookies = function () {
+          var e = qe.getHost(),
+            t = this.options.domain && '.' === this.options.domain[0] ? this.options.domain.slice(1) : this.options.domain;
+          if (t && qe.isWebWorkerEnvironment() && e !== t && new RegExp(t + '$').test(e)) {
+            for (var n = e.split('.'), r = t.split('.'), i = n.length; i > r.length; --i) {
+              var o = n.slice(n.length - i).join('.');
+              Ye.set(this._cookieName, null, { domain: '.' + o });
+            }
+            Ye.set(this._cookieName, null, {});
+          }
+        }),
+        (Gt.prototype._getInitialDeviceId = function (e, t) {
+          if (e) return e;
+          if (this.options.deviceIdFromUrlParam) {
+            var n = this._getDeviceIdFromUrlParam(this._getUrlParams());
+            if (n) return n;
+          }
+          return this.options.deviceId ? this.options.deviceId : t || Je();
+        });
+      var Wt = function (e) {
+        for (var t = 0; t < e.length; t++) {
+          var n = e[t].event.user_properties,
+            r = e[t].event.event_properties,
+            i = e[t].event.groups;
+          (e[t].event.user_properties = qe.validateProperties(n)),
+            (e[t].event.event_properties = qe.validateProperties(r)),
+            (e[t].event.groups = qe.validateGroups(i));
+        }
+      };
+      Gt.prototype._trackParamsAndReferrer = function () {
+        var e, t, n, r;
+        if (
+          (this.options.includeUtm && (e = this._initUtmData()),
+          this.options.includeReferrer && (t = this._saveReferrer(this._getReferrer())),
+          this.options.includeGclid && (n = this._saveGclid(this._getUrlParams())),
+          this.options.includeFbclid && (r = this._saveFbclid(this._getUrlParams())),
+          this.options.logAttributionCapturedEvent)
+        ) {
+          var i = J(J(J(J({}, e), t), n), r);
+          Object.keys(i).length > 0 && this.logEvent(de.ATTRIBUTION_EVENT, i);
+        }
+      };
+      var Ht = function e(t, n) {
+        if ('object' === ye(n)) {
+          var r = new Set(['headers']),
+            i = new Set(['eventUploadPeriodMillis']),
+            o = function (r) {
+              if (Object.prototype.hasOwnProperty.call(t, r)) {
+                var o = n[r],
+                  s = ye(t[r]);
+                ('transport' !== r || qe.validateTransport(o)) &&
+                  ('sessionId' !== r || null === o
+                    ? qe.validateInput(o, r + ' option', s) &&
+                      ('boolean' === s
+                        ? (t[r] = !!o)
+                        : ('string' === s && !qe.isEmptyString(o)) || ('number' === s && (o > 0 || (0 === o && i.has(r)))) || 'function' === s
+                          ? (t[r] = o)
+                          : 'object' === s && e(t[r], o))
+                    : (t[r] = qe.validateSessionId(o) ? o : null));
+              }
+            };
+          for (var s in n) r.has(s) ? (t[s] = J(J({}, t[s]), n[s])) : Object.prototype.hasOwnProperty.call(n, s) && o(s);
+        }
+      };
+      (Gt.prototype.runQueuedFunctions = function () {
+        var e = this._q;
+        this._q = [];
+        for (var t = 0; t < e.length; t++) {
+          var n = this[e[t][0]];
+          'function' === ye(n) && n.apply(this, e[t].slice(1));
+        }
+      }),
+        (Gt.prototype._apiKeySet = function (e) {
+          return (
+            !qe.isEmptyString(this.options.apiKey) || (qe.log.error('Invalid apiKey. Please set a valid apiKey with init() before calling ' + e), !1)
+          );
+        }),
+        (Gt.prototype._loadSavedUnsentEvents = function (e) {
+          var t = this._getFromStorage(gt, e),
+            n = this._parseSavedUnsentEventsString(t, e);
+          return this._setInStorage(gt, e, JSON.stringify(n)), n;
+        }),
+        (Gt.prototype._parseSavedUnsentEventsString = function (e, t) {
+          if (qe.isEmptyString(e)) return [];
+          if ('string' === ye(e))
+            try {
+              var n = JSON.parse(e);
+              if ('array' === ye(n)) return n;
+            } catch (fn) {}
+          return qe.log.error('Unable to load ' + t + ' events. Restart with a new empty queue.'), [];
+        }),
+        (Gt.prototype.isNewSession = function () {
+          return this._newSession;
+        }),
+        (Gt.prototype.onInit = function (e) {
+          this._isInitialized ? e(this) : this._onInitCallbacks.push(e);
+        }),
+        (Gt.prototype.onNewSessionStart = function (e) {
+          this._onNewSessionStartCallbacks.push(e);
+        }),
+        (Gt.prototype.getSessionId = function () {
+          return this._sessionId;
+        }),
+        (Gt.prototype.nextEventId = function () {
+          return this._eventId++, this._eventId;
+        }),
+        (Gt.prototype.nextIdentifyId = function () {
+          return this._identifyId++, this._identifyId;
+        }),
+        (Gt.prototype.nextSequenceNumber = function () {
+          return this._sequenceNumber++, this._sequenceNumber;
+        }),
+        (Gt.prototype._unsentCount = function () {
+          return this._unsentEvents.length + this._unsentIdentifys.length;
+        }),
+        (Gt.prototype._sendEventsIfReady = function () {
+          return (
+            0 !== this._unsentCount() &&
+            (this.options.batchEvents
+              ? this._unsentCount() >= this.options.eventUploadThreshold || this.options.transport === de.TRANSPORT_BEACON
+                ? (this.sendEvents(), !0)
+                : (this._updateScheduled ||
+                    ((this._updateScheduled = !0),
+                    setTimeout(
+                      function () {
+                        (this._updateScheduled = !1), this.sendEvents();
+                      }.bind(this),
+                      this.options.eventUploadPeriodMillis
+                    )),
+                  !1)
+              : (this.sendEvents(), !0))
+          );
+        }),
+        (Gt.prototype.clearStorage = function () {
+          return this._metadataStorage.clear();
+        }),
+        (Gt.prototype._getFromStorage = function (e, t) {
+          return e.getItem(t + this._storageSuffix);
+        }),
+        (Gt.prototype._setInStorage = function (e, t, n) {
+          e.setItem(t + this._storageSuffix, n);
+        });
+      var Kt = function (e) {
+          if (e._useOldCookie) {
+            var t = e.cookieStorage.get(e._oldCookiename);
+            'object' !== ye(t) || Yt(e, t);
+          } else {
+            var n = e._metadataStorage.load();
+            'object' === ye(n) && Yt(e, n);
+          }
+        },
+        Qt = function (e) {
+          var t = e.cookieStorage.get(e._oldCookiename);
+          'object' === ye(t) && (Yt(e, t), Xt(e));
+        },
+        Yt = function (e, t) {
+          t.deviceId && (e.options.deviceId = t.deviceId),
+            t.userId && (e.options.userId = t.userId),
+            null !== t.optOut && void 0 !== t.optOut && !1 !== t.optOut && (e.options.optOut = t.optOut),
+            t.sessionId && (e._sessionId = parseInt(t.sessionId, 10)),
+            t.lastEventTime && (e._lastEventTime = parseInt(t.lastEventTime, 10)),
+            t.eventId && (e._eventId = parseInt(t.eventId, 10)),
+            t.identifyId && (e._identifyId = parseInt(t.identifyId, 10)),
+            t.sequenceNumber && (e._sequenceNumber = parseInt(t.sequenceNumber, 10));
+        },
+        Xt = function (e) {
+          var t = {
+            deviceId: e.options.deviceId,
+            userId: e.options.userId,
+            optOut: e.options.optOut,
+            sessionId: e._sessionId,
+            lastEventTime: e._lastEventTime,
+            eventId: e._eventId,
+            identifyId: e._identifyId,
+            sequenceNumber: e._sequenceNumber
+          };
+          e._useOldCookie ? e.cookieStorage.set(e.options.cookieName + e._storageSuffix, t) : e._metadataStorage.save(t);
+        };
+      (Gt.prototype._initUtmData = function (e, t) {
+        (e = e || this._getUrlParams()), (t = t || this.cookieStorage.get('__utmz'));
+        var n = wt(t, e);
+        return Jt(this, n), n;
+      }),
+        (Gt.prototype._unsetUTMParams = function () {
+          var e = new Ot();
+          e.unset(de.REFERRER),
+            e.unset(de.REFERRING_DOMAIN),
+            e.unset(de.UTM_SOURCE),
+            e.unset(de.UTM_MEDIUM),
+            e.unset(de.UTM_CAMPAIGN),
+            e.unset(de.UTM_TERM),
+            e.unset(de.UTM_CONTENT),
+            this.identify(e);
+        });
+      var Jt = function (e, t) {
+        if ('object' === ye(t) && 0 !== Object.keys(t).length) {
+          var n = new Ot();
+          for (var r in t) Object.prototype.hasOwnProperty.call(t, r) && (n.setOnce('initial_' + r, t[r]), n.set(r, t[r]));
+          e.identify(n);
+        }
+      };
+      (Gt.prototype._getReferrer = function () {
+        var e = this._getReferrerFromUrlParam(this._getUrlParams());
+        return e || ('undefined' !== typeof document ? document.referrer : '');
+      }),
+        (Gt.prototype._getUrlParams = function () {
+          return ge.location.search;
+        }),
+        (Gt.prototype._saveGclid = function (e) {
+          var t = qe.getQueryParam('gclid', e);
+          if (!qe.isEmptyString(t)) {
+            var n = { gclid: t };
+            return Jt(this, n), n;
+          }
+        }),
+        (Gt.prototype._saveFbclid = function (e) {
+          var t = qe.getQueryParam('fbclid', e);
+          if (!qe.isEmptyString(t)) {
+            var n = { fbclid: t };
+            return Jt(this, n), n;
+          }
+        }),
+        (Gt.prototype._getDeviceIdFromUrlParam = function (e) {
+          return qe.getQueryParam(de.AMP_DEVICE_ID_PARAM, e);
+        }),
+        (Gt.prototype._getReferrerFromUrlParam = function (e) {
+          return qe.getQueryParam(de.AMP_REFERRER_PARAM, e);
+        }),
+        (Gt.prototype._getReferringDomain = function (e) {
+          if (qe.isEmptyString(e)) return null;
+          var t = e.split('/');
+          return t.length >= 3 ? t[2] : null;
+        }),
+        (Gt.prototype._saveReferrer = function (e) {
+          if (!qe.isEmptyString(e)) {
+            var t = { referrer: e, referring_domain: this._getReferringDomain(e) };
+            return Jt(this, t), t;
+          }
+        }),
+        (Gt.prototype.saveEvents = function () {
+          try {
+            var e = JSON.stringify(
+              this._unsentEvents.map(function (e) {
+                var t = e.event;
+                return t;
+              })
+            );
+            this._setInStorage(gt, this.options.unsentKey, e);
+          } catch (fn) {}
+          try {
+            var t = JSON.stringify(
+              this._unsentIdentifys.map(function (e) {
+                return e.event;
+              })
+            );
+            this._setInStorage(gt, this.options.unsentIdentifyKey, t);
+          } catch (fn) {}
+        }),
+        (Gt.prototype.setDomain = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setDomain'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (qe.validateInput(e, 'domain', 'string'))
+            try {
+              this.cookieStorage.options({
+                expirationDays: this.options.cookieExpiration,
+                secure: this.options.secureCookie,
+                domain: e,
+                sameSite: this.options.sameSiteCookie
+              }),
+                (this.options.domain = this.cookieStorage.options().domain),
+                Kt(this),
+                Xt(this);
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+        }),
+        (Gt.prototype.setUserId = function (e) {
+          var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+          if (qe.validateInput(t, 'startNewSession', 'boolean')) {
+            if (this._shouldDeferCall()) return this._q.push(['setUserId'].concat(Array.prototype.slice.call(arguments, 0)));
+            try {
+              (this.options.userId = (void 0 !== e && null !== e && '' + e) || null),
+                t &&
+                  (this.options.unsetParamsReferrerOnNewSession && this._unsetUTMParams(),
+                  (this._newSession = !0),
+                  (this._sessionId = new Date().getTime()),
+                  this._runNewSessionStartCallbacks(),
+                  this.options.saveParamsReferrerOncePerSession && this._trackParamsAndReferrer()),
+                Xt(this),
+                this._connector && this._connector.identityStore.editIdentity().setUserId(this.options.userId).commit();
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+          }
+        }),
+        (Gt.prototype.setGroup = function (e, t) {
+          if (this._shouldDeferCall()) return this._q.push(['setGroup'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (this._apiKeySet('setGroup()') && qe.validateInput(e, 'groupType', 'string') && !qe.isEmptyString(e)) {
+            var n = {};
+            n[e] = t;
+            var r = new Ot().set(e, t);
+            this._logEvent(de.IDENTIFY_EVENT, null, null, r.userPropertiesOperations, n, null, null, null);
+          }
+        }),
+        (Gt.prototype.setOptOut = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setOptOut'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (qe.validateInput(e, 'enable', 'boolean'))
+            try {
+              (this.options.optOut = e), Xt(this);
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+        }),
+        (Gt.prototype.setSessionId = function (e) {
+          if (qe.validateInput(e, 'sessionId', 'number'))
+            try {
+              (this._sessionId = e), Xt(this);
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+        }),
+        (Gt.prototype.resetSessionId = function () {
+          this.setSessionId(new Date().getTime());
+        }),
+        (Gt.prototype.regenerateDeviceId = function () {
+          if (this._shouldDeferCall()) return this._q.push(['regenerateDeviceId'].concat(Array.prototype.slice.call(arguments, 0)));
+          this.setDeviceId(Je());
+        }),
+        (Gt.prototype.setDeviceId = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setDeviceId'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (qe.validateDeviceId(e))
+            try {
+              qe.isEmptyString(e) ||
+                ((this.options.deviceId = '' + e),
+                Xt(this),
+                this._connector && this._connector.identityStore.editIdentity().setDeviceId(this.options.deviceId).commit());
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+        }),
+        (Gt.prototype.setTransport = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setTransport'].concat(Array.prototype.slice.call(arguments, 0)));
+          qe.validateTransport(e) && (this.options.transport = e);
+        }),
+        (Gt.prototype.setUserProperties = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setUserProperties'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (this._apiKeySet('setUserProperties()') && qe.validateInput(e, 'userProperties', 'object')) {
+            var t = qe.truncate(qe.validateProperties(e));
+            if (0 !== Object.keys(t).length) {
+              var n = new Ot();
+              for (var r in t) Object.prototype.hasOwnProperty.call(t, r) && n.set(r, t[r]);
+              this.identify(n);
+            }
+          }
+        }),
+        (Gt.prototype.clearUserProperties = function () {
+          if (this._shouldDeferCall()) return this._q.push(['clearUserProperties'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (this._apiKeySet('clearUserProperties()')) {
+            var e = new Ot();
+            e.clearAll(), this.identify(e);
+          }
+        });
+      var Zt = function (e, t) {
+        for (var n = 0; n < t._q.length; n++) {
+          var r = e[t._q[n][0]];
+          'function' === ye(r) && r.apply(e, t._q[n].slice(1));
+        }
+        return e;
+      };
+      (Gt.prototype.identify = function (e, t, n, r) {
+        if (this._shouldDeferCall()) return this._q.push(['identify'].concat(Array.prototype.slice.call(arguments, 0)));
+        if (this._apiKeySet('identify()'))
+          if (('object' === ye(e) && Object.prototype.hasOwnProperty.call(e, '_q') && (e = Zt(new Ot(), e)), e instanceof Ot)) {
+            if (Object.keys(e.userPropertiesOperations).length > 0)
+              return this._logEvent(de.IDENTIFY_EVENT, null, null, e.userPropertiesOperations, null, null, null, t, n, r);
+            sn(t, n, 0, 'No request sent', { reason: 'No user property operations' });
+          } else
+            qe.log.error('Invalid identify input type. Expected Identify object but saw ' + ye(e)),
+              sn(t, n, 0, 'No request sent', { reason: 'Invalid identify input type' });
+        else sn(t, n, 0, 'No request sent', { reason: 'API key is not set' });
+      }),
+        (Gt.prototype.groupIdentify = function (e, t, n, r, i, o) {
+          if (this._shouldDeferCall()) return this._q.push(['groupIdentify'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (this._apiKeySet('groupIdentify()'))
+            if (qe.validateInput(e, 'group_type', 'string') && !qe.isEmptyString(e))
+              if (null !== t && void 0 !== t)
+                if (('object' === ye(n) && Object.prototype.hasOwnProperty.call(n, '_q') && (n = Zt(new Ot(), n)), n instanceof Ot)) {
+                  if (Object.keys(n.userPropertiesOperations).length > 0)
+                    return this._logEvent(de.GROUP_IDENTIFY_EVENT, null, null, null, re({}, e, t), n.userPropertiesOperations, null, r, i, o);
+                  sn(r, i, 0, 'No request sent', { reason: 'No group property operations' });
+                } else
+                  qe.log.error('Invalid identify input type. Expected Identify object but saw ' + ye(n)),
+                    sn(r, i, 0, 'No request sent', { reason: 'Invalid identify input type' });
+              else sn(r, i, 0, 'No request sent', { reason: 'Invalid group name' });
+            else sn(r, i, 0, 'No request sent', { reason: 'Invalid group type' });
+          else sn(r, i, 0, 'No request sent', { reason: 'API key is not set' });
+        }),
+        (Gt.prototype.setVersionName = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setVersionName'].concat(Array.prototype.slice.call(arguments, 0)));
+          qe.validateInput(e, 'versionName', 'string') && (this.options.versionName = e);
+        }),
+        (Gt.prototype._logEvent = function (e, t, n, r, i, o, s, a, u, c) {
+          if ((Kt(this), e))
+            if (this.options.optOut) sn(a, u, 0, 'No request sent', { reason: 'optOut is set to true' });
+            else
+              try {
+                var l;
+                l = e === de.IDENTIFY_EVENT || e === de.GROUP_IDENTIFY_EVENT ? this.nextIdentifyId() : this.nextEventId();
+                var h = this.nextSequenceNumber(),
+                  f = 'number' === ye(s) ? s : new Date().getTime();
+                c
+                  ? (this._sessionId = -1)
+                  : (!this._sessionId || !this._lastEventTime || f - this._lastEventTime > this.options.sessionTimeout) &&
+                    ((this._sessionId = f), this._runNewSessionStartCallbacks()),
+                  (this._lastEventTime = f),
+                  Xt(this);
+                var d = this._ua.browser.name,
+                  p = this._ua.browser.major,
+                  g = this._ua.device.model || this._ua.os.name,
+                  m = this._ua.device.vendor;
+                r = r || {};
+                var v = J({}, this._apiPropertiesTrackingOptions);
+                (n = J(J({}, n || {}), v)), (t = t || {}), (i = i || {}), (o = o || {});
+                var y = {
+                  device_id: this.options.deviceId,
+                  user_id: this.options.userId,
+                  timestamp: f,
+                  event_id: l,
+                  session_id: this._sessionId || -1,
+                  event_type: e,
+                  version_name: this.options.versionName || null,
+                  platform: nn(this, 'platform') ? this.options.platform : null,
+                  os_name: (nn(this, 'os_name') && d) || null,
+                  os_version: (nn(this, 'os_version') && p) || null,
+                  device_model: (nn(this, 'device_model') && g) || null,
+                  device_manufacturer: (nn(this, 'device_manufacturer') && m) || null,
+                  language: nn(this, 'language') ? this.options.language : null,
+                  api_properties: n,
+                  event_properties: qe.truncate(qe.validateProperties(t)),
+                  user_properties: qe.truncate(qe.validateProperties(r)),
+                  uuid: Lt(),
+                  library: this.options.library,
+                  sequence_number: h,
+                  groups: qe.truncate(qe.validateGroups(i)),
+                  group_properties: qe.truncate(qe.validateProperties(o)),
+                  user_agent: this._userAgent,
+                  partner_id: this.options.partnerId || null
+                };
+                return (
+                  en(this) &&
+                    (y.plan = {
+                      branch: this.options.plan.branch || void 0,
+                      source: this.options.plan.source || void 0,
+                      version: this.options.plan.version || void 0,
+                      versionId: this.options.plan.versionId || void 0
+                    }),
+                  tn(this) &&
+                    (y.ingestion_metadata = {
+                      source_name: this.options.ingestionMetadata.sourceName || void 0,
+                      source_version: this.options.ingestionMetadata.sourceVersion || void 0
+                    }),
+                  e === de.IDENTIFY_EVENT || e === de.GROUP_IDENTIFY_EVENT
+                    ? (this._unsentIdentifys.push({ event: y, callback: a, errorCallback: u }), this._limitEventsQueued(this._unsentIdentifys))
+                    : (this._unsentEvents.push({ event: y, callback: a, errorCallback: u }), this._limitEventsQueued(this._unsentEvents)),
+                  this.options.saveEvents && this.saveEvents(),
+                  this._sendEventsIfReady(),
+                  e === de.IDENTIFY_EVENT &&
+                    this._connector &&
+                    this._connector.identityStore
+                      .editIdentity()
+                      .updateUserProperties(qe.truncate(qe.validateProperties(r)))
+                      .commit(),
+                  l
+                );
+              } catch (fn) {
+                qe.log.error(fn);
+              }
+          else sn(a, u, 0, 'No request sent', { reason: 'Missing eventType' });
+        });
+      var en = function (e) {
+          return e.options.plan && (e.options.plan.source || e.options.plan.branch || e.options.plan.version || e.options.plan.versionId);
+        },
+        tn = function (e) {
+          return e.options.ingestionMetadata && (e.options.ingestionMetadata.sourceName || e.options.ingestionMetadata.sourceVersion);
+        },
+        nn = function (e, t) {
+          return !!e.options.trackingOptions[t];
+        },
+        rn = function (e) {
+          for (var t = ['city', 'country', 'dma', 'ip_address', 'region'], n = {}, r = 0; r < t.length; r++) {
+            var i = t[r];
+            nn(e, i) || (n[i] = !1);
+          }
+          return n;
+        };
+      (Gt.prototype._limitEventsQueued = function (e) {
+        if (e.length > this.options.savedMaxCount) {
+          var t = e.splice(0, e.length - this.options.savedMaxCount);
+          t.forEach(function (e) {
+            sn(e.callback, e.errorCallback, 0, 'No request sent', {
+              reason: 'Event dropped because options.savedMaxCount exceeded. User may be offline or have a content blocker'
+            });
+          });
+        }
+      }),
+        (Gt.prototype.logEvent = function (e, t, n, r) {
+          var i = arguments.length > 4 && void 0 !== arguments[4] && arguments[4];
+          return this._shouldDeferCall()
+            ? this._q.push(['logEvent'].concat(Array.prototype.slice.call(arguments, 0)))
+            : this.logEventWithTimestamp(e, t, null, n, r, i);
+        }),
+        (Gt.prototype.logEventWithTimestamp = function (e, t, n, r, i) {
+          var o = arguments.length > 5 && void 0 !== arguments[5] && arguments[5];
+          return this._shouldDeferCall()
+            ? this._q.push(['logEventWithTimestamp'].concat(Array.prototype.slice.call(arguments, 0)))
+            : this._apiKeySet('logEvent()')
+              ? qe.validateInput(e, 'eventType', 'string')
+                ? qe.isEmptyString(e)
+                  ? (sn(r, i, 0, 'No request sent', { reason: 'Missing eventType' }), -1)
+                  : (qe.validateInput(o, 'outOfSession', 'boolean') || sn(r, i, 0, 'No request sent', { reason: 'Invalid outOfSession value' }),
+                    this._logEvent(e, t, null, null, null, null, n, r, i, o))
+                : (sn(r, i, 0, 'No request sent', { reason: 'Invalid type for eventType' }), -1)
+              : (sn(r, i, 0, 'No request sent', { reason: 'API key not set' }), -1);
+        }),
+        (Gt.prototype.logEventWithGroups = function (e, t, n, r, i) {
+          var o = arguments.length > 5 && void 0 !== arguments[5] && arguments[5];
+          return this._shouldDeferCall()
+            ? this._q.push(['logEventWithGroups'].concat(Array.prototype.slice.call(arguments, 0)))
+            : this._apiKeySet('logEventWithGroups()')
+              ? qe.validateInput(e, 'eventType', 'string')
+                ? (qe.validateInput(o, 'outOfSession', 'boolean') ||
+                    sn(event.callback, event.errorCallback, 0, 'No request sent', { reason: 'Invalid outOfSession value' }),
+                  this._logEvent(e, t, null, null, n, null, null, r, i, o))
+                : (sn(event.callback, event.errorCallback, 0, 'No request sent', { reason: 'Invalid type for eventType' }), -1)
+              : (sn(event.callback, event.errorCallback, 0, 'No request sent', { reason: 'API key not set' }), -1);
+        });
+      var on = function (e) {
+          return !isNaN(parseFloat(e)) && isFinite(e);
+        },
+        sn = function (e, t, n, r, i) {
+          'function' === ye(e) && e(n, r, i), 'function' === ye(t) && t(n, r, i);
+        };
+      (Gt.prototype.logRevenueV2 = function (e) {
+        if (this._shouldDeferCall()) return this._q.push(['logRevenueV2'].concat(Array.prototype.slice.call(arguments, 0)));
+        if (this._apiKeySet('logRevenueV2()'))
+          if (('object' === ye(e) && Object.prototype.hasOwnProperty.call(e, '_q') && (e = Zt(new Dt(), e)), e instanceof Dt)) {
+            if (e && e._isValidRevenue()) return this.logEvent(de.REVENUE_EVENT, e._toJSONObject());
+          } else qe.log.error('Invalid revenue input type. Expected Revenue object but saw ' + ye(e));
+      }),
+        (Gt.prototype.logRevenue = function (e, t, n) {
+          return this._shouldDeferCall()
+            ? this._q.push(['logRevenue'].concat(Array.prototype.slice.call(arguments, 0)))
+            : this._apiKeySet('logRevenue()') && on(e) && (void 0 === t || on(t))
+              ? this._logEvent(
+                  de.REVENUE_EVENT,
+                  {},
+                  { productId: n, special: 'revenue_amount', quantity: t || 1, price: e },
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                )
+              : -1;
+        }),
+        (Gt.prototype._logErrorsOnEvents = function (e, t, n, r) {
+          for (var i = ['_unsentEvents', '_unsentIdentifys'], o = 0; o < i.length; o++)
+            for (var s = i[o], a = '_unsentEvents' === s ? e : t, u = 0; u < this[s].length; u++) {
+              var c = this[s][u];
+              c.event.event_id <= a && c.errorCallback && c.errorCallback(n, r);
+            }
+        }),
+        (Gt.prototype.removeEvents = function (e, t, n, r) {
+          an(this, '_unsentEvents', e, n, r), an(this, '_unsentIdentifys', t, n, r);
+        });
+      var an = function (e, t, n, r, i) {
+        if (!(n < 0)) {
+          for (var o = [], s = 0; s < e[t].length; s++) {
+            var a = e[t][s];
+            a.event.event_id > n ? o.push(a) : a.callback && a.callback(r, i);
+          }
+          e[t] = o;
+        }
+      };
+      (Gt.prototype.sendEvents = function () {
+        if (this._apiKeySet('sendEvents()')) {
+          if (this.options.optOut) this.removeEvents(1 / 0, 1 / 0, 0, 'No request sent', { reason: 'Opt out is set to true' });
+          else if (0 !== this._unsentCount()) {
+            if (this.options.transport !== de.TRANSPORT_BEACON) {
+              if (this._sending) return;
+              this._sending = !0;
+            }
+            var e = this.options.forceHttps || 'https:' === ge.location.protocol ? 'https' : 'http',
+              t = e + '://' + this.options.apiEndpoint,
+              n = Math.min(this._unsentCount(), this.options.uploadBatchSize),
+              r = this._mergeEventsAndIdentifys(n),
+              i = r.maxEventId,
+              o = r.maxIdentifyId,
+              s = JSON.stringify(
+                r.eventsToSend.map(function (e) {
+                  var t = e.event;
+                  return t;
+                })
+              ),
+              u = new Date().getTime(),
+              c = {
+                client: this.options.apiKey,
+                e: s,
+                v: de.API_VERSION,
+                upload_time: u,
+                checksum: a()(de.API_VERSION + this.options.apiKey + s + u)
+              };
+            if (this.options.transport !== de.TRANSPORT_BEACON || 'undefined' === typeof navigator) {
+              var l = this;
+              try {
+                new Nt(t, c, this.options.headers).send(function (e, t) {
+                  l._sending = !1;
+                  try {
+                    200 === e
+                      ? (l.removeEvents(i, o, e, t), l.options.saveEvents && l.saveEvents(), l._sendEventsIfReady())
+                      : (l._logErrorsOnEvents(i, o, e, t),
+                        413 === e &&
+                          (1 === l.options.uploadBatchSize && l.removeEvents(i, o, e, t),
+                          (l.options.uploadBatchSize = Math.ceil(n / 2)),
+                          l.sendEvents()));
+                  } catch (fn) {}
+                });
+              } catch (fn) {
+                var h = 0,
+                  f = 'Request failed to send';
+                qe.log.error(f), l._logErrorsOnEvents(i, o, h, f), l.removeEvents(i, o, h, f, { reason: fn.message });
+              }
+            } else {
+              var d = navigator.sendBeacon(t, new URLSearchParams(c));
+              d ? (this.removeEvents(i, o, 200, 'success'), this.options.saveEvents && this.saveEvents()) : this._logErrorsOnEvents(i, o, 0, '');
+            }
+          }
+        } else this.removeEvents(1 / 0, 1 / 0, 0, 'No request sent', { reason: 'API key not set' });
+      }),
+        (Gt.prototype._mergeEventsAndIdentifys = function (e) {
+          var t = [],
+            n = 0,
+            r = -1,
+            i = 0,
+            o = -1;
+          while (t.length < e) {
+            var s = void 0,
+              a = i >= this._unsentIdentifys.length,
+              u = n >= this._unsentEvents.length;
+            if (u && a) {
+              qe.log.error('Merging Events and Identifys, less events and identifys than expected');
+              break;
+            }
+            a
+              ? ((s = this._unsentEvents[n++]), (r = s.event.event_id))
+              : u
+                ? ((s = this._unsentIdentifys[i++]), (o = s.event.event_id))
+                : !('sequence_number' in this._unsentEvents[n].event) ||
+                    this._unsentEvents[n].event.sequence_number < this._unsentIdentifys[i].event.sequence_number
+                  ? ((s = this._unsentEvents[n++]), (r = s.event.event_id))
+                  : ((s = this._unsentIdentifys[i++]), (o = s.event.event_id)),
+              t.push(s);
+          }
+          return { eventsToSend: t, maxEventId: r, maxIdentifyId: o };
+        }),
+        (Gt.prototype.setGlobalUserProperties = function (e) {
+          this.setUserProperties(e);
+        }),
+        (Gt.prototype.__VERSION__ = function () {
+          return this.options.library.version;
+        }),
+        (Gt.prototype.setLibrary = function (e, t) {
+          null !== e && 'undefined' !== typeof e && (this.options.library.name = e),
+            null !== t && 'undefined' !== typeof t && (this.options.library.version = t);
+        }),
+        (Gt.prototype._shouldDeferCall = function () {
+          return this._pendingReadStorage || this._initializationDeferred;
+        }),
+        (Gt.prototype._deferInitialization = function () {
+          (this._initializationDeferred = !0), this._q.push(['init'].concat(Array.prototype.slice.call(arguments, 0)));
+        }),
+        (Gt.prototype.enableTracking = function () {
+          (this._initializationDeferred = !1), Xt(this), this.runQueuedFunctions();
+        }),
+        (Gt.prototype._refreshDynamicConfig = function () {
+          this.options.useDynamicConfig &&
+            zt.refresh(
+              this.options.serverZone,
+              this.options.forceHttps,
+              function () {
+                this.options.apiEndpoint = zt.ingestionEndpoint;
+              }.bind(this)
+            );
+        }),
+        (Gt.prototype.getDeviceId = function () {
+          return this.options.deviceId;
+        }),
+        (Gt.prototype.getUserId = function () {
+          return this.options.userId;
+        }),
+        (Gt.prototype.setMinTimeBetweenSessionsMillis = function (e) {
+          if (qe.validateInput(e, 'timeInMillis', 'number')) {
+            if (this._shouldDeferCall()) return this._q.push(['setMinTimeBetweenSessionsMillis'].concat(Array.prototype.slice.call(arguments, 0)));
+            try {
+              this.options.sessionTimeout = e;
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+          }
+        }),
+        (Gt.prototype.setEventUploadThreshold = function (e) {
+          if (qe.validateInput(e, 'eventUploadThreshold', 'number')) {
+            if (this._shouldDeferCall()) return this._q.push(['setEventUploadThreshold'].concat(Array.prototype.slice.call(arguments, 0)));
+            try {
+              this.options.eventUploadThreshold = e;
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+          }
+        }),
+        (Gt.prototype.setUseDynamicConfig = function (e) {
+          if (qe.validateInput(e, 'useDynamicConfig', 'boolean')) {
+            if (this._shouldDeferCall()) return this._q.push(['setUseDynamicConfig'].concat(Array.prototype.slice.call(arguments, 0)));
+            try {
+              (this.options.useDynamicConfig = e), this._refreshDynamicConfig();
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+          }
+        }),
+        (Gt.prototype.setServerZone = function (e) {
+          var t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
+          if ((e === Ft.EU || e === Ft.US) && qe.validateInput(t, 'serverZoneBasedApi', 'boolean')) {
+            if (this._shouldDeferCall()) return this._q.push(['setServerZone'].concat(Array.prototype.slice.call(arguments, 0)));
+            try {
+              (this.options.serverZone = e), (this.options.serverZoneBasedApi = t), t && (this.options.apiEndpoint = Ut(this.options.serverZone));
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+          }
+        }),
+        (Gt.prototype.setServerUrl = function (e) {
+          if (qe.validateInput(e, 'serverUrl', 'string')) {
+            if (this._shouldDeferCall()) return this._q.push(['setServerUrl'].concat(Array.prototype.slice.call(arguments, 0)));
+            try {
+              this.options.apiEndpoint = e;
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+          }
+        });
+      var un = function () {
+        (this.options = J({}, $t)), (this._q = []), (this._instances = {});
+      };
+      (un.prototype.Identify = Ot),
+        (un.prototype.Revenue = Dt),
+        (un.prototype.getInstance = function (e) {
+          e = qe.isEmptyString(e) ? de.DEFAULT_INSTANCE : e.toLowerCase();
+          var t = this._instances[e];
+          return void 0 === t && ((t = new Gt(e)), (this._instances[e] = t)), t;
+        }),
+        (un.prototype.init = function (e, t, n, r) {
+          this.getInstance().init(
+            e,
+            t,
+            n,
+            function (e) {
+              (this.options = e.options), 'function' === ye(r) && r(e);
+            }.bind(this)
+          );
+        }),
+        (un.prototype.isNewSession = function () {
+          return this.getInstance().isNewSession();
+        }),
+        (un.prototype.getSessionId = function () {
+          return this.getInstance().getSessionId();
+        }),
+        (un.prototype.nextEventId = function () {
+          return this.getInstance().nextEventId();
+        }),
+        (un.prototype.nextIdentifyId = function () {
+          return this.getInstance().nextIdentifyId();
+        }),
+        (un.prototype.nextSequenceNumber = function () {
+          return this.getInstance().nextSequenceNumber();
+        }),
+        (un.prototype.saveEvents = function () {
+          this.getInstance().saveEvents();
+        }),
+        (un.prototype.setDomain = function (e) {
+          this.getInstance().setDomain(e);
+        }),
+        (un.prototype.setUserId = function (e) {
+          this.getInstance().setUserId(e);
+        }),
+        (un.prototype.setGroup = function (e, t) {
+          this.getInstance().setGroup(e, t);
+        }),
+        (un.prototype.setOptOut = function (e) {
+          this.getInstance().setOptOut(e);
+        }),
+        (un.prototype.regenerateDeviceId = function () {
+          this.getInstance().regenerateDeviceId();
+        }),
+        (un.prototype.setDeviceId = function (e) {
+          this.getInstance().setDeviceId(e);
+        }),
+        (un.prototype.setUserProperties = function (e) {
+          this.getInstance().setUserProperties(e);
+        }),
+        (un.prototype.clearUserProperties = function () {
+          this.getInstance().clearUserProperties();
+        }),
+        (un.prototype.identify = function (e, t) {
+          this.getInstance().identify(e, t);
+        }),
+        (un.prototype.setVersionName = function (e) {
+          this.getInstance().setVersionName(e);
+        }),
+        (un.prototype.logEvent = function (e, t, n) {
+          return this.getInstance().logEvent(e, t, n);
+        }),
+        (un.prototype.logEventWithGroups = function (e, t, n, r) {
+          return this.getInstance().logEventWithGroups(e, t, n, r);
+        }),
+        (un.prototype.logRevenueV2 = function (e) {
+          return this.getInstance().logRevenueV2(e);
+        }),
+        (un.prototype.logRevenue = function (e, t, n) {
+          return this.getInstance().logRevenue(e, t, n);
+        }),
+        (un.prototype.removeEvents = function (e, t) {
+          this.getInstance().removeEvents(e, t);
+        }),
+        (un.prototype.sendEvents = function (e) {
+          this.getInstance().sendEvents(e);
+        }),
+        (un.prototype.setGlobalUserProperties = function (e) {
+          this.getInstance().setUserProperties(e);
+        }),
+        (un.prototype.__VERSION__ = Bt);
+      var cn = ('undefined' !== typeof ge && ge.amplitude) || {},
+        ln = new un();
+      for (var hn in ((ln._q = cn._q || []), cn._iq))
+        Object.prototype.hasOwnProperty.call(cn._iq, hn) && (ln.getInstance(hn)._q = cn._iq[hn]._q || []);
+    },
+    79742: (e, t) => {
+      'use strict';
+      (t.byteLength = c), (t.toByteArray = h), (t.fromByteArray = p);
+      for (
+        var n = [],
+          r = [],
+          i = 'undefined' !== typeof Uint8Array ? Uint8Array : Array,
+          o = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
+          s = 0,
+          a = o.length;
+        s < a;
+        ++s
+      )
+        (n[s] = o[s]), (r[o.charCodeAt(s)] = s);
+      function u(e) {
+        var t = e.length;
+        if (t % 4 > 0) throw new Error('Invalid string. Length must be a multiple of 4');
+        var n = e.indexOf('=');
+        -1 === n && (n = t);
+        var r = n === t ? 0 : 4 - (n % 4);
+        return [n, r];
+      }
+      function c(e) {
+        var t = u(e),
+          n = t[0],
+          r = t[1];
+        return (3 * (n + r)) / 4 - r;
+      }
+      function l(e, t, n) {
+        return (3 * (t + n)) / 4 - n;
+      }
+      function h(e) {
+        var t,
+          n,
+          o = u(e),
+          s = o[0],
+          a = o[1],
+          c = new i(l(e, s, a)),
+          h = 0,
+          f = a > 0 ? s - 4 : s;
+        for (n = 0; n < f; n += 4)
+          (t = (r[e.charCodeAt(n)] << 18) | (r[e.charCodeAt(n + 1)] << 12) | (r[e.charCodeAt(n + 2)] << 6) | r[e.charCodeAt(n + 3)]),
+            (c[h++] = (t >> 16) & 255),
+            (c[h++] = (t >> 8) & 255),
+            (c[h++] = 255 & t);
+        return (
+          2 === a && ((t = (r[e.charCodeAt(n)] << 2) | (r[e.charCodeAt(n + 1)] >> 4)), (c[h++] = 255 & t)),
+          1 === a &&
+            ((t = (r[e.charCodeAt(n)] << 10) | (r[e.charCodeAt(n + 1)] << 4) | (r[e.charCodeAt(n + 2)] >> 2)),
+            (c[h++] = (t >> 8) & 255),
+            (c[h++] = 255 & t)),
+          c
+        );
+      }
+      function f(e) {
+        return n[(e >> 18) & 63] + n[(e >> 12) & 63] + n[(e >> 6) & 63] + n[63 & e];
+      }
+      function d(e, t, n) {
+        for (var r, i = [], o = t; o < n; o += 3) (r = ((e[o] << 16) & 16711680) + ((e[o + 1] << 8) & 65280) + (255 & e[o + 2])), i.push(f(r));
+        return i.join('');
+      }
+      function p(e) {
+        for (var t, r = e.length, i = r % 3, o = [], s = 16383, a = 0, u = r - i; a < u; a += s) o.push(d(e, a, a + s > u ? u : a + s));
+        return (
+          1 === i
+            ? ((t = e[r - 1]), o.push(n[t >> 2] + n[(t << 4) & 63] + '=='))
+            : 2 === i && ((t = (e[r - 2] << 8) + e[r - 1]), o.push(n[t >> 10] + n[(t >> 4) & 63] + n[(t << 2) & 63] + '=')),
+          o.join('')
+        );
+      }
+      (r['-'.charCodeAt(0)] = 62), (r['_'.charCodeAt(0)] = 63);
+    },
+    99560: function (e, t, n) {
+      var r;
+      (function (i) {
+        'use strict';
+        function o(e, t) {
+          var n = (65535 & e) + (65535 & t),
+            r = (e >> 16) + (t >> 16) + (n >> 16);
+          return (r << 16) | (65535 & n);
+        }
+        function s(e, t) {
+          return (e << t) | (e >>> (32 - t));
+        }
+        function a(e, t, n, r, i, a) {
+          return o(s(o(o(t, e), o(r, a)), i), n);
+        }
+        function u(e, t, n, r, i, o, s) {
+          return a((t & n) | (~t & r), e, t, i, o, s);
+        }
+        function c(e, t, n, r, i, o, s) {
+          return a((t & r) | (n & ~r), e, t, i, o, s);
+        }
+        function l(e, t, n, r, i, o, s) {
+          return a(t ^ n ^ r, e, t, i, o, s);
+        }
+        function h(e, t, n, r, i, o, s) {
+          return a(n ^ (t | ~r), e, t, i, o, s);
+        }
+        function f(e, t) {
+          var n, r, i, s, a;
+          (e[t >> 5] |= 128 << t % 32), (e[14 + (((t + 64) >>> 9) << 4)] = t);
+          var f = 1732584193,
+            d = -271733879,
+            p = -1732584194,
+            g = 271733878;
+          for (n = 0; n < e.length; n += 16)
+            (r = f),
+              (i = d),
+              (s = p),
+              (a = g),
+              (f = u(f, d, p, g, e[n], 7, -680876936)),
+              (g = u(g, f, d, p, e[n + 1], 12, -389564586)),
+              (p = u(p, g, f, d, e[n + 2], 17, 606105819)),
+              (d = u(d, p, g, f, e[n + 3], 22, -1044525330)),
+              (f = u(f, d, p, g, e[n + 4], 7, -176418897)),
+              (g = u(g, f, d, p, e[n + 5], 12, 1200080426)),
+              (p = u(p, g, f, d, e[n + 6], 17, -1473231341)),
+              (d = u(d, p, g, f, e[n + 7], 22, -45705983)),
+              (f = u(f, d, p, g, e[n + 8], 7, 1770035416)),
+              (g = u(g, f, d, p, e[n + 9], 12, -1958414417)),
+              (p = u(p, g, f, d, e[n + 10], 17, -42063)),
+              (d = u(d, p, g, f, e[n + 11], 22, -1990404162)),
+              (f = u(f, d, p, g, e[n + 12], 7, 1804603682)),
+              (g = u(g, f, d, p, e[n + 13], 12, -40341101)),
+              (p = u(p, g, f, d, e[n + 14], 17, -1502002290)),
+              (d = u(d, p, g, f, e[n + 15], 22, 1236535329)),
+              (f = c(f, d, p, g, e[n + 1], 5, -165796510)),
+              (g = c(g, f, d, p, e[n + 6], 9, -1069501632)),
+              (p = c(p, g, f, d, e[n + 11], 14, 643717713)),
+              (d = c(d, p, g, f, e[n], 20, -373897302)),
+              (f = c(f, d, p, g, e[n + 5], 5, -701558691)),
+              (g = c(g, f, d, p, e[n + 10], 9, 38016083)),
+              (p = c(p, g, f, d, e[n + 15], 14, -660478335)),
+              (d = c(d, p, g, f, e[n + 4], 20, -405537848)),
+              (f = c(f, d, p, g, e[n + 9], 5, 568446438)),
+              (g = c(g, f, d, p, e[n + 14], 9, -1019803690)),
+              (p = c(p, g, f, d, e[n + 3], 14, -187363961)),
+              (d = c(d, p, g, f, e[n + 8], 20, 1163531501)),
+              (f = c(f, d, p, g, e[n + 13], 5, -1444681467)),
+              (g = c(g, f, d, p, e[n + 2], 9, -51403784)),
+              (p = c(p, g, f, d, e[n + 7], 14, 1735328473)),
+              (d = c(d, p, g, f, e[n + 12], 20, -1926607734)),
+              (f = l(f, d, p, g, e[n + 5], 4, -378558)),
+              (g = l(g, f, d, p, e[n + 8], 11, -2022574463)),
+              (p = l(p, g, f, d, e[n + 11], 16, 1839030562)),
+              (d = l(d, p, g, f, e[n + 14], 23, -35309556)),
+              (f = l(f, d, p, g, e[n + 1], 4, -1530992060)),
+              (g = l(g, f, d, p, e[n + 4], 11, 1272893353)),
+              (p = l(p, g, f, d, e[n + 7], 16, -155497632)),
+              (d = l(d, p, g, f, e[n + 10], 23, -1094730640)),
+              (f = l(f, d, p, g, e[n + 13], 4, 681279174)),
+              (g = l(g, f, d, p, e[n], 11, -358537222)),
+              (p = l(p, g, f, d, e[n + 3], 16, -722521979)),
+              (d = l(d, p, g, f, e[n + 6], 23, 76029189)),
+              (f = l(f, d, p, g, e[n + 9], 4, -640364487)),
+              (g = l(g, f, d, p, e[n + 12], 11, -421815835)),
+              (p = l(p, g, f, d, e[n + 15], 16, 530742520)),
+              (d = l(d, p, g, f, e[n + 2], 23, -995338651)),
+              (f = h(f, d, p, g, e[n], 6, -198630844)),
+              (g = h(g, f, d, p, e[n + 7], 10, 1126891415)),
+              (p = h(p, g, f, d, e[n + 14], 15, -1416354905)),
+              (d = h(d, p, g, f, e[n + 5], 21, -57434055)),
+              (f = h(f, d, p, g, e[n + 12], 6, 1700485571)),
+              (g = h(g, f, d, p, e[n + 3], 10, -1894986606)),
+              (p = h(p, g, f, d, e[n + 10], 15, -1051523)),
+              (d = h(d, p, g, f, e[n + 1], 21, -2054922799)),
+              (f = h(f, d, p, g, e[n + 8], 6, 1873313359)),
+              (g = h(g, f, d, p, e[n + 15], 10, -30611744)),
+              (p = h(p, g, f, d, e[n + 6], 15, -1560198380)),
+              (d = h(d, p, g, f, e[n + 13], 21, 1309151649)),
+              (f = h(f, d, p, g, e[n + 4], 6, -145523070)),
+              (g = h(g, f, d, p, e[n + 11], 10, -1120210379)),
+              (p = h(p, g, f, d, e[n + 2], 15, 718787259)),
+              (d = h(d, p, g, f, e[n + 9], 21, -343485551)),
+              (f = o(f, r)),
+              (d = o(d, i)),
+              (p = o(p, s)),
+              (g = o(g, a));
+          return [f, d, p, g];
+        }
+        function d(e) {
+          var t,
+            n = '',
+            r = 32 * e.length;
+          for (t = 0; t < r; t += 8) n += String.fromCharCode((e[t >> 5] >>> t % 32) & 255);
+          return n;
+        }
+        function p(e) {
+          var t,
+            n = [];
+          for (n[(e.length >> 2) - 1] = void 0, t = 0; t < n.length; t += 1) n[t] = 0;
+          var r = 8 * e.length;
+          for (t = 0; t < r; t += 8) n[t >> 5] |= (255 & e.charCodeAt(t / 8)) << t % 32;
+          return n;
+        }
+        function g(e) {
+          return d(f(p(e), 8 * e.length));
+        }
+        function m(e, t) {
+          var n,
+            r,
+            i = p(e),
+            o = [],
+            s = [];
+          for (o[15] = s[15] = void 0, i.length > 16 && (i = f(i, 8 * e.length)), n = 0; n < 16; n += 1)
+            (o[n] = 909522486 ^ i[n]), (s[n] = 1549556828 ^ i[n]);
+          return (r = f(o.concat(p(t)), 512 + 8 * t.length)), d(f(s.concat(r), 640));
+        }
+        function v(e) {
+          var t,
+            n,
+            r = '0123456789abcdef',
+            i = '';
+          for (n = 0; n < e.length; n += 1) (t = e.charCodeAt(n)), (i += r.charAt((t >>> 4) & 15) + r.charAt(15 & t));
+          return i;
+        }
+        function y(e) {
+          return unescape(encodeURIComponent(e));
+        }
+        function w(e) {
+          return g(y(e));
+        }
+        function b(e) {
+          return v(w(e));
+        }
+        function _(e, t) {
+          return m(y(e), y(t));
+        }
+        function I(e, t) {
+          return v(_(e, t));
+        }
+        function E(e, t, n) {
+          return t ? (n ? _(t, e) : I(t, e)) : n ? w(e) : b(e);
+        }
+        (r = function () {
+          return E;
+        }.call(t, n, t, e)),
+          void 0 === r || (e.exports = r);
+      })();
+    },
+    48764: (e, t, n) => {
+      'use strict';
+      /*!
+       * The buffer module from node.js, for the browser.
+       *
+       * @author   Feross Aboukhadijeh <https://feross.org>
+       * @license  MIT
+       */ var r = n(79742),
+        i = n(80645),
+        o = 'function' === typeof Symbol && 'function' === typeof Symbol['for'] ? Symbol['for']('nodejs.util.inspect.custom') : null;
+      (t.Buffer = c), (t.SlowBuffer = b), (t.INSPECT_MAX_BYTES = 50);
+      var s = 2147483647;
+      function a() {
+        try {
+          var e = new Uint8Array(1),
+            t = {
+              foo: function () {
+                return 42;
+              }
+            };
+          return Object.setPrototypeOf(t, Uint8Array.prototype), Object.setPrototypeOf(e, t), 42 === e.foo();
+        } catch (n) {
+          return !1;
+        }
+      }
+      function u(e) {
+        if (e > s) throw new RangeError('The value "' + e + '" is invalid for option "size"');
+        var t = new Uint8Array(e);
+        return Object.setPrototypeOf(t, c.prototype), t;
+      }
+      function c(e, t, n) {
+        if ('number' === typeof e) {
+          if ('string' === typeof t) throw new TypeError('The "string" argument must be of type string. Received type number');
+          return d(e);
+        }
+        return l(e, t, n);
+      }
+      function l(e, t, n) {
+        if ('string' === typeof e) return p(e, t);
+        if (ArrayBuffer.isView(e)) return m(e);
+        if (null == e)
+          throw new TypeError(
+            'The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type ' + typeof e
+          );
+        if (X(e, ArrayBuffer) || (e && X(e.buffer, ArrayBuffer))) return v(e, t, n);
+        if ('undefined' !== typeof SharedArrayBuffer && (X(e, SharedArrayBuffer) || (e && X(e.buffer, SharedArrayBuffer)))) return v(e, t, n);
+        if ('number' === typeof e) throw new TypeError('The "value" argument must not be of type number. Received type number');
+        var r = e.valueOf && e.valueOf();
+        if (null != r && r !== e) return c.from(r, t, n);
+        var i = y(e);
+        if (i) return i;
+        if ('undefined' !== typeof Symbol && null != Symbol.toPrimitive && 'function' === typeof e[Symbol.toPrimitive])
+          return c.from(e[Symbol.toPrimitive]('string'), t, n);
+        throw new TypeError(
+          'The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type ' + typeof e
+        );
+      }
+      function h(e) {
+        if ('number' !== typeof e) throw new TypeError('"size" argument must be of type number');
+        if (e < 0) throw new RangeError('The value "' + e + '" is invalid for option "size"');
+      }
+      function f(e, t, n) {
+        return h(e), e <= 0 ? u(e) : void 0 !== t ? ('string' === typeof n ? u(e).fill(t, n) : u(e).fill(t)) : u(e);
+      }
+      function d(e) {
+        return h(e), u(e < 0 ? 0 : 0 | w(e));
+      }
+      function p(e, t) {
+        if ((('string' === typeof t && '' !== t) || (t = 'utf8'), !c.isEncoding(t))) throw new TypeError('Unknown encoding: ' + t);
+        var n = 0 | _(e, t),
+          r = u(n),
+          i = r.write(e, t);
+        return i !== n && (r = r.slice(0, i)), r;
+      }
+      function g(e) {
+        for (var t = e.length < 0 ? 0 : 0 | w(e.length), n = u(t), r = 0; r < t; r += 1) n[r] = 255 & e[r];
+        return n;
+      }
+      function m(e) {
+        if (X(e, Uint8Array)) {
+          var t = new Uint8Array(e);
+          return v(t.buffer, t.byteOffset, t.byteLength);
+        }
+        return g(e);
+      }
+      function v(e, t, n) {
+        if (t < 0 || e.byteLength < t) throw new RangeError('"offset" is outside of buffer bounds');
+        if (e.byteLength < t + (n || 0)) throw new RangeError('"length" is outside of buffer bounds');
+        var r;
+        return (
+          (r = void 0 === t && void 0 === n ? new Uint8Array(e) : void 0 === n ? new Uint8Array(e, t) : new Uint8Array(e, t, n)),
+          Object.setPrototypeOf(r, c.prototype),
+          r
+        );
+      }
+      function y(e) {
+        if (c.isBuffer(e)) {
+          var t = 0 | w(e.length),
+            n = u(t);
+          return 0 === n.length || e.copy(n, 0, 0, t), n;
+        }
+        return void 0 !== e.length
+          ? 'number' !== typeof e.length || J(e.length)
+            ? u(0)
+            : g(e)
+          : 'Buffer' === e.type && Array.isArray(e.data)
+            ? g(e.data)
+            : void 0;
+      }
+      function w(e) {
+        if (e >= s) throw new RangeError('Attempt to allocate Buffer larger than maximum size: 0x' + s.toString(16) + ' bytes');
+        return 0 | e;
+      }
+      function b(e) {
+        return +e != e && (e = 0), c.alloc(+e);
+      }
+      function _(e, t) {
+        if (c.isBuffer(e)) return e.length;
+        if (ArrayBuffer.isView(e) || X(e, ArrayBuffer)) return e.byteLength;
+        if ('string' !== typeof e)
+          throw new TypeError('The "string" argument must be one of type string, Buffer, or ArrayBuffer. Received type ' + typeof e);
+        var n = e.length,
+          r = arguments.length > 2 && !0 === arguments[2];
+        if (!r && 0 === n) return 0;
+        for (var i = !1; ; )
+          switch (t) {
+            case 'ascii':
+            case 'latin1':
+            case 'binary':
+              return n;
+            case 'utf8':
+            case 'utf-8':
+              return W(e).length;
+            case 'ucs2':
+            case 'ucs-2':
+            case 'utf16le':
+            case 'utf-16le':
+              return 2 * n;
+            case 'hex':
+              return n >>> 1;
+            case 'base64':
+              return Q(e).length;
+            default:
+              if (i) return r ? -1 : W(e).length;
+              (t = ('' + t).toLowerCase()), (i = !0);
+          }
+      }
+      function I(e, t, n) {
+        var r = !1;
+        if (((void 0 === t || t < 0) && (t = 0), t > this.length)) return '';
+        if (((void 0 === n || n > this.length) && (n = this.length), n <= 0)) return '';
+        if (((n >>>= 0), (t >>>= 0), n <= t)) return '';
+        e || (e = 'utf8');
+        while (1)
+          switch (e) {
+            case 'hex':
+              return M(this, t, n);
+            case 'utf8':
+            case 'utf-8':
+              return R(this, t, n);
+            case 'ascii':
+              return L(this, t, n);
+            case 'latin1':
+            case 'binary':
+              return j(this, t, n);
+            case 'base64':
+              return N(this, t, n);
+            case 'ucs2':
+            case 'ucs-2':
+            case 'utf16le':
+            case 'utf-16le':
+              return F(this, t, n);
+            default:
+              if (r) throw new TypeError('Unknown encoding: ' + e);
+              (e = (e + '').toLowerCase()), (r = !0);
+          }
+      }
+      function E(e, t, n) {
+        var r = e[t];
+        (e[t] = e[n]), (e[n] = r);
+      }
+      function S(e, t, n, r, i) {
+        if (0 === e.length) return -1;
+        if (
+          ('string' === typeof n ? ((r = n), (n = 0)) : n > 2147483647 ? (n = 2147483647) : n < -2147483648 && (n = -2147483648),
+          (n = +n),
+          J(n) && (n = i ? 0 : e.length - 1),
+          n < 0 && (n = e.length + n),
+          n >= e.length)
+        ) {
+          if (i) return -1;
+          n = e.length - 1;
+        } else if (n < 0) {
+          if (!i) return -1;
+          n = 0;
+        }
+        if (('string' === typeof t && (t = c.from(t, r)), c.isBuffer(t))) return 0 === t.length ? -1 : T(e, t, n, r, i);
+        if ('number' === typeof t)
+          return (
+            (t &= 255),
+            'function' === typeof Uint8Array.prototype.indexOf
+              ? i
+                ? Uint8Array.prototype.indexOf.call(e, t, n)
+                : Uint8Array.prototype.lastIndexOf.call(e, t, n)
+              : T(e, [t], n, r, i)
+          );
+        throw new TypeError('val must be string, number or Buffer');
+      }
+      function T(e, t, n, r, i) {
+        var o,
+          s = 1,
+          a = e.length,
+          u = t.length;
+        if (void 0 !== r && ((r = String(r).toLowerCase()), 'ucs2' === r || 'ucs-2' === r || 'utf16le' === r || 'utf-16le' === r)) {
+          if (e.length < 2 || t.length < 2) return -1;
+          (s = 2), (a /= 2), (u /= 2), (n /= 2);
+        }
+        function c(e, t) {
+          return 1 === s ? e[t] : e.readUInt16BE(t * s);
+        }
+        if (i) {
+          var l = -1;
+          for (o = n; o < a; o++)
+            if (c(e, o) === c(t, -1 === l ? 0 : o - l)) {
+              if ((-1 === l && (l = o), o - l + 1 === u)) return l * s;
+            } else -1 !== l && (o -= o - l), (l = -1);
+        } else
+          for (n + u > a && (n = a - u), o = n; o >= 0; o--) {
+            for (var h = !0, f = 0; f < u; f++)
+              if (c(e, o + f) !== c(t, f)) {
+                h = !1;
+                break;
+              }
+            if (h) return o;
+          }
+        return -1;
+      }
+      function A(e, t, n, r) {
+        n = Number(n) || 0;
+        var i = e.length - n;
+        r ? ((r = Number(r)), r > i && (r = i)) : (r = i);
+        var o = t.length;
+        r > o / 2 && (r = o / 2);
+        for (var s = 0; s < r; ++s) {
+          var a = parseInt(t.substr(2 * s, 2), 16);
+          if (J(a)) return s;
+          e[n + s] = a;
+        }
+        return s;
+      }
+      function x(e, t, n, r) {
+        return Y(W(t, e.length - n), e, n, r);
+      }
+      function C(e, t, n, r) {
+        return Y(H(t), e, n, r);
+      }
+      function k(e, t, n, r) {
+        return Y(Q(t), e, n, r);
+      }
+      function O(e, t, n, r) {
+        return Y(K(t, e.length - n), e, n, r);
+      }
+      function N(e, t, n) {
+        return 0 === t && n === e.length ? r.fromByteArray(e) : r.fromByteArray(e.slice(t, n));
+      }
+      function R(e, t, n) {
+        n = Math.min(e.length, n);
+        var r = [],
+          i = t;
+        while (i < n) {
+          var o,
+            s,
+            a,
+            u,
+            c = e[i],
+            l = null,
+            h = c > 239 ? 4 : c > 223 ? 3 : c > 191 ? 2 : 1;
+          if (i + h <= n)
+            switch (h) {
+              case 1:
+                c < 128 && (l = c);
+                break;
+              case 2:
+                (o = e[i + 1]), 128 === (192 & o) && ((u = ((31 & c) << 6) | (63 & o)), u > 127 && (l = u));
+                break;
+              case 3:
+                (o = e[i + 1]),
+                  (s = e[i + 2]),
+                  128 === (192 & o) &&
+                    128 === (192 & s) &&
+                    ((u = ((15 & c) << 12) | ((63 & o) << 6) | (63 & s)), u > 2047 && (u < 55296 || u > 57343) && (l = u));
+                break;
+              case 4:
+                (o = e[i + 1]),
+                  (s = e[i + 2]),
+                  (a = e[i + 3]),
+                  128 === (192 & o) &&
+                    128 === (192 & s) &&
+                    128 === (192 & a) &&
+                    ((u = ((15 & c) << 18) | ((63 & o) << 12) | ((63 & s) << 6) | (63 & a)), u > 65535 && u < 1114112 && (l = u));
+            }
+          null === l ? ((l = 65533), (h = 1)) : l > 65535 && ((l -= 65536), r.push(((l >>> 10) & 1023) | 55296), (l = 56320 | (1023 & l))),
+            r.push(l),
+            (i += h);
+        }
+        return D(r);
+      }
+      (t.kMaxLength = s),
+        (c.TYPED_ARRAY_SUPPORT = a()),
+        c.TYPED_ARRAY_SUPPORT ||
+          'undefined' === typeof console ||
+          'function' !== typeof console.error ||
+          console.error(
+            'This browser lacks typed array (Uint8Array) support which is required by `buffer` v5.x. Use `buffer` v4.x if you require old browser support.'
+          ),
+        Object.defineProperty(c.prototype, 'parent', {
+          enumerable: !0,
+          get: function () {
+            if (c.isBuffer(this)) return this.buffer;
+          }
+        }),
+        Object.defineProperty(c.prototype, 'offset', {
+          enumerable: !0,
+          get: function () {
+            if (c.isBuffer(this)) return this.byteOffset;
+          }
+        }),
+        (c.poolSize = 8192),
+        (c.from = function (e, t, n) {
+          return l(e, t, n);
+        }),
+        Object.setPrototypeOf(c.prototype, Uint8Array.prototype),
+        Object.setPrototypeOf(c, Uint8Array),
+        (c.alloc = function (e, t, n) {
+          return f(e, t, n);
+        }),
+        (c.allocUnsafe = function (e) {
+          return d(e);
+        }),
+        (c.allocUnsafeSlow = function (e) {
+          return d(e);
+        }),
+        (c.isBuffer = function (e) {
+          return null != e && !0 === e._isBuffer && e !== c.prototype;
+        }),
+        (c.compare = function (e, t) {
+          if (
+            (X(e, Uint8Array) && (e = c.from(e, e.offset, e.byteLength)),
+            X(t, Uint8Array) && (t = c.from(t, t.offset, t.byteLength)),
+            !c.isBuffer(e) || !c.isBuffer(t))
+          )
+            throw new TypeError('The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array');
+          if (e === t) return 0;
+          for (var n = e.length, r = t.length, i = 0, o = Math.min(n, r); i < o; ++i)
+            if (e[i] !== t[i]) {
+              (n = e[i]), (r = t[i]);
+              break;
+            }
+          return n < r ? -1 : r < n ? 1 : 0;
+        }),
+        (c.isEncoding = function (e) {
+          switch (String(e).toLowerCase()) {
+            case 'hex':
+            case 'utf8':
+            case 'utf-8':
+            case 'ascii':
+            case 'latin1':
+            case 'binary':
+            case 'base64':
+            case 'ucs2':
+            case 'ucs-2':
+            case 'utf16le':
+            case 'utf-16le':
+              return !0;
+            default:
+              return !1;
+          }
+        }),
+        (c.concat = function (e, t) {
+          if (!Array.isArray(e)) throw new TypeError('"list" argument must be an Array of Buffers');
+          if (0 === e.length) return c.alloc(0);
+          var n;
+          if (void 0 === t) for (t = 0, n = 0; n < e.length; ++n) t += e[n].length;
+          var r = c.allocUnsafe(t),
+            i = 0;
+          for (n = 0; n < e.length; ++n) {
+            var o = e[n];
+            if (X(o, Uint8Array)) i + o.length > r.length ? c.from(o).copy(r, i) : Uint8Array.prototype.set.call(r, o, i);
+            else {
+              if (!c.isBuffer(o)) throw new TypeError('"list" argument must be an Array of Buffers');
+              o.copy(r, i);
+            }
+            i += o.length;
+          }
+          return r;
+        }),
+        (c.byteLength = _),
+        (c.prototype._isBuffer = !0),
+        (c.prototype.swap16 = function () {
+          var e = this.length;
+          if (e % 2 !== 0) throw new RangeError('Buffer size must be a multiple of 16-bits');
+          for (var t = 0; t < e; t += 2) E(this, t, t + 1);
+          return this;
+        }),
+        (c.prototype.swap32 = function () {
+          var e = this.length;
+          if (e % 4 !== 0) throw new RangeError('Buffer size must be a multiple of 32-bits');
+          for (var t = 0; t < e; t += 4) E(this, t, t + 3), E(this, t + 1, t + 2);
+          return this;
+        }),
+        (c.prototype.swap64 = function () {
+          var e = this.length;
+          if (e % 8 !== 0) throw new RangeError('Buffer size must be a multiple of 64-bits');
+          for (var t = 0; t < e; t += 8) E(this, t, t + 7), E(this, t + 1, t + 6), E(this, t + 2, t + 5), E(this, t + 3, t + 4);
+          return this;
+        }),
+        (c.prototype.toString = function () {
+          var e = this.length;
+          return 0 === e ? '' : 0 === arguments.length ? R(this, 0, e) : I.apply(this, arguments);
+        }),
+        (c.prototype.toLocaleString = c.prototype.toString),
+        (c.prototype.equals = function (e) {
+          if (!c.isBuffer(e)) throw new TypeError('Argument must be a Buffer');
+          return this === e || 0 === c.compare(this, e);
+        }),
+        (c.prototype.inspect = function () {
+          var e = '',
+            n = t.INSPECT_MAX_BYTES;
+          return (
+            (e = this.toString('hex', 0, n)
+              .replace(/(.{2})/g, '$1 ')
+              .trim()),
+            this.length > n && (e += ' ... '),
+            '<Buffer ' + e + '>'
+          );
+        }),
+        o && (c.prototype[o] = c.prototype.inspect),
+        (c.prototype.compare = function (e, t, n, r, i) {
+          if ((X(e, Uint8Array) && (e = c.from(e, e.offset, e.byteLength)), !c.isBuffer(e)))
+            throw new TypeError('The "target" argument must be one of type Buffer or Uint8Array. Received type ' + typeof e);
+          if (
+            (void 0 === t && (t = 0),
+            void 0 === n && (n = e ? e.length : 0),
+            void 0 === r && (r = 0),
+            void 0 === i && (i = this.length),
+            t < 0 || n > e.length || r < 0 || i > this.length)
+          )
+            throw new RangeError('out of range index');
+          if (r >= i && t >= n) return 0;
+          if (r >= i) return -1;
+          if (t >= n) return 1;
+          if (((t >>>= 0), (n >>>= 0), (r >>>= 0), (i >>>= 0), this === e)) return 0;
+          for (var o = i - r, s = n - t, a = Math.min(o, s), u = this.slice(r, i), l = e.slice(t, n), h = 0; h < a; ++h)
+            if (u[h] !== l[h]) {
+              (o = u[h]), (s = l[h]);
+              break;
+            }
+          return o < s ? -1 : s < o ? 1 : 0;
+        }),
+        (c.prototype.includes = function (e, t, n) {
+          return -1 !== this.indexOf(e, t, n);
+        }),
+        (c.prototype.indexOf = function (e, t, n) {
+          return S(this, e, t, n, !0);
+        }),
+        (c.prototype.lastIndexOf = function (e, t, n) {
+          return S(this, e, t, n, !1);
+        }),
+        (c.prototype.write = function (e, t, n, r) {
+          if (void 0 === t) (r = 'utf8'), (n = this.length), (t = 0);
+          else if (void 0 === n && 'string' === typeof t) (r = t), (n = this.length), (t = 0);
+          else {
+            if (!isFinite(t)) throw new Error('Buffer.write(string, encoding, offset[, length]) is no longer supported');
+            (t >>>= 0), isFinite(n) ? ((n >>>= 0), void 0 === r && (r = 'utf8')) : ((r = n), (n = void 0));
+          }
+          var i = this.length - t;
+          if (((void 0 === n || n > i) && (n = i), (e.length > 0 && (n < 0 || t < 0)) || t > this.length))
+            throw new RangeError('Attempt to write outside buffer bounds');
+          r || (r = 'utf8');
+          for (var o = !1; ; )
+            switch (r) {
+              case 'hex':
+                return A(this, e, t, n);
+              case 'utf8':
+              case 'utf-8':
+                return x(this, e, t, n);
+              case 'ascii':
+              case 'latin1':
+              case 'binary':
+                return C(this, e, t, n);
+              case 'base64':
+                return k(this, e, t, n);
+              case 'ucs2':
+              case 'ucs-2':
+              case 'utf16le':
+              case 'utf-16le':
+                return O(this, e, t, n);
+              default:
+                if (o) throw new TypeError('Unknown encoding: ' + r);
+                (r = ('' + r).toLowerCase()), (o = !0);
+            }
+        }),
+        (c.prototype.toJSON = function () {
+          return { type: 'Buffer', data: Array.prototype.slice.call(this._arr || this, 0) };
+        });
+      var P = 4096;
+      function D(e) {
+        var t = e.length;
+        if (t <= P) return String.fromCharCode.apply(String, e);
+        var n = '',
+          r = 0;
+        while (r < t) n += String.fromCharCode.apply(String, e.slice(r, (r += P)));
+        return n;
+      }
+      function L(e, t, n) {
+        var r = '';
+        n = Math.min(e.length, n);
+        for (var i = t; i < n; ++i) r += String.fromCharCode(127 & e[i]);
+        return r;
+      }
+      function j(e, t, n) {
+        var r = '';
+        n = Math.min(e.length, n);
+        for (var i = t; i < n; ++i) r += String.fromCharCode(e[i]);
+        return r;
+      }
+      function M(e, t, n) {
+        var r = e.length;
+        (!t || t < 0) && (t = 0), (!n || n < 0 || n > r) && (n = r);
+        for (var i = '', o = t; o < n; ++o) i += Z[e[o]];
+        return i;
+      }
+      function F(e, t, n) {
+        for (var r = e.slice(t, n), i = '', o = 0; o < r.length - 1; o += 2) i += String.fromCharCode(r[o] + 256 * r[o + 1]);
+        return i;
+      }
+      function U(e, t, n) {
+        if (e % 1 !== 0 || e < 0) throw new RangeError('offset is not uint');
+        if (e + t > n) throw new RangeError('Trying to access beyond buffer length');
+      }
+      function V(e, t, n, r, i, o) {
+        if (!c.isBuffer(e)) throw new TypeError('"buffer" argument must be a Buffer instance');
+        if (t > i || t < o) throw new RangeError('"value" argument is out of bounds');
+        if (n + r > e.length) throw new RangeError('Index out of range');
+      }
+      function B(e, t, n, r, i, o) {
+        if (n + r > e.length) throw new RangeError('Index out of range');
+        if (n < 0) throw new RangeError('Index out of range');
+      }
+      function $(e, t, n, r, o) {
+        return (t = +t), (n >>>= 0), o || B(e, t, n, 4, 34028234663852886e22, -34028234663852886e22), i.write(e, t, n, r, 23, 4), n + 4;
+      }
+      function q(e, t, n, r, o) {
+        return (t = +t), (n >>>= 0), o || B(e, t, n, 8, 17976931348623157e292, -17976931348623157e292), i.write(e, t, n, r, 52, 8), n + 8;
+      }
+      (c.prototype.slice = function (e, t) {
+        var n = this.length;
+        (e = ~~e),
+          (t = void 0 === t ? n : ~~t),
+          e < 0 ? ((e += n), e < 0 && (e = 0)) : e > n && (e = n),
+          t < 0 ? ((t += n), t < 0 && (t = 0)) : t > n && (t = n),
+          t < e && (t = e);
+        var r = this.subarray(e, t);
+        return Object.setPrototypeOf(r, c.prototype), r;
+      }),
+        (c.prototype.readUintLE = c.prototype.readUIntLE =
+          function (e, t, n) {
+            (e >>>= 0), (t >>>= 0), n || U(e, t, this.length);
+            var r = this[e],
+              i = 1,
+              o = 0;
+            while (++o < t && (i *= 256)) r += this[e + o] * i;
+            return r;
+          }),
+        (c.prototype.readUintBE = c.prototype.readUIntBE =
+          function (e, t, n) {
+            (e >>>= 0), (t >>>= 0), n || U(e, t, this.length);
+            var r = this[e + --t],
+              i = 1;
+            while (t > 0 && (i *= 256)) r += this[e + --t] * i;
+            return r;
+          }),
+        (c.prototype.readUint8 = c.prototype.readUInt8 =
+          function (e, t) {
+            return (e >>>= 0), t || U(e, 1, this.length), this[e];
+          }),
+        (c.prototype.readUint16LE = c.prototype.readUInt16LE =
+          function (e, t) {
+            return (e >>>= 0), t || U(e, 2, this.length), this[e] | (this[e + 1] << 8);
+          }),
+        (c.prototype.readUint16BE = c.prototype.readUInt16BE =
+          function (e, t) {
+            return (e >>>= 0), t || U(e, 2, this.length), (this[e] << 8) | this[e + 1];
+          }),
+        (c.prototype.readUint32LE = c.prototype.readUInt32LE =
+          function (e, t) {
+            return (e >>>= 0), t || U(e, 4, this.length), (this[e] | (this[e + 1] << 8) | (this[e + 2] << 16)) + 16777216 * this[e + 3];
+          }),
+        (c.prototype.readUint32BE = c.prototype.readUInt32BE =
+          function (e, t) {
+            return (e >>>= 0), t || U(e, 4, this.length), 16777216 * this[e] + ((this[e + 1] << 16) | (this[e + 2] << 8) | this[e + 3]);
+          }),
+        (c.prototype.readIntLE = function (e, t, n) {
+          (e >>>= 0), (t >>>= 0), n || U(e, t, this.length);
+          var r = this[e],
+            i = 1,
+            o = 0;
+          while (++o < t && (i *= 256)) r += this[e + o] * i;
+          return (i *= 128), r >= i && (r -= Math.pow(2, 8 * t)), r;
+        }),
+        (c.prototype.readIntBE = function (e, t, n) {
+          (e >>>= 0), (t >>>= 0), n || U(e, t, this.length);
+          var r = t,
+            i = 1,
+            o = this[e + --r];
+          while (r > 0 && (i *= 256)) o += this[e + --r] * i;
+          return (i *= 128), o >= i && (o -= Math.pow(2, 8 * t)), o;
+        }),
+        (c.prototype.readInt8 = function (e, t) {
+          return (e >>>= 0), t || U(e, 1, this.length), 128 & this[e] ? -1 * (255 - this[e] + 1) : this[e];
+        }),
+        (c.prototype.readInt16LE = function (e, t) {
+          (e >>>= 0), t || U(e, 2, this.length);
+          var n = this[e] | (this[e + 1] << 8);
+          return 32768 & n ? 4294901760 | n : n;
+        }),
+        (c.prototype.readInt16BE = function (e, t) {
+          (e >>>= 0), t || U(e, 2, this.length);
+          var n = this[e + 1] | (this[e] << 8);
+          return 32768 & n ? 4294901760 | n : n;
+        }),
+        (c.prototype.readInt32LE = function (e, t) {
+          return (e >>>= 0), t || U(e, 4, this.length), this[e] | (this[e + 1] << 8) | (this[e + 2] << 16) | (this[e + 3] << 24);
+        }),
+        (c.prototype.readInt32BE = function (e, t) {
+          return (e >>>= 0), t || U(e, 4, this.length), (this[e] << 24) | (this[e + 1] << 16) | (this[e + 2] << 8) | this[e + 3];
+        }),
+        (c.prototype.readFloatLE = function (e, t) {
+          return (e >>>= 0), t || U(e, 4, this.length), i.read(this, e, !0, 23, 4);
+        }),
+        (c.prototype.readFloatBE = function (e, t) {
+          return (e >>>= 0), t || U(e, 4, this.length), i.read(this, e, !1, 23, 4);
+        }),
+        (c.prototype.readDoubleLE = function (e, t) {
+          return (e >>>= 0), t || U(e, 8, this.length), i.read(this, e, !0, 52, 8);
+        }),
+        (c.prototype.readDoubleBE = function (e, t) {
+          return (e >>>= 0), t || U(e, 8, this.length), i.read(this, e, !1, 52, 8);
+        }),
+        (c.prototype.writeUintLE = c.prototype.writeUIntLE =
+          function (e, t, n, r) {
+            if (((e = +e), (t >>>= 0), (n >>>= 0), !r)) {
+              var i = Math.pow(2, 8 * n) - 1;
+              V(this, e, t, n, i, 0);
+            }
+            var o = 1,
+              s = 0;
+            this[t] = 255 & e;
+            while (++s < n && (o *= 256)) this[t + s] = (e / o) & 255;
+            return t + n;
+          }),
+        (c.prototype.writeUintBE = c.prototype.writeUIntBE =
+          function (e, t, n, r) {
+            if (((e = +e), (t >>>= 0), (n >>>= 0), !r)) {
+              var i = Math.pow(2, 8 * n) - 1;
+              V(this, e, t, n, i, 0);
+            }
+            var o = n - 1,
+              s = 1;
+            this[t + o] = 255 & e;
+            while (--o >= 0 && (s *= 256)) this[t + o] = (e / s) & 255;
+            return t + n;
+          }),
+        (c.prototype.writeUint8 = c.prototype.writeUInt8 =
+          function (e, t, n) {
+            return (e = +e), (t >>>= 0), n || V(this, e, t, 1, 255, 0), (this[t] = 255 & e), t + 1;
+          }),
+        (c.prototype.writeUint16LE = c.prototype.writeUInt16LE =
+          function (e, t, n) {
+            return (e = +e), (t >>>= 0), n || V(this, e, t, 2, 65535, 0), (this[t] = 255 & e), (this[t + 1] = e >>> 8), t + 2;
+          }),
+        (c.prototype.writeUint16BE = c.prototype.writeUInt16BE =
+          function (e, t, n) {
+            return (e = +e), (t >>>= 0), n || V(this, e, t, 2, 65535, 0), (this[t] = e >>> 8), (this[t + 1] = 255 & e), t + 2;
+          }),
+        (c.prototype.writeUint32LE = c.prototype.writeUInt32LE =
+          function (e, t, n) {
+            return (
+              (e = +e),
+              (t >>>= 0),
+              n || V(this, e, t, 4, 4294967295, 0),
+              (this[t + 3] = e >>> 24),
+              (this[t + 2] = e >>> 16),
+              (this[t + 1] = e >>> 8),
+              (this[t] = 255 & e),
+              t + 4
+            );
+          }),
+        (c.prototype.writeUint32BE = c.prototype.writeUInt32BE =
+          function (e, t, n) {
+            return (
+              (e = +e),
+              (t >>>= 0),
+              n || V(this, e, t, 4, 4294967295, 0),
+              (this[t] = e >>> 24),
+              (this[t + 1] = e >>> 16),
+              (this[t + 2] = e >>> 8),
+              (this[t + 3] = 255 & e),
+              t + 4
+            );
+          }),
+        (c.prototype.writeIntLE = function (e, t, n, r) {
+          if (((e = +e), (t >>>= 0), !r)) {
+            var i = Math.pow(2, 8 * n - 1);
+            V(this, e, t, n, i - 1, -i);
+          }
+          var o = 0,
+            s = 1,
+            a = 0;
+          this[t] = 255 & e;
+          while (++o < n && (s *= 256)) e < 0 && 0 === a && 0 !== this[t + o - 1] && (a = 1), (this[t + o] = (((e / s) >> 0) - a) & 255);
+          return t + n;
+        }),
+        (c.prototype.writeIntBE = function (e, t, n, r) {
+          if (((e = +e), (t >>>= 0), !r)) {
+            var i = Math.pow(2, 8 * n - 1);
+            V(this, e, t, n, i - 1, -i);
+          }
+          var o = n - 1,
+            s = 1,
+            a = 0;
+          this[t + o] = 255 & e;
+          while (--o >= 0 && (s *= 256)) e < 0 && 0 === a && 0 !== this[t + o + 1] && (a = 1), (this[t + o] = (((e / s) >> 0) - a) & 255);
+          return t + n;
+        }),
+        (c.prototype.writeInt8 = function (e, t, n) {
+          return (e = +e), (t >>>= 0), n || V(this, e, t, 1, 127, -128), e < 0 && (e = 255 + e + 1), (this[t] = 255 & e), t + 1;
+        }),
+        (c.prototype.writeInt16LE = function (e, t, n) {
+          return (e = +e), (t >>>= 0), n || V(this, e, t, 2, 32767, -32768), (this[t] = 255 & e), (this[t + 1] = e >>> 8), t + 2;
+        }),
+        (c.prototype.writeInt16BE = function (e, t, n) {
+          return (e = +e), (t >>>= 0), n || V(this, e, t, 2, 32767, -32768), (this[t] = e >>> 8), (this[t + 1] = 255 & e), t + 2;
+        }),
+        (c.prototype.writeInt32LE = function (e, t, n) {
+          return (
+            (e = +e),
+            (t >>>= 0),
+            n || V(this, e, t, 4, 2147483647, -2147483648),
+            (this[t] = 255 & e),
+            (this[t + 1] = e >>> 8),
+            (this[t + 2] = e >>> 16),
+            (this[t + 3] = e >>> 24),
+            t + 4
+          );
+        }),
+        (c.prototype.writeInt32BE = function (e, t, n) {
+          return (
+            (e = +e),
+            (t >>>= 0),
+            n || V(this, e, t, 4, 2147483647, -2147483648),
+            e < 0 && (e = 4294967295 + e + 1),
+            (this[t] = e >>> 24),
+            (this[t + 1] = e >>> 16),
+            (this[t + 2] = e >>> 8),
+            (this[t + 3] = 255 & e),
+            t + 4
+          );
+        }),
+        (c.prototype.writeFloatLE = function (e, t, n) {
+          return $(this, e, t, !0, n);
+        }),
+        (c.prototype.writeFloatBE = function (e, t, n) {
+          return $(this, e, t, !1, n);
+        }),
+        (c.prototype.writeDoubleLE = function (e, t, n) {
+          return q(this, e, t, !0, n);
+        }),
+        (c.prototype.writeDoubleBE = function (e, t, n) {
+          return q(this, e, t, !1, n);
+        }),
+        (c.prototype.copy = function (e, t, n, r) {
+          if (!c.isBuffer(e)) throw new TypeError('argument should be a Buffer');
+          if ((n || (n = 0), r || 0 === r || (r = this.length), t >= e.length && (t = e.length), t || (t = 0), r > 0 && r < n && (r = n), r === n))
+            return 0;
+          if (0 === e.length || 0 === this.length) return 0;
+          if (t < 0) throw new RangeError('targetStart out of bounds');
+          if (n < 0 || n >= this.length) throw new RangeError('Index out of range');
+          if (r < 0) throw new RangeError('sourceEnd out of bounds');
+          r > this.length && (r = this.length), e.length - t < r - n && (r = e.length - t + n);
+          var i = r - n;
+          return (
+            this === e && 'function' === typeof Uint8Array.prototype.copyWithin
+              ? this.copyWithin(t, n, r)
+              : Uint8Array.prototype.set.call(e, this.subarray(n, r), t),
+            i
+          );
+        }),
+        (c.prototype.fill = function (e, t, n, r) {
+          if ('string' === typeof e) {
+            if (
+              ('string' === typeof t ? ((r = t), (t = 0), (n = this.length)) : 'string' === typeof n && ((r = n), (n = this.length)),
+              void 0 !== r && 'string' !== typeof r)
+            )
+              throw new TypeError('encoding must be a string');
+            if ('string' === typeof r && !c.isEncoding(r)) throw new TypeError('Unknown encoding: ' + r);
+            if (1 === e.length) {
+              var i = e.charCodeAt(0);
+              (('utf8' === r && i < 128) || 'latin1' === r) && (e = i);
+            }
+          } else 'number' === typeof e ? (e &= 255) : 'boolean' === typeof e && (e = Number(e));
+          if (t < 0 || this.length < t || this.length < n) throw new RangeError('Out of range index');
+          if (n <= t) return this;
+          var o;
+          if (((t >>>= 0), (n = void 0 === n ? this.length : n >>> 0), e || (e = 0), 'number' === typeof e)) for (o = t; o < n; ++o) this[o] = e;
+          else {
+            var s = c.isBuffer(e) ? e : c.from(e, r),
+              a = s.length;
+            if (0 === a) throw new TypeError('The value "' + e + '" is invalid for argument "value"');
+            for (o = 0; o < n - t; ++o) this[o + t] = s[o % a];
+          }
+          return this;
+        });
+      var z = /[^+/0-9A-Za-z-_]/g;
+      function G(e) {
+        if (((e = e.split('=')[0]), (e = e.trim().replace(z, '')), e.length < 2)) return '';
+        while (e.length % 4 !== 0) e += '=';
+        return e;
+      }
+      function W(e, t) {
+        var n;
+        t = t || 1 / 0;
+        for (var r = e.length, i = null, o = [], s = 0; s < r; ++s) {
+          if (((n = e.charCodeAt(s)), n > 55295 && n < 57344)) {
+            if (!i) {
+              if (n > 56319) {
+                (t -= 3) > -1 && o.push(239, 191, 189);
+                continue;
+              }
+              if (s + 1 === r) {
+                (t -= 3) > -1 && o.push(239, 191, 189);
+                continue;
+              }
+              i = n;
+              continue;
+            }
+            if (n < 56320) {
+              (t -= 3) > -1 && o.push(239, 191, 189), (i = n);
+              continue;
+            }
+            n = 65536 + (((i - 55296) << 10) | (n - 56320));
+          } else i && (t -= 3) > -1 && o.push(239, 191, 189);
+          if (((i = null), n < 128)) {
+            if ((t -= 1) < 0) break;
+            o.push(n);
+          } else if (n < 2048) {
+            if ((t -= 2) < 0) break;
+            o.push((n >> 6) | 192, (63 & n) | 128);
+          } else if (n < 65536) {
+            if ((t -= 3) < 0) break;
+            o.push((n >> 12) | 224, ((n >> 6) & 63) | 128, (63 & n) | 128);
+          } else {
+            if (!(n < 1114112)) throw new Error('Invalid code point');
+            if ((t -= 4) < 0) break;
+            o.push((n >> 18) | 240, ((n >> 12) & 63) | 128, ((n >> 6) & 63) | 128, (63 & n) | 128);
+          }
+        }
+        return o;
+      }
+      function H(e) {
+        for (var t = [], n = 0; n < e.length; ++n) t.push(255 & e.charCodeAt(n));
+        return t;
+      }
+      function K(e, t) {
+        for (var n, r, i, o = [], s = 0; s < e.length; ++s) {
+          if ((t -= 2) < 0) break;
+          (n = e.charCodeAt(s)), (r = n >> 8), (i = n % 256), o.push(i), o.push(r);
+        }
+        return o;
+      }
+      function Q(e) {
+        return r.toByteArray(G(e));
+      }
+      function Y(e, t, n, r) {
+        for (var i = 0; i < r; ++i) {
+          if (i + n >= t.length || i >= e.length) break;

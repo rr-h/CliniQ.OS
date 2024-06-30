@@ -1,0 +1,2001 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function rn(e, t, n) {
+        var r;
+        S((null === (r = n.url) || void 0 === r ? void 0 : r.length) > 0, e, 'invalid-continue-uri'),
+          S('undefined' === typeof n.dynamicLinkDomain || n.dynamicLinkDomain.length > 0, e, 'invalid-dynamic-link-domain'),
+          (t.continueUrl = n.url),
+          (t.dynamicLinkDomain = n.dynamicLinkDomain),
+          (t.canHandleCodeInApp = n.handleCodeInApp),
+          n.iOS && (S(n.iOS.bundleId.length > 0, e, 'missing-ios-bundle-id'), (t.iOSBundleId = n.iOS.bundleId)),
+          n.android &&
+            (S(n.android.packageName.length > 0, e, 'missing-android-pkg-name'),
+            (t.androidInstallApp = n.android.installApp),
+            (t.androidMinimumVersionCode = n.android.minimumVersion),
+            (t.androidPackageName = n.android.packageName));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function on(e, t, n) {
+        var r;
+        const i = We(e),
+          o = { requestType: 'PASSWORD_RESET', email: t, clientType: 'CLIENT_TYPE_WEB' };
+        if (null === (r = i._getRecaptchaConfig()) || void 0 === r ? void 0 : r.emailPasswordEnabled) {
+          const e = await qe(i, o, 'getOobCode', !0);
+          n && rn(i, e, n), await at(i, e);
+        } else
+          n && rn(i, o, n),
+            await at(i, o).catch(async e => {
+              if ('auth/missing-recaptcha-token' !== e.code) return Promise.reject(e);
+              {
+                console.log(
+                  'Password resets are protected by reCAPTCHA for this project. Automatically triggering the reCAPTCHA flow and restarting the password reset flow.'
+                );
+                const e = await qe(i, o, 'getOobCode', !0);
+                n && rn(i, e, n), await at(i, e);
+              }
+            });
+      }
+      async function sn(e, t, n) {
+        await tt((0, i.m9)(e), { oobCode: t, newPassword: n });
+      }
+      async function an(e, t) {
+        await rt((0, i.m9)(e), { oobCode: t });
+      }
+      async function un(e, t) {
+        const n = (0, i.m9)(e),
+          r = await tt(n, { oobCode: t }),
+          o = r.requestType;
+        switch ((S(o, n, 'internal-error'), o)) {
+          case 'EMAIL_SIGNIN':
+            break;
+          case 'VERIFY_AND_CHANGE_EMAIL':
+            S(r.newEmail, n, 'internal-error');
+            break;
+          case 'REVERT_SECOND_FACTOR_ADDITION':
+            S(r.mfaInfo, n, 'internal-error');
+          default:
+            S(r.email, n, 'internal-error');
+        }
+        let s = null;
+        return (
+          r.mfaInfo && (s = en._fromServerResponse(We(n), r.mfaInfo)),
+          {
+            data: {
+              email: ('VERIFY_AND_CHANGE_EMAIL' === r.requestType ? r.newEmail : r.email) || null,
+              previousEmail: ('VERIFY_AND_CHANGE_EMAIL' === r.requestType ? r.email : r.newEmail) || null,
+              multiFactorInfo: s
+            },
+            operation: o
+          }
+        );
+      }
+      async function cn(e, t) {
+        const { data: n } = await un((0, i.m9)(e), t);
+        return n.email;
+      }
+      async function ln(e, t, n) {
+        var r;
+        const i = We(e),
+          o = { returnSecureToken: !0, email: t, password: n, clientType: 'CLIENT_TYPE_WEB' };
+        let s;
+        if (null === (r = i._getRecaptchaConfig()) || void 0 === r ? void 0 : r.emailPasswordEnabled) {
+          const e = await qe(i, o, 'signUpPassword');
+          s = Mt(i, e);
+        } else
+          s = Mt(i, o).catch(async e => {
+            if ('auth/missing-recaptcha-token' === e.code) {
+              console.log(
+                'Sign-up is protected by reCAPTCHA for this project. Automatically triggering the reCAPTCHA flow and restarting the sign-up flow.'
+              );
+              const e = await qe(i, o, 'signUpPassword');
+              return Mt(i, e);
+            }
+            return Promise.reject(e);
+          });
+        const a = await s.catch(e => Promise.reject(e)),
+          u = await Ft._fromIdTokenResponse(i, 'signIn', a);
+        return await i._updateCurrentUser(u.user), u;
+      }
+      function hn(e, t, n) {
+        return Qt((0, i.m9)(e), Tt.credential(t, n));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function fn(e, t, n) {
+        var r;
+        const i = We(e),
+          o = { requestType: 'EMAIL_SIGNIN', email: t, clientType: 'CLIENT_TYPE_WEB' };
+        function s(e, t) {
+          S(t.handleCodeInApp, i, 'argument-error'), t && rn(i, e, t);
+        }
+        if (null === (r = i._getRecaptchaConfig()) || void 0 === r ? void 0 : r.emailPasswordEnabled) {
+          const e = await qe(i, o, 'getOobCode', !0);
+          s(e, n), await ut(i, e);
+        } else
+          s(o, n),
+            await ut(i, o).catch(async e => {
+              if ('auth/missing-recaptcha-token' !== e.code) return Promise.reject(e);
+              {
+                console.log(
+                  'Email link sign-in is protected by reCAPTCHA for this project. Automatically triggering the reCAPTCHA flow and restarting the sign-in flow.'
+                );
+                const e = await qe(i, o, 'getOobCode', !0);
+                s(e, n), await ut(i, e);
+              }
+            });
+      }
+      function dn(e, t) {
+        const n = St.parseLink(t);
+        return 'EMAIL_SIGNIN' === (null === n || void 0 === n ? void 0 : n.operation);
+      }
+      async function pn(e, t, n) {
+        const r = (0, i.m9)(e),
+          o = Tt.credentialWithLink(t, n || x());
+        return S(o._tenantId === (r.tenantId || null), r, 'tenant-id-mismatch'), Qt(r, o);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function gn(e, t) {
+        return F(e, 'POST', '/v1/accounts:createAuthUri', M(e, t));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function mn(e, t) {
+        const n = C() ? x() : 'http://localhost',
+          r = { identifier: t, continueUri: n },
+          { signinMethods: o } = await gn((0, i.m9)(e), r);
+        return o || [];
+      }
+      async function vn(e, t) {
+        const n = (0, i.m9)(e),
+          r = await e.getIdToken(),
+          o = { requestType: 'VERIFY_EMAIL', idToken: r };
+        t && rn(n.auth, o, t);
+        const { email: s } = await st(n.auth, o);
+        s !== e.email && (await e.reload());
+      }
+      async function yn(e, t, n) {
+        const r = (0, i.m9)(e),
+          o = await e.getIdToken(),
+          s = { requestType: 'VERIFY_AND_CHANGE_EMAIL', idToken: o, newEmail: t };
+        n && rn(r.auth, s, n);
+        const { email: a } = await ct(r.auth, s);
+        a !== e.email && (await e.reload());
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function wn(e, t) {
+        return F(e, 'POST', '/v1/accounts:update', t);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function bn(e, { displayName: t, photoURL: n }) {
+        if (void 0 === t && void 0 === n) return;
+        const r = (0, i.m9)(e),
+          o = await r.getIdToken(),
+          s = { idToken: o, displayName: t, photoUrl: n, returnSecureToken: !0 },
+          a = await J(r, wn(r.auth, s));
+        (r.displayName = a.displayName || null), (r.photoURL = a.photoUrl || null);
+        const u = r.providerData.find(({ providerId: e }) => 'password' === e);
+        u && ((u.displayName = r.displayName), (u.photoURL = r.photoURL)), await r._updateTokensIfNecessary(a);
+      }
+      function _n(e, t) {
+        return En((0, i.m9)(e), t, null);
+      }
+      function In(e, t) {
+        return En((0, i.m9)(e), null, t);
+      }
+      async function En(e, t, n) {
+        const { auth: r } = e,
+          i = await e.getIdToken(),
+          o = { idToken: i, returnSecureToken: !0 };
+        t && (o.email = t), n && (o.password = n);
+        const s = await J(e, nt(r, o));
+        await e._updateTokensIfNecessary(s, !0);
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Sn(e) {
+        var t, n;
+        if (!e) return null;
+        const { providerId: r } = e,
+          i = e.rawUserInfo ? JSON.parse(e.rawUserInfo) : {},
+          o = e.isNewUser || 'identitytoolkit#SignupNewUserResponse' === e.kind;
+        if (!r && (null === e || void 0 === e ? void 0 : e.idToken)) {
+          const r = null === (n = null === (t = Y(e.idToken)) || void 0 === t ? void 0 : t.firebase) || void 0 === n ? void 0 : n['sign_in_provider'];
+          if (r) {
+            const e = 'anonymous' !== r && 'custom' !== r ? r : null;
+            return new Tn(o, e);
+          }
+        }
+        if (!r) return null;
+        switch (r) {
+          case 'facebook.com':
+            return new xn(o, i);
+          case 'github.com':
+            return new Cn(o, i);
+          case 'google.com':
+            return new kn(o, i);
+          case 'twitter.com':
+            return new On(o, i, e.screenName || null);
+          case 'custom':
+          case 'anonymous':
+            return new Tn(o, null);
+          default:
+            return new Tn(o, r, i);
+        }
+      }
+      class Tn {
+        constructor(e, t, n = {}) {
+          (this.isNewUser = e), (this.providerId = t), (this.profile = n);
+        }
+      }
+      class An extends Tn {
+        constructor(e, t, n, r) {
+          super(e, t, n), (this.username = r);
+        }
+      }
+      class xn extends Tn {
+        constructor(e, t) {
+          super(e, 'facebook.com', t);
+        }
+      }
+      class Cn extends An {
+        constructor(e, t) {
+          super(
+            e,
+            'github.com',
+            t,
+            'string' === typeof (null === t || void 0 === t ? void 0 : t.login) ? (null === t || void 0 === t ? void 0 : t.login) : null
+          );
+        }
+      }
+      class kn extends Tn {
+        constructor(e, t) {
+          super(e, 'google.com', t);
+        }
+      }
+      class On extends An {
+        constructor(e, t, n) {
+          super(e, 'twitter.com', t, n);
+        }
+      }
+      function Nn(e) {
+        const { user: t, _tokenResponse: n } = e;
+        return t.isAnonymous && !n ? { providerId: null, isNewUser: !1, profile: null } : Sn(n);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Rn {
+        constructor(e, t, n) {
+          (this.type = e), (this.credential = t), (this.auth = n);
+        }
+        static _fromIdtoken(e, t) {
+          return new Rn('enroll', e, t);
+        }
+        static _fromMfaPendingCredential(e) {
+          return new Rn('signin', e);
+        }
+        toJSON() {
+          const e = 'enroll' === this.type ? 'idToken' : 'pendingCredential';
+          return { multiFactorSession: { [e]: this.credential } };
+        }
+        static fromJSON(e) {
+          var t, n;
+          if (null === e || void 0 === e ? void 0 : e.multiFactorSession) {
+            if (null === (t = e.multiFactorSession) || void 0 === t ? void 0 : t.pendingCredential)
+              return Rn._fromMfaPendingCredential(e.multiFactorSession.pendingCredential);
+            if (null === (n = e.multiFactorSession) || void 0 === n ? void 0 : n.idToken) return Rn._fromIdtoken(e.multiFactorSession.idToken);
+          }
+          return null;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Pn {
+        constructor(e, t, n) {
+          (this.session = e), (this.hints = t), (this.signInResolver = n);
+        }
+        static _fromError(e, t) {
+          const n = We(e),
+            r = t.customData._serverResponse,
+            i = (r.mfaInfo || []).map(e => en._fromServerResponse(n, e));
+          S(r.mfaPendingCredential, n, 'internal-error');
+          const o = Rn._fromMfaPendingCredential(r.mfaPendingCredential);
+          return new Pn(o, i, async e => {
+            const i = await e._process(n, o);
+            delete r.mfaInfo, delete r.mfaPendingCredential;
+            const s = Object.assign(Object.assign({}, r), { idToken: i.idToken, refreshToken: i.refreshToken });
+            switch (t.operationType) {
+              case 'signIn':
+                const e = await Ft._fromIdTokenResponse(n, t.operationType, s);
+                return await n._updateCurrentUser(e.user), e;
+              case 'reauthenticate':
+                return S(t.user, n, 'internal-error'), Ft._forOperation(t.user, t.operationType, s);
+              default:
+                w(n, 'internal-error');
+            }
+          });
+        }
+        async resolveSignIn(e) {
+          const t = e;
+          return this.signInResolver(t);
+        }
+      }
+      function Dn(e, t) {
+        var n;
+        const r = (0, i.m9)(e),
+          o = t;
+        return (
+          S(t.customData.operationType, r, 'argument-error'),
+          S(null === (n = o.customData._serverResponse) || void 0 === n ? void 0 : n.mfaPendingCredential, r, 'argument-error'),
+          Pn._fromError(r, o)
+        );
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Ln(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:start', M(e, t));
+      }
+      function jn(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:finalize', M(e, t));
+      }
+      function Mn(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:start', M(e, t));
+      }
+      function Fn(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:finalize', M(e, t));
+      }
+      function Un(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:withdraw', M(e, t));
+      }
+      class Vn {
+        constructor(e) {
+          (this.user = e),
+            (this.enrolledFactors = []),
+            e._onReload(t => {
+              t.mfaInfo && (this.enrolledFactors = t.mfaInfo.map(t => en._fromServerResponse(e.auth, t)));
+            });
+        }
+        static _fromUser(e) {
+          return new Vn(e);
+        }
+        async getSession() {
+          return Rn._fromIdtoken(await this.user.getIdToken(), this.user.auth);
+        }
+        async enroll(e, t) {
+          const n = e,
+            r = await this.getSession(),
+            i = await J(this.user, n._process(this.user.auth, r, t));
+          return await this.user._updateTokensIfNecessary(i), this.user.reload();
+        }
+        async unenroll(e) {
+          const t = 'string' === typeof e ? e : e.uid,
+            n = await this.user.getIdToken();
+          try {
+            const e = await J(this.user, Un(this.user.auth, { idToken: n, mfaEnrollmentId: t }));
+            (this.enrolledFactors = this.enrolledFactors.filter(({ uid: e }) => e !== t)),
+              await this.user._updateTokensIfNecessary(e),
+              await this.user.reload();
+          } catch (r) {
+            throw r;
+          }
+        }
+      }
+      const Bn = new WeakMap();
+      function $n(e) {
+        const t = (0, i.m9)(e);
+        return Bn.has(t) || Bn.set(t, Vn._fromUser(t)), Bn.get(t);
+      }
+      const qn = '__sak';
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class zn {
+        constructor(e, t) {
+          (this.storageRetriever = e), (this.type = t);
+        }
+        _isAvailable() {
+          try {
+            return this.storage ? (this.storage.setItem(qn, '1'), this.storage.removeItem(qn), Promise.resolve(!0)) : Promise.resolve(!1);
+          } catch (e) {
+            return Promise.resolve(!1);
+          }
+        }
+        _set(e, t) {
+          return this.storage.setItem(e, JSON.stringify(t)), Promise.resolve();
+        }
+        _get(e) {
+          const t = this.storage.getItem(e);
+          return Promise.resolve(t ? JSON.parse(t) : null);
+        }
+        _remove(e) {
+          return this.storage.removeItem(e), Promise.resolve();
+        }
+        get storage() {
+          return this.storageRetriever();
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Gn() {
+        const e = (0, i.z$)();
+        return ye(e) || Se(e);
+      }
+      const Wn = 1e3,
+        Hn = 10;
+      class Kn extends zn {
+        constructor() {
+          super(() => window.localStorage, 'LOCAL'),
+            (this.boundEventHandler = (e, t) => this.onStorageEvent(e, t)),
+            (this.listeners = {}),
+            (this.localCache = {}),
+            (this.pollTimer = null),
+            (this.safariLocalStorageNotSynced = Gn() && ke()),
+            (this.fallbackToPolling = Ce()),
+            (this._shouldAllowMigration = !0);
+        }
+        forAllChangedKeys(e) {
+          for (const t of Object.keys(this.listeners)) {
+            const n = this.storage.getItem(t),
+              r = this.localCache[t];
+            n !== r && e(t, r, n);
+          }
+        }
+        onStorageEvent(e, t = !1) {
+          if (!e.key)
+            return void this.forAllChangedKeys((e, t, n) => {
+              this.notifyListeners(e, n);
+            });
+          const n = e.key;
+          if ((t ? this.detachListener() : this.stopPolling(), this.safariLocalStorageNotSynced)) {
+            const r = this.storage.getItem(n);
+            if (e.newValue !== r) null !== e.newValue ? this.storage.setItem(n, e.newValue) : this.storage.removeItem(n);
+            else if (this.localCache[n] === e.newValue && !t) return;
+          }
+          const r = () => {
+              const e = this.storage.getItem(n);
+              (t || this.localCache[n] !== e) && this.notifyListeners(n, e);
+            },
+            i = this.storage.getItem(n);
+          xe() && i !== e.newValue && e.newValue !== e.oldValue ? setTimeout(r, Hn) : r();
+        }
+        notifyListeners(e, t) {
+          this.localCache[e] = t;
+          const n = this.listeners[e];
+          if (n) for (const r of Array.from(n)) r(t ? JSON.parse(t) : t);
+        }
+        startPolling() {
+          this.stopPolling(),
+            (this.pollTimer = setInterval(() => {
+              this.forAllChangedKeys((e, t, n) => {
+                this.onStorageEvent(new StorageEvent('storage', { key: e, oldValue: t, newValue: n }), !0);
+              });
+            }, Wn));
+        }
+        stopPolling() {
+          this.pollTimer && (clearInterval(this.pollTimer), (this.pollTimer = null));
+        }
+        attachListener() {
+          window.addEventListener('storage', this.boundEventHandler);
+        }
+        detachListener() {
+          window.removeEventListener('storage', this.boundEventHandler);
+        }
+        _addListener(e, t) {
+          0 === Object.keys(this.listeners).length && (this.fallbackToPolling ? this.startPolling() : this.attachListener()),
+            this.listeners[e] || ((this.listeners[e] = new Set()), (this.localCache[e] = this.storage.getItem(e))),
+            this.listeners[e].add(t);
+        }
+        _removeListener(e, t) {
+          this.listeners[e] && (this.listeners[e].delete(t), 0 === this.listeners[e].size && delete this.listeners[e]),
+            0 === Object.keys(this.listeners).length && (this.detachListener(), this.stopPolling());
+        }
+        async _set(e, t) {
+          await super._set(e, t), (this.localCache[e] = JSON.stringify(t));
+        }
+        async _get(e) {
+          const t = await super._get(e);
+          return (this.localCache[e] = JSON.stringify(t)), t;
+        }
+        async _remove(e) {
+          await super._remove(e), delete this.localCache[e];
+        }
+      }
+      Kn.type = 'LOCAL';
+      const Qn = Kn;
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Yn extends zn {
+        constructor() {
+          super(() => window.sessionStorage, 'SESSION');
+        }
+        _addListener(e, t) {}
+        _removeListener(e, t) {}
+      }
+      Yn.type = 'SESSION';
+      const Xn = Yn;
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Jn(e) {
+        return Promise.all(
+          e.map(async e => {
+            try {
+              const t = await e;
+              return { fulfilled: !0, value: t };
+            } catch (t) {
+              return { fulfilled: !1, reason: t };
+            }
+          })
+        );
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Zn {
+        constructor(e) {
+          (this.eventTarget = e), (this.handlersMap = {}), (this.boundEventHandler = this.handleEvent.bind(this));
+        }
+        static _getInstance(e) {
+          const t = this.receivers.find(t => t.isListeningto(e));
+          if (t) return t;
+          const n = new Zn(e);
+          return this.receivers.push(n), n;
+        }
+        isListeningto(e) {
+          return this.eventTarget === e;
+        }
+        async handleEvent(e) {
+          const t = e,
+            { eventId: n, eventType: r, data: i } = t.data,
+            o = this.handlersMap[r];
+          if (!(null === o || void 0 === o ? void 0 : o.size)) return;
+          t.ports[0].postMessage({ status: 'ack', eventId: n, eventType: r });
+          const s = Array.from(o).map(async e => e(t.origin, i)),
+            a = await Jn(s);
+          t.ports[0].postMessage({ status: 'done', eventId: n, eventType: r, response: a });
+        }
+        _subscribe(e, t) {
+          0 === Object.keys(this.handlersMap).length && this.eventTarget.addEventListener('message', this.boundEventHandler),
+            this.handlersMap[e] || (this.handlersMap[e] = new Set()),
+            this.handlersMap[e].add(t);
+        }
+        _unsubscribe(e, t) {
+          this.handlersMap[e] && t && this.handlersMap[e].delete(t),
+            (t && 0 !== this.handlersMap[e].size) || delete this.handlersMap[e],
+            0 === Object.keys(this.handlersMap).length && this.eventTarget.removeEventListener('message', this.boundEventHandler);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      function er(e = '', t = 10) {
+        let n = '';
+        for (let r = 0; r < t; r++) n += Math.floor(10 * Math.random());
+        return e + n;
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ Zn.receivers = [];
+      class tr {
+        constructor(e) {
+          (this.target = e), (this.handlers = new Set());
+        }
+        removeMessageHandler(e) {
+          e.messageChannel && (e.messageChannel.port1.removeEventListener('message', e.onMessage), e.messageChannel.port1.close()),
+            this.handlers.delete(e);
+        }
+        async _send(e, t, n = 50) {
+          const r = 'undefined' !== typeof MessageChannel ? new MessageChannel() : null;
+          if (!r) throw new Error('connection_unavailable');
+          let i, o;
+          return new Promise((s, a) => {
+            const u = er('', 20);
+            r.port1.start();
+            const c = setTimeout(() => {
+              a(new Error('unsupported_event'));
+            }, n);
+            (o = {
+              messageChannel: r,
+              onMessage(e) {
+                const t = e;
+                if (t.data.eventId === u)
+                  switch (t.data.status) {
+                    case 'ack':
+                      clearTimeout(c),
+                        (i = setTimeout(() => {
+                          a(new Error('timeout'));
+                        }, 3e3));
+                      break;
+                    case 'done':
+                      clearTimeout(i), s(t.data.response);
+                      break;
+                    default:
+                      clearTimeout(c), clearTimeout(i), a(new Error('invalid_response'));
+                      break;
+                  }
+              }
+            }),
+              this.handlers.add(o),
+              r.port1.addEventListener('message', o.onMessage),
+              this.target.postMessage({ eventType: e, eventId: u, data: t }, [r.port2]);
+          }).finally(() => {
+            o && this.removeMessageHandler(o);
+          });
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function nr() {
+        return window;
+      }
+      function rr(e) {
+        nr().location.href = e;
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC.
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function ir() {
+        return 'undefined' !== typeof nr()['WorkerGlobalScope'] && 'function' === typeof nr()['importScripts'];
+      }
+      async function or() {
+        if (!(null === navigator || void 0 === navigator ? void 0 : navigator.serviceWorker)) return null;
+        try {
+          const e = await navigator.serviceWorker.ready;
+          return e.active;
+        } catch (e) {
+          return null;
+        }
+      }
+      function sr() {
+        var e;
+        return (
+          (null === (e = null === navigator || void 0 === navigator ? void 0 : navigator.serviceWorker) || void 0 === e ? void 0 : e.controller) ||
+          null
+        );
+      }
+      function ar() {
+        return ir() ? self : null;
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const ur = 'firebaseLocalStorageDb',
+        cr = 1,
+        lr = 'firebaseLocalStorage',
+        hr = 'fbase_key';
+      class fr {
+        constructor(e) {
+          this.request = e;
+        }
+        toPromise() {
+          return new Promise((e, t) => {
+            this.request.addEventListener('success', () => {
+              e(this.request.result);
+            }),
+              this.request.addEventListener('error', () => {
+                t(this.request.error);
+              });
+          });
+        }
+      }
+      function dr(e, t) {
+        return e.transaction([lr], t ? 'readwrite' : 'readonly').objectStore(lr);
+      }
+      function pr() {
+        const e = indexedDB.deleteDatabase(ur);
+        return new fr(e).toPromise();
+      }
+      function gr() {
+        const e = indexedDB.open(ur, cr);
+        return new Promise((t, n) => {
+          e.addEventListener('error', () => {
+            n(e.error);
+          }),
+            e.addEventListener('upgradeneeded', () => {
+              const t = e.result;
+              try {
+                t.createObjectStore(lr, { keyPath: hr });
+              } catch (r) {
+                n(r);
+              }
+            }),
+            e.addEventListener('success', async () => {
+              const n = e.result;
+              n.objectStoreNames.contains(lr) ? t(n) : (n.close(), await pr(), t(await gr()));
+            });
+        });
+      }
+      async function mr(e, t, n) {
+        const r = dr(e, !0).put({ [hr]: t, value: n });
+        return new fr(r).toPromise();
+      }
+      async function vr(e, t) {
+        const n = dr(e, !1).get(t),
+          r = await new fr(n).toPromise();
+        return void 0 === r ? null : r.value;
+      }
+      function yr(e, t) {
+        const n = dr(e, !0).delete(t);
+        return new fr(n).toPromise();
+      }
+      const wr = 800,
+        br = 3;
+      class _r {
+        constructor() {
+          (this.type = 'LOCAL'),
+            (this._shouldAllowMigration = !0),
+            (this.listeners = {}),
+            (this.localCache = {}),
+            (this.pollTimer = null),
+            (this.pendingWrites = 0),
+            (this.receiver = null),
+            (this.sender = null),
+            (this.serviceWorkerReceiverAvailable = !1),
+            (this.activeServiceWorker = null),
+            (this._workerInitializationPromise = this.initializeServiceWorkerMessaging().then(
+              () => {},
+              () => {}
+            ));
+        }
+        async _openDb() {
+          return this.db || (this.db = await gr()), this.db;
+        }
+        async _withRetries(e) {
+          let t = 0;
+          while (1)
+            try {
+              const t = await this._openDb();
+              return await e(t);
+            } catch (n) {
+              if (t++ > br) throw n;
+              this.db && (this.db.close(), (this.db = void 0));
+            }
+        }
+        async initializeServiceWorkerMessaging() {
+          return ir() ? this.initializeReceiver() : this.initializeSender();
+        }
+        async initializeReceiver() {
+          (this.receiver = Zn._getInstance(ar())),
+            this.receiver._subscribe('keyChanged', async (e, t) => {
+              const n = await this._poll();
+              return { keyProcessed: n.includes(t.key) };
+            }),
+            this.receiver._subscribe('ping', async (e, t) => ['keyChanged']);
+        }
+        async initializeSender() {
+          var e, t;
+          if (((this.activeServiceWorker = await or()), !this.activeServiceWorker)) return;
+          this.sender = new tr(this.activeServiceWorker);
+          const n = await this.sender._send('ping', {}, 800);
+          n &&
+            (null === (e = n[0]) || void 0 === e ? void 0 : e.fulfilled) &&
+            (null === (t = n[0]) || void 0 === t ? void 0 : t.value.includes('keyChanged')) &&
+            (this.serviceWorkerReceiverAvailable = !0);
+        }
+        async notifyServiceWorker(e) {
+          if (this.sender && this.activeServiceWorker && sr() === this.activeServiceWorker)
+            try {
+              await this.sender._send('keyChanged', { key: e }, this.serviceWorkerReceiverAvailable ? 800 : 50);
+            } catch (t) {}
+        }
+        async _isAvailable() {
+          try {
+            if (!indexedDB) return !1;
+            const e = await gr();
+            return await mr(e, qn, '1'), await yr(e, qn), !0;
+          } catch (e) {}
+          return !1;
+        }
+        async _withPendingWrite(e) {
+          this.pendingWrites++;
+          try {
+            await e();
+          } finally {
+            this.pendingWrites--;
+          }
+        }
+        async _set(e, t) {
+          return this._withPendingWrite(
+            async () => (await this._withRetries(n => mr(n, e, t)), (this.localCache[e] = t), this.notifyServiceWorker(e))
+          );
+        }
+        async _get(e) {
+          const t = await this._withRetries(t => vr(t, e));
+          return (this.localCache[e] = t), t;
+        }
+        async _remove(e) {
+          return this._withPendingWrite(async () => (await this._withRetries(t => yr(t, e)), delete this.localCache[e], this.notifyServiceWorker(e)));
+        }
+        async _poll() {
+          const e = await this._withRetries(e => {
+            const t = dr(e, !1).getAll();
+            return new fr(t).toPromise();
+          });
+          if (!e) return [];
+          if (0 !== this.pendingWrites) return [];
+          const t = [],
+            n = new Set();
+          for (const { fbase_key: r, value: i } of e)
+            n.add(r), JSON.stringify(this.localCache[r]) !== JSON.stringify(i) && (this.notifyListeners(r, i), t.push(r));
+          for (const r of Object.keys(this.localCache)) this.localCache[r] && !n.has(r) && (this.notifyListeners(r, null), t.push(r));
+          return t;
+        }
+        notifyListeners(e, t) {
+          this.localCache[e] = t;
+          const n = this.listeners[e];
+          if (n) for (const r of Array.from(n)) r(t);
+        }
+        startPolling() {
+          this.stopPolling(), (this.pollTimer = setInterval(async () => this._poll(), wr));
+        }
+        stopPolling() {
+          this.pollTimer && (clearInterval(this.pollTimer), (this.pollTimer = null));
+        }
+        _addListener(e, t) {
+          0 === Object.keys(this.listeners).length && this.startPolling(),
+            this.listeners[e] || ((this.listeners[e] = new Set()), this._get(e)),
+            this.listeners[e].add(t);
+        }
+        _removeListener(e, t) {
+          this.listeners[e] && (this.listeners[e].delete(t), 0 === this.listeners[e].size && delete this.listeners[e]),
+            0 === Object.keys(this.listeners).length && this.stopPolling();
+        }
+      }
+      _r.type = 'LOCAL';
+      const Ir = _r;
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Er(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaSignIn:start', M(e, t));
+      }
+      function Sr(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaSignIn:finalize', M(e, t));
+      }
+      function Tr(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaSignIn:finalize', M(e, t));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Ar = 500,
+        xr = 6e4,
+        Cr = 1e12;
+      class kr {
+        constructor(e) {
+          (this.auth = e), (this.counter = Cr), (this._widgets = new Map());
+        }
+        render(e, t) {
+          const n = this.counter;
+          return this._widgets.set(n, new Or(e, this.auth.name, t || {})), this.counter++, n;
+        }
+        reset(e) {
+          var t;
+          const n = e || Cr;
+          null === (t = this._widgets.get(n)) || void 0 === t || t.delete(), this._widgets.delete(n);
+        }
+        getResponse(e) {
+          var t;
+          const n = e || Cr;
+          return (null === (t = this._widgets.get(n)) || void 0 === t ? void 0 : t.getResponse()) || '';
+        }
+        async execute(e) {
+          var t;
+          const n = e || Cr;
+          return null === (t = this._widgets.get(n)) || void 0 === t || t.execute(), '';
+        }
+      }
+      class Or {
+        constructor(e, t, n) {
+          (this.params = n),
+            (this.timerId = null),
+            (this.deleted = !1),
+            (this.responseToken = null),
+            (this.clickHandler = () => {
+              this.execute();
+            });
+          const r = 'string' === typeof e ? document.getElementById(e) : e;
+          S(r, 'argument-error', { appName: t }),
+            (this.container = r),
+            (this.isVisible = 'invisible' !== this.params.size),
+            this.isVisible ? this.execute() : this.container.addEventListener('click', this.clickHandler);
+        }
+        getResponse() {
+          return this.checkIfDeleted(), this.responseToken;
+        }
+        delete() {
+          this.checkIfDeleted(),
+            (this.deleted = !0),
+            this.timerId && (clearTimeout(this.timerId), (this.timerId = null)),
+            this.container.removeEventListener('click', this.clickHandler);
+        }
+        execute() {
+          this.checkIfDeleted(),
+            this.timerId ||
+              (this.timerId = window.setTimeout(() => {
+                this.responseToken = Nr(50);
+                const { callback: e, 'expired-callback': t } = this.params;
+                if (e)
+                  try {
+                    e(this.responseToken);
+                  } catch (n) {}
+                this.timerId = window.setTimeout(() => {
+                  if (((this.timerId = null), (this.responseToken = null), t))
+                    try {
+                      t();
+                    } catch (n) {}
+                  this.isVisible && this.execute();
+                }, xr);
+              }, Ar));
+        }
+        checkIfDeleted() {
+          if (this.deleted) throw new Error('reCAPTCHA mock was already deleted!');
+        }
+      }
+      function Nr(e) {
+        const t = [],
+          n = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        for (let r = 0; r < e; r++) t.push(n.charAt(Math.floor(Math.random() * n.length)));
+        return t.join('');
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Rr = Fe('rcb'),
+        Pr = new R(3e4, 6e4),
+        Dr = 'https://www.google.com/recaptcha/api.js?';
+      class Lr {
+        constructor() {
+          var e;
+          (this.hostLanguage = ''),
+            (this.counter = 0),
+            (this.librarySeparatelyLoaded = !!(null === (e = nr().grecaptcha) || void 0 === e ? void 0 : e.render));
+        }
+        load(e, t = '') {
+          return (
+            S(jr(t), e, 'argument-error'),
+            this.shouldResolveImmediately(t) && Pe(nr().grecaptcha)
+              ? Promise.resolve(nr().grecaptcha)
+              : new Promise((n, r) => {
+                  const o = nr().setTimeout(() => {
+                    r(b(e, 'network-request-failed'));
+                  }, Pr.get());
+                  nr()[Rr] = () => {
+                    nr().clearTimeout(o), delete nr()[Rr];
+                    const i = nr().grecaptcha;
+                    if (!i || !Pe(i)) return void r(b(e, 'internal-error'));
+                    const s = i.render;
+                    (i.render = (e, t) => {
+                      const n = s(e, t);
+                      return this.counter++, n;
+                    }),
+                      (this.hostLanguage = t),
+                      n(i);
+                  };
+                  const s = `${Dr}?${(0, i.xO)({ onload: Rr, render: 'explicit', hl: t })}`;
+                  Me(s).catch(() => {
+                    clearTimeout(o), r(b(e, 'internal-error'));
+                  });
+                })
+          );
+        }
+        clearedOneInstance() {
+          this.counter--;
+        }
+        shouldResolveImmediately(e) {
+          var t;
+          return (
+            !!(null === (t = nr().grecaptcha) || void 0 === t ? void 0 : t.render) &&
+            (e === this.hostLanguage || this.counter > 0 || this.librarySeparatelyLoaded)
+          );
+        }
+      }
+      function jr(e) {
+        return e.length <= 6 && /^\s*[a-zA-Z0-9\-]*\s*$/.test(e);
+      }
+      class Mr {
+        async load(e) {
+          return new kr(e);
+        }
+        clearedOneInstance() {}
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Fr = 'recaptcha',
+        Ur = { theme: 'light', type: 'image' };
+      class Vr {
+        constructor(e, t = Object.assign({}, Ur), n) {
+          (this.parameters = t),
+            (this.type = Fr),
+            (this.destroyed = !1),
+            (this.widgetId = null),
+            (this.tokenChangeListeners = new Set()),
+            (this.renderPromise = null),
+            (this.recaptcha = null),
+            (this.auth = We(n)),
+            (this.isInvisible = 'invisible' === this.parameters.size),
+            S('undefined' !== typeof document, this.auth, 'operation-not-supported-in-this-environment');
+          const r = 'string' === typeof e ? document.getElementById(e) : e;
+          S(r, this.auth, 'argument-error'),
+            (this.container = r),
+            (this.parameters.callback = this.makeTokenCallback(this.parameters.callback)),
+            (this._recaptchaLoader = this.auth.settings.appVerificationDisabledForTesting ? new Mr() : new Lr()),
+            this.validateStartingState();
+        }
+        async verify() {
+          this.assertNotDestroyed();
+          const e = await this.render(),
+            t = this.getAssertedRecaptcha(),
+            n = t.getResponse(e);
+          return (
+            n ||
+            new Promise(n => {
+              const r = e => {
+                e && (this.tokenChangeListeners.delete(r), n(e));
+              };
+              this.tokenChangeListeners.add(r), this.isInvisible && t.execute(e);
+            })
+          );
+        }
+        render() {
+          try {
+            this.assertNotDestroyed();
+          } catch (e) {
+            return Promise.reject(e);
+          }
+          return (
+            this.renderPromise ||
+              (this.renderPromise = this.makeRenderPromise().catch(e => {
+                throw ((this.renderPromise = null), e);
+              })),
+            this.renderPromise
+          );
+        }
+        _reset() {
+          this.assertNotDestroyed(), null !== this.widgetId && this.getAssertedRecaptcha().reset(this.widgetId);
+        }
+        clear() {
+          this.assertNotDestroyed(),
+            (this.destroyed = !0),
+            this._recaptchaLoader.clearedOneInstance(),
+            this.isInvisible ||
+              this.container.childNodes.forEach(e => {
+                this.container.removeChild(e);
+              });
+        }
+        validateStartingState() {
+          S(!this.parameters.sitekey, this.auth, 'argument-error'),
+            S(this.isInvisible || !this.container.hasChildNodes(), this.auth, 'argument-error'),
+            S('undefined' !== typeof document, this.auth, 'operation-not-supported-in-this-environment');
+        }
+        makeTokenCallback(e) {
+          return t => {
+            if ((this.tokenChangeListeners.forEach(e => e(t)), 'function' === typeof e)) e(t);
+            else if ('string' === typeof e) {
+              const n = nr()[e];
+              'function' === typeof n && n(t);
+            }
+          };
+        }
+        assertNotDestroyed() {
+          S(!this.destroyed, this.auth, 'internal-error');
+        }
+        async makeRenderPromise() {
+          if ((await this.init(), !this.widgetId)) {
+            let e = this.container;
+            if (!this.isInvisible) {
+              const t = document.createElement('div');
+              e.appendChild(t), (e = t);
+            }
+            this.widgetId = this.getAssertedRecaptcha().render(e, this.parameters);
+          }
+          return this.widgetId;
+        }
+        async init() {
+          S(C() && !ir(), this.auth, 'internal-error'),
+            await Br(),
+            (this.recaptcha = await this._recaptchaLoader.load(this.auth, this.auth.languageCode || void 0));
+          const e = await Ne(this.auth);
+          S(e, this.auth, 'internal-error'), (this.parameters.sitekey = e);
+        }
+        getAssertedRecaptcha() {
+          return S(this.recaptcha, this.auth, 'internal-error'), this.recaptcha;
+        }
+      }
+      function Br() {
+        let e = null;
+        return new Promise(t => {
+          'complete' !== document.readyState ? ((e = () => t()), window.addEventListener('load', e)) : t();
+        }).catch(t => {
+          throw (e && window.removeEventListener('load', e), t);
+        });
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class $r {
+        constructor(e, t) {
+          (this.verificationId = e), (this.onConfirmation = t);
+        }
+        confirm(e) {
+          const t = _t._fromVerification(this.verificationId, e);
+          return this.onConfirmation(t);
+        }
+      }
+      async function qr(e, t, n) {
+        const r = We(e),
+          o = await Wr(r, t, (0, i.m9)(n));
+        return new $r(o, e => Qt(r, e));
+      }
+      async function zr(e, t, n) {
+        const r = (0, i.m9)(e);
+        await Wt(!1, r, 'phone');
+        const o = await Wr(r.auth, t, (0, i.m9)(n));
+        return new $r(o, e => Yt(r, e));
+      }
+      async function Gr(e, t, n) {
+        const r = (0, i.m9)(e),
+          o = await Wr(r.auth, t, (0, i.m9)(n));
+        return new $r(o, e => Xt(r, e));
+      }
+      async function Wr(e, t, n) {
+        var r;
+        const i = await n.verify();
+        try {
+          let o;
+          if (
+            (S('string' === typeof i, e, 'argument-error'),
+            S(n.type === Fr, e, 'argument-error'),
+            (o = 'string' === typeof t ? { phoneNumber: t } : t),
+            'session' in o)
+          ) {
+            const t = o.session;
+            if ('phoneNumber' in o) {
+              S('enroll' === t.type, e, 'internal-error');
+              const n = await Ln(e, { idToken: t.credential, phoneEnrollmentInfo: { phoneNumber: o.phoneNumber, recaptchaToken: i } });
+              return n.phoneSessionInfo.sessionInfo;
+            }
+            {
+              S('signin' === t.type, e, 'internal-error');
+              const n = (null === (r = o.multiFactorHint) || void 0 === r ? void 0 : r.uid) || o.multiFactorUid;
+              S(n, e, 'missing-multi-factor-info');
+              const s = await Er(e, { mfaPendingCredential: t.credential, mfaEnrollmentId: n, phoneSignInInfo: { recaptchaToken: i } });
+              return s.phoneResponseInfo.sessionInfo;
+            }
+          }
+          {
+            const { sessionInfo: t } = await mt(e, { phoneNumber: o.phoneNumber, recaptchaToken: i });
+            return t;
+          }
+        } finally {
+          n._reset();
+        }
+      }
+      async function Hr(e, t) {
+        await Gt((0, i.m9)(e), t);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Kr {
+        constructor(e) {
+          (this.providerId = Kr.PROVIDER_ID), (this.auth = We(e));
+        }
+        verifyPhoneNumber(e, t) {
+          return Wr(this.auth, e, (0, i.m9)(t));
+        }
+        static credential(e, t) {
+          return _t._fromVerification(e, t);
+        }
+        static credentialFromResult(e) {
+          const t = e;
+          return Kr.credentialFromTaggedObject(t);
+        }
+        static credentialFromError(e) {
+          return Kr.credentialFromTaggedObject(e.customData || {});
+        }
+        static credentialFromTaggedObject({ _tokenResponse: e }) {
+          if (!e) return null;
+          const { phoneNumber: t, temporaryProof: n } = e;
+          return t && n ? _t._fromTokenResponse(t, n) : null;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2021 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      function Qr(e, t) {
+        return t ? he(t) : (S(e._popupRedirectResolver, e, 'argument-error'), e._popupRedirectResolver);
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ (Kr.PROVIDER_ID = 'phone'), (Kr.PHONE_SIGN_IN_METHOD = 'phone');
+      class Yr extends et {
+        constructor(e) {
+          super('custom', 'custom'), (this.params = e);
+        }
+        _getIdTokenResponse(e) {
+          return dt(e, this._buildIdpRequest());
+        }
+        _linkToIdToken(e, t) {
+          return dt(e, this._buildIdpRequest(t));
+        }
+        _getReauthenticationResolver(e) {
+          return dt(e, this._buildIdpRequest());
+        }
+        _buildIdpRequest(e) {
+          const t = {
+            requestUri: this.params.requestUri,
+            sessionId: this.params.sessionId,
+            postBody: this.params.postBody,
+            tenantId: this.params.tenantId,
+            pendingToken: this.params.pendingToken,
+            returnSecureToken: !0,
+            returnIdpCredential: !0
+          };
+          return e && (t.idToken = e), t;
+        }
+      }
+      function Xr(e) {
+        return Kt(e.auth, new Yr(e), e.bypassAuthState);
+      }
+      function Jr(e) {
+        const { auth: t, user: n } = e;
+        return S(n, t, 'internal-error'), Ht(n, new Yr(e), e.bypassAuthState);
+      }
+      async function Zr(e) {
+        const { auth: t, user: n } = e;
+        return S(n, t, 'internal-error'), Gt(n, new Yr(e), e.bypassAuthState);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class ei {
+        constructor(e, t, n, r, i = !1) {
+          (this.auth = e),
+            (this.resolver = n),
+            (this.user = r),
+            (this.bypassAuthState = i),
+            (this.pendingPromise = null),
+            (this.eventManager = null),
+            (this.filter = Array.isArray(t) ? t : [t]);
+        }
+        execute() {
+          return new Promise(async (e, t) => {
+            this.pendingPromise = { resolve: e, reject: t };
+            try {
+              (this.eventManager = await this.resolver._initialize(this.auth)), await this.onExecution(), this.eventManager.registerConsumer(this);
+            } catch (n) {
+              this.reject(n);
+            }
+          });
+        }
+        async onAuthEvent(e) {
+          const { urlResponse: t, sessionId: n, postBody: r, tenantId: i, error: o, type: s } = e;
+          if (o) return void this.reject(o);
+          const a = {
+            auth: this.auth,
+            requestUri: t,
+            sessionId: n,
+            tenantId: i || void 0,
+            postBody: r || void 0,
+            user: this.user,
+            bypassAuthState: this.bypassAuthState
+          };
+          try {
+            this.resolve(await this.getIdpTask(s)(a));
+          } catch (u) {
+            this.reject(u);
+          }
+        }
+        onError(e) {
+          this.reject(e);
+        }
+        getIdpTask(e) {
+          switch (e) {
+            case 'signInViaPopup':
+            case 'signInViaRedirect':
+              return Xr;
+            case 'linkViaPopup':
+            case 'linkViaRedirect':
+              return Zr;
+            case 'reauthViaPopup':
+            case 'reauthViaRedirect':
+              return Jr;
+            default:
+              w(this.auth, 'internal-error');
+          }
+        }
+        resolve(e) {
+          A(this.pendingPromise, 'Pending promise was never set'), this.pendingPromise.resolve(e), this.unregisterAndCleanUp();
+        }
+        reject(e) {
+          A(this.pendingPromise, 'Pending promise was never set'), this.pendingPromise.reject(e), this.unregisterAndCleanUp();
+        }
+        unregisterAndCleanUp() {
+          this.eventManager && this.eventManager.unregisterConsumer(this), (this.pendingPromise = null), this.cleanUp();
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const ti = new R(2e3, 1e4);
+      async function ni(e, t, n) {
+        const r = We(e);
+        I(e, t, At);
+        const i = Qr(r, n),
+          o = new oi(r, 'signInViaPopup', t, i);
+        return o.executeNotNull();
+      }
+      async function ri(e, t, n) {
+        const r = (0, i.m9)(e);
+        I(r.auth, t, At);
+        const o = Qr(r.auth, n),
+          s = new oi(r.auth, 'reauthViaPopup', t, o, r);
+        return s.executeNotNull();
+      }
+      async function ii(e, t, n) {
+        const r = (0, i.m9)(e);
+        I(r.auth, t, At);
+        const o = Qr(r.auth, n),
+          s = new oi(r.auth, 'linkViaPopup', t, o, r);
+        return s.executeNotNull();
+      }
+      class oi extends ei {
+        constructor(e, t, n, r, i) {
+          super(e, t, r, i),
+            (this.provider = n),
+            (this.authWindow = null),
+            (this.pollId = null),
+            oi.currentPopupAction && oi.currentPopupAction.cancel(),
+            (oi.currentPopupAction = this);
+        }
+        async executeNotNull() {
+          const e = await this.execute();
+          return S(e, this.auth, 'internal-error'), e;
+        }
+        async onExecution() {
+          A(1 === this.filter.length, 'Popup operations only handle one event');
+          const e = er();
+          (this.authWindow = await this.resolver._openPopup(this.auth, this.provider, this.filter[0], e)),
+            (this.authWindow.associatedEvent = e),
+            this.resolver._originValidation(this.auth).catch(e => {
+              this.reject(e);
+            }),
+            this.resolver._isIframeWebStorageSupported(this.auth, e => {
+              e || this.reject(b(this.auth, 'web-storage-unsupported'));
+            }),
+            this.pollUserCancellation();
+        }
+        get eventId() {
+          var e;
+          return (null === (e = this.authWindow) || void 0 === e ? void 0 : e.associatedEvent) || null;
+        }
+        cancel() {
+          this.reject(b(this.auth, 'cancelled-popup-request'));
+        }
+        cleanUp() {
+          this.authWindow && this.authWindow.close(),
+            this.pollId && window.clearTimeout(this.pollId),
+            (this.authWindow = null),
+            (this.pollId = null),
+            (oi.currentPopupAction = null);
+        }
+        pollUserCancellation() {
+          const e = () => {
+            var t, n;
+            (null === (n = null === (t = this.authWindow) || void 0 === t ? void 0 : t.window) || void 0 === n ? void 0 : n.closed)
+              ? (this.pollId = window.setTimeout(() => {
+                  (this.pollId = null), this.reject(b(this.auth, 'popup-closed-by-user'));
+                }, 8e3))
+              : (this.pollId = window.setTimeout(e, ti.get()));
+          };
+          e();
+        }
+      }
+      oi.currentPopupAction = null;
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      const si = 'pendingRedirect',
+        ai = new Map();
+      class ui extends ei {
+        constructor(e, t, n = !1) {
+          super(e, ['signInViaRedirect', 'linkViaRedirect', 'reauthViaRedirect', 'unknown'], t, void 0, n), (this.eventId = null);
+        }
+        async execute() {
+          let e = ai.get(this.auth._key());
+          if (!e) {
+            try {
+              const t = await ci(this.resolver, this.auth),
+                n = t ? await super.execute() : null;
+              e = () => Promise.resolve(n);
+            } catch (t) {
+              e = () => Promise.reject(t);
+            }
+            ai.set(this.auth._key(), e);
+          }
+          return this.bypassAuthState || ai.set(this.auth._key(), () => Promise.resolve(null)), e();
+        }
+        async onAuthEvent(e) {
+          if ('signInViaRedirect' === e.type) return super.onAuthEvent(e);
+          if ('unknown' !== e.type) {
+            if (e.eventId) {
+              const t = await this.auth._redirectUserForId(e.eventId);
+              if (t) return (this.user = t), super.onAuthEvent(e);
+              this.resolve(null);
+            }
+          } else this.resolve(null);
+        }
+        async onExecution() {}
+        cleanUp() {}
+      }
+      async function ci(e, t) {
+        const n = pi(t),
+          r = di(e);
+        if (!(await r._isAvailable())) return !1;
+        const i = 'true' === (await r._get(n));
+        return await r._remove(n), i;
+      }
+      async function li(e, t) {
+        return di(e)._set(pi(t), 'true');
+      }
+      function hi() {
+        ai.clear();
+      }
+      function fi(e, t) {
+        ai.set(e._key(), t);
+      }
+      function di(e) {
+        return he(e._redirectPersistence);
+      }
+      function pi(e) {
+        return pe(si, e.config.apiKey, e.name);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function gi(e, t, n) {
+        return mi(e, t, n);
+      }
+      async function mi(e, t, n) {
+        const r = We(e);
+        I(e, t, At), await r._initializationPromise;
+        const i = Qr(r, n);
+        return await li(i, r), i._openRedirect(r, t, 'signInViaRedirect');
+      }
+      function vi(e, t, n) {
+        return yi(e, t, n);
+      }
+      async function yi(e, t, n) {
+        const r = (0, i.m9)(e);
+        I(r.auth, t, At), await r.auth._initializationPromise;
+        const o = Qr(r.auth, n);
+        await li(o, r.auth);
+        const s = await Ei(r);
+        return o._openRedirect(r.auth, t, 'reauthViaRedirect', s);
+      }
+      function wi(e, t, n) {
+        return bi(e, t, n);
+      }
+      async function bi(e, t, n) {
+        const r = (0, i.m9)(e);
+        I(r.auth, t, At), await r.auth._initializationPromise;
+        const o = Qr(r.auth, n);
+        await Wt(!1, r, t.providerId), await li(o, r.auth);
+        const s = await Ei(r);
+        return o._openRedirect(r.auth, t, 'linkViaRedirect', s);
+      }
+      async function _i(e, t) {
+        return await We(e)._initializationPromise, Ii(e, t, !1);
+      }
+      async function Ii(e, t, n = !1) {
+        const r = We(e),
+          i = Qr(r, t),
+          o = new ui(r, i, n),
+          s = await o.execute();
+        return s && !n && (delete s.user._redirectEventId, await r._persistUserIfCurrent(s.user), await r._setRedirectUser(null, t)), s;
+      }
+      async function Ei(e) {
+        const t = er(`${e.uid}:::`);
+        return (e._redirectEventId = t), await e.auth._setRedirectUser(e), await e.auth._persistUserIfCurrent(e), t;
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Si = 6e5;
+      class Ti {
+        constructor(e) {
+          (this.auth = e),
+            (this.cachedEventUids = new Set()),
+            (this.consumers = new Set()),
+            (this.queuedRedirectEvent = null),
+            (this.hasHandledPotentialRedirect = !1),
+            (this.lastProcessedEventTime = Date.now());
+        }
+        registerConsumer(e) {
+          this.consumers.add(e),
+            this.queuedRedirectEvent &&
+              this.isEventForConsumer(this.queuedRedirectEvent, e) &&
+              (this.sendToConsumer(this.queuedRedirectEvent, e), this.saveEventToCache(this.queuedRedirectEvent), (this.queuedRedirectEvent = null));
+        }
+        unregisterConsumer(e) {
+          this.consumers.delete(e);
+        }
+        onEvent(e) {
+          if (this.hasEventBeenHandled(e)) return !1;
+          let t = !1;
+          return (
+            this.consumers.forEach(n => {
+              this.isEventForConsumer(e, n) && ((t = !0), this.sendToConsumer(e, n), this.saveEventToCache(e));
+            }),
+            this.hasHandledPotentialRedirect || !Ci(e) || ((this.hasHandledPotentialRedirect = !0), t || ((this.queuedRedirectEvent = e), (t = !0))),
+            t
+          );
+        }
+        sendToConsumer(e, t) {
+          var n;
+          if (e.error && !xi(e)) {
+            const r = (null === (n = e.error.code) || void 0 === n ? void 0 : n.split('auth/')[1]) || 'internal-error';
+            t.onError(b(this.auth, r));
+          } else t.onAuthEvent(e);
+        }
+        isEventForConsumer(e, t) {
+          const n = null === t.eventId || (!!e.eventId && e.eventId === t.eventId);
+          return t.filter.includes(e.type) && n;
+        }
+        hasEventBeenHandled(e) {
+          return Date.now() - this.lastProcessedEventTime >= Si && this.cachedEventUids.clear(), this.cachedEventUids.has(Ai(e));
+        }
+        saveEventToCache(e) {
+          this.cachedEventUids.add(Ai(e)), (this.lastProcessedEventTime = Date.now());
+        }
+      }
+      function Ai(e) {
+        return [e.type, e.eventId, e.sessionId, e.tenantId].filter(e => e).join('-');
+      }
+      function xi({ type: e, error: t }) {
+        return 'unknown' === e && 'auth/no-auth-event' === (null === t || void 0 === t ? void 0 : t.code);
+      }
+      function Ci(e) {
+        switch (e.type) {
+          case 'signInViaRedirect':
+          case 'linkViaRedirect':
+          case 'reauthViaRedirect':
+            return !0;
+          case 'unknown':
+            return xi(e);
+          default:

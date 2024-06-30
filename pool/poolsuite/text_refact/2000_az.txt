@@ -1,0 +1,2001 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+              e.Ec.forEach(e => {
+                e.forEach(e => {
+                  e.reject(new li(ci.CANCELLED, t));
+                });
+              }),
+                e.Ec.clear();
+            })(n, "'waitForPendingWrites' promise is rejected due to a user change."),
+            n.sharedClientState.handleUserChange(t, e.removedBatchIds, e.addedBatchIds),
+            await Id(n, e.er);
+        }
+      }
+      function Sd(e, t) {
+        const n = ui(e),
+          r = n.yc.get(t);
+        if (r && r.fc) return La().add(r.key);
+        {
+          let e = La();
+          const r = n._c.get(t);
+          if (!r) return e;
+          for (const t of r) {
+            const r = n.wc.get(t);
+            e = e.unionWith(r.view.nc);
+          }
+          return e;
+        }
+      }
+      async function Td(e, t) {
+        const n = ui(e),
+          r = await xh(n.localStore, t.query, !0),
+          i = t.view.hc(r);
+        return n.isPrimaryClient && wd(n, t.targetId, i.cc), i;
+      }
+      async function Ad(e, t) {
+        const n = ui(e);
+        return kh(n.localStore, t).then(e => Id(n, e));
+      }
+      async function xd(e, t, n, r) {
+        const i = ui(e),
+          o = await (function (e, t) {
+            const n = ui(e),
+              r = ui(n.mutationQueue);
+            return n.persistence.runTransaction('Lookup mutation documents', 'readonly', e =>
+              r.Sn(e, t).next(t => (t ? n.localDocuments.getDocuments(e, t) : zi.resolve(null)))
+            );
+          })(i.localStore, t);
+        null !== o
+          ? ('pending' === n
+              ? await Ef(i.remoteStore)
+              : 'acknowledged' === n || 'rejected' === n
+                ? (md(i, t, r || null),
+                  gd(i, t),
+                  (function (e, t) {
+                    ui(ui(e).mutationQueue).Cn(t);
+                  })(i.localStore, t))
+                : oi(),
+            await Id(i, o))
+          : ti('SyncEngine', 'Cannot apply mutation batch with id: ' + t);
+      }
+      async function Cd(e, t) {
+        const n = ui(e);
+        if ((Dd(n), Ld(n), !0 === t && !0 !== n.vc)) {
+          const e = n.sharedClientState.getAllActiveQueryTargets(),
+            t = await kd(n, e.toArray());
+          (n.vc = !0), await Pf(n.remoteStore, !0);
+          for (const r of t) lf(n.remoteStore, r);
+        } else if (!1 === t && !1 !== n.vc) {
+          const e = [];
+          let t = Promise.resolve();
+          n._c.forEach((r, i) => {
+            n.sharedClientState.isLocalQueryTarget(i) ? e.push(i) : (t = t.then(() => (vd(n, i), Ah(n.localStore, i, !0)))), hf(n.remoteStore, i);
+          }),
+            await t,
+            await kd(n, e),
+            (function (e) {
+              const t = ui(e);
+              t.yc.forEach((e, n) => {
+                hf(t.remoteStore, n);
+              }),
+                t.Ic.Ts(),
+                (t.yc = new Map()),
+                (t.gc = new Uo(Ni.comparator));
+            })(n),
+            (n.vc = !1),
+            await Pf(n.remoteStore, !1);
+        }
+      }
+      async function kd(e, t, n) {
+        const r = ui(e),
+          i = [],
+          o = [];
+        for (const s of t) {
+          let e;
+          const t = r._c.get(s);
+          if (t && 0 !== t.length) {
+            e = await Th(r.localStore, pa(t[0]));
+            for (const e of t) {
+              const t = r.wc.get(e),
+                n = await Td(r, t);
+              n.snapshot && o.push(n.snapshot);
+            }
+          } else {
+            const t = await Ch(r.localStore, s);
+            (e = await Th(r.localStore, t)), await sd(r, Od(t), s, !1, e.resumeToken);
+          }
+          i.push(e);
+        }
+        return r.dc.nu(o), i;
+      }
+      function Od(e) {
+        return aa(e.path, e.collectionGroup, e.orderBy, e.filters, e.limit, 'F', e.startAt, e.endAt);
+      }
+      function Nd(e) {
+        const t = ui(e);
+        return ui(ui(t.localStore).persistence).$i();
+      }
+      async function Rd(e, t, n, r) {
+        const i = ui(e);
+        if (i.vc) return void ti('SyncEngine', 'Ignoring unexpected query state notification.');
+        const o = i._c.get(t);
+        if (o && o.length > 0)
+          switch (n) {
+            case 'current':
+            case 'not-current': {
+              const e = await kh(i.localStore, _a(o[0])),
+                r = Pu.createSynthesizedRemoteEventForCurrentChange(t, 'current' === n, Ko.EMPTY_BYTE_STRING);
+              await Id(i, e, r);
+              break;
+            }
+            case 'rejected':
+              await Ah(i.localStore, t, !0), vd(i, t, r);
+              break;
+            default:
+              oi();
+          }
+      }
+      async function Pd(e, t, n) {
+        const r = Dd(e);
+        if (r.vc) {
+          for (const e of t) {
+            if (r._c.has(e)) {
+              ti('SyncEngine', 'Adding an already active target ' + e);
+              continue;
+            }
+            const t = await Ch(r.localStore, e),
+              n = await Th(r.localStore, t);
+            await sd(r, Od(t), n.targetId, !1, n.resumeToken), lf(r.remoteStore, n);
+          }
+          for (const e of n)
+            r._c.has(e) &&
+              (await Ah(r.localStore, e, !1)
+                .then(() => {
+                  hf(r.remoteStore, e), vd(r, e);
+                })
+                .catch(qi));
+        }
+      }
+      function Dd(e) {
+        const t = ui(e);
+        return (
+          (t.remoteStore.remoteSyncer.applyRemoteEvent = cd.bind(null, t)),
+          (t.remoteStore.remoteSyncer.getRemoteKeysForTarget = Sd.bind(null, t)),
+          (t.remoteStore.remoteSyncer.rejectListen = hd.bind(null, t)),
+          (t.dc.nu = Gf.bind(null, t.eventManager)),
+          (t.dc.Pc = Wf.bind(null, t.eventManager)),
+          t
+        );
+      }
+      function Ld(e) {
+        const t = ui(e);
+        return (
+          (t.remoteStore.remoteSyncer.applySuccessfulWrite = fd.bind(null, t)), (t.remoteStore.remoteSyncer.rejectFailedWrite = dd.bind(null, t)), t
+        );
+      }
+      function jd(e, t, n) {
+        const r = ui(e);
+        (async function (e, t, n) {
+          try {
+            const r = await t.getMetadata();
+            if (
+              await (function (e, t) {
+                const n = ui(e),
+                  r = Yu(t.createTime);
+                return n.persistence
+                  .runTransaction('hasNewerBundle', 'readonly', e => n.qs.getBundleMetadata(e, t.id))
+                  .then(e => !!e && e.createTime.compareTo(r) >= 0);
+              })(e.localStore, r)
+            )
+              return (
+                await t.close(),
+                n._completeWith(
+                  (function (e) {
+                    return {
+                      taskState: 'Success',
+                      documentsLoaded: e.totalDocuments,
+                      bytesLoaded: e.totalBytes,
+                      totalDocuments: e.totalDocuments,
+                      totalBytes: e.totalBytes
+                    };
+                  })(r)
+                ),
+                Promise.resolve(new Set())
+              );
+            n._updateProgress(Jf(r));
+            const i = new Xf(r, e.localStore, t.serializer);
+            let o = await t.bc();
+            for (; o; ) {
+              const e = await i.zu(o);
+              e && n._updateProgress(e), (o = await t.bc());
+            }
+            const s = await i.complete();
+            return (
+              await Id(e, s.Ju, void 0),
+              await (function (e, t) {
+                const n = ui(e);
+                return n.persistence.runTransaction('Save bundle', 'readwrite', e => n.qs.saveBundleMetadata(e, t));
+              })(e.localStore, r),
+              n._completeWith(s.progress),
+              Promise.resolve(s.Hu)
+            );
+          } catch (e) {
+            return ri('SyncEngine', `Loading bundle failed with ${e}`), n._failWith(e), Promise.resolve(new Set());
+          }
+        })(
+          /**
+           * @license
+           * Copyright 2020 Google LLC
+           *
+           * Licensed under the Apache License, Version 2.0 (the "License");
+           * you may not use this file except in compliance with the License.
+           * You may obtain a copy of the License at
+           *
+           *   http://www.apache.org/licenses/LICENSE-2.0
+           *
+           * Unless required by applicable law or agreed to in writing, software
+           * distributed under the License is distributed on an "AS IS" BASIS,
+           * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           * See the License for the specific language governing permissions and
+           * limitations under the License.
+           */ r,
+          t,
+          n
+        ).then(e => {
+          r.sharedClientState.notifyBundleLoaded(e);
+        });
+      }
+      class Md {
+        constructor() {
+          this.synchronizeTabs = !1;
+        }
+        async initialize(e) {
+          (this.serializer = Zh(e.databaseInfo.databaseId)),
+            (this.sharedClientState = this.createSharedClientState(e)),
+            (this.persistence = this.createPersistence(e)),
+            await this.persistence.start(),
+            (this.localStore = this.createLocalStore(e)),
+            (this.gcScheduler = this.createGarbageCollectionScheduler(e, this.localStore)),
+            (this.indexBackfillerScheduler = this.createIndexBackfillerScheduler(e, this.localStore));
+        }
+        createGarbageCollectionScheduler(e, t) {
+          return null;
+        }
+        createIndexBackfillerScheduler(e, t) {
+          return null;
+        }
+        createLocalStore(e) {
+          return yh(this.persistence, new mh(), e.initialUser, this.serializer);
+        }
+        createPersistence(e) {
+          return new oh(ah.zs, this.serializer);
+        }
+        createSharedClientState(e) {
+          return new $h();
+        }
+        async terminate() {
+          this.gcScheduler && this.gcScheduler.stop(), await this.sharedClientState.shutdown(), await this.persistence.shutdown();
+        }
+      }
+      class Fd extends Md {
+        constructor(e, t, n) {
+          super(), (this.Vc = e), (this.cacheSizeBytes = t), (this.forceOwnership = n), (this.synchronizeTabs = !1);
+        }
+        async initialize(e) {
+          await super.initialize(e),
+            await this.Vc.initialize(this, e),
+            await Ld(this.Vc.syncEngine),
+            await Ef(this.Vc.remoteStore),
+            await this.persistence.Ii(
+              () => (
+                this.gcScheduler && !this.gcScheduler.started && this.gcScheduler.start(),
+                this.indexBackfillerScheduler && !this.indexBackfillerScheduler.started && this.indexBackfillerScheduler.start(),
+                Promise.resolve()
+              )
+            );
+        }
+        createLocalStore(e) {
+          return yh(this.persistence, new mh(), e.initialUser, this.serializer);
+        }
+        createGarbageCollectionScheduler(e, t) {
+          const n = this.persistence.referenceDelegate.garbageCollector;
+          return new Ll(n, e.asyncQueue, t);
+        }
+        createIndexBackfillerScheduler(e, t) {
+          const n = new to(t, this.persistence);
+          return new eo(e.asyncQueue, n);
+        }
+        createPersistence(e) {
+          const t = ph(e.databaseInfo.databaseId, e.databaseInfo.persistenceKey),
+            n = void 0 !== this.cacheSizeBytes ? bl.withCacheSize(this.cacheSizeBytes) : bl.DEFAULT;
+          return new hh(
+            this.synchronizeTabs,
+            t,
+            e.clientId,
+            n,
+            e.asyncQueue,
+            Xh(),
+            Jh(),
+            this.serializer,
+            this.sharedClientState,
+            !!this.forceOwnership
+          );
+        }
+        createSharedClientState(e) {
+          return new $h();
+        }
+      }
+      class Ud extends Fd {
+        constructor(e, t) {
+          super(e, t, !1), (this.Vc = e), (this.cacheSizeBytes = t), (this.synchronizeTabs = !0);
+        }
+        async initialize(e) {
+          await super.initialize(e);
+          const t = this.Vc.syncEngine;
+          this.sharedClientState instanceof Bh &&
+            ((this.sharedClientState.syncEngine = {
+              jr: xd.bind(null, t),
+              zr: Rd.bind(null, t),
+              Wr: Pd.bind(null, t),
+              $i: Nd.bind(null, t),
+              Qr: Ad.bind(null, t)
+            }),
+            await this.sharedClientState.start()),
+            await this.persistence.Ii(async e => {
+              await Cd(this.Vc.syncEngine, e),
+                this.gcScheduler && (e && !this.gcScheduler.started ? this.gcScheduler.start() : e || this.gcScheduler.stop()),
+                this.indexBackfillerScheduler &&
+                  (e && !this.indexBackfillerScheduler.started ? this.indexBackfillerScheduler.start() : e || this.indexBackfillerScheduler.stop());
+            });
+        }
+        createSharedClientState(e) {
+          const t = Xh();
+          if (!Bh.D(t)) throw new li(ci.UNIMPLEMENTED, 'IndexedDB persistence is only available on platforms that support LocalStorage.');
+          const n = ph(e.databaseInfo.databaseId, e.databaseInfo.persistenceKey);
+          return new Bh(t, e.asyncQueue, n, e.clientId, e.initialUser);
+        }
+      }
+      class Vd {
+        async initialize(e, t) {
+          this.localStore ||
+            ((this.localStore = e.localStore),
+            (this.sharedClientState = e.sharedClientState),
+            (this.datastore = this.createDatastore(t)),
+            (this.remoteStore = this.createRemoteStore(t)),
+            (this.eventManager = this.createEventManager(t)),
+            (this.syncEngine = this.createSyncEngine(t, !e.synchronizeTabs)),
+            (this.sharedClientState.onlineStateHandler = e => ld(this.syncEngine, e, 1)),
+            (this.remoteStore.remoteSyncer.handleCredentialChange = Ed.bind(null, this.syncEngine)),
+            await Pf(this.remoteStore, this.syncEngine.isPrimaryClient));
+        }
+        createEventManager(e) {
+          return new $f();
+        }
+        createDatastore(e) {
+          const t = Zh(e.databaseInfo.databaseId),
+            n = ((r = e.databaseInfo), new Yh(r));
+          var r;
+          return (function (e, t, n, r) {
+            return new of(e, t, n, r);
+          })(e.authCredentials, e.appCheckCredentials, n, t);
+        }
+        createRemoteStore(e) {
+          return (
+            (t = this.localStore),
+            (n = this.datastore),
+            (r = e.asyncQueue),
+            (i = e => ld(this.syncEngine, e, 0)),
+            (o = zh.D() ? new zh() : new qh()),
+            new af(t, n, r, i, o)
+          );
+          var t, n, r, i, o;
+        }
+        createSyncEngine(e, t) {
+          return (function (e, t, n, r, i, o, s) {
+            const a = new id(e, t, n, r, i, o);
+            return s && (a.vc = !0), a;
+          })(this.localStore, this.remoteStore, this.eventManager, this.sharedClientState, e.initialUser, e.maxConcurrentLimboResolutions, t);
+        }
+        terminate() {
+          return (async function (e) {
+            const t = ui(e);
+            ti('RemoteStore', 'RemoteStore shutting down.'), t.vu.add(5), await cf(t), t.Pu.shutdown(), t.bu.set('Unknown');
+          })(this.remoteStore);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Bd(e, t = 10240) {
+        let n = 0;
+        return {
+          async read() {
+            if (n < e.byteLength) {
+              const r = { value: e.slice(n, n + t), done: !1 };
+              return (n += t), r;
+            }
+            return { done: !0 };
+          },
+          async cancel() {},
+          releaseLock() {},
+          closed: Promise.resolve()
+        };
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class $d {
+        constructor(e) {
+          (this.observer = e), (this.muted = !1);
+        }
+        next(e) {
+          this.observer.next && this.Sc(this.observer.next, e);
+        }
+        error(e) {
+          this.observer.error ? this.Sc(this.observer.error, e) : ni('Uncaught Error in snapshot listener:', e.toString());
+        }
+        Dc() {
+          this.muted = !0;
+        }
+        Sc(e, t) {
+          this.muted ||
+            setTimeout(() => {
+              this.muted || e(t);
+            }, 0);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class qd {
+        constructor(e, t) {
+          (this.Cc = e),
+            (this.serializer = t),
+            (this.metadata = new hi()),
+            (this.buffer = new Uint8Array()),
+            (this.xc = new TextDecoder('utf-8')),
+            this.Nc().then(
+              e => {
+                e && e.Qu()
+                  ? this.metadata.resolve(e.Gu.metadata)
+                  : this.metadata.reject(
+                      new Error(`The first element of the bundle is not a metadata, it is\n             ${JSON.stringify(null == e ? void 0 : e.Gu)}`)
+                    );
+              },
+              e => this.metadata.reject(e)
+            );
+        }
+        close() {
+          return this.Cc.cancel();
+        }
+        async getMetadata() {
+          return this.metadata.promise;
+        }
+        async bc() {
+          return await this.getMetadata(), this.Nc();
+        }
+        async Nc() {
+          const e = await this.kc();
+          if (null === e) return null;
+          const t = this.xc.decode(e),
+            n = Number(t);
+          isNaN(n) && this.Mc(`length string (${t}) is not valid number`);
+          const r = await this.$c(n);
+          return new Qf(JSON.parse(r), e.length + n);
+        }
+        Oc() {
+          return this.buffer.findIndex(e => e === '{'.charCodeAt(0));
+        }
+        async kc() {
+          for (; this.Oc() < 0; ) if (await this.Fc()) break;
+          if (0 === this.buffer.length) return null;
+          const e = this.Oc();
+          e < 0 && this.Mc('Reached the end of bundle when a length string is expected.');
+          const t = this.buffer.slice(0, e);
+          return (this.buffer = this.buffer.slice(e)), t;
+        }
+        async $c(e) {
+          for (; this.buffer.length < e; ) (await this.Fc()) && this.Mc('Reached the end of bundle when more is expected.');
+          const t = this.xc.decode(this.buffer.slice(0, e));
+          return (this.buffer = this.buffer.slice(e)), t;
+        }
+        Mc(e) {
+          throw (this.Cc.cancel(), new Error(`Invalid bundle format: ${e}`));
+        }
+        async Fc() {
+          const e = await this.Cc.read();
+          if (!e.done) {
+            const t = new Uint8Array(this.buffer.length + e.value.length);
+            t.set(this.buffer), t.set(e.value, this.buffer.length), (this.buffer = t);
+          }
+          return e.done;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class zd {
+        constructor(e) {
+          (this.datastore = e),
+            (this.readVersions = new Map()),
+            (this.mutations = []),
+            (this.committed = !1),
+            (this.lastWriteError = null),
+            (this.writtenDocs = new Set());
+        }
+        async lookup(e) {
+          if ((this.ensureCommitNotCalled(), this.mutations.length > 0))
+            throw new li(ci.INVALID_ARGUMENT, 'Firestore transactions require all reads to be executed before all writes.');
+          const t = await (async function (e, t) {
+            const n = ui(e),
+              r = rc(n.serializer) + '/documents',
+              i = { documents: t.map(e => Zu(n.serializer, e)) },
+              o = await n.vo('BatchGetDocuments', r, i, t.length),
+              s = new Map();
+            o.forEach(e => {
+              const t = ac(n.serializer, e);
+              s.set(t.key.toString(), t);
+            });
+            const a = [];
+            return (
+              t.forEach(e => {
+                const t = s.get(e.toString());
+                si(!!t), a.push(t);
+              }),
+              a
+            );
+          })(this.datastore, e);
+          return t.forEach(e => this.recordVersion(e)), t;
+        }
+        set(e, t) {
+          this.write(t.toMutation(e, this.precondition(e))), this.writtenDocs.add(e.toString());
+        }
+        update(e, t) {
+          try {
+            this.write(t.toMutation(e, this.preconditionForUpdate(e)));
+          } catch (e) {
+            this.lastWriteError = e;
+          }
+          this.writtenDocs.add(e.toString());
+        }
+        delete(e) {
+          this.write(new gu(e, this.precondition(e))), this.writtenDocs.add(e.toString());
+        }
+        async commit() {
+          if ((this.ensureCommitNotCalled(), this.lastWriteError)) throw this.lastWriteError;
+          const e = this.readVersions;
+          this.mutations.forEach(t => {
+            e.delete(t.key.toString());
+          }),
+            e.forEach((e, t) => {
+              const n = Ni.fromPath(t);
+              this.mutations.push(new mu(n, this.precondition(n)));
+            }),
+            await (async function (e, t) {
+              const n = ui(e),
+                r = rc(n.serializer) + '/documents',
+                i = { writes: t.map(e => cc(n.serializer, e)) };
+              await n.Io('Commit', r, i);
+            })(this.datastore, this.mutations),
+            (this.committed = !0);
+        }
+        recordVersion(e) {
+          let t;
+          if (e.isFoundDocument()) t = e.version;
+          else {
+            if (!e.isNoDocument()) throw oi();
+            t = Ai.min();
+          }
+          const n = this.readVersions.get(e.key.toString());
+          if (n) {
+            if (!t.isEqual(n)) throw new li(ci.ABORTED, 'Document version changed between two reads.');
+          } else this.readVersions.set(e.key.toString(), t);
+        }
+        precondition(e) {
+          const t = this.readVersions.get(e.toString());
+          return !this.writtenDocs.has(e.toString()) && t ? (t.isEqual(Ai.min()) ? nu.exists(!1) : nu.updateTime(t)) : nu.none();
+        }
+        preconditionForUpdate(e) {
+          const t = this.readVersions.get(e.toString());
+          if (!this.writtenDocs.has(e.toString()) && t) {
+            if (t.isEqual(Ai.min())) throw new li(ci.INVALID_ARGUMENT, "Can't update a document that doesn't exist.");
+            return nu.updateTime(t);
+          }
+          return nu.exists(!0);
+        }
+        write(e) {
+          this.ensureCommitNotCalled(), this.mutations.push(e);
+        }
+        ensureCommitNotCalled() {}
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Gd {
+        constructor(e, t, n, r, i) {
+          (this.asyncQueue = e),
+            (this.datastore = t),
+            (this.options = n),
+            (this.updateFunction = r),
+            (this.deferred = i),
+            (this.Bc = n.maxAttempts),
+            (this.qo = new ef(this.asyncQueue, 'transaction_retry'));
+        }
+        run() {
+          (this.Bc -= 1), this.Lc();
+        }
+        Lc() {
+          this.qo.No(async () => {
+            const e = new zd(this.datastore),
+              t = this.qc(e);
+            t &&
+              t
+                .then(t => {
+                  this.asyncQueue.enqueueAndForget(() =>
+                    e
+                      .commit()
+                      .then(() => {
+                        this.deferred.resolve(t);
+                      })
+                      .catch(e => {
+                        this.Uc(e);
+                      })
+                  );
+                })
+                .catch(e => {
+                  this.Uc(e);
+                });
+          });
+        }
+        qc(e) {
+          try {
+            const t = this.updateFunction(e);
+            return !ro(t) && t.catch && t.then ? t : (this.deferred.reject(Error('Transaction callback must return a Promise')), null);
+          } catch (e) {
+            return this.deferred.reject(e), null;
+          }
+        }
+        Uc(e) {
+          this.Bc > 0 && this.Kc(e)
+            ? ((this.Bc -= 1), this.asyncQueue.enqueueAndForget(() => (this.Lc(), Promise.resolve())))
+            : this.deferred.reject(e);
+        }
+        Kc(e) {
+          if ('FirebaseError' === e.name) {
+            const t = e.code;
+            return 'aborted' === t || 'failed-precondition' === t || 'already-exists' === t || !Eu(t);
+          }
+          return !1;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Wd {
+        constructor(e, t, n, r) {
+          (this.authCredentials = e),
+            (this.appCheckCredentials = t),
+            (this.asyncQueue = n),
+            (this.databaseInfo = r),
+            (this.user = Yr.UNAUTHENTICATED),
+            (this.clientId = _i.A()),
+            (this.authCredentialListener = () => Promise.resolve()),
+            (this.appCheckCredentialListener = () => Promise.resolve()),
+            this.authCredentials.start(n, async e => {
+              ti('FirestoreClient', 'Received user=', e.uid), await this.authCredentialListener(e), (this.user = e);
+            }),
+            this.appCheckCredentials.start(
+              n,
+              e => (ti('FirestoreClient', 'Received new app check token=', e), this.appCheckCredentialListener(e, this.user))
+            );
+        }
+        async getConfiguration() {
+          return {
+            asyncQueue: this.asyncQueue,
+            databaseInfo: this.databaseInfo,
+            clientId: this.clientId,
+            authCredentials: this.authCredentials,
+            appCheckCredentials: this.appCheckCredentials,
+            initialUser: this.user,
+            maxConcurrentLimboResolutions: 100
+          };
+        }
+        setCredentialChangeListener(e) {
+          this.authCredentialListener = e;
+        }
+        setAppCheckTokenChangeListener(e) {
+          this.appCheckCredentialListener = e;
+        }
+        verifyNotTerminated() {
+          if (this.asyncQueue.isShuttingDown) throw new li(ci.FAILED_PRECONDITION, 'The client has already been terminated.');
+        }
+        terminate() {
+          this.asyncQueue.enterRestrictedMode();
+          const e = new hi();
+          return (
+            this.asyncQueue.enqueueAndForgetEvenWhileRestricted(async () => {
+              try {
+                this._onlineComponents && (await this._onlineComponents.terminate()),
+                  this._offlineComponents && (await this._offlineComponents.terminate()),
+                  this.authCredentials.shutdown(),
+                  this.appCheckCredentials.shutdown(),
+                  e.resolve();
+              } catch (t) {
+                const n = Mf(t, 'Failed to shutdown persistence');
+                e.reject(n);
+              }
+            }),
+            e.promise
+          );
+        }
+      }
+      async function Hd(e, t) {
+        e.asyncQueue.verifyOperationInProgress(), ti('FirestoreClient', 'Initializing OfflineComponentProvider');
+        const n = await e.getConfiguration();
+        await t.initialize(n);
+        let r = n.initialUser;
+        e.setCredentialChangeListener(async e => {
+          r.isEqual(e) || (await wh(t.localStore, e), (r = e));
+        }),
+          t.persistence.setDatabaseDeletedListener(() => e.terminate()),
+          (e._offlineComponents = t);
+      }
+      async function Kd(e, t) {
+        e.asyncQueue.verifyOperationInProgress();
+        const n = await Yd(e);
+        ti('FirestoreClient', 'Initializing OnlineComponentProvider');
+        const r = await e.getConfiguration();
+        await t.initialize(n, r),
+          e.setCredentialChangeListener(e => Rf(t.remoteStore, e)),
+          e.setAppCheckTokenChangeListener((e, n) => Rf(t.remoteStore, n)),
+          (e._onlineComponents = t);
+      }
+      function Qd(e) {
+        return 'FirebaseError' === e.name
+          ? e.code === ci.FAILED_PRECONDITION || e.code === ci.UNIMPLEMENTED
+          : !('undefined' != typeof DOMException && e instanceof DOMException) || 22 === e.code || 20 === e.code || 11 === e.code;
+      }
+      async function Yd(e) {
+        if (!e._offlineComponents)
+          if (e._uninitializedComponentsProvider) {
+            ti('FirestoreClient', 'Using user provided OfflineComponentProvider');
+            try {
+              await Hd(e, e._uninitializedComponentsProvider._offline);
+            } catch (t) {
+              const n = t;
+              if (!Qd(n)) throw n;
+              ri('Error using user provided cache. Falling back to memory cache: ' + n), await Hd(e, new Md());
+            }
+          } else ti('FirestoreClient', 'Using default OfflineComponentProvider'), await Hd(e, new Md());
+        return e._offlineComponents;
+      }
+      async function Xd(e) {
+        return (
+          e._onlineComponents ||
+            (e._uninitializedComponentsProvider
+              ? (ti('FirestoreClient', 'Using user provided OnlineComponentProvider'), await Kd(e, e._uninitializedComponentsProvider._online))
+              : (ti('FirestoreClient', 'Using default OnlineComponentProvider'), await Kd(e, new Vd()))),
+          e._onlineComponents
+        );
+      }
+      function Jd(e) {
+        return Yd(e).then(e => e.persistence);
+      }
+      function Zd(e) {
+        return Yd(e).then(e => e.localStore);
+      }
+      function ep(e) {
+        return Xd(e).then(e => e.remoteStore);
+      }
+      function tp(e) {
+        return Xd(e).then(e => e.syncEngine);
+      }
+      function np(e) {
+        return Xd(e).then(e => e.datastore);
+      }
+      async function rp(e) {
+        const t = await Xd(e),
+          n = t.eventManager;
+        return (n.onListen = od.bind(null, t.syncEngine)), (n.onUnlisten = ad.bind(null, t.syncEngine)), n;
+      }
+      function ip(e) {
+        return e.asyncQueue.enqueue(async () => {
+          const t = await Jd(e),
+            n = await ep(e);
+          return (
+            t.setNetworkEnabled(!0),
+            (function (e) {
+              const t = ui(e);
+              return t.vu.delete(0), uf(t);
+            })(n)
+          );
+        });
+      }
+      function op(e) {
+        return e.asyncQueue.enqueue(async () => {
+          const t = await Jd(e),
+            n = await ep(e);
+          return (
+            t.setNetworkEnabled(!1),
+            (async function (e) {
+              const t = ui(e);
+              t.vu.add(0), await cf(t), t.bu.set('Offline');
+            })(n)
+          );
+        });
+      }
+      function sp(e, t) {
+        const n = new hi();
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (async function (e, t, n) {
+              try {
+                const r = await (function (e, t) {
+                  const n = ui(e);
+                  return n.persistence.runTransaction('read document', 'readonly', e => n.localDocuments.getDocument(e, t));
+                })(e, t);
+                r.isFoundDocument()
+                  ? n.resolve(r)
+                  : r.isNoDocument()
+                    ? n.resolve(null)
+                    : n.reject(
+                        new li(
+                          ci.UNAVAILABLE,
+                          "Failed to get document from cache. (However, this document may exist on the server. Run again without setting 'source' in the GetOptions to attempt to retrieve the document from the server.)"
+                        )
+                      );
+              } catch (e) {
+                const r = Mf(e, `Failed to get document '${t} from cache`);
+                n.reject(r);
+              }
+            })(await Zd(e), t, n)
+          ),
+          n.promise
+        );
+      }
+      function ap(e, t, n = {}) {
+        const r = new hi();
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (function (e, t, n, r, i) {
+              const o = new $d({
+                  next: o => {
+                    t.enqueueAndForget(() => zf(e, s));
+                    const a = o.docs.has(n);
+                    !a && o.fromCache
+                      ? i.reject(new li(ci.UNAVAILABLE, 'Failed to get document because the client is offline.'))
+                      : a && o.fromCache && r && 'server' === r.source
+                        ? i.reject(
+                            new li(
+                              ci.UNAVAILABLE,
+                              'Failed to get document from server. (However, this document does exist in the local cache. Run again without setting source to "server" to retrieve the cached document.)'
+                            )
+                          )
+                        : i.resolve(o);
+                  },
+                  error: e => i.reject(e)
+                }),
+                s = new Kf(ua(n.path), o, { includeMetadataChanges: !0, Ku: !0 });
+              return qf(e, s);
+            })(await rp(e), e.asyncQueue, t, n, r)
+          ),
+          r.promise
+        );
+      }
+      function up(e, t) {
+        const n = new hi();
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (async function (e, t, n) {
+              try {
+                const r = await xh(e, t, !0),
+                  i = new td(t, r.ir),
+                  o = i.sc(r.documents),
+                  s = i.applyChanges(o, !1);
+                n.resolve(s.snapshot);
+              } catch (e) {
+                const r = Mf(e, `Failed to execute query '${t} against cache`);
+                n.reject(r);
+              }
+            })(await Zd(e), t, n)
+          ),
+          n.promise
+        );
+      }
+      function cp(e, t, n = {}) {
+        const r = new hi();
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (function (e, t, n, r, i) {
+              const o = new $d({
+                  next: n => {
+                    t.enqueueAndForget(() => zf(e, s)),
+                      n.fromCache && 'server' === r.source
+                        ? i.reject(
+                            new li(
+                              ci.UNAVAILABLE,
+                              'Failed to get documents from server. (However, these documents may exist in the local cache. Run again without setting source to "server" to retrieve the cached documents.)'
+                            )
+                          )
+                        : i.resolve(n);
+                  },
+                  error: e => i.reject(e)
+                }),
+                s = new Kf(n, o, { includeMetadataChanges: !0, Ku: !0 });
+              return qf(e, s);
+            })(await rp(e), e.asyncQueue, t, n, r)
+          ),
+          r.promise
+        );
+      }
+      function lp(e, t) {
+        const n = new $d(t);
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (function (e, t) {
+              ui(e).ku.add(t), t.next();
+            })(await rp(e), n)
+          ),
+          () => {
+            n.Dc(),
+              e.asyncQueue.enqueueAndForget(async () =>
+                (function (e, t) {
+                  ui(e).ku.delete(t);
+                })(await rp(e), n)
+              );
+          }
+        );
+      }
+      function hp(e, t, n, r) {
+        const i = (function (e, t) {
+          let n;
+          return (
+            (n = 'string' == typeof e ? xu().encode(e) : e),
+            (function (e, t) {
+              return new qd(e, t);
+            })(
+              (function (e, t) {
+                if (e instanceof Uint8Array) return Bd(e, t);
+                if (e instanceof ArrayBuffer) return Bd(new Uint8Array(e), t);
+                if (e instanceof ReadableStream) return e.getReader();
+                throw new Error('Source of `toByteStreamReader` has to be a ArrayBuffer or ReadableStream');
+              })(n),
+              t
+            )
+          );
+        })(n, Zh(t));
+        e.asyncQueue.enqueueAndForget(async () => {
+          jd(await tp(e), i, r);
+        });
+      }
+      function fp(e, t) {
+        return e.asyncQueue.enqueue(async () =>
+          (function (e, t) {
+            const n = ui(e);
+            return n.persistence.runTransaction('Get named query', 'readonly', e => n.qs.getNamedQuery(e, t));
+          })(await Zd(e), t)
+        );
+      }
+      /**
+       * @license
+       * Copyright 2023 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      function dp(e) {
+        const t = {};
+        return void 0 !== e.timeoutSeconds && (t.timeoutSeconds = e.timeoutSeconds), t;
+        /**
+         * @license
+         * Copyright 2020 Google LLC
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *   http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+      }
+      const pp = new Map();
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function gp(e, t, n) {
+        if (!n) throw new li(ci.INVALID_ARGUMENT, `Function ${e}() cannot be called with an empty ${t}.`);
+      }
+      function mp(e, t, n, r) {
+        if (!0 === t && !0 === r) throw new li(ci.INVALID_ARGUMENT, `${e} and ${n} cannot be used together.`);
+      }
+      function vp(e) {
+        if (!Ni.isDocumentKey(e))
+          throw new li(
+            ci.INVALID_ARGUMENT,
+            `Invalid document reference. Document references must have an even number of segments, but ${e} has ${e.length}.`
+          );
+      }
+      function yp(e) {
+        if (Ni.isDocumentKey(e))
+          throw new li(
+            ci.INVALID_ARGUMENT,
+            `Invalid collection reference. Collection references must have an odd number of segments, but ${e} has ${e.length}.`
+          );
+      }
+      function wp(e) {
+        if (void 0 === e) return 'undefined';
+        if (null === e) return 'null';
+        if ('string' == typeof e) return e.length > 20 && (e = `${e.substring(0, 20)}...`), JSON.stringify(e);
+        if ('number' == typeof e || 'boolean' == typeof e) return '' + e;
+        if ('object' == typeof e) {
+          if (e instanceof Array) return 'an array';
+          {
+            const t = (function (e) {
+              return e.constructor ? e.constructor.name : null;
+            })(e);
+            return t ? `a custom ${t} object` : 'an object';
+          }
+        }
+        return 'function' == typeof e ? 'a function' : oi();
+      }
+      function bp(e, t) {
+        if (('_delegate' in e && (e = e._delegate), !(e instanceof t))) {
+          if (t.name === e.constructor.name)
+            throw new li(ci.INVALID_ARGUMENT, 'Type does not match the expected instance. Did you pass a reference from a different Firestore SDK?');
+          {
+            const n = wp(e);
+            throw new li(ci.INVALID_ARGUMENT, `Expected type '${t.name}', but it was: ${n}`);
+          }
+        }
+        return e;
+      }
+      function _p(e, t) {
+        if (t <= 0) throw new li(ci.INVALID_ARGUMENT, `Function ${e}() requires a positive number, but it was: ${t}.`);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Ip {
+        constructor(e) {
+          var t, n;
+          if (void 0 === e.host) {
+            if (void 0 !== e.ssl) throw new li(ci.INVALID_ARGUMENT, "Can't provide ssl option if host option is not set");
+            (this.host = 'firestore.googleapis.com'), (this.ssl = !0);
+          } else (this.host = e.host), (this.ssl = null === (t = e.ssl) || void 0 === t || t);
+          if (
+            ((this.credentials = e.credentials),
+            (this.ignoreUndefinedProperties = !!e.ignoreUndefinedProperties),
+            (this.cache = e.localCache),
+            void 0 === e.cacheSizeBytes)
+          )
+            this.cacheSizeBytes = 41943040;
+          else {
+            if (-1 !== e.cacheSizeBytes && e.cacheSizeBytes < 1048576) throw new li(ci.INVALID_ARGUMENT, 'cacheSizeBytes must be at least 1048576');
+            this.cacheSizeBytes = e.cacheSizeBytes;
+          }
+          mp(
+            'experimentalForceLongPolling',
+            e.experimentalForceLongPolling,
+            'experimentalAutoDetectLongPolling',
+            e.experimentalAutoDetectLongPolling
+          ),
+            (this.experimentalForceLongPolling = !!e.experimentalForceLongPolling),
+            this.experimentalForceLongPolling
+              ? (this.experimentalAutoDetectLongPolling = !1)
+              : void 0 === e.experimentalAutoDetectLongPolling
+                ? (this.experimentalAutoDetectLongPolling = !0)
+                : (this.experimentalAutoDetectLongPolling = !!e.experimentalAutoDetectLongPolling),
+            (this.experimentalLongPollingOptions = dp(null !== (n = e.experimentalLongPollingOptions) && void 0 !== n ? n : {})),
+            (function (e) {
+              if (void 0 !== e.timeoutSeconds) {
+                if (isNaN(e.timeoutSeconds)) throw new li(ci.INVALID_ARGUMENT, `invalid long polling timeout: ${e.timeoutSeconds} (must not be NaN)`);
+                if (e.timeoutSeconds < 5)
+                  throw new li(ci.INVALID_ARGUMENT, `invalid long polling timeout: ${e.timeoutSeconds} (minimum allowed value is 5)`);
+                if (e.timeoutSeconds > 30)
+                  throw new li(ci.INVALID_ARGUMENT, `invalid long polling timeout: ${e.timeoutSeconds} (maximum allowed value is 30)`);
+              }
+            })(
+              /**
+               * @license
+               * Copyright 2020 Google LLC
+               *
+               * Licensed under the Apache License, Version 2.0 (the "License");
+               * you may not use this file except in compliance with the License.
+               * You may obtain a copy of the License at
+               *
+               *   http://www.apache.org/licenses/LICENSE-2.0
+               *
+               * Unless required by applicable law or agreed to in writing, software
+               * distributed under the License is distributed on an "AS IS" BASIS,
+               * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+               * See the License for the specific language governing permissions and
+               * limitations under the License.
+               */ this.experimentalLongPollingOptions
+            ),
+            (this.useFetchStreams = !!e.useFetchStreams);
+        }
+        isEqual(e) {
+          return (
+            this.host === e.host &&
+            this.ssl === e.ssl &&
+            this.credentials === e.credentials &&
+            this.cacheSizeBytes === e.cacheSizeBytes &&
+            this.experimentalForceLongPolling === e.experimentalForceLongPolling &&
+            this.experimentalAutoDetectLongPolling === e.experimentalAutoDetectLongPolling &&
+            ((t = this.experimentalLongPollingOptions), (n = e.experimentalLongPollingOptions), t.timeoutSeconds === n.timeoutSeconds) &&
+            this.ignoreUndefinedProperties === e.ignoreUndefinedProperties &&
+            this.useFetchStreams === e.useFetchStreams
+          );
+          var t, n;
+        }
+      }
+      class Ep {
+        constructor(e, t, n, r) {
+          (this._authCredentials = e),
+            (this._appCheckCredentials = t),
+            (this._databaseId = n),
+            (this._app = r),
+            (this.type = 'firestore-lite'),
+            (this._persistenceKey = '(lite)'),
+            (this._settings = new Ip({})),
+            (this._settingsFrozen = !1);
+        }
+        get app() {
+          if (!this._app) throw new li(ci.FAILED_PRECONDITION, "Firestore was not initialized using the Firebase SDK. 'app' is not available");
+          return this._app;
+        }
+        get _initialized() {
+          return this._settingsFrozen;
+        }
+        get _terminated() {
+          return void 0 !== this._terminateTask;
+        }
+        _setSettings(e) {
+          if (this._settingsFrozen)
+            throw new li(
+              ci.FAILED_PRECONDITION,
+              'Firestore has already been started and its settings can no longer be changed. You can only modify settings before calling any other methods on a Firestore object.'
+            );
+          (this._settings = new Ip(e)),
+            void 0 !== e.credentials &&
+              (this._authCredentials = (function (e) {
+                if (!e) return new di();
+                switch (e.type) {
+                  case 'firstParty':
+                    return new vi(e.sessionIndex || '0', e.iamToken || null, e.authTokenFactory || null);
+                  case 'provider':
+                    return e.client;
+                  default:
+                    throw new li(ci.INVALID_ARGUMENT, 'makeAuthCredentialsProvider failed due to invalid credential type');
+                }
+              })(e.credentials));
+        }
+        _getSettings() {
+          return this._settings;
+        }
+        _freezeSettings() {
+          return (this._settingsFrozen = !0), this._settings;
+        }
+        _delete() {
+          return this._terminateTask || (this._terminateTask = this._terminate()), this._terminateTask;
+        }
+        toJSON() {
+          return { app: this._app, databaseId: this._databaseId, settings: this._settings };
+        }
+        _terminate() {
+          return (
+            (function (e) {
+              const t = pp.get(e);
+              t && (ti('ComponentProvider', 'Removing Datastore'), pp.delete(e), t.terminate());
+            })(this),
+            Promise.resolve()
+          );
+        }
+      }
+      function Sp(e, t, n, r = {}) {
+        var i;
+        const o = (e = bp(e, Ep))._getSettings(),
+          s = `${t}:${n}`;
+        if (
+          ('firestore.googleapis.com' !== o.host &&
+            o.host !== s &&
+            ri('Host has been set in both settings() and connectFirestoreEmulator(), emulator host will be used.'),
+          e._setSettings(Object.assign(Object.assign({}, o), { host: s, ssl: !1 })),
+          r.mockUserToken)
+        ) {
+          let t, n;
+          if ('string' == typeof r.mockUserToken) (t = r.mockUserToken), (n = Yr.MOCK_USER);
+          else {
+            t = (0, u.Sg)(r.mockUserToken, null === (i = e._app) || void 0 === i ? void 0 : i.options.projectId);
+            const o = r.mockUserToken.sub || r.mockUserToken.user_id;
+            if (!o) throw new li(ci.INVALID_ARGUMENT, "mockUserToken must contain 'sub' or 'user_id' field!");
+            n = new Yr(o);
+          }
+          e._authCredentials = new pi(new fi(t, n));
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Tp {
+        constructor(e, t, n) {
+          (this.converter = t), (this._key = n), (this.type = 'document'), (this.firestore = e);
+        }
+        get _path() {
+          return this._key.path;
+        }
+        get id() {
+          return this._key.path.lastSegment();
+        }
+        get path() {
+          return this._key.path.canonicalString();
+        }
+        get parent() {
+          return new xp(this.firestore, this.converter, this._key.path.popLast());
+        }
+        withConverter(e) {
+          return new Tp(this.firestore, e, this._key);
+        }
+      }
+      class Ap {
+        constructor(e, t, n) {
+          (this.converter = t), (this._query = n), (this.type = 'query'), (this.firestore = e);
+        }
+        withConverter(e) {
+          return new Ap(this.firestore, e, this._query);
+        }
+      }
+      class xp extends Ap {
+        constructor(e, t, n) {
+          super(e, t, ua(n)), (this._path = n), (this.type = 'collection');
+        }
+        get id() {
+          return this._query.path.lastSegment();
+        }
+        get path() {
+          return this._query.path.canonicalString();
+        }
+        get parent() {
+          const e = this._path.popLast();
+          return e.isEmpty() ? null : new Tp(this.firestore, null, new Ni(e));
+        }
+        withConverter(e) {
+          return new xp(this.firestore, e, this._path);
+        }
+      }
+      function Cp(e, t, ...n) {
+        if (((e = (0, u.m9)(e)), gp('collection', 'path', t), e instanceof Ep)) {
+          const r = Ci.fromString(t, ...n);
+          return yp(r), new xp(e, null, r);
+        }
+        {
+          if (!(e instanceof Tp || e instanceof xp))
+            throw new li(
+              ci.INVALID_ARGUMENT,
+              'Expected first argument to collection() to be a CollectionReference, a DocumentReference or FirebaseFirestore'
+            );
+          const r = e._path.child(Ci.fromString(t, ...n));
+          return yp(r), new xp(e.firestore, null, r);
+        }
+      }
+      function kp(e, t) {
+        if (((e = bp(e, Ep)), gp('collectionGroup', 'collection id', t), t.indexOf('/') >= 0))
+          throw new li(
+            ci.INVALID_ARGUMENT,
+            `Invalid collection ID '${t}' passed to function collectionGroup(). Collection IDs must not contain '/'.`
+          );
+        return new Ap(
+          e,
+          null,
+          (function (e) {
+            return new sa(Ci.emptyPath(), e);
+          })(t)
+        );
+      }
+      function Op(e, t, ...n) {
+        if (((e = (0, u.m9)(e)), 1 === arguments.length && (t = _i.A()), gp('doc', 'path', t), e instanceof Ep)) {
+          const r = Ci.fromString(t, ...n);
+          return vp(r), new Tp(e, null, new Ni(r));
+        }
+        {
+          if (!(e instanceof Tp || e instanceof xp))
+            throw new li(
+              ci.INVALID_ARGUMENT,
+              'Expected first argument to collection() to be a CollectionReference, a DocumentReference or FirebaseFirestore'
+            );
+          const r = e._path.child(Ci.fromString(t, ...n));
+          return vp(r), new Tp(e.firestore, e instanceof xp ? e.converter : null, new Ni(r));
+        }
+      }
+      function Np(e, t) {
+        return (
+          (e = (0, u.m9)(e)),
+          (t = (0, u.m9)(t)),
+          (e instanceof Tp || e instanceof xp) &&
+            (t instanceof Tp || t instanceof xp) &&
+            e.firestore === t.firestore &&
+            e.path === t.path &&
+            e.converter === t.converter
+        );
+      }
+      function Rp(e, t) {
+        return (
+          (e = (0, u.m9)(e)),
+          (t = (0, u.m9)(t)),
+          e instanceof Ap && t instanceof Ap && e.firestore === t.firestore && va(e._query, t._query) && e.converter === t.converter
+        );
+        /**
+         * @license
+         * Copyright 2020 Google LLC
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *   http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+      }
+      class Pp {
+        constructor() {
+          (this.Gc = Promise.resolve()),
+            (this.Qc = []),
+            (this.jc = !1),
+            (this.zc = []),
+            (this.Wc = null),
+            (this.Hc = !1),
+            (this.Jc = !1),
+            (this.Yc = []),
+            (this.qo = new ef(this, 'async_queue_retry')),
+            (this.Xc = () => {
+              const e = Jh();
+              e && ti('AsyncQueue', 'Visibility state changed to ' + e.visibilityState), this.qo.Mo();
+            });
+          const e = Jh();
+          e && 'function' == typeof e.addEventListener && e.addEventListener('visibilitychange', this.Xc);
+        }
+        get isShuttingDown() {
+          return this.jc;
+        }
+        enqueueAndForget(e) {
+          this.enqueue(e);
+        }
+        enqueueAndForgetEvenWhileRestricted(e) {
+          this.Zc(), this.ta(e);
+        }
+        enterRestrictedMode(e) {
+          if (!this.jc) {
+            (this.jc = !0), (this.Jc = e || !1);
+            const t = Jh();
+            t && 'function' == typeof t.removeEventListener && t.removeEventListener('visibilitychange', this.Xc);
+          }
+        }
+        enqueue(e) {
+          if ((this.Zc(), this.jc)) return new Promise(() => {});
+          const t = new hi();
+          return this.ta(() => (this.jc && this.Jc ? Promise.resolve() : (e().then(t.resolve, t.reject), t.promise))).then(() => t.promise);
+        }
+        enqueueRetryable(e) {
+          this.enqueueAndForget(() => (this.Qc.push(e), this.ea()));
+        }
+        async ea() {
+          if (0 !== this.Qc.length) {
+            try {
+              await this.Qc[0](), this.Qc.shift(), this.qo.reset();
+            } catch (e) {
+              if (!Qi(e)) throw e;
+              ti('AsyncQueue', 'Operation failed with retryable error: ' + e);
+            }
+            this.Qc.length > 0 && this.qo.No(() => this.ea());
+          }
+        }
+        ta(e) {
+          const t = this.Gc.then(
+            () => (
+              (this.Hc = !0),
+              e()
+                .catch(e => {
+                  (this.Wc = e), (this.Hc = !1);
+                  const t = (function (e) {
+                    let t = e.message || '';
+                    return e.stack && (t = e.stack.includes(e.message) ? e.stack : e.message + '\n' + e.stack), t;
+                  })(
+                    /**
+                     * @license
+                     * Copyright 2017 Google LLC
+                     *
+                     * Licensed under the Apache License, Version 2.0 (the "License");
+                     * you may not use this file except in compliance with the License.
+                     * You may obtain a copy of the License at
+                     *
+                     *   http://www.apache.org/licenses/LICENSE-2.0
+                     *
+                     * Unless required by applicable law or agreed to in writing, software
+                     * distributed under the License is distributed on an "AS IS" BASIS,
+                     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                     * See the License for the specific language governing permissions and
+                     * limitations under the License.
+                     */ e
+                  );
+                  throw (ni('INTERNAL UNHANDLED ERROR: ', t), e);
+                })
+                .then(e => ((this.Hc = !1), e))
+            )
+          );
+          return (this.Gc = t), t;
+        }
+        enqueueAfterDelay(e, t, n) {
+          this.Zc(), this.Yc.indexOf(e) > -1 && (t = 0);
+          const r = jf.createAndSchedule(this, e, t, n, e => this.na(e));
+          return this.zc.push(r), r;
+        }
+        Zc() {
+          this.Wc && oi();
+        }
+        verifyOperationInProgress() {}
+        async sa() {
+          let e;
+          do {
+            (e = this.Gc), await e;
+          } while (e !== this.Gc);
+        }
+        ia(e) {
+          for (const t of this.zc) if (t.timerId === e) return !0;
+          return !1;
+        }
+        ra(e) {
+          return this.sa().then(() => {
+            this.zc.sort((e, t) => e.targetTimeMs - t.targetTimeMs);
+            for (const t of this.zc) if ((t.skipDelay(), 'all' !== e && t.timerId === e)) break;
+            return this.sa();
+          });
+        }
+        oa(e) {
+          this.Yc.push(e);
+        }
+        na(e) {
+          const t = this.zc.indexOf(e);
+          this.zc.splice(t, 1);
+        }
+      }
+      function Dp(e) {
+        return (function (e, t) {
+          if ('object' != typeof e || null === e) return !1;
+          const n = e;
+          for (const r of t) if (r in n && 'function' == typeof n[r]) return !0;
+          return !1;
+        })(
+          /**
+           * @license
+           * Copyright 2020 Google LLC
+           *
+           * Licensed under the Apache License, Version 2.0 (the "License");
+           * you may not use this file except in compliance with the License.
+           * You may obtain a copy of the License at
+           *
+           *   http://www.apache.org/licenses/LICENSE-2.0
+           *
+           * Unless required by applicable law or agreed to in writing, software
+           * distributed under the License is distributed on an "AS IS" BASIS,
+           * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           * See the License for the specific language governing permissions and
+           * limitations under the License.
+           */ e,
+          ['next', 'error', 'complete']
+        );
+      }
+      class Lp {
+        constructor() {
+          (this._progressObserver = {}),
+            (this._taskCompletionResolver = new hi()),
+            (this._lastProgress = { taskState: 'Running', totalBytes: 0, totalDocuments: 0, bytesLoaded: 0, documentsLoaded: 0 });
+        }
+        onProgress(e, t, n) {
+          this._progressObserver = { next: e, error: t, complete: n };
+        }
+        catch(e) {
+          return this._taskCompletionResolver.promise.catch(e);
+        }
+        then(e, t) {
+          return this._taskCompletionResolver.promise.then(e, t);
+        }
+        _completeWith(e) {
+          this._updateProgress(e), this._progressObserver.complete && this._progressObserver.complete(), this._taskCompletionResolver.resolve(e);
+        }
+        _failWith(e) {
+          (this._lastProgress.taskState = 'Error'),
+            this._progressObserver.next && this._progressObserver.next(this._lastProgress),
+            this._progressObserver.error && this._progressObserver.error(e),
+            this._taskCompletionResolver.reject(e);
+        }
+        _updateProgress(e) {
+          (this._lastProgress = e), this._progressObserver.next && this._progressObserver.next(e);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const jp = -1;
+      class Mp extends Ep {
+        constructor(e, t, n, r) {
+          super(e, t, n, r),
+            (this.type = 'firestore'),
+            (this._queue = new Pp()),
+            (this._persistenceKey = (null == r ? void 0 : r.name) || '[DEFAULT]');
+        }
+        _terminate() {
+          return this._firestoreClient || Up(this), this._firestoreClient.terminate();
+        }
+      }
+      function Fp(e) {
+        return e._firestoreClient || Up(e), e._firestoreClient.verifyNotTerminated(), e._firestoreClient;
+      }
+      function Up(e) {
+        var t, n, r;
+        const i = e._freezeSettings(),
+          o = (function (e, t, n, r) {
+            return new ns(
+              e,
+              t,
+              n,
+              r.host,
+              r.ssl,
+              r.experimentalForceLongPolling,
+              r.experimentalAutoDetectLongPolling,
+              dp(r.experimentalLongPollingOptions),
+              r.useFetchStreams
+            );
+          })(e._databaseId, (null === (t = e._app) || void 0 === t ? void 0 : t.options.appId) || '', e._persistenceKey, i);
+        (e._firestoreClient = new Wd(e._authCredentials, e._appCheckCredentials, e._queue, o)),
+          (null === (n = i.cache) || void 0 === n ? void 0 : n._offlineComponentProvider) &&
+            (null === (r = i.cache) || void 0 === r ? void 0 : r._onlineComponentProvider) &&
+            (e._firestoreClient._uninitializedComponentsProvider = {
+              _offlineKind: i.cache.kind,
+              _offline: i.cache._offlineComponentProvider,
+              _online: i.cache._onlineComponentProvider
+            });
+      }
+      function Vp(e, t) {
+        Qp((e = bp(e, Mp)));
+        const n = Fp(e);
+        if (n._uninitializedComponentsProvider) throw new li(ci.FAILED_PRECONDITION, 'SDK cache is already specified.');
+        ri('enableIndexedDbPersistence() will be deprecated in the future, you can use `FirestoreSettings.cache` instead.');
+        const r = e._freezeSettings(),
+          i = new Vd();
+        return $p(n, i, new Fd(i, r.cacheSizeBytes, null == t ? void 0 : t.forceOwnership));
+      }
+      function Bp(e) {
+        Qp((e = bp(e, Mp)));
+        const t = Fp(e);
+        if (t._uninitializedComponentsProvider) throw new li(ci.FAILED_PRECONDITION, 'SDK cache is already specified.');
+        ri('enableMultiTabIndexedDbPersistence() will be deprecated in the future, you can use `FirestoreSettings.cache` instead.');
+        const n = e._freezeSettings(),
+          r = new Vd();
+        return $p(t, r, new Ud(r, n.cacheSizeBytes));
+      }
+      function $p(e, t, n) {
+        const r = new hi();
+        return e.asyncQueue
+          .enqueue(async () => {
+            try {
+              await Hd(e, n), await Kd(e, t), r.resolve();
+            } catch (e) {
+              const n = e;
+              if (!Qd(n)) throw n;
+              ri('Error enabling indexeddb cache. Falling back to memory cache: ' + n), r.reject(n);
+            }
+          })
+          .then(() => r.promise);
+      }
+      function qp(e) {
+        if (e._initialized && !e._terminated)
+          throw new li(
+            ci.FAILED_PRECONDITION,
+            'Persistence can only be cleared before a Firestore instance is initialized or after it is terminated.'
+          );
+        const t = new hi();
+        return (
+          e._queue.enqueueAndForgetEvenWhileRestricted(async () => {
+            try {
+              await (async function (e) {
+                if (!Wi.D()) return Promise.resolve();
+                const t = e + 'main';
+                await Wi.delete(t);
+              })(ph(e._databaseId, e._persistenceKey)),
+                t.resolve();
+            } catch (e) {
+              t.reject(e);
+            }
+          }),
+          t.promise
+        );
+      }
+      function zp(e) {
+        return (function (e) {
+          const t = new hi();
+          return e.asyncQueue.enqueueAndForget(async () => pd(await tp(e), t)), t.promise;
+        })(Fp((e = bp(e, Mp))));
+      }
+      function Gp(e) {
+        return ip(Fp((e = bp(e, Mp))));
+      }
+      function Wp(e) {
+        return op(Fp((e = bp(e, Mp))));
+      }
+      function Hp(e, t) {
+        const n = Fp((e = bp(e, Mp))),
+          r = new Lp();
+        return hp(n, e._databaseId, t, r), r;
+      }
+      function Kp(e, t) {
+        return fp(Fp((e = bp(e, Mp))), t).then(t => (t ? new Ap(e, null, t.query) : null));
+      }
+      function Qp(e) {
+        if (e._initialized || e._terminated)
+          throw new li(
+            ci.FAILED_PRECONDITION,
+            'Firestore has already been started and persistence can no longer be enabled. You can only enable persistence before calling any other methods on a Firestore object.'
+          );
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      /**
+       * @license
+       * Copyright 2022 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      class Yp {
+        constructor(e) {
+          this._byteString = e;
+        }
+        static fromBase64String(e) {
+          try {
+            return new Yp(Ko.fromBase64String(e));
+          } catch (e) {
+            throw new li(ci.INVALID_ARGUMENT, 'Failed to construct data from Base64 string: ' + e);
+          }
+        }
+        static fromUint8Array(e) {
+          return new Yp(Ko.fromUint8Array(e));
+        }
+        toBase64() {
+          return this._byteString.toBase64();
+        }
+        toUint8Array() {
+          return this._byteString.toUint8Array();
+        }
+        toString() {
+          return 'Bytes(base64: ' + this.toBase64() + ')';
+        }
+        isEqual(e) {
+          return this._byteString.isEqual(e._byteString);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Xp {
+        constructor(...e) {
+          for (let t = 0; t < e.length; ++t)
+            if (0 === e[t].length) throw new li(ci.INVALID_ARGUMENT, 'Invalid field name at argument $(i + 1). Field names must not be empty.');
+          this._internalPath = new Oi(e);
+        }
+        isEqual(e) {
+          return this._internalPath.isEqual(e._internalPath);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      class Jp {
+        constructor(e) {
+          this._methodName = e;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Zp {
+        constructor(e, t) {
+          if (!isFinite(e) || e < -90 || e > 90) throw new li(ci.INVALID_ARGUMENT, 'Latitude must be a number between -90 and 90, but was: ' + e);
+          if (!isFinite(t) || t < -180 || t > 180)
+            throw new li(ci.INVALID_ARGUMENT, 'Longitude must be a number between -180 and 180, but was: ' + t);
+          (this._lat = e), (this._long = t);
+        }
+        get latitude() {
+          return this._lat;
+        }
+        get longitude() {
+          return this._long;
+        }
+        isEqual(e) {
+          return this._lat === e._lat && this._long === e._long;
+        }
+        toJSON() {
+          return { latitude: this._lat, longitude: this._long };
+        }
+        _compareTo(e) {
+          return Ii(this._lat, e._lat) || Ii(this._long, e._long);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const eg = /^__.*__$/;
+      class tg {
+        constructor(e, t, n) {
+          (this.data = e), (this.fieldMask = t), (this.fieldTransforms = n);
+        }
+        toMutation(e, t) {
+          return null !== this.fieldMask
+            ? new hu(e, this.data, this.fieldMask, t, this.fieldTransforms)
+            : new lu(e, this.data, t, this.fieldTransforms);
+        }
+      }
+      class ng {
+        constructor(e, t, n) {
+          (this.data = e), (this.fieldMask = t), (this.fieldTransforms = n);
+        }
+        toMutation(e, t) {
+          return new hu(e, this.data, this.fieldMask, t, this.fieldTransforms);
+        }
+      }
+      function rg(e) {
+        switch (e) {
+          case 0:
+          case 2:
+          case 1:
+            return !0;
+          case 3:
+          case 4:
+            return !1;
+          default:
+            throw oi();
+        }
+      }
+      class ig {
+        constructor(e, t, n, r, i, o) {
