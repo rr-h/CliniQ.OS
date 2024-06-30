@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+        for (const r of e.fieldTransforms) {
+          const e = t.data.field(r.field),
+            i = za(r.transform, e || null);
+          null != i && (null === n && (n = Ts.empty()), n.set(r.field, i));
+        }
+        return n || null;
+      }
+      function cu(e, t) {
+        return (
+          e.type === t.type &&
+          !!e.key.isEqual(t.key) &&
+          !!e.precondition.isEqual(t.precondition) &&
+          !!(function (e, t) {
+            return (void 0 === e && void 0 === t) || (!(!e || !t) && Ei(e, t, (e, t) => eu(e, t)));
+          })(e.fieldTransforms, t.fieldTransforms) &&
+          (0 === e.type ? e.value.isEqual(t.value) : 1 !== e.type || (e.data.isEqual(t.data) && e.fieldMask.isEqual(t.fieldMask)))
+        );
+      }
+      class lu extends iu {
+        constructor(e, t, n, r = []) {
+          super(), (this.key = e), (this.value = t), (this.precondition = n), (this.fieldTransforms = r), (this.type = 0);
+        }
+        getFieldMask() {
+          return null;
+        }
+      }
+      class hu extends iu {
+        constructor(e, t, n, r, i = []) {
+          super(), (this.key = e), (this.data = t), (this.fieldMask = n), (this.precondition = r), (this.fieldTransforms = i), (this.type = 1);
+        }
+        getFieldMask() {
+          return this.fieldMask;
+        }
+      }
+      function fu(e) {
+        const t = new Map();
+        return (
+          e.fieldMask.fields.forEach(n => {
+            if (!n.isEmpty()) {
+              const r = e.data.field(n);
+              t.set(n, r);
+            }
+          }),
+          t
+        );
+      }
+      function du(e, t, n) {
+        const r = new Map();
+        si(e.length === n.length);
+        for (let i = 0; i < n.length; i++) {
+          const o = e[i],
+            s = o.transform,
+            a = t.data.field(o.field);
+          r.set(o.field, qa(s, a, n[i]));
+        }
+        return r;
+      }
+      function pu(e, t, n) {
+        const r = new Map();
+        for (const i of e) {
+          const e = i.transform,
+            o = n.data.field(i.field);
+          r.set(i.field, $a(e, o, t));
+        }
+        return r;
+      }
+      class gu extends iu {
+        constructor(e, t) {
+          super(), (this.key = e), (this.precondition = t), (this.type = 2), (this.fieldTransforms = []);
+        }
+        getFieldMask() {
+          return null;
+        }
+      }
+      class mu extends iu {
+        constructor(e, t) {
+          super(), (this.key = e), (this.precondition = t), (this.type = 3), (this.fieldTransforms = []);
+        }
+        getFieldMask() {
+          return null;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class vu {
+        constructor(e, t, n, r) {
+          (this.batchId = e), (this.localWriteTime = t), (this.baseMutations = n), (this.mutations = r);
+        }
+        applyToRemoteDocument(e, t) {
+          const n = t.mutationResults;
+          for (let r = 0; r < this.mutations.length; r++) {
+            const t = this.mutations[r];
+            t.key.isEqual(e.key) && su(t, e, n[r]);
+          }
+        }
+        applyToLocalView(e, t) {
+          for (const n of this.baseMutations) n.key.isEqual(e.key) && (t = au(n, e, t, this.localWriteTime));
+          for (const n of this.mutations) n.key.isEqual(e.key) && (t = au(n, e, t, this.localWriteTime));
+          return t;
+        }
+        applyToLocalDocumentSet(e, t) {
+          const n = Na();
+          return (
+            this.mutations.forEach(r => {
+              const i = e.get(r.key),
+                o = i.overlayedDocument;
+              let s = this.applyToLocalView(o, i.mutatedFields);
+              s = t.has(r.key) ? null : s;
+              const a = ou(o, s);
+              null !== a && n.set(r.key, a), o.isValidDocument() || o.convertToNoDocument(Ai.min());
+            }),
+            n
+          );
+        }
+        keys() {
+          return this.mutations.reduce((e, t) => e.add(t.key), La());
+        }
+        isEqual(e) {
+          return (
+            this.batchId === e.batchId &&
+            Ei(this.mutations, e.mutations, (e, t) => cu(e, t)) &&
+            Ei(this.baseMutations, e.baseMutations, (e, t) => cu(e, t))
+          );
+        }
+      }
+      class yu {
+        constructor(e, t, n, r) {
+          (this.batch = e), (this.commitVersion = t), (this.mutationResults = n), (this.docVersions = r);
+        }
+        static from(e, t, n) {
+          si(e.mutations.length === n.length);
+          let r = Pa;
+          const i = e.mutations;
+          for (let o = 0; o < i.length; o++) r = r.insert(i[o].key, n[o].version);
+          return new yu(e, t, n, r);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2022 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class wu {
+        constructor(e, t) {
+          (this.largestBatchId = e), (this.mutation = t);
+        }
+        getKey() {
+          return this.mutation.key;
+        }
+        isEqual(e) {
+          return null !== e && this.mutation === e.mutation;
+        }
+        toString() {
+          return `Overlay{\n      largestBatchId: ${this.largestBatchId},\n      mutation: ${this.mutation.toString()}\n    }`;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2023 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      class bu {
+        constructor(e, t) {
+          (this.count = e), (this.unchangedNames = t);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ var _u, Iu;
+      function Eu(e) {
+        switch (e) {
+          default:
+            return oi();
+          case ci.CANCELLED:
+          case ci.UNKNOWN:
+          case ci.DEADLINE_EXCEEDED:
+          case ci.RESOURCE_EXHAUSTED:
+          case ci.INTERNAL:
+          case ci.UNAVAILABLE:
+          case ci.UNAUTHENTICATED:
+            return !1;
+          case ci.INVALID_ARGUMENT:
+          case ci.NOT_FOUND:
+          case ci.ALREADY_EXISTS:
+          case ci.PERMISSION_DENIED:
+          case ci.FAILED_PRECONDITION:
+          case ci.ABORTED:
+          case ci.OUT_OF_RANGE:
+          case ci.UNIMPLEMENTED:
+          case ci.DATA_LOSS:
+            return !0;
+        }
+      }
+      function Su(e) {
+        if (void 0 === e) return ni('GRPC error has no .code'), ci.UNKNOWN;
+        switch (e) {
+          case _u.OK:
+            return ci.OK;
+          case _u.CANCELLED:
+            return ci.CANCELLED;
+          case _u.UNKNOWN:
+            return ci.UNKNOWN;
+          case _u.DEADLINE_EXCEEDED:
+            return ci.DEADLINE_EXCEEDED;
+          case _u.RESOURCE_EXHAUSTED:
+            return ci.RESOURCE_EXHAUSTED;
+          case _u.INTERNAL:
+            return ci.INTERNAL;
+          case _u.UNAVAILABLE:
+            return ci.UNAVAILABLE;
+          case _u.UNAUTHENTICATED:
+            return ci.UNAUTHENTICATED;
+          case _u.INVALID_ARGUMENT:
+            return ci.INVALID_ARGUMENT;
+          case _u.NOT_FOUND:
+            return ci.NOT_FOUND;
+          case _u.ALREADY_EXISTS:
+            return ci.ALREADY_EXISTS;
+          case _u.PERMISSION_DENIED:
+            return ci.PERMISSION_DENIED;
+          case _u.FAILED_PRECONDITION:
+            return ci.FAILED_PRECONDITION;
+          case _u.ABORTED:
+            return ci.ABORTED;
+          case _u.OUT_OF_RANGE:
+            return ci.OUT_OF_RANGE;
+          case _u.UNIMPLEMENTED:
+            return ci.UNIMPLEMENTED;
+          case _u.DATA_LOSS:
+            return ci.DATA_LOSS;
+          default:
+            return oi();
+        }
+      }
+      ((Iu = _u || (_u = {}))[(Iu.OK = 0)] = 'OK'),
+        (Iu[(Iu.CANCELLED = 1)] = 'CANCELLED'),
+        (Iu[(Iu.UNKNOWN = 2)] = 'UNKNOWN'),
+        (Iu[(Iu.INVALID_ARGUMENT = 3)] = 'INVALID_ARGUMENT'),
+        (Iu[(Iu.DEADLINE_EXCEEDED = 4)] = 'DEADLINE_EXCEEDED'),
+        (Iu[(Iu.NOT_FOUND = 5)] = 'NOT_FOUND'),
+        (Iu[(Iu.ALREADY_EXISTS = 6)] = 'ALREADY_EXISTS'),
+        (Iu[(Iu.PERMISSION_DENIED = 7)] = 'PERMISSION_DENIED'),
+        (Iu[(Iu.UNAUTHENTICATED = 16)] = 'UNAUTHENTICATED'),
+        (Iu[(Iu.RESOURCE_EXHAUSTED = 8)] = 'RESOURCE_EXHAUSTED'),
+        (Iu[(Iu.FAILED_PRECONDITION = 9)] = 'FAILED_PRECONDITION'),
+        (Iu[(Iu.ABORTED = 10)] = 'ABORTED'),
+        (Iu[(Iu.OUT_OF_RANGE = 11)] = 'OUT_OF_RANGE'),
+        (Iu[(Iu.UNIMPLEMENTED = 12)] = 'UNIMPLEMENTED'),
+        (Iu[(Iu.INTERNAL = 13)] = 'INTERNAL'),
+        (Iu[(Iu.UNAVAILABLE = 14)] = 'UNAVAILABLE'),
+        (Iu[(Iu.DATA_LOSS = 15)] = 'DATA_LOSS');
+      /**
+       * @license
+       * Copyright 2023 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      class Tu {
+        constructor() {
+          this.onExistenceFilterMismatchCallbacks = new Map();
+        }
+        static get instance() {
+          return Au;
+        }
+        static getOrCreateInstance() {
+          return null === Au && (Au = new Tu()), Au;
+        }
+        onExistenceFilterMismatch(e) {
+          const t = Symbol();
+          return this.onExistenceFilterMismatchCallbacks.set(t, e), () => this.onExistenceFilterMismatchCallbacks.delete(t);
+        }
+        notifyOnExistenceFilterMismatch(e) {
+          this.onExistenceFilterMismatchCallbacks.forEach(t => t(e));
+        }
+      }
+      let Au = null;
+      /**
+       * @license
+       * Copyright 2023 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function xu() {
+        return new TextEncoder();
+      }
+      /**
+       * @license
+       * Copyright 2022 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Cu = new Kr([4294967295, 4294967295], 0);
+      function ku(e) {
+        const t = xu().encode(e),
+          n = new Hr();
+        return n.update(t), new Uint8Array(n.digest());
+      }
+      function Ou(e) {
+        const t = new DataView(e.buffer),
+          n = t.getUint32(0, !0),
+          r = t.getUint32(4, !0),
+          i = t.getUint32(8, !0),
+          o = t.getUint32(12, !0);
+        return [new Kr([n, r], 0), new Kr([i, o], 0)];
+      }
+      class Nu {
+        constructor(e, t, n) {
+          if (((this.bitmap = e), (this.padding = t), (this.hashCount = n), t < 0 || t >= 8)) throw new Ru(`Invalid padding: ${t}`);
+          if (n < 0) throw new Ru(`Invalid hash count: ${n}`);

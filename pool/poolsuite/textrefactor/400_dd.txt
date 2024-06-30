@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+          return { multiFactorSession: { [e]: this.credential } };
+        }
+        static fromJSON(e) {
+          var t, n;
+          if (null === e || void 0 === e ? void 0 : e.multiFactorSession) {
+            if (null === (t = e.multiFactorSession) || void 0 === t ? void 0 : t.pendingCredential)
+              return Rn._fromMfaPendingCredential(e.multiFactorSession.pendingCredential);
+            if (null === (n = e.multiFactorSession) || void 0 === n ? void 0 : n.idToken) return Rn._fromIdtoken(e.multiFactorSession.idToken);
+          }
+          return null;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Pn {
+        constructor(e, t, n) {
+          (this.session = e), (this.hints = t), (this.signInResolver = n);
+        }
+        static _fromError(e, t) {
+          const n = We(e),
+            r = t.customData._serverResponse,
+            i = (r.mfaInfo || []).map(e => en._fromServerResponse(n, e));
+          S(r.mfaPendingCredential, n, 'internal-error');
+          const o = Rn._fromMfaPendingCredential(r.mfaPendingCredential);
+          return new Pn(o, i, async e => {
+            const i = await e._process(n, o);
+            delete r.mfaInfo, delete r.mfaPendingCredential;
+            const s = Object.assign(Object.assign({}, r), { idToken: i.idToken, refreshToken: i.refreshToken });
+            switch (t.operationType) {
+              case 'signIn':
+                const e = await Ft._fromIdTokenResponse(n, t.operationType, s);
+                return await n._updateCurrentUser(e.user), e;
+              case 'reauthenticate':
+                return S(t.user, n, 'internal-error'), Ft._forOperation(t.user, t.operationType, s);
+              default:
+                w(n, 'internal-error');
+            }
+          });
+        }
+        async resolveSignIn(e) {
+          const t = e;
+          return this.signInResolver(t);
+        }
+      }
+      function Dn(e, t) {
+        var n;
+        const r = (0, i.m9)(e),
+          o = t;
+        return (
+          S(t.customData.operationType, r, 'argument-error'),
+          S(null === (n = o.customData._serverResponse) || void 0 === n ? void 0 : n.mfaPendingCredential, r, 'argument-error'),
+          Pn._fromError(r, o)
+        );
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Ln(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:start', M(e, t));
+      }
+      function jn(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:finalize', M(e, t));
+      }
+      function Mn(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:start', M(e, t));
+      }
+      function Fn(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:finalize', M(e, t));
+      }
+      function Un(e, t) {
+        return F(e, 'POST', '/v2/accounts/mfaEnrollment:withdraw', M(e, t));
+      }
+      class Vn {
+        constructor(e) {
+          (this.user = e),
+            (this.enrolledFactors = []),
+            e._onReload(t => {
+              t.mfaInfo && (this.enrolledFactors = t.mfaInfo.map(t => en._fromServerResponse(e.auth, t)));
+            });
+        }
+        static _fromUser(e) {
+          return new Vn(e);
+        }
+        async getSession() {
+          return Rn._fromIdtoken(await this.user.getIdToken(), this.user.auth);
+        }
+        async enroll(e, t) {
+          const n = e,
+            r = await this.getSession(),
+            i = await J(this.user, n._process(this.user.auth, r, t));
+          return await this.user._updateTokensIfNecessary(i), this.user.reload();
+        }
+        async unenroll(e) {
+          const t = 'string' === typeof e ? e : e.uid,
+            n = await this.user.getIdToken();
+          try {
+            const e = await J(this.user, Un(this.user.auth, { idToken: n, mfaEnrollmentId: t }));
+            (this.enrolledFactors = this.enrolledFactors.filter(({ uid: e }) => e !== t)),
+              await this.user._updateTokensIfNecessary(e),
+              await this.user.reload();
+          } catch (r) {
+            throw r;
+          }
+        }
+      }
+      const Bn = new WeakMap();
+      function $n(e) {
+        const t = (0, i.m9)(e);
+        return Bn.has(t) || Bn.set(t, Vn._fromUser(t)), Bn.get(t);
+      }
+      const qn = '__sak';
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class zn {
+        constructor(e, t) {
+          (this.storageRetriever = e), (this.type = t);
+        }
+        _isAvailable() {
+          try {
+            return this.storage ? (this.storage.setItem(qn, '1'), this.storage.removeItem(qn), Promise.resolve(!0)) : Promise.resolve(!1);
+          } catch (e) {
+            return Promise.resolve(!1);
+          }
+        }
+        _set(e, t) {
+          return this.storage.setItem(e, JSON.stringify(t)), Promise.resolve();
+        }
+        _get(e) {
+          const t = this.storage.getItem(e);
+          return Promise.resolve(t ? JSON.parse(t) : null);
+        }
+        _remove(e) {
+          return this.storage.removeItem(e), Promise.resolve();
+        }
+        get storage() {
+          return this.storageRetriever();
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Gn() {
+        const e = (0, i.z$)();
+        return ye(e) || Se(e);
+      }
+      const Wn = 1e3,
+        Hn = 10;
+      class Kn extends zn {
+        constructor() {
+          super(() => window.localStorage, 'LOCAL'),
+            (this.boundEventHandler = (e, t) => this.onStorageEvent(e, t)),
+            (this.listeners = {}),
+            (this.localCache = {}),
+            (this.pollTimer = null),
+            (this.safariLocalStorageNotSynced = Gn() && ke()),
+            (this.fallbackToPolling = Ce()),
+            (this._shouldAllowMigration = !0);
+        }
+        forAllChangedKeys(e) {
+          for (const t of Object.keys(this.listeners)) {
+            const n = this.storage.getItem(t),
+              r = this.localCache[t];
+            n !== r && e(t, r, n);
+          }
+        }
+        onStorageEvent(e, t = !1) {
+          if (!e.key)
+            return void this.forAllChangedKeys((e, t, n) => {
+              this.notifyListeners(e, n);
+            });
+          const n = e.key;
+          if ((t ? this.detachListener() : this.stopPolling(), this.safariLocalStorageNotSynced)) {
+            const r = this.storage.getItem(n);
+            if (e.newValue !== r) null !== e.newValue ? this.storage.setItem(n, e.newValue) : this.storage.removeItem(n);
+            else if (this.localCache[n] === e.newValue && !t) return;
+          }
+          const r = () => {
+              const e = this.storage.getItem(n);
+              (t || this.localCache[n] !== e) && this.notifyListeners(n, e);
+            },
+            i = this.storage.getItem(n);
+          xe() && i !== e.newValue && e.newValue !== e.oldValue ? setTimeout(r, Hn) : r();
+        }
+        notifyListeners(e, t) {
+          this.localCache[e] = t;
+          const n = this.listeners[e];
+          if (n) for (const r of Array.from(n)) r(t ? JSON.parse(t) : t);
+        }
+        startPolling() {
+          this.stopPolling(),
+            (this.pollTimer = setInterval(() => {
+              this.forAllChangedKeys((e, t, n) => {
+                this.onStorageEvent(new StorageEvent('storage', { key: e, oldValue: t, newValue: n }), !0);
+              });
+            }, Wn));
+        }
+        stopPolling() {
+          this.pollTimer && (clearInterval(this.pollTimer), (this.pollTimer = null));
+        }
+        attachListener() {
+          window.addEventListener('storage', this.boundEventHandler);
+        }
+        detachListener() {
+          window.removeEventListener('storage', this.boundEventHandler);
+        }
+        _addListener(e, t) {
+          0 === Object.keys(this.listeners).length && (this.fallbackToPolling ? this.startPolling() : this.attachListener()),
+            this.listeners[e] || ((this.listeners[e] = new Set()), (this.localCache[e] = this.storage.getItem(e))),
+            this.listeners[e].add(t);
+        }
+        _removeListener(e, t) {
+          this.listeners[e] && (this.listeners[e].delete(t), 0 === this.listeners[e].size && delete this.listeners[e]),
+            0 === Object.keys(this.listeners).length && (this.detachListener(), this.stopPolling());
+        }
+        async _set(e, t) {
+          await super._set(e, t), (this.localCache[e] = JSON.stringify(t));
+        }
+        async _get(e) {
+          const t = await super._get(e);
+          return (this.localCache[e] = JSON.stringify(t)), t;
+        }
+        async _remove(e) {
+          await super._remove(e), delete this.localCache[e];
+        }
+      }
+      Kn.type = 'LOCAL';
+      const Qn = Kn;
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Yn extends zn {
+        constructor() {
+          super(() => window.sessionStorage, 'SESSION');
+        }
+        _addListener(e, t) {}
+        _removeListener(e, t) {}
+      }
+      Yn.type = 'SESSION';
+      const Xn = Yn;
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Jn(e) {
+        return Promise.all(
+          e.map(async e => {
+            try {
+              const t = await e;
+              return { fulfilled: !0, value: t };
+            } catch (t) {
+              return { fulfilled: !1, reason: t };
+            }
+          })
+        );
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Zn {
+        constructor(e) {
+          (this.eventTarget = e), (this.handlersMap = {}), (this.boundEventHandler = this.handleEvent.bind(this));
+        }
+        static _getInstance(e) {
+          const t = this.receivers.find(t => t.isListeningto(e));
+          if (t) return t;
+          const n = new Zn(e);
+          return this.receivers.push(n), n;
+        }
+        isListeningto(e) {
+          return this.eventTarget === e;
+        }
+        async handleEvent(e) {
+          const t = e,
+            { eventId: n, eventType: r, data: i } = t.data,
+            o = this.handlersMap[r];
+          if (!(null === o || void 0 === o ? void 0 : o.size)) return;
+          t.ports[0].postMessage({ status: 'ack', eventId: n, eventType: r });
+          const s = Array.from(o).map(async e => e(t.origin, i)),
+            a = await Jn(s);
+          t.ports[0].postMessage({ status: 'done', eventId: n, eventType: r, response: a });
+        }
+        _subscribe(e, t) {
+          0 === Object.keys(this.handlersMap).length && this.eventTarget.addEventListener('message', this.boundEventHandler),
+            this.handlersMap[e] || (this.handlersMap[e] = new Set()),
+            this.handlersMap[e].add(t);
+        }
+        _unsubscribe(e, t) {
+          this.handlersMap[e] && t && this.handlersMap[e].delete(t),
+            (t && 0 !== this.handlersMap[e].size) || delete this.handlersMap[e],
+            0 === Object.keys(this.handlersMap).length && this.eventTarget.removeEventListener('message', this.boundEventHandler);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      function er(e = '', t = 10) {
+        let n = '';
+        for (let r = 0; r < t; r++) n += Math.floor(10 * Math.random());
+        return e + n;
+      }
+      /**
+       * @license

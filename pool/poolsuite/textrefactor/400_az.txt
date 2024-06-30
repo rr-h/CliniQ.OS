@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+          function Ue(e, t, n, r, i, o, s) {
+            switch (n) {
+              case m:
+              case v:
+              case _:
+                return St(+e, +t);
+              case y:
+                return e.name == t.name && e.message == t.message;
+              case S:
+              case T:
+                return e == t + '';
+            }
+            return !1;
+          }
+          function Ve(e, t, n, r, o, s) {
+            var u = n & a,
+              c = Jt(e),
+              l = c.length,
+              h = Jt(t),
+              f = h.length;
+            if (l != f && !u) return !1;
+            var d = l;
+            while (d--) {
+              var p = c[d];
+              if (!(u ? p in t : z.call(t, p))) return !1;
+            }
+            var g = s.get(e),
+              m = s.get(t);
+            if (g && m) return g == t && m == e;
+            var v = !0,
+              y = u;
+            while (++d < l) {
+              p = c[d];
+              var w,
+                b = e[p],
+                _ = t[p];
+              if (!(w === i ? b === _ || o(b, _, n, r, s) : w)) {
+                v = !1;
+                break;
+              }
+              y || (y = 'constructor' == p);
+            }
+            if (v && !y) {
+              var I = e.constructor,
+                E = t.constructor;
+              I == E ||
+                !('constructor' in e) ||
+                !('constructor' in t) ||
+                ('function' == typeof I && I instanceof I && 'function' == typeof E && E instanceof E) ||
+                (v = !1);
+            }
+            return v;
+          }
+          function Be(e) {
+            return Ke(He(e, i, Je), e + '');
+          }
+          function $e(e) {
+            return At(e) || Tt(e);
+          }
+          function qe(e, t) {
+            var n = typeof e;
+            return (t = null == t ? f : t), !!t && ('number' == n || ('symbol' != n && C.test(e))) && e > -1 && e % 1 == 0 && e < t;
+          }
+          function ze(e, t, n) {
+            if (!Lt(n)) return !1;
+            var r = typeof t;
+            return !!('number' == r ? xt(n) && qe(t, n.length) : 'string' == r && t in n) && St(n[t], e);
+          }
+          function Ge(e) {
+            var t = [];
+            if (null != e) for (var n in Object(e)) t.push(n);
+            return t;
+          }
+          function We(e) {
+            return W.call(e);
+          }
+          function He(e, t, n) {
+            return (
+              (t = J(t === i ? e.length - 1 : t, 0)),
+              function () {
+                var r = arguments,
+                  i = -1,
+                  o = J(r.length - t, 0),
+                  s = Array(o);
+                while (++i < o) s[i] = r[t + i];
+                i = -1;
+                var a = Array(t + 1);
+                while (++i < t) a[i] = r[i];
+                return (a[t] = n(s)), e.apply(this, a);
+              }
+            );
+          }
+          var Ke = on;
+          function Qe(e) {
+            return ue(e, Boolean);
+          }
+          function Ye() {
+            var e = arguments.length;
+            if (!e) return [];
+            var t = Array(e - 1),
+              n = arguments[0],
+              r = e;
+            while (r--) t[r - 1] = arguments[r];
+            return D(At(n) ? xe(n) : [n], ce(t, 1));
+          }
+          function Xe(e, t, n) {
+            var r = null == e ? 0 : e.length;
+            if (!r) return -1;
+            var i = null == n ? 0 : zt(n);
+            return i < 0 && (i = J(r + i, 0)), L(e, be(t, 3), i);
+          }
+          function Je(e) {
+            var t = null == e ? 0 : e.length;
+            return t ? ce(e, 1) : [];
+          }
+          function Ze(e) {
+            var t = null == e ? 0 : e.length;
+            return t ? ce(e, h) : [];
+          }
+          function et(e) {
+            return e && e.length ? e[0] : i;
+          }
+          function tt(e, t, n) {
+            var r = null == e ? 0 : e.length;
+            n = 'number' == typeof n ? (n < 0 ? J(r + n, 0) : n) : 0;
+            var i = (n || 0) - 1,
+              o = t === t;
+            while (++i < r) {
+              var s = e[i];
+              if (o ? s === t : s !== s) return i;
+            }
+            return -1;
+          }
+          function nt(e) {
+            var t = null == e ? 0 : e.length;
+            return t ? e[t - 1] : i;
+          }
+          function rt(e, t, n) {
+            var r = null == e ? 0 : e.length;
+            return (t = null == t ? 0 : +t), (n = n === i ? r : +n), r ? Ae(e, t, n) : [];
+          }
+          function it(e) {
+            var t = Z(e);
+            return (t.__chain__ = !0), t;
+          }
+          function ot(e, t) {
+            return t(e), e;
+          }
+          function st(e, t) {
+            return t(e);
+          }
+          function at() {
+            return ke(this.__wrapped__, this.__actions__);
+          }
+          function ut(e, t, n) {
+            return (t = n ? i : t), se(e, be(t));
+          }
+          function ct(e, t) {
+            return ue(e, be(t));
+          }
+          var lt = je(Xe);
+          function ht(e, t) {
+            return oe(e, be(t));
+          }
+          function ft(e, t) {
+            return Ie(e, be(t));
+          }
+          function dt(e, t, n) {
+            return F(e, be(t), n, arguments.length < 3, oe);
+          }
+          function pt(e) {
+            return null == e ? 0 : ((e = xt(e) ? e : X(e)), e.length);
+          }
+          function gt(e, t, n) {
+            return (t = n ? i : t), Ce(e, be(t));
+          }
+          function mt(e, t) {
+            var n = 0;
+            return (
+              (t = be(t)),
+              Ie(
+                Ie(e, function (e, r, i) {
+                  return { value: e, index: n++, criteria: t(e, r, i) };
+                }).sort(function (e, t) {
+                  return Oe(e.criteria, t.criteria) || e.index - t.index;
+                }),
+                j('value')
+              )
+            );
+          }
+          function vt(e, t) {
+            var n;
+            if ('function' != typeof t) throw new TypeError(s);
+            return (
+              (e = zt(e)),
+              function () {
+                return --e > 0 && (n = t.apply(this, arguments)), e <= 1 && (t = i), n;
+              }
+            );
+          }
+          var yt = Te(function (e, t, n) {
+              return Me(e, c | l, t, n);
+            }),
+            wt = Te(function (e, t) {
+              return ie(e, 1, t);
+            }),
+            bt = Te(function (e, t, n) {
+              return ie(e, Gt(t) || 0, n);
+            });
+          function _t(e) {
+            if ('function' != typeof e) throw new TypeError(s);
+            return function () {
+              var t = arguments;
+              return !e.apply(this, t);
+            };
+          }
+          function It(e) {
+            return vt(2, e);
+          }
+          function Et(e) {
+            return Lt(e) ? (At(e) ? xe(e) : Ne(e, X(e))) : e;
+          }
+          function St(e, t) {
+            return e === t || (e !== e && t !== t);
+          }
+          var Tt = ge(
+              (function () {
+                return arguments;
+              })()
+            )
+              ? ge
+              : function (e) {
+                  return jt(e) && z.call(e, 'callee') && !Q.call(e, 'callee');
+                },
+            At = Array.isArray;
+          function xt(e) {
+            return null != e && Dt(e.length) && !Pt(e);
+          }
+          function Ct(e) {
+            return !0 === e || !1 === e || (jt(e) && de(e) == m);
+          }
+          var kt = me;
+          function Ot(e) {
+            return xt(e) && (At(e) || Bt(e) || Pt(e.splice) || Tt(e)) ? !e.length : !X(e).length;
+          }
+          function Nt(e, t) {
+            return ve(e, t);
+          }
+          function Rt(e) {
+            return 'number' == typeof e && Y(e);
+          }
+          function Pt(e) {
+            if (!Lt(e)) return !1;
+            var t = de(e);
+            return t == w || t == b || t == g || t == E;
+          }
+          function Dt(e) {
+            return 'number' == typeof e && e > -1 && e % 1 == 0 && e <= f;
+          }
+          function Lt(e) {
+            var t = typeof e;
+            return null != e && ('object' == t || 'function' == t);
+          }
+          function jt(e) {
+            return null != e && 'object' == typeof e;
+          }
+          function Mt(e) {
+            return Ut(e) && e != +e;
+          }
+          function Ft(e) {
+            return null === e;
+          }
+          function Ut(e) {
+            return 'number' == typeof e || (jt(e) && de(e) == _);
+          }
+          var Vt = we;
+          function Bt(e) {
+            return 'string' == typeof e || (!At(e) && jt(e) && de(e) == T);
+          }
+          function $t(e) {
+            return e === i;
+          }
+          function qt(e) {
+            return xt(e) ? (e.length ? xe(e) : []) : nn(e);
+          }
+          var zt = Number,
+            Gt = Number;
+          function Wt(e) {
+            return 'string' == typeof e ? e : null == e ? '' : e + '';
+          }
+          var Ht = Re(function (e, t) {
+              Ne(t, X(t), e);
+            }),
+            Kt = Re(function (e, t) {
+              Ne(t, Ge(t), e);
+            });
+          function Qt(e, t) {
+            var n = ee(e);
+            return null == t ? n : Ht(n, t);
+          }
+          var Yt = Te(function (e, t) {
+            e = Object(e);
+            var n = -1,
+              r = t.length,
+              o = r > 2 ? t[2] : i;
+            o && ze(t[0], t[1], o) && (r = 1);
+            while (++n < r) {
+              var s = t[n],
+                a = Zt(s),
+                u = -1,
+                c = a.length;
+              while (++u < c) {
+                var l = a[u],
+                  h = e[l];
+                (h === i || (St(h, q[l]) && !z.call(e, l))) && (e[l] = s[l]);
+              }
+            }
+            return e;
+          });
+          function Xt(e, t) {
+            return null != e && z.call(e, t);
+          }
+          var Jt = X,
+            Zt = Ge,
+            en = Be(function (e, t) {
+              return null == e ? {} : Se(e, t);
+            });
+          function tn(e, t, n) {
+            var r = null == e ? i : e[t];
+            return r === i && (r = n), Pt(r) ? r.call(e) : r;
+          }
+          function nn(e) {
+            return null == e ? [] : U(e, Jt(e));
+          }
+          function rn(e) {
+            return (e = Wt(e)), e && x.test(e) ? e.replace(A, V) : e;
+          }
+          function on(e) {
+            return e;
+          }
+          var sn = be;
+          function an(e) {
+            return Ee(Ht({}, e));
+          }
+          function un(e, t, n) {
+            var r = Jt(t),
+              i = fe(t, r);
+            null != n || (Lt(t) && (i.length || !r.length)) || ((n = t), (t = e), (e = this), (i = fe(t, Jt(t))));
+            var o = !(Lt(n) && 'chain' in n) || !!n.chain,
+              s = Pt(e);
+            return (
+              oe(i, function (n) {
+                var r = t[n];
+                (e[n] = r),
+                  s &&
+                    (e.prototype[n] = function () {
+                      var t = this.__chain__;
+                      if (o || t) {
+                        var n = e(this.__wrapped__),
+                          i = (n.__actions__ = xe(this.__actions__));
+                        return i.push({ func: r, args: arguments, thisArg: e }), (n.__chain__ = t), n;
+                      }
+                      return r.apply(e, D([this.value()], arguments));
+                    });
+              }),
+              e
+            );
+          }
+          function cn() {
+            return R._ === this && (R._ = H), this;
+          }
+          function ln() {}
+          function hn(e) {
+            var t = ++G;
+            return Wt(e) + t;
+          }
+          function fn(e) {
+            return e && e.length ? ae(e, on, pe) : i;
+          }
+          function dn(e) {
+            return e && e.length ? ae(e, on, _e) : i;
+          }
+          (Z.assignIn = Kt),
+            (Z.before = vt),
+            (Z.bind = yt),
+            (Z.chain = it),
+            (Z.compact = Qe),
+            (Z.concat = Ye),
+            (Z.create = Qt),
+            (Z.defaults = Yt),
+            (Z.defer = wt),
+            (Z.delay = bt),
+            (Z.filter = ct),
+            (Z.flatten = Je),
+            (Z.flattenDeep = Ze),
+            (Z.iteratee = sn),
+            (Z.keys = Jt),
+            (Z.map = ft),
+            (Z.matches = an),
+            (Z.mixin = un),

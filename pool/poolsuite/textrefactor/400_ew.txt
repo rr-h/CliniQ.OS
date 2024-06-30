@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+          })(this.remoteStore);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Bd(e, t = 10240) {
+        let n = 0;
+        return {
+          async read() {
+            if (n < e.byteLength) {
+              const r = { value: e.slice(n, n + t), done: !1 };
+              return (n += t), r;
+            }
+            return { done: !0 };
+          },
+          async cancel() {},
+          releaseLock() {},
+          closed: Promise.resolve()
+        };
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class $d {
+        constructor(e) {
+          (this.observer = e), (this.muted = !1);
+        }
+        next(e) {
+          this.observer.next && this.Sc(this.observer.next, e);
+        }
+        error(e) {
+          this.observer.error ? this.Sc(this.observer.error, e) : ni('Uncaught Error in snapshot listener:', e.toString());
+        }
+        Dc() {
+          this.muted = !0;
+        }
+        Sc(e, t) {
+          this.muted ||
+            setTimeout(() => {
+              this.muted || e(t);
+            }, 0);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class qd {
+        constructor(e, t) {
+          (this.Cc = e),
+            (this.serializer = t),
+            (this.metadata = new hi()),
+            (this.buffer = new Uint8Array()),
+            (this.xc = new TextDecoder('utf-8')),
+            this.Nc().then(
+              e => {
+                e && e.Qu()
+                  ? this.metadata.resolve(e.Gu.metadata)
+                  : this.metadata.reject(
+                      new Error(`The first element of the bundle is not a metadata, it is\n             ${JSON.stringify(null == e ? void 0 : e.Gu)}`)
+                    );
+              },
+              e => this.metadata.reject(e)
+            );
+        }
+        close() {
+          return this.Cc.cancel();
+        }
+        async getMetadata() {
+          return this.metadata.promise;
+        }
+        async bc() {
+          return await this.getMetadata(), this.Nc();
+        }
+        async Nc() {
+          const e = await this.kc();
+          if (null === e) return null;
+          const t = this.xc.decode(e),
+            n = Number(t);
+          isNaN(n) && this.Mc(`length string (${t}) is not valid number`);
+          const r = await this.$c(n);
+          return new Qf(JSON.parse(r), e.length + n);
+        }
+        Oc() {
+          return this.buffer.findIndex(e => e === '{'.charCodeAt(0));
+        }
+        async kc() {
+          for (; this.Oc() < 0; ) if (await this.Fc()) break;
+          if (0 === this.buffer.length) return null;
+          const e = this.Oc();
+          e < 0 && this.Mc('Reached the end of bundle when a length string is expected.');
+          const t = this.buffer.slice(0, e);
+          return (this.buffer = this.buffer.slice(e)), t;
+        }
+        async $c(e) {
+          for (; this.buffer.length < e; ) (await this.Fc()) && this.Mc('Reached the end of bundle when more is expected.');
+          const t = this.xc.decode(this.buffer.slice(0, e));
+          return (this.buffer = this.buffer.slice(e)), t;
+        }
+        Mc(e) {
+          throw (this.Cc.cancel(), new Error(`Invalid bundle format: ${e}`));
+        }
+        async Fc() {
+          const e = await this.Cc.read();
+          if (!e.done) {
+            const t = new Uint8Array(this.buffer.length + e.value.length);
+            t.set(this.buffer), t.set(e.value, this.buffer.length), (this.buffer = t);
+          }
+          return e.done;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class zd {
+        constructor(e) {
+          (this.datastore = e),
+            (this.readVersions = new Map()),
+            (this.mutations = []),
+            (this.committed = !1),
+            (this.lastWriteError = null),
+            (this.writtenDocs = new Set());
+        }
+        async lookup(e) {
+          if ((this.ensureCommitNotCalled(), this.mutations.length > 0))
+            throw new li(ci.INVALID_ARGUMENT, 'Firestore transactions require all reads to be executed before all writes.');
+          const t = await (async function (e, t) {
+            const n = ui(e),
+              r = rc(n.serializer) + '/documents',
+              i = { documents: t.map(e => Zu(n.serializer, e)) },
+              o = await n.vo('BatchGetDocuments', r, i, t.length),
+              s = new Map();
+            o.forEach(e => {
+              const t = ac(n.serializer, e);
+              s.set(t.key.toString(), t);
+            });
+            const a = [];
+            return (
+              t.forEach(e => {
+                const t = s.get(e.toString());
+                si(!!t), a.push(t);
+              }),
+              a
+            );
+          })(this.datastore, e);
+          return t.forEach(e => this.recordVersion(e)), t;
+        }
+        set(e, t) {
+          this.write(t.toMutation(e, this.precondition(e))), this.writtenDocs.add(e.toString());
+        }
+        update(e, t) {
+          try {
+            this.write(t.toMutation(e, this.preconditionForUpdate(e)));
+          } catch (e) {
+            this.lastWriteError = e;
+          }
+          this.writtenDocs.add(e.toString());
+        }
+        delete(e) {
+          this.write(new gu(e, this.precondition(e))), this.writtenDocs.add(e.toString());
+        }
+        async commit() {
+          if ((this.ensureCommitNotCalled(), this.lastWriteError)) throw this.lastWriteError;
+          const e = this.readVersions;
+          this.mutations.forEach(t => {
+            e.delete(t.key.toString());
+          }),
+            e.forEach((e, t) => {
+              const n = Ni.fromPath(t);
+              this.mutations.push(new mu(n, this.precondition(n)));
+            }),
+            await (async function (e, t) {
+              const n = ui(e),
+                r = rc(n.serializer) + '/documents',
+                i = { writes: t.map(e => cc(n.serializer, e)) };
+              await n.Io('Commit', r, i);
+            })(this.datastore, this.mutations),
+            (this.committed = !0);
+        }
+        recordVersion(e) {
+          let t;
+          if (e.isFoundDocument()) t = e.version;
+          else {
+            if (!e.isNoDocument()) throw oi();
+            t = Ai.min();
+          }
+          const n = this.readVersions.get(e.key.toString());
+          if (n) {
+            if (!t.isEqual(n)) throw new li(ci.ABORTED, 'Document version changed between two reads.');
+          } else this.readVersions.set(e.key.toString(), t);
+        }
+        precondition(e) {
+          const t = this.readVersions.get(e.toString());
+          return !this.writtenDocs.has(e.toString()) && t ? (t.isEqual(Ai.min()) ? nu.exists(!1) : nu.updateTime(t)) : nu.none();
+        }
+        preconditionForUpdate(e) {
+          const t = this.readVersions.get(e.toString());
+          if (!this.writtenDocs.has(e.toString()) && t) {
+            if (t.isEqual(Ai.min())) throw new li(ci.INVALID_ARGUMENT, "Can't update a document that doesn't exist.");
+            return nu.updateTime(t);
+          }
+          return nu.exists(!0);
+        }
+        write(e) {
+          this.ensureCommitNotCalled(), this.mutations.push(e);
+        }
+        ensureCommitNotCalled() {}
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Gd {
+        constructor(e, t, n, r, i) {
+          (this.asyncQueue = e),
+            (this.datastore = t),
+            (this.options = n),
+            (this.updateFunction = r),
+            (this.deferred = i),
+            (this.Bc = n.maxAttempts),
+            (this.qo = new ef(this.asyncQueue, 'transaction_retry'));
+        }
+        run() {
+          (this.Bc -= 1), this.Lc();
+        }
+        Lc() {
+          this.qo.No(async () => {
+            const e = new zd(this.datastore),
+              t = this.qc(e);
+            t &&
+              t
+                .then(t => {
+                  this.asyncQueue.enqueueAndForget(() =>
+                    e
+                      .commit()
+                      .then(() => {
+                        this.deferred.resolve(t);
+                      })
+                      .catch(e => {
+                        this.Uc(e);
+                      })
+                  );
+                })
+                .catch(e => {
+                  this.Uc(e);
+                });
+          });
+        }
+        qc(e) {
+          try {
+            const t = this.updateFunction(e);
+            return !ro(t) && t.catch && t.then ? t : (this.deferred.reject(Error('Transaction callback must return a Promise')), null);
+          } catch (e) {
+            return this.deferred.reject(e), null;
+          }
+        }
+        Uc(e) {
+          this.Bc > 0 && this.Kc(e)
+            ? ((this.Bc -= 1), this.asyncQueue.enqueueAndForget(() => (this.Lc(), Promise.resolve())))
+            : this.deferred.reject(e);
+        }
+        Kc(e) {
+          if ('FirebaseError' === e.name) {
+            const t = e.code;
+            return 'aborted' === t || 'failed-precondition' === t || 'already-exists' === t || !Eu(t);
+          }
+          return !1;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Wd {
+        constructor(e, t, n, r) {
+          (this.authCredentials = e),
+            (this.appCheckCredentials = t),
+            (this.asyncQueue = n),
+            (this.databaseInfo = r),
+            (this.user = Yr.UNAUTHENTICATED),
+            (this.clientId = _i.A()),
+            (this.authCredentialListener = () => Promise.resolve()),
+            (this.appCheckCredentialListener = () => Promise.resolve()),
+            this.authCredentials.start(n, async e => {
+              ti('FirestoreClient', 'Received user=', e.uid), await this.authCredentialListener(e), (this.user = e);
+            }),
+            this.appCheckCredentials.start(
+              n,
+              e => (ti('FirestoreClient', 'Received new app check token=', e), this.appCheckCredentialListener(e, this.user))
+            );
+        }
+        async getConfiguration() {
+          return {
+            asyncQueue: this.asyncQueue,
+            databaseInfo: this.databaseInfo,
+            clientId: this.clientId,
+            authCredentials: this.authCredentials,
+            appCheckCredentials: this.appCheckCredentials,
+            initialUser: this.user,
+            maxConcurrentLimboResolutions: 100
+          };
+        }
+        setCredentialChangeListener(e) {
+          this.authCredentialListener = e;
+        }
+        setAppCheckTokenChangeListener(e) {
+          this.appCheckCredentialListener = e;
+        }
+        verifyNotTerminated() {
+          if (this.asyncQueue.isShuttingDown) throw new li(ci.FAILED_PRECONDITION, 'The client has already been terminated.');
+        }
+        terminate() {
+          this.asyncQueue.enterRestrictedMode();
+          const e = new hi();

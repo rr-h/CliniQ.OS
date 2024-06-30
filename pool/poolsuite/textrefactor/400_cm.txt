@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+        c(i, function (t, n) {
+          (o[n] = f(t, e)),
+            Object.defineProperty(e.getters, n, {
+              get: function () {
+                return e._vm[n];
+              },
+              enumerable: !0
+            });
+        });
+        var s = v.config.silent;
+        (v.config.silent = !0),
+          (e._vm = new v({ data: { $$state: t }, computed: o })),
+          (v.config.silent = s),
+          e.strict && k(e),
+          r &&
+            (n &&
+              e._withCommit(function () {
+                r._data.$$state = null;
+              }),
+            v.nextTick(function () {
+              return r.$destroy();
+            }));
+      }
+      function E(e, t, n, r, i) {
+        var o = !n.length,
+          s = e._modules.getNamespace(n);
+        if ((r.namespaced && (e._modulesNamespaceMap[s], (e._modulesNamespaceMap[s] = r)), !o && !i)) {
+          var a = O(t, n.slice(0, -1)),
+            u = n[n.length - 1];
+          e._withCommit(function () {
+            v.set(a, u, r.state);
+          });
+        }
+        var c = (r.context = S(e, s, n));
+        r.forEachMutation(function (t, n) {
+          var r = s + n;
+          A(e, r, t, c);
+        }),
+          r.forEachAction(function (t, n) {
+            var r = t.root ? n : s + n,
+              i = t.handler || t;
+            x(e, r, i, c);
+          }),
+          r.forEachGetter(function (t, n) {
+            var r = s + n;
+            C(e, r, t, c);
+          }),
+          r.forEachChild(function (r, o) {
+            E(e, t, n.concat(o), r, i);
+          });
+      }
+      function S(e, t, n) {
+        var r = '' === t,
+          i = {
+            dispatch: r
+              ? e.dispatch
+              : function (n, r, i) {
+                  var o = N(n, r, i),
+                    s = o.payload,
+                    a = o.options,
+                    u = o.type;
+                  return (a && a.root) || (u = t + u), e.dispatch(u, s);
+                },
+            commit: r
+              ? e.commit
+              : function (n, r, i) {
+                  var o = N(n, r, i),
+                    s = o.payload,
+                    a = o.options,
+                    u = o.type;
+                  (a && a.root) || (u = t + u), e.commit(u, s, a);
+                }
+          };
+        return (
+          Object.defineProperties(i, {
+            getters: {
+              get: r
+                ? function () {
+                    return e.getters;
+                  }
+                : function () {
+                    return T(e, t);
+                  }
+            },
+            state: {
+              get: function () {
+                return O(e.state, n);
+              }
+            }
+          }),
+          i
+        );
+      }
+      function T(e, t) {
+        if (!e._makeLocalGettersCache[t]) {
+          var n = {},
+            r = t.length;
+          Object.keys(e.getters).forEach(function (i) {
+            if (i.slice(0, r) === t) {
+              var o = i.slice(r);
+              Object.defineProperty(n, o, {
+                get: function () {
+                  return e.getters[i];
+                },
+                enumerable: !0
+              });
+            }
+          }),
+            (e._makeLocalGettersCache[t] = n);
+        }
+        return e._makeLocalGettersCache[t];
+      }
+      function A(e, t, n, r) {
+        var i = e._mutations[t] || (e._mutations[t] = []);
+        i.push(function (t) {
+          n.call(e, r.state, t);
+        });
+      }
+      function x(e, t, n, r) {
+        var i = e._actions[t] || (e._actions[t] = []);
+        i.push(function (t) {
+          var i = n.call(
+            e,
+            { dispatch: r.dispatch, commit: r.commit, getters: r.getters, state: r.state, rootGetters: e.getters, rootState: e.state },
+            t
+          );
+          return (
+            h(i) || (i = Promise.resolve(i)),
+            e._devtoolHook
+              ? i.catch(function (t) {
+                  throw (e._devtoolHook.emit('vuex:error', t), t);
+                })
+              : i
+          );
+        });
+      }
+      function C(e, t, n, r) {
+        e._wrappedGetters[t] ||
+          (e._wrappedGetters[t] = function (e) {
+            return n(r.state, r.getters, e.state, e.getters);
+          });
+      }
+      function k(e) {
+        e._vm.$watch(
+          function () {
+            return this._data.$$state;
+          },
+          function () {
+            0;
+          },
+          { deep: !0, sync: !0 }
+        );
+      }
+      function O(e, t) {
+        return t.reduce(function (e, t) {
+          return e[t];
+        }, e);
+      }
+      function N(e, t, n) {
+        return l(e) && e.type && ((n = t), (t = e), (e = e.type)), { type: e, payload: t, options: n };
+      }
+      function R(e) {
+        (v && e === v) || ((v = e), r(v));
+      }
+      (w.state.get = function () {
+        return this._vm._data.$$state;
+      }),
+        (w.state.set = function (e) {
+          0;
+        }),
+        (y.prototype.commit = function (e, t, n) {
+          var r = this,
+            i = N(e, t, n),
+            o = i.type,
+            s = i.payload,
+            a = (i.options, { type: o, payload: s }),
+            u = this._mutations[o];
+          u &&
+            (this._withCommit(function () {
+              u.forEach(function (e) {
+                e(s);
+              });
+            }),
+            this._subscribers.slice().forEach(function (e) {
+              return e(a, r.state);
+            }));
+        }),
+        (y.prototype.dispatch = function (e, t) {
+          var n = this,
+            r = N(e, t),
+            i = r.type,
+            o = r.payload,
+            s = { type: i, payload: o },
+            a = this._actions[i];
+          if (a) {
+            try {
+              this._actionSubscribers
+                .slice()
+                .filter(function (e) {
+                  return e.before;
+                })
+                .forEach(function (e) {
+                  return e.before(s, n.state);
+                });
+            } catch (c) {
+              0;
+            }
+            var u =
+              a.length > 1
+                ? Promise.all(
+                    a.map(function (e) {
+                      return e(o);
+                    })
+                  )
+                : a[0](o);
+            return new Promise(function (e, t) {
+              u.then(
+                function (t) {
+                  try {
+                    n._actionSubscribers
+                      .filter(function (e) {
+                        return e.after;
+                      })
+                      .forEach(function (e) {
+                        return e.after(s, n.state);
+                      });
+                  } catch (c) {
+                    0;
+                  }
+                  e(t);
+                },
+                function (e) {
+                  try {
+                    n._actionSubscribers
+                      .filter(function (e) {
+                        return e.error;
+                      })
+                      .forEach(function (t) {
+                        return t.error(s, n.state, e);
+                      });
+                  } catch (c) {
+                    0;
+                  }
+                  t(e);
+                }
+              );
+            });
+          }
+        }),
+        (y.prototype.subscribe = function (e, t) {
+          return b(e, this._subscribers, t);
+        }),
+        (y.prototype.subscribeAction = function (e, t) {
+          var n = 'function' === typeof e ? { before: e } : e;
+          return b(n, this._actionSubscribers, t);
+        }),
+        (y.prototype.watch = function (e, t, n) {
+          var r = this;
+          return this._watcherVM.$watch(
+            function () {
+              return e(r.state, r.getters);
+            },
+            t,
+            n
+          );
+        }),
+        (y.prototype.replaceState = function (e) {
+          var t = this;
+          this._withCommit(function () {
+            t._vm._data.$$state = e;
+          });
+        }),
+        (y.prototype.registerModule = function (e, t, n) {
+          void 0 === n && (n = {}),
+            'string' === typeof e && (e = [e]),
+            this._modules.register(e, t),
+            E(this, this.state, e, this._modules.get(e), n.preserveState),
+            I(this, this.state);
+        }),
+        (y.prototype.unregisterModule = function (e) {
+          var t = this;
+          'string' === typeof e && (e = [e]),
+            this._modules.unregister(e),
+            this._withCommit(function () {
+              var n = O(t.state, e.slice(0, -1));
+              v.delete(n, e[e.length - 1]);
+            }),
+            _(this);
+        }),
+        (y.prototype.hasModule = function (e) {
+          return 'string' === typeof e && (e = [e]), this._modules.isRegistered(e);
+        }),
+        (y.prototype.hotUpdate = function (e) {
+          this._modules.update(e), _(this, !0);
+        }),
+        (y.prototype._withCommit = function (e) {
+          var t = this._committing;
+          (this._committing = !0), e(), (this._committing = t);
+        }),
+        Object.defineProperties(y.prototype, w);
+      var P = V(function (e, t) {
+          var n = {};
+          return (
+            F(t).forEach(function (t) {
+              var r = t.key,
+                i = t.val;
+              (n[r] = function () {
+                var t = this.$store.state,
+                  n = this.$store.getters;
+                if (e) {
+                  var r = B(this.$store, 'mapState', e);
+                  if (!r) return;
+                  (t = r.context.state), (n = r.context.getters);
+                }
+                return 'function' === typeof i ? i.call(this, t, n) : t[i];
+              }),
+                (n[r].vuex = !0);
+            }),
+            n
+          );
+        }),
+        D = V(function (e, t) {
+          var n = {};
+          return (
+            F(t).forEach(function (t) {
+              var r = t.key,
+                i = t.val;
+              n[r] = function () {
+                var t = [],
+                  n = arguments.length;
+                while (n--) t[n] = arguments[n];
+                var r = this.$store.commit;
+                if (e) {
+                  var o = B(this.$store, 'mapMutations', e);
+                  if (!o) return;
+                  r = o.context.commit;
+                }
+                return 'function' === typeof i ? i.apply(this, [r].concat(t)) : r.apply(this.$store, [i].concat(t));
+              };
+            }),
+            n
+          );
+        }),
+        L = V(function (e, t) {
+          var n = {};
+          return (
+            F(t).forEach(function (t) {
+              var r = t.key,
+                i = t.val;
+              (i = e + i),
+                (n[r] = function () {
+                  if (!e || B(this.$store, 'mapGetters', e)) return this.$store.getters[i];
+                }),
+                (n[r].vuex = !0);
+            }),
+            n
+          );
+        }),
+        j = V(function (e, t) {
+          var n = {};
+          return (
+            F(t).forEach(function (t) {
+              var r = t.key,
+                i = t.val;
+              n[r] = function () {
+                var t = [],
+                  n = arguments.length;
+                while (n--) t[n] = arguments[n];
+                var r = this.$store.dispatch;
+                if (e) {
+                  var o = B(this.$store, 'mapActions', e);
+                  if (!o) return;
+                  r = o.context.dispatch;
+                }
+                return 'function' === typeof i ? i.apply(this, [r].concat(t)) : r.apply(this.$store, [i].concat(t));
+              };
+            }),
+            n
+          );
+        }),
+        M = function (e) {
+          return { mapState: P.bind(null, e), mapGetters: L.bind(null, e), mapMutations: D.bind(null, e), mapActions: j.bind(null, e) };
+        };
+      function F(e) {
+        return U(e)
+          ? Array.isArray(e)
+            ? e.map(function (e) {
+                return { key: e, val: e };
+              })
+            : Object.keys(e).map(function (t) {
+                return { key: t, val: e[t] };
+              })
+          : [];
+      }
+      function U(e) {
+        return Array.isArray(e) || l(e);
+      }
+      function V(e) {
+        return function (t, n) {
+          return 'string' !== typeof t ? ((n = t), (t = '')) : '/' !== t.charAt(t.length - 1) && (t += '/'), e(t, n);

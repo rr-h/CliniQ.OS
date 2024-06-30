@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function rn(e, t, n) {
+        var r;
+        S((null === (r = n.url) || void 0 === r ? void 0 : r.length) > 0, e, 'invalid-continue-uri'),
+          S('undefined' === typeof n.dynamicLinkDomain || n.dynamicLinkDomain.length > 0, e, 'invalid-dynamic-link-domain'),
+          (t.continueUrl = n.url),
+          (t.dynamicLinkDomain = n.dynamicLinkDomain),
+          (t.canHandleCodeInApp = n.handleCodeInApp),
+          n.iOS && (S(n.iOS.bundleId.length > 0, e, 'missing-ios-bundle-id'), (t.iOSBundleId = n.iOS.bundleId)),
+          n.android &&
+            (S(n.android.packageName.length > 0, e, 'missing-android-pkg-name'),
+            (t.androidInstallApp = n.android.installApp),
+            (t.androidMinimumVersionCode = n.android.minimumVersion),
+            (t.androidPackageName = n.android.packageName));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function on(e, t, n) {
+        var r;
+        const i = We(e),
+          o = { requestType: 'PASSWORD_RESET', email: t, clientType: 'CLIENT_TYPE_WEB' };
+        if (null === (r = i._getRecaptchaConfig()) || void 0 === r ? void 0 : r.emailPasswordEnabled) {
+          const e = await qe(i, o, 'getOobCode', !0);
+          n && rn(i, e, n), await at(i, e);
+        } else
+          n && rn(i, o, n),
+            await at(i, o).catch(async e => {
+              if ('auth/missing-recaptcha-token' !== e.code) return Promise.reject(e);
+              {
+                console.log(
+                  'Password resets are protected by reCAPTCHA for this project. Automatically triggering the reCAPTCHA flow and restarting the password reset flow.'
+                );
+                const e = await qe(i, o, 'getOobCode', !0);
+                n && rn(i, e, n), await at(i, e);
+              }
+            });
+      }
+      async function sn(e, t, n) {
+        await tt((0, i.m9)(e), { oobCode: t, newPassword: n });
+      }
+      async function an(e, t) {
+        await rt((0, i.m9)(e), { oobCode: t });
+      }
+      async function un(e, t) {
+        const n = (0, i.m9)(e),
+          r = await tt(n, { oobCode: t }),
+          o = r.requestType;
+        switch ((S(o, n, 'internal-error'), o)) {
+          case 'EMAIL_SIGNIN':
+            break;
+          case 'VERIFY_AND_CHANGE_EMAIL':
+            S(r.newEmail, n, 'internal-error');
+            break;
+          case 'REVERT_SECOND_FACTOR_ADDITION':
+            S(r.mfaInfo, n, 'internal-error');
+          default:
+            S(r.email, n, 'internal-error');
+        }
+        let s = null;
+        return (
+          r.mfaInfo && (s = en._fromServerResponse(We(n), r.mfaInfo)),
+          {
+            data: {
+              email: ('VERIFY_AND_CHANGE_EMAIL' === r.requestType ? r.newEmail : r.email) || null,
+              previousEmail: ('VERIFY_AND_CHANGE_EMAIL' === r.requestType ? r.email : r.newEmail) || null,
+              multiFactorInfo: s
+            },
+            operation: o
+          }
+        );
+      }
+      async function cn(e, t) {
+        const { data: n } = await un((0, i.m9)(e), t);
+        return n.email;
+      }
+      async function ln(e, t, n) {
+        var r;
+        const i = We(e),
+          o = { returnSecureToken: !0, email: t, password: n, clientType: 'CLIENT_TYPE_WEB' };
+        let s;
+        if (null === (r = i._getRecaptchaConfig()) || void 0 === r ? void 0 : r.emailPasswordEnabled) {
+          const e = await qe(i, o, 'signUpPassword');
+          s = Mt(i, e);
+        } else
+          s = Mt(i, o).catch(async e => {
+            if ('auth/missing-recaptcha-token' === e.code) {
+              console.log(
+                'Sign-up is protected by reCAPTCHA for this project. Automatically triggering the reCAPTCHA flow and restarting the sign-up flow.'
+              );
+              const e = await qe(i, o, 'signUpPassword');
+              return Mt(i, e);
+            }
+            return Promise.reject(e);
+          });
+        const a = await s.catch(e => Promise.reject(e)),
+          u = await Ft._fromIdTokenResponse(i, 'signIn', a);
+        return await i._updateCurrentUser(u.user), u;
+      }
+      function hn(e, t, n) {
+        return Qt((0, i.m9)(e), Tt.credential(t, n));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function fn(e, t, n) {
+        var r;
+        const i = We(e),
+          o = { requestType: 'EMAIL_SIGNIN', email: t, clientType: 'CLIENT_TYPE_WEB' };
+        function s(e, t) {
+          S(t.handleCodeInApp, i, 'argument-error'), t && rn(i, e, t);
+        }
+        if (null === (r = i._getRecaptchaConfig()) || void 0 === r ? void 0 : r.emailPasswordEnabled) {
+          const e = await qe(i, o, 'getOobCode', !0);
+          s(e, n), await ut(i, e);
+        } else
+          s(o, n),
+            await ut(i, o).catch(async e => {
+              if ('auth/missing-recaptcha-token' !== e.code) return Promise.reject(e);
+              {
+                console.log(
+                  'Email link sign-in is protected by reCAPTCHA for this project. Automatically triggering the reCAPTCHA flow and restarting the sign-in flow.'
+                );
+                const e = await qe(i, o, 'getOobCode', !0);
+                s(e, n), await ut(i, e);
+              }
+            });
+      }
+      function dn(e, t) {
+        const n = St.parseLink(t);
+        return 'EMAIL_SIGNIN' === (null === n || void 0 === n ? void 0 : n.operation);
+      }
+      async function pn(e, t, n) {
+        const r = (0, i.m9)(e),
+          o = Tt.credentialWithLink(t, n || x());
+        return S(o._tenantId === (r.tenantId || null), r, 'tenant-id-mismatch'), Qt(r, o);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function gn(e, t) {
+        return F(e, 'POST', '/v1/accounts:createAuthUri', M(e, t));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function mn(e, t) {
+        const n = C() ? x() : 'http://localhost',
+          r = { identifier: t, continueUri: n },
+          { signinMethods: o } = await gn((0, i.m9)(e), r);
+        return o || [];
+      }
+      async function vn(e, t) {
+        const n = (0, i.m9)(e),
+          r = await e.getIdToken(),
+          o = { requestType: 'VERIFY_EMAIL', idToken: r };
+        t && rn(n.auth, o, t);
+        const { email: s } = await st(n.auth, o);
+        s !== e.email && (await e.reload());
+      }
+      async function yn(e, t, n) {
+        const r = (0, i.m9)(e),
+          o = await e.getIdToken(),
+          s = { requestType: 'VERIFY_AND_CHANGE_EMAIL', idToken: o, newEmail: t };
+        n && rn(r.auth, s, n);
+        const { email: a } = await ct(r.auth, s);
+        a !== e.email && (await e.reload());
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function wn(e, t) {
+        return F(e, 'POST', '/v1/accounts:update', t);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function bn(e, { displayName: t, photoURL: n }) {
+        if (void 0 === t && void 0 === n) return;
+        const r = (0, i.m9)(e),
+          o = await r.getIdToken(),
+          s = { idToken: o, displayName: t, photoUrl: n, returnSecureToken: !0 },
+          a = await J(r, wn(r.auth, s));
+        (r.displayName = a.displayName || null), (r.photoURL = a.photoUrl || null);
+        const u = r.providerData.find(({ providerId: e }) => 'password' === e);
+        u && ((u.displayName = r.displayName), (u.photoURL = r.photoURL)), await r._updateTokensIfNecessary(a);
+      }
+      function _n(e, t) {
+        return En((0, i.m9)(e), t, null);
+      }
+      function In(e, t) {
+        return En((0, i.m9)(e), null, t);
+      }
+      async function En(e, t, n) {
+        const { auth: r } = e,
+          i = await e.getIdToken(),
+          o = { idToken: i, returnSecureToken: !0 };
+        t && (o.email = t), n && (o.password = n);
+        const s = await J(e, nt(r, o));
+        await e._updateTokensIfNecessary(s, !0);
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Sn(e) {
+        var t, n;
+        if (!e) return null;
+        const { providerId: r } = e,
+          i = e.rawUserInfo ? JSON.parse(e.rawUserInfo) : {},
+          o = e.isNewUser || 'identitytoolkit#SignupNewUserResponse' === e.kind;
+        if (!r && (null === e || void 0 === e ? void 0 : e.idToken)) {
+          const r = null === (n = null === (t = Y(e.idToken)) || void 0 === t ? void 0 : t.firebase) || void 0 === n ? void 0 : n['sign_in_provider'];
+          if (r) {
+            const e = 'anonymous' !== r && 'custom' !== r ? r : null;
+            return new Tn(o, e);
+          }
+        }
+        if (!r) return null;
+        switch (r) {
+          case 'facebook.com':
+            return new xn(o, i);
+          case 'github.com':
+            return new Cn(o, i);
+          case 'google.com':
+            return new kn(o, i);
+          case 'twitter.com':
+            return new On(o, i, e.screenName || null);
+          case 'custom':
+          case 'anonymous':
+            return new Tn(o, null);
+          default:
+            return new Tn(o, r, i);
+        }
+      }
+      class Tn {
+        constructor(e, t, n = {}) {
+          (this.isNewUser = e), (this.providerId = t), (this.profile = n);
+        }
+      }
+      class An extends Tn {
+        constructor(e, t, n, r) {
+          super(e, t, n), (this.username = r);
+        }
+      }
+      class xn extends Tn {
+        constructor(e, t) {
+          super(e, 'facebook.com', t);
+        }
+      }
+      class Cn extends An {
+        constructor(e, t) {
+          super(
+            e,
+            'github.com',
+            t,
+            'string' === typeof (null === t || void 0 === t ? void 0 : t.login) ? (null === t || void 0 === t ? void 0 : t.login) : null
+          );
+        }
+      }
+      class kn extends Tn {
+        constructor(e, t) {
+          super(e, 'google.com', t);
+        }
+      }
+      class On extends An {
+        constructor(e, t, n) {
+          super(e, 'twitter.com', t, n);
+        }
+      }
+      function Nn(e) {
+        const { user: t, _tokenResponse: n } = e;
+        return t.isAnonymous && !n ? { providerId: null, isNewUser: !1, profile: null } : Sn(n);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Rn {
+        constructor(e, t, n) {
+          (this.type = e), (this.credential = t), (this.auth = n);
+        }
+        static _fromIdtoken(e, t) {
+          return new Rn('enroll', e, t);
+        }
+        static _fromMfaPendingCredential(e) {
+          return new Rn('signin', e);
+        }
+        toJSON() {
+          const e = 'enroll' === this.type ? 'idToken' : 'pendingCredential';

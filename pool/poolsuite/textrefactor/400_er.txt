@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Xh() {
+        return 'undefined' != typeof window ? window : null;
+      }
+      function Jh() {
+        return 'undefined' != typeof document ? document : null;
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Zh(e) {
+        return new Gu(e, !0);
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class ef {
+        constructor(e, t, n = 1e3, r = 1.5, i = 6e4) {
+          (this.ii = e),
+            (this.timerId = t),
+            (this.Po = n),
+            (this.bo = r),
+            (this.Vo = i),
+            (this.So = 0),
+            (this.Do = null),
+            (this.Co = Date.now()),
+            this.reset();
+        }
+        reset() {
+          this.So = 0;
+        }
+        xo() {
+          this.So = this.Vo;
+        }
+        No(e) {
+          this.cancel();
+          const t = Math.floor(this.So + this.ko()),
+            n = Math.max(0, Date.now() - this.Co),
+            r = Math.max(0, t - n);
+          r > 0 &&
+            ti('ExponentialBackoff', `Backing off for ${r} ms (base delay: ${this.So} ms, delay with jitter: ${t} ms, last attempt: ${n} ms ago)`),
+            (this.Do = this.ii.enqueueAfterDelay(this.timerId, r, () => ((this.Co = Date.now()), e()))),
+            (this.So *= this.bo),
+            this.So < this.Po && (this.So = this.Po),
+            this.So > this.Vo && (this.So = this.Vo);
+        }
+        Mo() {
+          null !== this.Do && (this.Do.skipDelay(), (this.Do = null));
+        }
+        cancel() {
+          null !== this.Do && (this.Do.cancel(), (this.Do = null));
+        }
+        ko() {
+          return (Math.random() - 0.5) * this.So;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class tf {
+        constructor(e, t, n, r, i, o, s, a) {
+          (this.ii = e),
+            (this.$o = n),
+            (this.Oo = r),
+            (this.connection = i),
+            (this.authCredentialsProvider = o),
+            (this.appCheckCredentialsProvider = s),
+            (this.listener = a),
+            (this.state = 0),
+            (this.Fo = 0),
+            (this.Bo = null),
+            (this.Lo = null),
+            (this.stream = null),
+            (this.qo = new ef(e, t));
+        }
+        Uo() {
+          return 1 === this.state || 5 === this.state || this.Ko();
+        }
+        Ko() {
+          return 2 === this.state || 3 === this.state;
+        }
+        start() {
+          4 !== this.state ? this.auth() : this.Go();
+        }
+        async stop() {
+          this.Uo() && (await this.close(0));
+        }
+        Qo() {
+          (this.state = 0), this.qo.reset();
+        }
+        jo() {
+          this.Ko() && null === this.Bo && (this.Bo = this.ii.enqueueAfterDelay(this.$o, 6e4, () => this.zo()));
+        }
+        Wo(e) {
+          this.Ho(), this.stream.send(e);
+        }
+        async zo() {
+          if (this.Ko()) return this.close(0);
+        }
+        Ho() {
+          this.Bo && (this.Bo.cancel(), (this.Bo = null));
+        }
+        Jo() {
+          this.Lo && (this.Lo.cancel(), (this.Lo = null));
+        }
+        async close(e, t) {
+          this.Ho(),
+            this.Jo(),
+            this.qo.cancel(),
+            this.Fo++,
+            4 !== e
+              ? this.qo.reset()
+              : t && t.code === ci.RESOURCE_EXHAUSTED
+                ? (ni(t.toString()), ni('Using maximum backoff delay to prevent overloading the backend.'), this.qo.xo())
+                : t &&
+                  t.code === ci.UNAUTHENTICATED &&
+                  3 !== this.state &&
+                  (this.authCredentialsProvider.invalidateToken(), this.appCheckCredentialsProvider.invalidateToken()),
+            null !== this.stream && (this.Yo(), this.stream.close(), (this.stream = null)),
+            (this.state = e),
+            await this.listener.ao(t);
+        }
+        Yo() {}
+        auth() {
+          this.state = 1;
+          const e = this.Xo(this.Fo),
+            t = this.Fo;
+          Promise.all([this.authCredentialsProvider.getToken(), this.appCheckCredentialsProvider.getToken()]).then(
+            ([e, n]) => {
+              this.Fo === t && this.Zo(e, n);
+            },
+            t => {
+              e(() => {
+                const e = new li(ci.UNKNOWN, 'Fetching auth token failed: ' + t.message);
+                return this.tu(e);
+              });
+            }
+          );
+        }
+        Zo(e, t) {
+          const n = this.Xo(this.Fo);
+          (this.stream = this.eu(e, t)),
+            this.stream.uo(() => {
+              n(
+                () => (
+                  (this.state = 2),
+                  (this.Lo = this.ii.enqueueAfterDelay(this.Oo, 1e4, () => (this.Ko() && (this.state = 3), Promise.resolve()))),
+                  this.listener.uo()
+                )
+              );
+            }),
+            this.stream.ao(e => {
+              n(() => this.tu(e));
+            }),
+            this.stream.onMessage(e => {
+              n(() => this.onMessage(e));
+            });
+        }
+        Go() {
+          (this.state = 5),
+            this.qo.No(async () => {
+              (this.state = 0), this.start();
+            });
+        }
+        tu(e) {
+          return ti('PersistentStream', `close with error: ${e}`), (this.stream = null), this.close(4, e);
+        }
+        Xo(e) {
+          return t => {
+            this.ii.enqueueAndForget(() =>
+              this.Fo === e ? t() : (ti('PersistentStream', 'stream callback skipped by getCloseGuardedDispatcher.'), Promise.resolve())
+            );
+          };
+        }
+      }
+      class nf extends tf {
+        constructor(e, t, n, r, i, o) {
+          super(e, 'listen_stream_connection_backoff', 'listen_stream_idle', 'health_check_timeout', t, n, r, o), (this.serializer = i);
+        }
+        eu(e, t) {
+          return this.connection.Ro('Listen', e, t);
+        }
+        onMessage(e) {
+          this.qo.reset();
+          const t = uc(this.serializer, e),
+            n = (function (e) {
+              if (!('targetChange' in e)) return Ai.min();
+              const t = e.targetChange;
+              return t.targetIds && t.targetIds.length ? Ai.min() : t.readTime ? Yu(t.readTime) : Ai.min();
+            })(e);
+          return this.listener.nu(t, n);
+        }
+        su(e) {
+          const t = {};
+          (t.database = rc(this.serializer)),
+            (t.addTarget = (function (e, t) {
+              let n;
+              const r = t.target;
+              if (((n = na(r) ? { documents: fc(e, r) } : { query: dc(e, r) }), (n.targetId = t.targetId), t.resumeToken.approximateByteSize() > 0)) {
+                n.resumeToken = Ku(e, t.resumeToken);
+                const r = Wu(e, t.expectedCount);
+                null !== r && (n.expectedCount = r);
+              } else if (t.snapshotVersion.compareTo(Ai.min()) > 0) {
+                n.readTime = Hu(e, t.snapshotVersion.toTimestamp());
+                const r = Wu(e, t.expectedCount);
+                null !== r && (n.expectedCount = r);
+              }
+              return n;
+            })(this.serializer, e));
+          const n = gc(this.serializer, e);
+          n && (t.labels = n), this.Wo(t);
+        }
+        iu(e) {
+          const t = {};
+          (t.database = rc(this.serializer)), (t.removeTarget = e), this.Wo(t);
+        }
+      }
+      class rf extends tf {
+        constructor(e, t, n, r, i, o) {
+          super(e, 'write_stream_connection_backoff', 'write_stream_idle', 'health_check_timeout', t, n, r, o), (this.serializer = i), (this.ru = !1);
+        }
+        get ou() {
+          return this.ru;
+        }
+        start() {
+          (this.ru = !1), (this.lastStreamToken = void 0), super.start();
+        }
+        Yo() {
+          this.ru && this.uu([]);
+        }
+        eu(e, t) {
+          return this.connection.Ro('Write', e, t);
+        }
+        onMessage(e) {
+          if ((si(!!e.streamToken), (this.lastStreamToken = e.streamToken), this.ru)) {
+            this.qo.reset();
+            const t = hc(e.writeResults, e.commitTime),
+              n = Yu(e.commitTime);
+            return this.listener.cu(n, t);
+          }
+          return si(!e.writeResults || 0 === e.writeResults.length), (this.ru = !0), this.listener.au();
+        }
+        hu() {
+          const e = {};
+          (e.database = rc(this.serializer)), this.Wo(e);
+        }
+        uu(e) {
+          const t = { streamToken: this.lastStreamToken, writes: e.map(e => cc(this.serializer, e)) };
+          this.Wo(t);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class of extends class {} {
+        constructor(e, t, n, r) {
+          super(), (this.authCredentials = e), (this.appCheckCredentials = t), (this.connection = n), (this.serializer = r), (this.lu = !1);
+        }
+        fu() {
+          if (this.lu) throw new li(ci.FAILED_PRECONDITION, 'The client has already been terminated.');
+        }
+        Io(e, t, n) {
+          return (
+            this.fu(),
+            Promise.all([this.authCredentials.getToken(), this.appCheckCredentials.getToken()])
+              .then(([r, i]) => this.connection.Io(e, t, n, r, i))
+              .catch(e => {
+                throw 'FirebaseError' === e.name
+                  ? (e.code === ci.UNAUTHENTICATED && (this.authCredentials.invalidateToken(), this.appCheckCredentials.invalidateToken()), e)
+                  : new li(ci.UNKNOWN, e.toString());
+              })
+          );
+        }
+        vo(e, t, n, r) {
+          return (
+            this.fu(),
+            Promise.all([this.authCredentials.getToken(), this.appCheckCredentials.getToken()])
+              .then(([i, o]) => this.connection.vo(e, t, n, i, o, r))
+              .catch(e => {
+                throw 'FirebaseError' === e.name
+                  ? (e.code === ci.UNAUTHENTICATED && (this.authCredentials.invalidateToken(), this.appCheckCredentials.invalidateToken()), e)
+                  : new li(ci.UNKNOWN, e.toString());
+              })
+          );
+        }
+        terminate() {
+          this.lu = !0;
+        }
+      }
+      class sf {
+        constructor(e, t) {
+          (this.asyncQueue = e), (this.onlineStateHandler = t), (this.state = 'Unknown'), (this.wu = 0), (this._u = null), (this.mu = !0);
+        }
+        gu() {
+          0 === this.wu &&
+            (this.yu('Unknown'),
+            (this._u = this.asyncQueue.enqueueAfterDelay(
+              'online_state_timeout',
+              1e4,
+              () => ((this._u = null), this.pu("Backend didn't respond within 10 seconds."), this.yu('Offline'), Promise.resolve())
+            )));
+        }
+        Iu(e) {
+          'Online' === this.state
+            ? this.yu('Unknown')
+            : (this.wu++, this.wu >= 1 && (this.Tu(), this.pu(`Connection failed 1 times. Most recent error: ${e.toString()}`), this.yu('Offline')));
+        }
+        set(e) {
+          this.Tu(), (this.wu = 0), 'Online' === e && (this.mu = !1), this.yu(e);
+        }
+        yu(e) {
+          e !== this.state && ((this.state = e), this.onlineStateHandler(e));
+        }
+        pu(e) {
+          const t = `Could not reach Cloud Firestore backend. ${e}\nThis typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.`;
+          this.mu ? (ni(t), (this.mu = !1)) : ti('OnlineStateTracker', t);
+        }
+        Tu() {
+          null !== this._u && (this._u.cancel(), (this._u = null));
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *

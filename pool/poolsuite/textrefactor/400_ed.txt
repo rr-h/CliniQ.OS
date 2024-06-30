@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+        return new Uo(Ni.comparator);
+      }
+      const $u = (() => {
+          const e = { asc: 'ASCENDING', desc: 'DESCENDING' };
+          return e;
+        })(),
+        qu = (() => {
+          const e = {
+            '<': 'LESS_THAN',
+            '<=': 'LESS_THAN_OR_EQUAL',
+            '>': 'GREATER_THAN',
+            '>=': 'GREATER_THAN_OR_EQUAL',
+            '==': 'EQUAL',
+            '!=': 'NOT_EQUAL',
+            'array-contains': 'ARRAY_CONTAINS',
+            in: 'IN',
+            'not-in': 'NOT_IN',
+            'array-contains-any': 'ARRAY_CONTAINS_ANY'
+          };
+          return e;
+        })(),
+        zu = (() => {
+          const e = { and: 'AND', or: 'OR' };
+          return e;
+        })();
+      class Gu {
+        constructor(e, t) {
+          (this.databaseId = e), (this.useProto3Json = t);
+        }
+      }
+      function Wu(e, t) {
+        return e.useProto3Json || ro(t) ? t : { value: t };
+      }
+      function Hu(e, t) {
+        return e.useProto3Json
+          ? `${new Date(1e3 * t.seconds).toISOString().replace(/\.\d*/, '').replace('Z', '')}.${('000000000' + t.nanoseconds).slice(-9)}Z`
+          : { seconds: '' + t.seconds, nanos: t.nanoseconds };
+      }
+      function Ku(e, t) {
+        return e.useProto3Json ? t.toBase64() : t.toUint8Array();
+      }
+      function Qu(e, t) {
+        return Hu(e, t.toTimestamp());
+      }
+      function Yu(e) {
+        return (
+          si(!!e),
+          Ai.fromTimestamp(
+            (function (e) {
+              const t = Yo(e);
+              return new Ti(t.seconds, t.nanos);
+            })(e)
+          )
+        );
+      }
+      function Xu(e, t) {
+        return (function (e) {
+          return new Ci(['projects', e.projectId, 'databases', e.database]);
+        })(e)
+          .child('documents')
+          .child(t)
+          .canonicalString();
+      }
+      function Ju(e) {
+        const t = Ci.fromString(e);
+        return si(Sc(t)), t;
+      }
+      function Zu(e, t) {
+        return Xu(e.databaseId, t.path);
+      }
+      function ec(e, t) {
+        const n = Ju(t);
+        if (n.get(1) !== e.databaseId.projectId)
+          throw new li(ci.INVALID_ARGUMENT, 'Tried to deserialize key from different project: ' + n.get(1) + ' vs ' + e.databaseId.projectId);
+        if (n.get(3) !== e.databaseId.database)
+          throw new li(ci.INVALID_ARGUMENT, 'Tried to deserialize key from different database: ' + n.get(3) + ' vs ' + e.databaseId.database);
+        return new Ni(ic(n));
+      }
+      function tc(e, t) {
+        return Xu(e.databaseId, t);
+      }
+      function nc(e) {
+        const t = Ju(e);
+        return 4 === t.length ? Ci.emptyPath() : ic(t);
+      }
+      function rc(e) {
+        return new Ci(['projects', e.databaseId.projectId, 'databases', e.databaseId.database]).canonicalString();
+      }
+      function ic(e) {
+        return si(e.length > 4 && 'documents' === e.get(4)), e.popFirst(5);
+      }
+      function oc(e, t, n) {
+        return { name: Zu(e, t), fields: n.value.mapValue.fields };
+      }
+      function sc(e, t, n) {
+        const r = ec(e, t.name),
+          i = Yu(t.updateTime),
+          o = t.createTime ? Yu(t.createTime) : Ai.min(),
+          s = new Ts({ mapValue: { fields: t.fields } }),
+          a = xs.newFoundDocument(r, i, o, s);
+        return n && a.setHasCommittedMutations(), n ? a.setHasCommittedMutations() : a;
+      }
+      function ac(e, t) {
+        return 'found' in t
+          ? (function (e, t) {
+              si(!!t.found), t.found.name, t.found.updateTime;
+              const n = ec(e, t.found.name),
+                r = Yu(t.found.updateTime),
+                i = t.found.createTime ? Yu(t.found.createTime) : Ai.min(),
+                o = new Ts({ mapValue: { fields: t.found.fields } });
+              return xs.newFoundDocument(n, r, i, o);
+            })(e, t)
+          : 'missing' in t
+            ? (function (e, t) {
+                si(!!t.missing), si(!!t.readTime);
+                const n = ec(e, t.missing),
+                  r = Yu(t.readTime);
+                return xs.newNoDocument(n, r);
+              })(e, t)
+            : oi();
+      }
+      function uc(e, t) {
+        let n;
+        if ('targetChange' in t) {
+          t.targetChange;
+          const r = (function (e) {
+              return 'NO_CHANGE' === e ? 0 : 'ADD' === e ? 1 : 'REMOVE' === e ? 2 : 'CURRENT' === e ? 3 : 'RESET' === e ? 4 : oi();
+            })(t.targetChange.targetChangeType || 'NO_CHANGE'),
+            i = t.targetChange.targetIds || [],
+            o = (function (e, t) {
+              return e.useProto3Json
+                ? (si(void 0 === t || 'string' == typeof t), Ko.fromBase64String(t || ''))
+                : (si(void 0 === t || t instanceof Uint8Array), Ko.fromUint8Array(t || new Uint8Array()));
+            })(e, t.targetChange.resumeToken),
+            s = t.targetChange.cause,
+            a =
+              s &&
+              (function (e) {
+                const t = void 0 === e.code ? ci.UNKNOWN : Su(e.code);
+                return new li(t, e.message || '');
+              })(s);
+          n = new Mu(r, i, o, a || null);
+        } else if ('documentChange' in t) {
+          t.documentChange;
+          const r = t.documentChange;
+          r.document, r.document.name, r.document.updateTime;
+          const i = ec(e, r.document.name),
+            o = Yu(r.document.updateTime),
+            s = r.document.createTime ? Yu(r.document.createTime) : Ai.min(),
+            a = new Ts({ mapValue: { fields: r.document.fields } }),
+            u = xs.newFoundDocument(i, o, s, a),
+            c = r.targetIds || [],
+            l = r.removedTargetIds || [];
+          n = new Lu(c, l, u.key, u);
+        } else if ('documentDelete' in t) {
+          t.documentDelete;
+          const r = t.documentDelete;
+          r.document;
+          const i = ec(e, r.document),
+            o = r.readTime ? Yu(r.readTime) : Ai.min(),
+            s = xs.newNoDocument(i, o),
+            a = r.removedTargetIds || [];
+          n = new Lu([], a, s.key, s);
+        } else if ('documentRemove' in t) {
+          t.documentRemove;
+          const r = t.documentRemove;
+          r.document;
+          const i = ec(e, r.document),
+            o = r.removedTargetIds || [];
+          n = new Lu([], o, i, null);
+        } else {
+          if (!('filter' in t)) return oi();
+          {
+            t.filter;
+            const e = t.filter;
+            e.targetId;
+            const { count: r = 0, unchangedNames: i } = e,
+              o = new bu(r, i),
+              s = e.targetId;
+            n = new ju(s, o);
+          }
+        }
+        return n;
+      }
+      function cc(e, t) {
+        let n;
+        if (t instanceof lu) n = { update: oc(e, t.key, t.value) };
+        else if (t instanceof gu) n = { delete: Zu(e, t.key) };
+        else if (t instanceof hu) n = { update: oc(e, t.key, t.data), updateMask: Ec(t.fieldMask) };
+        else {
+          if (!(t instanceof mu)) return oi();
+          n = { verify: Zu(e, t.key) };
+        }
+        return (
+          t.fieldTransforms.length > 0 &&
+            (n.updateTransforms = t.fieldTransforms.map(e =>
+              (function (e, t) {
+                const n = t.transform;
+                if (n instanceof Ga) return { fieldPath: t.field.canonicalString(), setToServerValue: 'REQUEST_TIME' };
+                if (n instanceof Wa) return { fieldPath: t.field.canonicalString(), appendMissingElements: { values: n.elements } };
+                if (n instanceof Ka) return { fieldPath: t.field.canonicalString(), removeAllFromArray: { values: n.elements } };
+                if (n instanceof Ya) return { fieldPath: t.field.canonicalString(), increment: n.gt };
+                throw oi();
+              })(0, e)
+            )),
+          t.precondition.isNone ||
+            (n.currentDocument = (function (e, t) {
+              return void 0 !== t.updateTime ? { updateTime: Qu(e, t.updateTime) } : void 0 !== t.exists ? { exists: t.exists } : oi();
+            })(e, t.precondition)),
+          n
+        );
+      }
+      function lc(e, t) {
+        const n = t.currentDocument
+            ? (function (e) {
+                return void 0 !== e.updateTime ? nu.updateTime(Yu(e.updateTime)) : void 0 !== e.exists ? nu.exists(e.exists) : nu.none();
+              })(t.currentDocument)
+            : nu.none(),
+          r = t.updateTransforms
+            ? t.updateTransforms.map(t =>
+                (function (e, t) {
+                  let n = null;
+                  if ('setToServerValue' in t) si('REQUEST_TIME' === t.setToServerValue), (n = new Ga());
+                  else if ('appendMissingElements' in t) {
+                    const e = t.appendMissingElements.values || [];
+                    n = new Wa(e);
+                  } else if ('removeAllFromArray' in t) {
+                    const e = t.removeAllFromArray.values || [];
+                    n = new Ka(e);
+                  } else 'increment' in t ? (n = new Ya(e, t.increment)) : oi();
+                  const r = Oi.fromServerFormat(t.fieldPath);
+                  return new Za(r, n);
+                })(e, t)
+              )
+            : [];
+        if (t.update) {
+          t.update.name;
+          const i = ec(e, t.update.name),
+            o = new Ts({ mapValue: { fields: t.update.fields } });
+          if (t.updateMask) {
+            const e = (function (e) {
+              const t = e.fieldPaths || [];
+              return new Go(t.map(e => Oi.fromServerFormat(e)));
+            })(t.updateMask);
+            return new hu(i, o, e, n, r);
+          }
+          return new lu(i, o, n, r);
+        }
+        if (t.delete) {
+          const r = ec(e, t.delete);
+          return new gu(r, n);
+        }
+        if (t.verify) {
+          const r = ec(e, t.verify);
+          return new mu(r, n);
+        }
+        return oi();
+      }
+      function hc(e, t) {
+        return e && e.length > 0
+          ? (si(void 0 !== t),
+            e.map(e =>
+              (function (e, t) {
+                let n = e.updateTime ? Yu(e.updateTime) : Yu(t);
+                return n.isEqual(Ai.min()) && (n = Yu(t)), new tu(n, e.transformResults || []);
+              })(e, t)
+            ))
+          : [];
+      }
+      function fc(e, t) {
+        return { documents: [tc(e, t.path)] };
+      }
+      function dc(e, t) {
+        const n = { structuredQuery: {} },
+          r = t.path;
+        null !== t.collectionGroup
+          ? ((n.parent = tc(e, r)), (n.structuredQuery.from = [{ collectionId: t.collectionGroup, allDescendants: !0 }]))
+          : ((n.parent = tc(e, r.popLast())), (n.structuredQuery.from = [{ collectionId: r.lastSegment() }]));
+        const i = (function (e) {
+          if (0 !== e.length) return Ic(Ls.create(e, 'and'));
+        })(t.filters);
+        i && (n.structuredQuery.where = i);
+        const o = (function (e) {
+          if (0 !== e.length)
+            return e.map(e =>
+              (function (e) {
+                return { field: bc(e.field), direction: vc(e.dir) };
+              })(e)
+            );
+        })(t.orderBy);
+        o && (n.structuredQuery.orderBy = o);
+        const s = Wu(e, t.limit);
+        var a;
+        return (
+          null !== s && (n.structuredQuery.limit = s),
+          t.startAt && (n.structuredQuery.startAt = { before: (a = t.startAt).inclusive, values: a.position }),
+          t.endAt &&
+            (n.structuredQuery.endAt = (function (e) {
+              return { before: !e.inclusive, values: e.position };
+            })(t.endAt)),
+          n
+        );
+      }
+      function pc(e) {
+        let t = nc(e.parent);
+        const n = e.structuredQuery,
+          r = n.from ? n.from.length : 0;
+        let i = null;
+        if (r > 0) {
+          si(1 === r);
+          const e = n.from[0];
+          e.allDescendants ? (i = e.collectionId) : (t = t.child(e.collectionId));
+        }
+        let o = [];
+        n.where &&
+          (o = (function (e) {
+            const t = mc(e);
+            return t instanceof Ls && Fs(t) ? t.getFilters() : [t];
+          })(n.where));
+        let s = [];
+        n.orderBy &&
+          (s = n.orderBy.map(e =>
+            (function (e) {
+              return new Ns(
+                _c(e.field),
+                (function (e) {
+                  switch (e) {
+                    case 'ASCENDING':
+                      return 'asc';
+                    case 'DESCENDING':
+                      return 'desc';
+                    default:
+                      return;
+                  }
+                })(e.direction)
+              );
+            })(e)
+          ));
+        let a = null;
+        n.limit &&
+          (a = (function (e) {
+            let t;
+            return (t = 'object' == typeof e ? e.value : e), ro(t) ? null : t;
+          })(n.limit));
+        let u = null;
+        n.startAt &&
+          (u = (function (e) {
+            const t = !!e.before,
+              n = e.values || [];
+            return new Cs(n, t);
+          })(n.startAt));
+        let c = null;
+        return (
+          n.endAt &&
+            (c = (function (e) {
+              const t = !e.before,
+                n = e.values || [];
+              return new Cs(n, t);
+            })(n.endAt)),
+          aa(t, i, s, o, a, 'F', u, c)
+        );
+      }
+      function gc(e, t) {
+        const n = (function (e) {
+          switch (e) {
+            case 'TargetPurposeListen':
+              return null;
+            case 'TargetPurposeExistenceFilterMismatch':
+              return 'existence-filter-mismatch';
+            case 'TargetPurposeExistenceFilterMismatchBloom':
+              return 'existence-filter-mismatch-bloom';
+            case 'TargetPurposeLimboResolution':
+              return 'limbo-document';
+            default:
+              return oi();
+          }
+        })(t.purpose);
+        return null == n ? null : { 'goog-listen-tags': n };
+      }
+      function mc(e) {
+        return void 0 !== e.unaryFilter
+          ? (function (e) {
+              switch (e.unaryFilter.op) {
+                case 'IS_NAN':
+                  const t = _c(e.unaryFilter.field);
+                  return Ds.create(t, '==', { doubleValue: NaN });
+                case 'IS_NULL':
+                  const n = _c(e.unaryFilter.field);
+                  return Ds.create(n, '==', { nullValue: 'NULL_VALUE' });
+                case 'IS_NOT_NAN':
+                  const r = _c(e.unaryFilter.field);
+                  return Ds.create(r, '!=', { doubleValue: NaN });
+                case 'IS_NOT_NULL':
+                  const i = _c(e.unaryFilter.field);
+                  return Ds.create(i, '!=', { nullValue: 'NULL_VALUE' });
+                default:
+                  return oi();
+              }
+            })(e)
+          : void 0 !== e.fieldFilter

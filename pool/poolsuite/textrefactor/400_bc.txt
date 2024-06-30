@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+              o = n + (r ? 1 : -1);
+            while (r ? o-- : ++o < i) if (t(e[o], o, e)) return o;
+            return -1;
+          }
+          function Mn(e, t, n) {
+            return t === t ? dr(e, t, n) : jn(e, Un, n);
+          }
+          function Fn(e, t, n, r) {
+            var i = n - 1,
+              o = e.length;
+            while (++i < o) if (r(e[i], t)) return i;
+            return -1;
+          }
+          function Un(e) {
+            return e !== e;
+          }
+          function Vn(e, t) {
+            var n = null == e ? 0 : e.length;
+            return n ? Gn(e, t) / n : F;
+          }
+          function Bn(e) {
+            return function (t) {
+              return null == t ? i : t[e];
+            };
+          }
+          function $n(e) {
+            return function (t) {
+              return null == e ? i : e[t];
+            };
+          }
+          function qn(e, t, n, r, i) {
+            return (
+              i(e, function (e, i, o) {
+                n = r ? ((r = !1), e) : t(n, e, i, o);
+              }),
+              n
+            );
+          }
+          function zn(e, t) {
+            var n = e.length;
+            e.sort(t);
+            while (n--) e[n] = e[n].value;
+            return e;
+          }
+          function Gn(e, t) {
+            var n,
+              r = -1,
+              o = e.length;
+            while (++r < o) {
+              var s = t(e[r]);
+              s !== i && (n = n === i ? s : n + s);
+            }
+            return n;
+          }
+          function Wn(e, t) {
+            var n = -1,
+              r = Array(e);
+            while (++n < e) r[n] = t(n);
+            return r;
+          }
+          function Hn(e, t) {
+            return xn(t, function (t) {
+              return [t, e[t]];
+            });
+          }
+          function Kn(e) {
+            return e ? e.slice(0, vr(e) + 1).replace(Me, '') : e;
+          }
+          function Qn(e) {
+            return function (t) {
+              return e(t);
+            };
+          }
+          function Yn(e, t) {
+            return xn(t, function (t) {
+              return e[t];
+            });
+          }
+          function Xn(e, t) {
+            return e.has(t);
+          }
+          function Jn(e, t) {
+            var n = -1,
+              r = e.length;
+            while (++n < r && Mn(t, e[n], 0) > -1);
+            return n;
+          }
+          function Zn(e, t) {
+            var n = e.length;
+            while (n-- && Mn(t, e[n], 0) > -1);
+            return n;
+          }
+          function er(e, t) {
+            var n = e.length,
+              r = 0;
+            while (n--) e[n] === t && ++r;
+            return r;
+          }
+          var tr = $n(Jt),
+            nr = $n(Zt);
+          function rr(e) {
+            return '\\' + tn[e];
+          }
+          function ir(e, t) {
+            return null == e ? i : e[t];
+          }
+          function or(e) {
+            return Wt.test(e);
+          }
+          function sr(e) {
+            return Ht.test(e);
+          }
+          function ar(e) {
+            var t,
+              n = [];
+            while (!(t = e.next()).done) n.push(t.value);
+            return n;
+          }
+          function ur(e) {
+            var t = -1,
+              n = Array(e.size);
+            return (
+              e.forEach(function (e, r) {
+                n[++t] = [r, e];
+              }),
+              n
+            );
+          }
+          function cr(e, t) {
+            return function (n) {
+              return e(t(n));
+            };
+          }
+          function lr(e, t) {
+            var n = -1,
+              r = e.length,
+              i = 0,
+              o = [];
+            while (++n < r) {
+              var s = e[n];
+              (s !== t && s !== f) || ((e[n] = f), (o[i++] = n));
+            }
+            return o;
+          }
+          function hr(e) {
+            var t = -1,
+              n = Array(e.size);
+            return (
+              e.forEach(function (e) {
+                n[++t] = e;
+              }),
+              n
+            );
+          }
+          function fr(e) {
+            var t = -1,
+              n = Array(e.size);
+            return (
+              e.forEach(function (e) {
+                n[++t] = [e, e];
+              }),
+              n
+            );
+          }
+          function dr(e, t, n) {
+            var r = n - 1,
+              i = e.length;
+            while (++r < i) if (e[r] === t) return r;
+            return -1;
+          }
+          function pr(e, t, n) {
+            var r = n + 1;
+            while (r--) if (e[r] === t) return r;
+            return r;
+          }
+          function gr(e) {
+            return or(e) ? wr(e) : Rn(e);
+          }
+          function mr(e) {
+            return or(e) ? br(e) : Pn(e);
+          }
+          function vr(e) {
+            var t = e.length;
+            while (t-- && Fe.test(e.charAt(t)));
+            return t;
+          }
+          var yr = $n(en);
+          function wr(e) {
+            var t = (zt.lastIndex = 0);
+            while (zt.test(e)) ++t;
+            return t;
+          }
+          function br(e) {
+            return e.match(zt) || [];
+          }
+          function _r(e) {
+            return e.match(Gt) || [];
+          }
+          var Ir = function e(t) {
+              t = null == t ? an : Er.defaults(an.Object(), t, Er.pick(an, Kt));
+              var n = t.Array,
+                r = t.Date,
+                Fe = t.Error,
+                $e = t.Function,
+                tt = t.Math,
+                nt = t.Object,
+                rt = t.RegExp,
+                it = t.String,
+                ot = t.TypeError,
+                st = n.prototype,
+                at = $e.prototype,
+                ut = nt.prototype,
+                ct = t['__core-js_shared__'],
+                lt = at.toString,
+                ht = ut.hasOwnProperty,
+                ft = 0,
+                dt = (function () {
+                  var e = /[^.]+$/.exec((ct && ct.keys && ct.keys.IE_PROTO) || '');
+                  return e ? 'Symbol(src)_1.' + e : '';
+                })(),
+                pt = ut.toString,
+                gt = lt.call(nt),
+                mt = an._,
+                vt = rt(
+                  '^' +
+                    lt
+                      .call(ht)
+                      .replace(Le, '\\$&')
+                      .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') +
+                    '$'
+                ),
+                yt = ln ? t.Buffer : i,
+                wt = t.Symbol,
+                bt = t.Uint8Array,
+                _t = yt ? yt.allocUnsafe : i,
+                It = cr(nt.getPrototypeOf, nt),
+                Et = nt.create,
+                St = ut.propertyIsEnumerable,
+                Tt = st.splice,
+                At = wt ? wt.isConcatSpreadable : i,
+                xt = wt ? wt.iterator : i,
+                Ct = wt ? wt.toStringTag : i,
+                kt = (function () {
+                  try {
+                    var e = Hs(nt, 'defineProperty');
+                    return e({}, '', {}), e;
+                  } catch (t) {}
+                })(),
+                Ot = t.clearTimeout !== an.clearTimeout && t.clearTimeout,
+                Nt = r && r.now !== an.Date.now && r.now,
+                Rt = t.setTimeout !== an.setTimeout && t.setTimeout,
+                Pt = tt.ceil,
+                Dt = tt.floor,
+                Lt = nt.getOwnPropertySymbols,
+                jt = yt ? yt.isBuffer : i,
+                Mt = t.isFinite,
+                Ft = st.join,
+                Ut = cr(nt.keys, nt),
+                Vt = tt.max,
+                Bt = tt.min,
+                zt = r.now,
+                Gt = t.parseInt,
+                Wt = tt.random,
+                Ht = st.reverse,
+                Jt = Hs(t, 'DataView'),
+                Zt = Hs(t, 'Map'),
+                en = Hs(t, 'Promise'),
+                tn = Hs(t, 'Set'),
+                on = Hs(t, 'WeakMap'),
+                sn = Hs(nt, 'create'),
+                un = on && new on(),
+                cn = {},
+                hn = Ra(Jt),
+                fn = Ra(Zt),
+                Rn = Ra(en),
+                Pn = Ra(tn),
+                $n = Ra(on),
+                dr = wt ? wt.prototype : i,
+                wr = dr ? dr.valueOf : i,
+                br = dr ? dr.toString : i;
+              function Ir(e) {
+                if (Tl(e) && !ul(e) && !(e instanceof xr)) {
+                  if (e instanceof Ar) return e;
+                  if (ht.call(e, '__wrapped__')) return Da(e);
+                }
+                return new Ar(e);
+              }
+              var Sr = (function () {
+                function e() {}
+                return function (t) {
+                  if (!Sl(t)) return {};
+                  if (Et) return Et(t);
+                  e.prototype = t;
+                  var n = new e();
+                  return (e.prototype = i), n;
+                };
+              })();
+              function Tr() {}
+              function Ar(e, t) {
+                (this.__wrapped__ = e), (this.__actions__ = []), (this.__chain__ = !!t), (this.__index__ = 0), (this.__values__ = i);
+              }
+              function xr(e) {
+                (this.__wrapped__ = e),
+                  (this.__actions__ = []),
+                  (this.__dir__ = 1),
+                  (this.__filtered__ = !1),
+                  (this.__iteratees__ = []),
+                  (this.__takeCount__ = U),
+                  (this.__views__ = []);
+              }
+              function Cr() {
+                var e = new xr(this.__wrapped__);
+                return (
+                  (e.__actions__ = is(this.__actions__)),
+                  (e.__dir__ = this.__dir__),
+                  (e.__filtered__ = this.__filtered__),
+                  (e.__iteratees__ = is(this.__iteratees__)),
+                  (e.__takeCount__ = this.__takeCount__),
+                  (e.__views__ = is(this.__views__)),
+                  e
+                );
+              }
+              function kr() {
+                if (this.__filtered__) {
+                  var e = new xr(this);
+                  (e.__dir__ = -1), (e.__filtered__ = !0);
+                } else (e = this.clone()), (e.__dir__ *= -1);
+                return e;
+              }
+              function Or() {
+                var e = this.__wrapped__.value(),
+                  t = this.__dir__,
+                  n = ul(e),
+                  r = t < 0,
+                  i = n ? e.length : 0,
+                  o = Js(0, i, this.__views__),
+                  s = o.start,
+                  a = o.end,
+                  u = a - s,
+                  c = r ? a : s - 1,
+                  l = this.__iteratees__,
+                  h = l.length,
+                  f = 0,
+                  d = Bt(u, this.__takeCount__);
+                if (!n || (!r && i == u && d == u)) return Uo(e, this.__actions__);
+                var p = [];
+                e: while (u-- && f < d) {
+                  c += t;
+                  var g = -1,
+                    m = e[c];
+                  while (++g < h) {
+                    var v = l[g],
+                      y = v.iteratee,
+                      w = v.type,
+                      b = y(m);
+                    if (w == P) m = b;
+                    else if (!b) {
+                      if (w == R) continue e;
+                      break e;
+                    }
+                  }
+                  p[f++] = m;
+                }
+                return p;
+              }
+              function Nr(e) {
+                var t = -1,
+                  n = null == e ? 0 : e.length;
+                this.clear();
+                while (++t < n) {
+                  var r = e[t];
+                  this.set(r[0], r[1]);
+                }
+              }
+              function Rr() {
+                (this.__data__ = sn ? sn(null) : {}), (this.size = 0);
+              }
+              function Pr(e) {
+                var t = this.has(e) && delete this.__data__[e];
+                return (this.size -= t ? 1 : 0), t;
+              }
+              function Dr(e) {
+                var t = this.__data__;
+                if (sn) {
+                  var n = t[e];
+                  return n === l ? i : n;
+                }
+                return ht.call(t, e) ? t[e] : i;
+              }
+              function Lr(e) {
+                var t = this.__data__;
+                return sn ? t[e] !== i : ht.call(t, e);
+              }
+              function jr(e, t) {
+                var n = this.__data__;
+                return (this.size += this.has(e) ? 0 : 1), (n[e] = sn && t === i ? l : t), this;
+              }
+              function Mr(e) {
+                var t = -1,
+                  n = null == e ? 0 : e.length;

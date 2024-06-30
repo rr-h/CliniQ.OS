@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+    },
+    80401: e => {
+      function t(e) {
+        var t = this.has(e) && delete this.__data__[e];
+        return (this.size -= t ? 1 : 0), t;
+      }
+      e.exports = t;
+    },
+    57667: (e, t, n) => {
+      var r = n(94536),
+        i = '__lodash_hash_undefined__',
+        o = Object.prototype,
+        s = o.hasOwnProperty;
+      function a(e) {
+        var t = this.__data__;
+        if (r) {
+          var n = t[e];
+          return n === i ? void 0 : n;
+        }
+        return s.call(t, e) ? t[e] : void 0;
+      }
+      e.exports = a;
+    },
+    21327: (e, t, n) => {
+      var r = n(94536),
+        i = Object.prototype,
+        o = i.hasOwnProperty;
+      function s(e) {
+        var t = this.__data__;
+        return r ? void 0 !== t[e] : o.call(t, e);
+      }
+      e.exports = s;
+    },
+    81866: (e, t, n) => {
+      var r = n(94536),
+        i = '__lodash_hash_undefined__';
+      function o(e, t) {
+        var n = this.__data__;
+        return (this.size += this.has(e) ? 0 : 1), (n[e] = r && void 0 === t ? i : t), this;
+      }
+      e.exports = o;
+    },
+    43824: e => {
+      var t = Object.prototype,
+        n = t.hasOwnProperty;
+      function r(e) {
+        var t = e.length,
+          r = new e.constructor(t);
+        return t && 'string' == typeof e[0] && n.call(e, 'index') && ((r.index = e.index), (r.input = e.input)), r;
+      }
+      e.exports = r;
+    },
+    29148: (e, t, n) => {
+      var r = n(74318),
+        i = n(57157),
+        o = n(93147),
+        s = n(40419),
+        a = n(77133),
+        u = '[object Boolean]',
+        c = '[object Date]',
+        l = '[object Map]',
+        h = '[object Number]',
+        f = '[object RegExp]',
+        d = '[object Set]',
+        p = '[object String]',
+        g = '[object Symbol]',
+        m = '[object ArrayBuffer]',
+        v = '[object DataView]',
+        y = '[object Float32Array]',
+        w = '[object Float64Array]',
+        b = '[object Int8Array]',
+        _ = '[object Int16Array]',
+        I = '[object Int32Array]',
+        E = '[object Uint8Array]',
+        S = '[object Uint8ClampedArray]',
+        T = '[object Uint16Array]',
+        A = '[object Uint32Array]';
+      function x(e, t, n) {
+        var x = e.constructor;
+        switch (t) {
+          case m:
+            return r(e);
+          case u:
+          case c:
+            return new x(+e);
+          case v:
+            return i(e, n);
+          case y:
+          case w:
+          case b:
+          case _:
+          case I:
+          case E:
+          case S:
+          case T:
+          case A:
+            return a(e, n);
+          case l:
+            return new x();
+          case h:
+          case p:
+            return new x(e);
+          case f:
+            return o(e);
+          case d:
+            return new x();
+          case g:
+            return s(e);
+        }
+      }
+      e.exports = x;
+    },
+    38517: (e, t, n) => {
+      var r = n(3118),
+        i = n(85924),
+        o = n(25726);
+      function s(e) {
+        return 'function' != typeof e.constructor || o(e) ? {} : r(i(e));
+      }
+      e.exports = s;
+    },
+    65776: e => {
+      var t = 9007199254740991,
+        n = /^(?:0|[1-9]\d*)$/;
+      function r(e, r) {
+        var i = typeof e;
+        return (r = null == r ? t : r), !!r && ('number' == i || ('symbol' != i && n.test(e))) && e > -1 && e % 1 == 0 && e < r;
+      }
+      e.exports = r;
+    },
+    37019: e => {
+      function t(e) {
+        var t = typeof e;
+        return 'string' == t || 'number' == t || 'symbol' == t || 'boolean' == t ? '__proto__' !== e : null === e;
+      }
+      e.exports = t;
+    },
+    15346: (e, t, n) => {
+      var r = n(14429),
+        i = (function () {
+          var e = /[^.]+$/.exec((r && r.keys && r.keys.IE_PROTO) || '');
+          return e ? 'Symbol(src)_1.' + e : '';
+        })();
+      function o(e) {
+        return !!i && i in e;
+      }
+      e.exports = o;
+    },
+    25726: e => {
+      var t = Object.prototype;
+      function n(e) {
+        var n = e && e.constructor,
+          r = ('function' == typeof n && n.prototype) || t;
+        return e === r;
+      }
+      e.exports = n;
+    },
+    27040: e => {
+      function t() {
+        (this.__data__ = []), (this.size = 0);
+      }
+      e.exports = t;
+    },
+    14125: (e, t, n) => {
+      var r = n(18470),
+        i = Array.prototype,
+        o = i.splice;
+      function s(e) {
+        var t = this.__data__,
+          n = r(t, e);
+        if (n < 0) return !1;
+        var i = t.length - 1;
+        return n == i ? t.pop() : o.call(t, n, 1), --this.size, !0;
+      }
+      e.exports = s;
+    },
+    82117: (e, t, n) => {
+      var r = n(18470);
+      function i(e) {
+        var t = this.__data__,
+          n = r(t, e);
+        return n < 0 ? void 0 : t[n][1];
+      }
+      e.exports = i;
+    },
+    67518: (e, t, n) => {
+      var r = n(18470);
+      function i(e) {
+        return r(this.__data__, e) > -1;
+      }
+      e.exports = i;
+    },
+    13399: (e, t, n) => {
+      var r = n(18470);
+      function i(e, t) {
+        var n = this.__data__,
+          i = r(n, e);
+        return i < 0 ? (++this.size, n.push([e, t])) : (n[i][1] = t), this;
+      }
+      e.exports = i;
+    },
+    24785: (e, t, n) => {
+      var r = n(1989),
+        i = n(38407),
+        o = n(57071);
+      function s() {
+        (this.size = 0), (this.__data__ = { hash: new r(), map: new (o || i)(), string: new r() });
+      }
+      e.exports = s;
+    },
+    11285: (e, t, n) => {
+      var r = n(45050);
+      function i(e) {
+        var t = r(this, e)['delete'](e);
+        return (this.size -= t ? 1 : 0), t;
+      }
+      e.exports = i;
+    },
+    96e3: (e, t, n) => {
+      var r = n(45050);
+      function i(e) {
+        return r(this, e).get(e);
+      }
+      e.exports = i;
+    },
+    49916: (e, t, n) => {
+      var r = n(45050);
+      function i(e) {
+        return r(this, e).has(e);
+      }
+      e.exports = i;
+    },
+    95265: (e, t, n) => {
+      var r = n(45050);
+      function i(e, t) {
+        var n = r(this, e),
+          i = n.size;
+        return n.set(e, t), (this.size += n.size == i ? 0 : 1), this;
+      }
+      e.exports = i;
+    },
+    94536: (e, t, n) => {
+      var r = n(10852),
+        i = r(Object, 'create');
+      e.exports = i;
+    },
+    86916: (e, t, n) => {
+      var r = n(5569),
+        i = r(Object.keys, Object);
+      e.exports = i;
+    },
+    33498: e => {
+      function t(e) {
+        var t = [];
+        if (null != e) for (var n in Object(e)) t.push(n);
+        return t;
+      }
+      e.exports = t;
+    },
+    31167: (e, t, n) => {
+      e = n.nmd(e);
+      var r = n(31957),
+        i = t && !t.nodeType && t,
+        o = i && e && !e.nodeType && e,
+        s = o && o.exports === i,
+        a = s && r.process,
+        u = (function () {
+          try {
+            var e = o && o.require && o.require('util').types;
+            return e || (a && a.binding && a.binding('util'));
+          } catch (t) {}
+        })();
+      e.exports = u;
+    },
+    2333: e => {
+      var t = Object.prototype,
+        n = t.toString;
+      function r(e) {
+        return n.call(e);
+      }
+      e.exports = r;
+    },
+    5569: e => {
+      function t(e, t) {
+        return function (n) {
+          return e(t(n));
+        };
+      }
+      e.exports = t;
+    },
+    55639: (e, t, n) => {
+      var r = n(31957),
+        i = 'object' == typeof self && self && self.Object === Object && self,
+        o = r || i || Function('return this')();
+      e.exports = o;
+    },
+    37465: (e, t, n) => {
+      var r = n(38407);
+      function i() {
+        (this.__data__ = new r()), (this.size = 0);
+      }
+      e.exports = i;
+    },
+    63779: e => {
+      function t(e) {
+        var t = this.__data__,
+          n = t['delete'](e);
+        return (this.size = t.size), n;
+      }
+      e.exports = t;
+    },
+    67599: e => {
+      function t(e) {
+        return this.__data__.get(e);
+      }
+      e.exports = t;
+    },
+    44758: e => {
+      function t(e) {
+        return this.__data__.has(e);
+      }
+      e.exports = t;
+    },
+    34309: (e, t, n) => {
+      var r = n(38407),
+        i = n(57071),
+        o = n(83369),
+        s = 200;
+      function a(e, t) {
+        var n = this.__data__;
+        if (n instanceof r) {
+          var a = n.__data__;
+          if (!i || a.length < s - 1) return a.push([e, t]), (this.size = ++n.size), this;
+          n = this.__data__ = new o(a);
+        }
+        return n.set(e, t), (this.size = n.size), this;
+      }
+      e.exports = a;
+    },
+    80346: e => {
+      var t = Function.prototype,
+        n = t.toString;
+      function r(e) {
+        if (null != e) {
+          try {
+            return n.call(e);
+          } catch (t) {}
+          try {
+            return e + '';
+          } catch (t) {}
+        }
+        return '';
+      }
+      e.exports = r;
+    },
+    50361: (e, t, n) => {
+      var r = n(85990),
+        i = 1,
+        o = 4;
+      function s(e) {
+        return r(e, i | o);
+      }
+      e.exports = s;
+    },
+    60990: function (e, t, n) {
+      var r;
+      /**
+       * @license
+       * Lodash (Custom Build) <https://lodash.com/>
+       * Build: `lodash core -o ./dist/lodash.core.js`
+       * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+       * Released under MIT license <https://lodash.com/license>
+       * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+       * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+       */ (e = n.nmd(e)),
+        function () {
+          var i,
+            o = '4.17.21',
+            s = 'Expected a function',
+            a = 1,
+            u = 2,
+            c = 1,
+            l = 32,
+            h = 1 / 0,
+            f = 9007199254740991,
+            d = '[object Arguments]',
+            p = '[object Array]',
+            g = '[object AsyncFunction]',
+            m = '[object Boolean]',
+            v = '[object Date]',
+            y = '[object Error]',
+            w = '[object Function]',
+            b = '[object GeneratorFunction]',
+            _ = '[object Number]',
+            I = '[object Object]',
+            E = '[object Proxy]',
+            S = '[object RegExp]',
+            T = '[object String]',
+            A = /[&<>"']/g,
+            x = RegExp(A.source),

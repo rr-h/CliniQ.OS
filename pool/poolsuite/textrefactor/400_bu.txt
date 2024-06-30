@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+                    o = r.exec(h.stack) || i.exec(h.stack),
+                    s = (o && o[1]) || !1,
+                    a = (o && o[2]) || !1,
+                    u = document.location.href.replace(document.location.hash, ''),
+                    c = document.getElementsByTagName('script');
+                  s === u &&
+                    ((e = document.documentElement.outerHTML),
+                    (t = new RegExp('(?:[^\\n]+?\\n){0,' + (a - 2) + '}[^<]*<script>([\\d\\D]*?)<\\/script>[\\d\\D]*', 'i')),
+                    (n = e.replace(t, '$1').trim()));
+                  for (var l = 0; l < c.length; l++) {
+                    if ('interactive' === c[l].readyState) return c[l];
+                    if (c[l].src === s) return c[l];
+                    if (s === u && c[l].innerHTML && c[l].innerHTML.trim() === n) return c[l];
+                  }
+                  return null;
+                }
+              }
+              return e;
+            });
+          },
+          '89ca': function (e, t, n) {
+            n('b42c'), n('93c4'), (e.exports = n('d38f'));
+          },
+          '8b97': function (e, t, n) {
+            var r = n('d3f4'),
+              i = n('cb7c'),
+              o = function (e, t) {
+                if ((i(e), !r(t) && null !== t)) throw TypeError(t + ": can't set as prototype!");
+              };
+            e.exports = {
+              set:
+                Object.setPrototypeOf ||
+                ('__proto__' in {}
+                  ? (function (e, t, r) {
+                      try {
+                        (r = n('9b43')(Function.call, n('11e9').f(Object.prototype, '__proto__').set, 2)), r(e, []), (t = !(e instanceof Array));
+                      } catch (i) {
+                        t = !0;
+                      }
+                      return function (e, n) {
+                        return o(e, n), t ? (e.__proto__ = n) : r(e, n), e;
+                      };
+                    })({}, !1)
+                  : void 0),
+              check: o
+            };
+          },
+          '8bab': function (e, t, n) {
+            var r = n('6e1f');
+            e.exports = Object('z').propertyIsEnumerable(0)
+              ? Object
+              : function (e) {
+                  return 'String' == r(e) ? e.split('') : Object(e);
+                };
+          },
+          '8ce0': function (e, t, n) {
+            var r = n('3adc'),
+              i = n('f845');
+            e.exports = n('7d95')
+              ? function (e, t, n) {
+                  return r.f(e, t, i(1, n));
+                }
+              : function (e, t, n) {
+                  return (e[t] = n), e;
+                };
+          },
+          '8e6e': function (e, t, n) {
+            var r = n('5ca1'),
+              i = n('990b'),
+              o = n('6821'),
+              s = n('11e9'),
+              a = n('f1ae');
+            r(r.S, 'Object', {
+              getOwnPropertyDescriptors: function (e) {
+                var t,
+                  n,
+                  r = o(e),
+                  u = s.f,
+                  c = i(r),
+                  l = {},
+                  h = 0;
+                while (c.length > h) (n = u(r, (t = c[h++]))), void 0 !== n && a(l, t, n);
+                return l;
+              }
+            });
+          },
+          9093: function (e, t, n) {
+            var r = n('ce10'),
+              i = n('e11e').concat('length', 'prototype');
+            t.f =
+              Object.getOwnPropertyNames ||
+              function (e) {
+                return r(e, i);
+              };
+          },
+          '93c4': function (e, t, n) {
+            'use strict';
+            var r = n('2a4e')(!0);
+            n('e4a9')(
+              String,
+              'String',
+              function (e) {
+                (this._t = String(e)), (this._i = 0);
+              },
+              function () {
+                var e,
+                  t = this._t,
+                  n = this._i;
+                return n >= t.length ? { value: void 0, done: !0 } : ((e = r(t, n)), (this._i += e.length), { value: e, done: !1 });
+              }
+            );
+          },
+          '990b': function (e, t, n) {
+            var r = n('9093'),
+              i = n('2621'),
+              o = n('cb7c'),
+              s = n('7726').Reflect;
+            e.exports =
+              (s && s.ownKeys) ||
+              function (e) {
+                var t = r.f(o(e)),
+                  n = i.f;
+                return n ? t.concat(n(e)) : t;
+              };
+          },
+          '9b43': function (e, t, n) {
+            var r = n('d8e8');
+            e.exports = function (e, t, n) {
+              if ((r(e), void 0 === t)) return e;
+              switch (n) {
+                case 1:
+                  return function (n) {
+                    return e.call(t, n);
+                  };
+                case 2:
+                  return function (n, r) {
+                    return e.call(t, n, r);
+                  };
+                case 3:
+                  return function (n, r, i) {
+                    return e.call(t, n, r, i);
+                  };
+              }
+              return function () {
+                return e.apply(t, arguments);
+              };
+            };
+          },
+          '9c6c': function (e, t, n) {
+            var r = n('2b4c')('unscopables'),
+              i = Array.prototype;
+            void 0 == i[r] && n('32e9')(i, r, {}),
+              (e.exports = function (e) {
+                i[r][e] = !0;
+              });
+          },
+          '9def': function (e, t, n) {
+            var r = n('4588'),
+              i = Math.min;
+            e.exports = function (e) {
+              return e > 0 ? i(r(e), 9007199254740991) : 0;
+            };
+          },
+          '9e1e': function (e, t, n) {
+            e.exports = !n('79e5')(function () {
+              return (
+                7 !=
+                Object.defineProperty({}, 'a', {
+                  get: function () {
+                    return 7;
+                  }
+                }).a
+              );
+            });
+          },
+          a47f: function (e, t, n) {
+            e.exports =
+              !n('7d95') &&
+              !n('d782')(function () {
+                return (
+                  7 !=
+                  Object.defineProperty(n('12fd')('div'), 'a', {
+                    get: function () {
+                      return 7;
+                    }
+                  }).a
+                );
+              });
+          },
+          a5ab: function (e, t, n) {
+            var r = n('a812'),
+              i = Math.min;
+            e.exports = function (e) {
+              return e > 0 ? i(r(e), 9007199254740991) : 0;
+            };
+          },
+          a745: function (e, t, n) {
+            e.exports = n('d604');
+          },
+          a7d3: function (e, t) {
+            var n = (e.exports = { version: '2.6.9' });
+            'number' == typeof __e && (__e = n);
+          },
+          a812: function (e, t) {
+            var n = Math.ceil,
+              r = Math.floor;
+            e.exports = function (e) {
+              return isNaN((e = +e)) ? 0 : (e > 0 ? r : n)(e);
+            };
+          },
+          aa77: function (e, t, n) {
+            var r = n('5ca1'),
+              i = n('be13'),
+              o = n('79e5'),
+              s = n('fdef'),
+              a = '[' + s + ']',
+              u = '​',
+              c = RegExp('^' + a + a + '*'),
+              l = RegExp(a + a + '*$'),
+              h = function (e, t, n) {
+                var i = {},
+                  a = o(function () {
+                    return !!s[e]() || u[e]() != u;
+                  }),
+                  c = (i[e] = a ? t(f) : s[e]);
+                n && (i[n] = c), r(r.P + r.F * a, 'String', i);
+              },
+              f = (h.trim = function (e, t) {
+                return (e = String(i(e))), 1 & t && (e = e.replace(c, '')), 2 & t && (e = e.replace(l, '')), e;
+              });
+            e.exports = h;
+          },
+          aae3: function (e, t, n) {
+            var r = n('d3f4'),
+              i = n('2d95'),
+              o = n('2b4c')('match');
+            e.exports = function (e) {
+              var t;
+              return r(e) && (void 0 !== (t = e[o]) ? !!t : 'RegExp' == i(e));
+            };
+          },
+          ac6a: function (e, t, n) {
+            for (
+              var r = n('cadf'),
+                i = n('0d58'),
+                o = n('2aba'),
+                s = n('7726'),
+                a = n('32e9'),
+                u = n('84f2'),
+                c = n('2b4c'),
+                l = c('iterator'),
+                h = c('toStringTag'),
+                f = u.Array,
+                d = {
+                  CSSRuleList: !0,
+                  CSSStyleDeclaration: !1,
+                  CSSValueList: !1,
+                  ClientRectList: !1,
+                  DOMRectList: !1,
+                  DOMStringList: !1,
+                  DOMTokenList: !0,
+                  DataTransferItemList: !1,
+                  FileList: !1,
+                  HTMLAllCollection: !1,
+                  HTMLCollection: !1,
+                  HTMLFormElement: !1,
+                  HTMLSelectElement: !1,
+                  MediaList: !0,
+                  MimeTypeArray: !1,
+                  NamedNodeMap: !1,
+                  NodeList: !0,
+                  PaintRequestList: !1,
+                  Plugin: !1,
+                  PluginArray: !1,
+                  SVGLengthList: !1,
+                  SVGNumberList: !1,
+                  SVGPathSegList: !1,
+                  SVGPointList: !1,
+                  SVGStringList: !1,
+                  SVGTransformList: !1,
+                  SourceBufferList: !1,
+                  StyleSheetList: !0,
+                  TextTrackCueList: !1,
+                  TextTrackList: !1,
+                  TouchList: !1
+                },
+                p = i(d),
+                g = 0;
+              g < p.length;
+              g++
+            ) {
+              var m,
+                v = p[g],
+                y = d[v],
+                w = s[v],
+                b = w && w.prototype;
+              if (b && (b[l] || a(b, l, f), b[h] || a(b, h, v), (u[v] = f), y)) for (m in r) b[m] || o(b, m, r[m], !0);
+            }
+          },
+          b22a: function (e, t) {
+            e.exports = {};
+          },
+          b39a: function (e, t, n) {
+            var r = n('d3f4');
+            e.exports = function (e, t) {
+              if (!r(e) || e._t !== t) throw TypeError('Incompatible receiver, ' + t + ' required!');
+              return e;
+            };
+          },
+          b3e7: function (e, t) {
+            e.exports = function () {};
+          },
+          b42c: function (e, t, n) {
+            n('fa54');
+            for (
+              var r = n('da3c'),
+                i = n('8ce0'),
+                o = n('b22a'),
+                s = n('1b55')('toStringTag'),
+                a =
+                  'CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,TextTrackList,TouchList'.split(
+                    ','
+                  ),
+                u = 0;
+              u < a.length;
+              u++
+            ) {
+              var c = a[u],
+                l = r[c],
+                h = l && l.prototype;
+              h && !h[s] && i(h, s, c), (o[c] = o.Array);
+            }
+          },
+          b457: function (e, t) {
+            e.exports = !0;
+          },
+          b5aa: function (e, t, n) {
+            var r = n('6e1f');
+            e.exports =
+              Array.isArray ||
+              function (e) {
+                return 'Array' == r(e);
+              };
+          },
+          b635: function (e, t, n) {
+            'use strict';
+            (function (e) {
+              n.d(t, 'b', function () {
+                return i;
+              }),
+                n('6f42');
+              var r = n('3425');
+              function i(e) {
+                i.installed || ((i.installed = !0), e.component('VueDraggableResizable', r['a']));
+              }
+              var o = { install: i },
+                s = null;
+              'undefined' !== typeof window ? (s = window.Vue) : 'undefined' !== typeof e && (s = e.Vue), s && s.use(o), (t['a'] = r['a']);
+            }).call(this, n('c8ba'));
+          },
+          b77f: function (e, t, n) {
+            var r = n('0f89'),
+              i = n('f159');
+            e.exports = n('a7d3').getIterator = function (e) {
+              var t = i(e);
+              if ('function' != typeof t) throw TypeError(e + ' is not iterable!');
+              return r(t.call(e));
+            };
+          },
+          bc25: function (e, t, n) {
+            var r = n('f2fe');
+            e.exports = function (e, t, n) {
+              if ((r(e), void 0 === t)) return e;
+              switch (n) {
+                case 1:
+                  return function (n) {
+                    return e.call(t, n);
+                  };
+                case 2:
+                  return function (n, r) {
+                    return e.call(t, n, r);
+                  };
+                case 3:
+                  return function (n, r, i) {
+                    return e.call(t, n, r, i);
+                  };
+              }
+              return function () {
+                return e.apply(t, arguments);
+              };
+            };
+          },
+          be13: function (e, t) {
+            e.exports = function (e) {
+              if (void 0 == e) throw TypeError("Can't call method on  " + e);
+              return e;
+            };
+          },
+          c0d8: function (e, t, n) {
+            var r = n('3adc').f,

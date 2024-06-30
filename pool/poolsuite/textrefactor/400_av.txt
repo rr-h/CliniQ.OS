@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+      function t(e, t) {
+        for (var n in t) e.setAttribute(n, t[n]);
+      }
+      function n(e, t) {
+        (e.onload = function () {
+          (this.onerror = this.onload = null), t(null, e);
+        }),
+          (e.onerror = function () {
+            (this.onerror = this.onload = null), t(new Error('Failed to load ' + this.src), e);
+          });
+      }
+      function r(e, t) {
+        e.onreadystatechange = function () {
+          ('complete' != this.readyState && 'loaded' != this.readyState) || ((this.onreadystatechange = null), t(null, e));
+        };
+      }
+      e.exports = function (e, i, o) {
+        var s = document.head || document.getElementsByTagName('head')[0],
+          a = document.createElement('script');
+        'function' === typeof i && ((o = i), (i = {})),
+          (i = i || {}),
+          (o = o || function () {}),
+          (a.type = i.type || 'text/javascript'),
+          (a.charset = i.charset || 'utf8'),
+          (a.async = !('async' in i) || !!i.async),
+          (a.src = e),
+          i.attrs && t(a, i.attrs),
+          i.text && (a.text = '' + i.text);
+        var u = 'onload' in a ? n : r;
+        u(a, o), a.onload || n(a, o), s.appendChild(a);
+      };
+    },
+    18552: (e, t, n) => {
+      var r = n(10852),
+        i = n(55639),
+        o = r(i, 'DataView');
+      e.exports = o;
+    },
+    1989: (e, t, n) => {
+      var r = n(51789),
+        i = n(80401),
+        o = n(57667),
+        s = n(21327),
+        a = n(81866);
+      function u(e) {
+        var t = -1,
+          n = null == e ? 0 : e.length;
+        this.clear();
+        while (++t < n) {
+          var r = e[t];
+          this.set(r[0], r[1]);
+        }
+      }
+      (u.prototype.clear = r), (u.prototype['delete'] = i), (u.prototype.get = o), (u.prototype.has = s), (u.prototype.set = a), (e.exports = u);
+    },
+    38407: (e, t, n) => {
+      var r = n(27040),
+        i = n(14125),
+        o = n(82117),
+        s = n(67518),
+        a = n(13399);
+      function u(e) {
+        var t = -1,
+          n = null == e ? 0 : e.length;
+        this.clear();
+        while (++t < n) {
+          var r = e[t];
+          this.set(r[0], r[1]);
+        }
+      }
+      (u.prototype.clear = r), (u.prototype['delete'] = i), (u.prototype.get = o), (u.prototype.has = s), (u.prototype.set = a), (e.exports = u);
+    },
+    57071: (e, t, n) => {
+      var r = n(10852),
+        i = n(55639),
+        o = r(i, 'Map');
+      e.exports = o;
+    },
+    83369: (e, t, n) => {
+      var r = n(24785),
+        i = n(11285),
+        o = n(96e3),
+        s = n(49916),
+        a = n(95265);
+      function u(e) {
+        var t = -1,
+          n = null == e ? 0 : e.length;
+        this.clear();
+        while (++t < n) {
+          var r = e[t];
+          this.set(r[0], r[1]);
+        }
+      }
+      (u.prototype.clear = r), (u.prototype['delete'] = i), (u.prototype.get = o), (u.prototype.has = s), (u.prototype.set = a), (e.exports = u);
+    },
+    53818: (e, t, n) => {
+      var r = n(10852),
+        i = n(55639),
+        o = r(i, 'Promise');
+      e.exports = o;
+    },
+    58525: (e, t, n) => {
+      var r = n(10852),
+        i = n(55639),
+        o = r(i, 'Set');
+      e.exports = o;
+    },
+    46384: (e, t, n) => {
+      var r = n(38407),
+        i = n(37465),
+        o = n(63779),
+        s = n(67599),
+        a = n(44758),
+        u = n(34309);
+      function c(e) {
+        var t = (this.__data__ = new r(e));
+        this.size = t.size;
+      }
+      (c.prototype.clear = i), (c.prototype['delete'] = o), (c.prototype.get = s), (c.prototype.has = a), (c.prototype.set = u), (e.exports = c);
+    },
+    62705: (e, t, n) => {
+      var r = n(55639),
+        i = r.Symbol;
+      e.exports = i;
+    },
+    11149: (e, t, n) => {
+      var r = n(55639),
+        i = r.Uint8Array;
+      e.exports = i;
+    },
+    70577: (e, t, n) => {
+      var r = n(10852),
+        i = n(55639),
+        o = r(i, 'WeakMap');
+      e.exports = o;
+    },
+    77412: e => {
+      function t(e, t) {
+        var n = -1,
+          r = null == e ? 0 : e.length;
+        while (++n < r) if (!1 === t(e[n], n, e)) break;
+        return e;
+      }
+      e.exports = t;
+    },
+    34963: e => {
+      function t(e, t) {
+        var n = -1,
+          r = null == e ? 0 : e.length,
+          i = 0,
+          o = [];
+        while (++n < r) {
+          var s = e[n];
+          t(s, n, e) && (o[i++] = s);
+        }
+        return o;
+      }
+      e.exports = t;
+    },
+    14636: (e, t, n) => {
+      var r = n(22545),
+        i = n(35694),
+        o = n(1469),
+        s = n(44144),
+        a = n(65776),
+        u = n(36719),
+        c = Object.prototype,
+        l = c.hasOwnProperty;
+      function h(e, t) {
+        var n = o(e),
+          c = !n && i(e),
+          h = !n && !c && s(e),
+          f = !n && !c && !h && u(e),
+          d = n || c || h || f,
+          p = d ? r(e.length, String) : [],
+          g = p.length;
+        for (var m in e)
+          (!t && !l.call(e, m)) ||
+            (d &&
+              ('length' == m ||
+                (h && ('offset' == m || 'parent' == m)) ||
+                (f && ('buffer' == m || 'byteLength' == m || 'byteOffset' == m)) ||
+                a(m, g))) ||
+            p.push(m);
+        return p;
+      }
+      e.exports = h;
+    },
+    62488: e => {
+      function t(e, t) {
+        var n = -1,
+          r = t.length,
+          i = e.length;
+        while (++n < r) e[i + n] = t[n];
+        return e;
+      }
+      e.exports = t;
+    },
+    34865: (e, t, n) => {
+      var r = n(89465),
+        i = n(77813),
+        o = Object.prototype,
+        s = o.hasOwnProperty;
+      function a(e, t, n) {
+        var o = e[t];
+        (s.call(e, t) && i(o, n) && (void 0 !== n || t in e)) || r(e, t, n);
+      }
+      e.exports = a;
+    },
+    18470: (e, t, n) => {
+      var r = n(77813);
+      function i(e, t) {
+        var n = e.length;
+        while (n--) if (r(e[n][0], t)) return n;
+        return -1;
+      }
+      e.exports = i;
+    },
+    44037: (e, t, n) => {
+      var r = n(98363),
+        i = n(3674);
+      function o(e, t) {
+        return e && r(t, i(t), e);
+      }
+      e.exports = o;
+    },
+    63886: (e, t, n) => {
+      var r = n(98363),
+        i = n(81704);
+      function o(e, t) {
+        return e && r(t, i(t), e);
+      }
+      e.exports = o;
+    },
+    89465: (e, t, n) => {
+      var r = n(38777);
+      function i(e, t, n) {
+        '__proto__' == t && r ? r(e, t, { configurable: !0, enumerable: !0, value: n, writable: !0 }) : (e[t] = n);
+      }
+      e.exports = i;
+    },
+    85990: (e, t, n) => {
+      var r = n(46384),
+        i = n(77412),
+        o = n(34865),
+        s = n(44037),
+        a = n(63886),
+        u = n(64626),
+        c = n(278),
+        l = n(18805),
+        h = n(1911),
+        f = n(58234),
+        d = n(46904),
+        p = n(64160),
+        g = n(43824),
+        m = n(29148),
+        v = n(38517),
+        y = n(1469),
+        w = n(44144),
+        b = n(56688),
+        _ = n(13218),
+        I = n(72928),
+        E = n(3674),
+        S = n(81704),
+        T = 1,
+        A = 2,
+        x = 4,
+        C = '[object Arguments]',
+        k = '[object Array]',
+        O = '[object Boolean]',
+        N = '[object Date]',
+        R = '[object Error]',
+        P = '[object Function]',
+        D = '[object GeneratorFunction]',
+        L = '[object Map]',
+        j = '[object Number]',
+        M = '[object Object]',
+        F = '[object RegExp]',
+        U = '[object Set]',
+        V = '[object String]',
+        B = '[object Symbol]',
+        $ = '[object WeakMap]',
+        q = '[object ArrayBuffer]',
+        z = '[object DataView]',
+        G = '[object Float32Array]',
+        W = '[object Float64Array]',
+        H = '[object Int8Array]',
+        K = '[object Int16Array]',
+        Q = '[object Int32Array]',
+        Y = '[object Uint8Array]',
+        X = '[object Uint8ClampedArray]',
+        J = '[object Uint16Array]',
+        Z = '[object Uint32Array]',
+        ee = {};
+      function te(e, t, n, k, O, N) {
+        var R,
+          L = t & T,
+          j = t & A,
+          F = t & x;
+        if ((n && (R = O ? n(e, k, O, N) : n(e)), void 0 !== R)) return R;
+        if (!_(e)) return e;
+        var U = y(e);
+        if (U) {
+          if (((R = g(e)), !L)) return c(e, R);
+        } else {
+          var V = p(e),
+            B = V == P || V == D;
+          if (w(e)) return u(e, L);
+          if (V == M || V == C || (B && !O)) {
+            if (((R = j || B ? {} : v(e)), !L)) return j ? h(e, a(R, e)) : l(e, s(R, e));
+          } else {
+            if (!ee[V]) return O ? e : {};
+            R = m(e, V, L);
+          }
+        }
+        N || (N = new r());
+        var $ = N.get(e);
+        if ($) return $;
+        N.set(e, R),
+          I(e)
+            ? e.forEach(function (r) {
+                R.add(te(r, t, n, r, e, N));
+              })
+            : b(e) &&
+              e.forEach(function (r, i) {
+                R.set(i, te(r, t, n, i, e, N));
+              });
+        var q = F ? (j ? d : f) : j ? S : E,
+          z = U ? void 0 : q(e);
+        return (
+          i(z || e, function (r, i) {
+            z && ((i = r), (r = e[i])), o(R, i, te(r, t, n, i, e, N));
+          }),
+          R
+        );
+      }
+      (ee[C] =
+        ee[k] =
+        ee[q] =
+        ee[z] =
+        ee[O] =
+        ee[N] =
+        ee[G] =
+        ee[W] =
+        ee[H] =
+        ee[K] =
+        ee[Q] =
+        ee[L] =
+        ee[j] =
+        ee[M] =
+        ee[F] =
+        ee[U] =
+        ee[V] =
+        ee[B] =
+        ee[Y] =
+        ee[X] =
+        ee[J] =
+        ee[Z] =
+          !0),
+        (ee[R] = ee[P] = ee[$] = !1),
+        (e.exports = te);
+    },
+    3118: (e, t, n) => {
+      var r = n(13218),
+        i = Object.create,
+        o = (function () {
+          function e() {}
+          return function (t) {
+            if (!r(t)) return {};
+            if (i) return i(t);
+            e.prototype = t;
+            var n = new e();
+            return (e.prototype = void 0), n;
+          };
+        })();
+      e.exports = o;
+    },
+    68866: (e, t, n) => {
+      var r = n(62488),
+        i = n(1469);
+      function o(e, t, n) {
+        var o = t(e);
+        return i(e) ? o : r(o, n(e));
+      }
+      e.exports = o;
+    },
+    44239: (e, t, n) => {
+      var r = n(62705),
+        i = n(89607),
+        o = n(2333),
+        s = '[object Null]',
+        a = '[object Undefined]',
+        u = r ? r.toStringTag : void 0;
+      function c(e) {
+        return null == e ? (void 0 === e ? a : s) : u && u in Object(e) ? i(e) : o(e);
+      }
+      e.exports = c;
+    },
+    9454: (e, t, n) => {
+      var r = n(44239),

@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+        }
+        static comparator(e, t) {
+          const n = Math.min(e.length, t.length);
+          for (let r = 0; r < n; r++) {
+            const n = e.get(r),
+              i = t.get(r);
+            if (n < i) return -1;
+            if (n > i) return 1;
+          }
+          return e.length < t.length ? -1 : e.length > t.length ? 1 : 0;
+        }
+      }
+      class Ci extends xi {
+        construct(e, t, n) {
+          return new Ci(e, t, n);
+        }
+        canonicalString() {
+          return this.toArray().join('/');
+        }
+        toString() {
+          return this.canonicalString();
+        }
+        static fromString(...e) {
+          const t = [];
+          for (const n of e) {
+            if (n.indexOf('//') >= 0) throw new li(ci.INVALID_ARGUMENT, `Invalid segment (${n}). Paths must not contain // in them.`);
+            t.push(...n.split('/').filter(e => e.length > 0));
+          }
+          return new Ci(t);
+        }
+        static emptyPath() {
+          return new Ci([]);
+        }
+      }
+      const ki = /^[_a-zA-Z][_a-zA-Z0-9]*$/;
+      class Oi extends xi {
+        construct(e, t, n) {
+          return new Oi(e, t, n);
+        }
+        static isValidIdentifier(e) {
+          return ki.test(e);
+        }
+        canonicalString() {
+          return this.toArray()
+            .map(e => ((e = e.replace(/\\/g, '\\\\').replace(/`/g, '\\`')), Oi.isValidIdentifier(e) || (e = '`' + e + '`'), e))
+            .join('.');
+        }
+        toString() {
+          return this.canonicalString();
+        }
+        isKeyField() {
+          return 1 === this.length && '__name__' === this.get(0);
+        }
+        static keyField() {
+          return new Oi(['__name__']);
+        }
+        static fromServerFormat(e) {
+          const t = [];
+          let n = '',
+            r = 0;
+          const i = () => {
+            if (0 === n.length)
+              throw new li(ci.INVALID_ARGUMENT, `Invalid field path (${e}). Paths must not be empty, begin with '.', end with '.', or contain '..'`);
+            t.push(n), (n = '');
+          };
+          let o = !1;
+          for (; r < e.length; ) {
+            const t = e[r];
+            if ('\\' === t) {
+              if (r + 1 === e.length) throw new li(ci.INVALID_ARGUMENT, 'Path has trailing escape character: ' + e);
+              const t = e[r + 1];
+              if ('\\' !== t && '.' !== t && '`' !== t) throw new li(ci.INVALID_ARGUMENT, 'Path has invalid escape sequence: ' + e);
+              (n += t), (r += 2);
+            } else '`' === t ? ((o = !o), r++) : '.' !== t || o ? ((n += t), r++) : (i(), r++);
+          }
+          if ((i(), o)) throw new li(ci.INVALID_ARGUMENT, 'Unterminated ` in path: ' + e);
+          return new Oi(t);
+        }
+        static emptyPath() {
+          return new Oi([]);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Ni {
+        constructor(e) {
+          this.path = e;
+        }
+        static fromPath(e) {
+          return new Ni(Ci.fromString(e));
+        }
+        static fromName(e) {
+          return new Ni(Ci.fromString(e).popFirst(5));
+        }
+        static empty() {
+          return new Ni(Ci.emptyPath());
+        }
+        get collectionGroup() {
+          return this.path.popLast().lastSegment();
+        }
+        hasCollectionId(e) {
+          return this.path.length >= 2 && this.path.get(this.path.length - 2) === e;
+        }
+        getCollectionGroup() {
+          return this.path.get(this.path.length - 2);
+        }
+        getCollectionPath() {
+          return this.path.popLast();
+        }
+        isEqual(e) {
+          return null !== e && 0 === Ci.comparator(this.path, e.path);
+        }
+        toString() {
+          return this.path.toString();
+        }
+        static comparator(e, t) {
+          return Ci.comparator(e.path, t.path);
+        }
+        static isDocumentKey(e) {
+          return e.length % 2 == 0;
+        }
+        static fromSegments(e) {
+          return new Ni(new Ci(e.slice()));
+        }
+      }
+      /**
+       * @license
+       * Copyright 2021 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Ri {
+        constructor(e, t, n, r) {
+          (this.indexId = e), (this.collectionGroup = t), (this.fields = n), (this.indexState = r);
+        }
+      }
+      function Pi(e) {
+        return e.fields.find(e => 2 === e.kind);
+      }
+      function Di(e) {
+        return e.fields.filter(e => 2 !== e.kind);
+      }
+      Ri.UNKNOWN_ID = -1;
+      class Li {
+        constructor(e, t) {
+          (this.fieldPath = e), (this.kind = t);
+        }
+      }
+      class ji {
+        constructor(e, t) {
+          (this.sequenceNumber = e), (this.offset = t);
+        }
+        static empty() {
+          return new ji(0, Ui.min());
+        }
+      }
+      function Mi(e, t) {
+        const n = e.toTimestamp().seconds,
+          r = e.toTimestamp().nanoseconds + 1,
+          i = Ai.fromTimestamp(1e9 === r ? new Ti(n + 1, 0) : new Ti(n, r));
+        return new Ui(i, Ni.empty(), t);
+      }
+      function Fi(e) {
+        return new Ui(e.readTime, e.key, -1);
+      }
+      class Ui {
+        constructor(e, t, n) {
+          (this.readTime = e), (this.documentKey = t), (this.largestBatchId = n);
+        }
+        static min() {
+          return new Ui(Ai.min(), Ni.empty(), -1);
+        }
+        static max() {
+          return new Ui(Ai.max(), Ni.empty(), -1);
+        }
+      }
+      function Vi(e, t) {
+        let n = e.readTime.compareTo(t.readTime);
+        return 0 !== n ? n : ((n = Ni.comparator(e.documentKey, t.documentKey)), 0 !== n ? n : Ii(e.largestBatchId, t.largestBatchId));
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Bi = 'The current tab is not in the required state to perform this operation. It might be necessary to refresh the browser tab.';
+      class $i {
+        constructor() {
+          this.onCommittedListeners = [];
+        }
+        addOnCommittedListener(e) {
+          this.onCommittedListeners.push(e);
+        }
+        raiseOnCommittedEvent() {
+          this.onCommittedListeners.forEach(e => e());
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ async function qi(e) {
+        if (e.code !== ci.FAILED_PRECONDITION || e.message !== Bi) throw e;
+        ti('LocalStore', 'Unexpectedly lost primary lease');
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class zi {
+        constructor(e) {
+          (this.nextCallback = null),
+            (this.catchCallback = null),
+            (this.result = void 0),
+            (this.error = void 0),
+            (this.isDone = !1),
+            (this.callbackAttached = !1),
+            e(
+              e => {
+                (this.isDone = !0), (this.result = e), this.nextCallback && this.nextCallback(e);
+              },
+              e => {
+                (this.isDone = !0), (this.error = e), this.catchCallback && this.catchCallback(e);
+              }
+            );
+        }
+        catch(e) {
+          return this.next(void 0, e);
+        }
+        next(e, t) {
+          return (
+            this.callbackAttached && oi(),
+            (this.callbackAttached = !0),
+            this.isDone
+              ? this.error
+                ? this.wrapFailure(t, this.error)
+                : this.wrapSuccess(e, this.result)
+              : new zi((n, r) => {
+                  (this.nextCallback = t => {
+                    this.wrapSuccess(e, t).next(n, r);
+                  }),
+                    (this.catchCallback = e => {
+                      this.wrapFailure(t, e).next(n, r);
+                    });
+                })
+          );
+        }
+        toPromise() {
+          return new Promise((e, t) => {
+            this.next(e, t);
+          });
+        }
+        wrapUserFunction(e) {
+          try {
+            const t = e();
+            return t instanceof zi ? t : zi.resolve(t);
+          } catch (e) {
+            return zi.reject(e);
+          }
+        }
+        wrapSuccess(e, t) {
+          return e ? this.wrapUserFunction(() => e(t)) : zi.resolve(t);
+        }
+        wrapFailure(e, t) {
+          return e ? this.wrapUserFunction(() => e(t)) : zi.reject(t);
+        }
+        static resolve(e) {
+          return new zi((t, n) => {
+            t(e);
+          });
+        }
+        static reject(e) {
+          return new zi((t, n) => {
+            n(e);
+          });
+        }
+        static waitFor(e) {
+          return new zi((t, n) => {
+            let r = 0,
+              i = 0,
+              o = !1;
+            e.forEach(e => {
+              ++r,
+                e.next(
+                  () => {
+                    ++i, o && i === r && t();
+                  },
+                  e => n(e)
+                );
+            }),
+              (o = !0),
+              i === r && t();
+          });
+        }
+        static or(e) {
+          let t = zi.resolve(!1);
+          for (const n of e) t = t.next(e => (e ? zi.resolve(e) : n()));
+          return t;
+        }
+        static forEach(e, t) {
+          const n = [];
+          return (
+            e.forEach((e, r) => {
+              n.push(t.call(this, e, r));
+            }),
+            this.waitFor(n)
+          );
+        }
+        static mapArray(e, t) {
+          return new zi((n, r) => {
+            const i = e.length,
+              o = new Array(i);
+            let s = 0;
+            for (let a = 0; a < i; a++) {
+              const u = a;
+              t(e[u]).next(
+                e => {
+                  (o[u] = e), ++s, s === i && n(o);
+                },
+                e => r(e)
+              );
+            }
+          });
+        }
+        static doWhile(e, t) {
+          return new zi((n, r) => {
+            const i = () => {
+              !0 === e()
+                ? t().next(() => {
+                    i();
+                  }, r)
+                : n();
+            };
+            i();
+          });
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0

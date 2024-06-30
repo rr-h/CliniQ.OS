@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+            postBody: this.params.postBody,
+            tenantId: this.params.tenantId,
+            pendingToken: this.params.pendingToken,
+            returnSecureToken: !0,
+            returnIdpCredential: !0
+          };
+          return e && (t.idToken = e), t;
+        }
+      }
+      function Xr(e) {
+        return Kt(e.auth, new Yr(e), e.bypassAuthState);
+      }
+      function Jr(e) {
+        const { auth: t, user: n } = e;
+        return S(n, t, 'internal-error'), Ht(n, new Yr(e), e.bypassAuthState);
+      }
+      async function Zr(e) {
+        const { auth: t, user: n } = e;
+        return S(n, t, 'internal-error'), Gt(n, new Yr(e), e.bypassAuthState);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class ei {
+        constructor(e, t, n, r, i = !1) {
+          (this.auth = e),
+            (this.resolver = n),
+            (this.user = r),
+            (this.bypassAuthState = i),
+            (this.pendingPromise = null),
+            (this.eventManager = null),
+            (this.filter = Array.isArray(t) ? t : [t]);
+        }
+        execute() {
+          return new Promise(async (e, t) => {
+            this.pendingPromise = { resolve: e, reject: t };
+            try {
+              (this.eventManager = await this.resolver._initialize(this.auth)), await this.onExecution(), this.eventManager.registerConsumer(this);
+            } catch (n) {
+              this.reject(n);
+            }
+          });
+        }
+        async onAuthEvent(e) {
+          const { urlResponse: t, sessionId: n, postBody: r, tenantId: i, error: o, type: s } = e;
+          if (o) return void this.reject(o);
+          const a = {
+            auth: this.auth,
+            requestUri: t,
+            sessionId: n,
+            tenantId: i || void 0,
+            postBody: r || void 0,
+            user: this.user,
+            bypassAuthState: this.bypassAuthState
+          };
+          try {
+            this.resolve(await this.getIdpTask(s)(a));
+          } catch (u) {
+            this.reject(u);
+          }
+        }
+        onError(e) {
+          this.reject(e);
+        }
+        getIdpTask(e) {
+          switch (e) {
+            case 'signInViaPopup':
+            case 'signInViaRedirect':
+              return Xr;
+            case 'linkViaPopup':
+            case 'linkViaRedirect':
+              return Zr;
+            case 'reauthViaPopup':
+            case 'reauthViaRedirect':
+              return Jr;
+            default:
+              w(this.auth, 'internal-error');
+          }
+        }
+        resolve(e) {
+          A(this.pendingPromise, 'Pending promise was never set'), this.pendingPromise.resolve(e), this.unregisterAndCleanUp();
+        }
+        reject(e) {
+          A(this.pendingPromise, 'Pending promise was never set'), this.pendingPromise.reject(e), this.unregisterAndCleanUp();
+        }
+        unregisterAndCleanUp() {
+          this.eventManager && this.eventManager.unregisterConsumer(this), (this.pendingPromise = null), this.cleanUp();
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const ti = new R(2e3, 1e4);
+      async function ni(e, t, n) {
+        const r = We(e);
+        I(e, t, At);
+        const i = Qr(r, n),
+          o = new oi(r, 'signInViaPopup', t, i);
+        return o.executeNotNull();
+      }
+      async function ri(e, t, n) {
+        const r = (0, i.m9)(e);
+        I(r.auth, t, At);
+        const o = Qr(r.auth, n),
+          s = new oi(r.auth, 'reauthViaPopup', t, o, r);
+        return s.executeNotNull();
+      }
+      async function ii(e, t, n) {
+        const r = (0, i.m9)(e);
+        I(r.auth, t, At);
+        const o = Qr(r.auth, n),
+          s = new oi(r.auth, 'linkViaPopup', t, o, r);
+        return s.executeNotNull();
+      }
+      class oi extends ei {
+        constructor(e, t, n, r, i) {
+          super(e, t, r, i),
+            (this.provider = n),
+            (this.authWindow = null),
+            (this.pollId = null),
+            oi.currentPopupAction && oi.currentPopupAction.cancel(),
+            (oi.currentPopupAction = this);
+        }
+        async executeNotNull() {
+          const e = await this.execute();
+          return S(e, this.auth, 'internal-error'), e;
+        }
+        async onExecution() {
+          A(1 === this.filter.length, 'Popup operations only handle one event');
+          const e = er();
+          (this.authWindow = await this.resolver._openPopup(this.auth, this.provider, this.filter[0], e)),
+            (this.authWindow.associatedEvent = e),
+            this.resolver._originValidation(this.auth).catch(e => {
+              this.reject(e);
+            }),
+            this.resolver._isIframeWebStorageSupported(this.auth, e => {
+              e || this.reject(b(this.auth, 'web-storage-unsupported'));
+            }),
+            this.pollUserCancellation();
+        }
+        get eventId() {
+          var e;
+          return (null === (e = this.authWindow) || void 0 === e ? void 0 : e.associatedEvent) || null;
+        }
+        cancel() {
+          this.reject(b(this.auth, 'cancelled-popup-request'));
+        }
+        cleanUp() {
+          this.authWindow && this.authWindow.close(),
+            this.pollId && window.clearTimeout(this.pollId),
+            (this.authWindow = null),
+            (this.pollId = null),
+            (oi.currentPopupAction = null);
+        }
+        pollUserCancellation() {
+          const e = () => {
+            var t, n;
+            (null === (n = null === (t = this.authWindow) || void 0 === t ? void 0 : t.window) || void 0 === n ? void 0 : n.closed)
+              ? (this.pollId = window.setTimeout(() => {
+                  (this.pollId = null), this.reject(b(this.auth, 'popup-closed-by-user'));
+                }, 8e3))
+              : (this.pollId = window.setTimeout(e, ti.get()));
+          };
+          e();
+        }
+      }
+      oi.currentPopupAction = null;
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      const si = 'pendingRedirect',
+        ai = new Map();
+      class ui extends ei {
+        constructor(e, t, n = !1) {
+          super(e, ['signInViaRedirect', 'linkViaRedirect', 'reauthViaRedirect', 'unknown'], t, void 0, n), (this.eventId = null);
+        }
+        async execute() {
+          let e = ai.get(this.auth._key());
+          if (!e) {
+            try {
+              const t = await ci(this.resolver, this.auth),
+                n = t ? await super.execute() : null;
+              e = () => Promise.resolve(n);
+            } catch (t) {
+              e = () => Promise.reject(t);
+            }
+            ai.set(this.auth._key(), e);
+          }
+          return this.bypassAuthState || ai.set(this.auth._key(), () => Promise.resolve(null)), e();
+        }
+        async onAuthEvent(e) {
+          if ('signInViaRedirect' === e.type) return super.onAuthEvent(e);
+          if ('unknown' !== e.type) {
+            if (e.eventId) {
+              const t = await this.auth._redirectUserForId(e.eventId);
+              if (t) return (this.user = t), super.onAuthEvent(e);
+              this.resolve(null);
+            }
+          } else this.resolve(null);
+        }
+        async onExecution() {}
+        cleanUp() {}
+      }
+      async function ci(e, t) {
+        const n = pi(t),
+          r = di(e);
+        if (!(await r._isAvailable())) return !1;
+        const i = 'true' === (await r._get(n));
+        return await r._remove(n), i;
+      }
+      async function li(e, t) {
+        return di(e)._set(pi(t), 'true');
+      }
+      function hi() {
+        ai.clear();
+      }
+      function fi(e, t) {
+        ai.set(e._key(), t);
+      }
+      function di(e) {
+        return he(e._redirectPersistence);
+      }
+      function pi(e) {
+        return pe(si, e.config.apiKey, e.name);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function gi(e, t, n) {
+        return mi(e, t, n);
+      }
+      async function mi(e, t, n) {
+        const r = We(e);
+        I(e, t, At), await r._initializationPromise;
+        const i = Qr(r, n);
+        return await li(i, r), i._openRedirect(r, t, 'signInViaRedirect');
+      }
+      function vi(e, t, n) {
+        return yi(e, t, n);
+      }
+      async function yi(e, t, n) {
+        const r = (0, i.m9)(e);
+        I(r.auth, t, At), await r.auth._initializationPromise;
+        const o = Qr(r.auth, n);
+        await li(o, r.auth);
+        const s = await Ei(r);
+        return o._openRedirect(r.auth, t, 'reauthViaRedirect', s);
+      }
+      function wi(e, t, n) {
+        return bi(e, t, n);
+      }
+      async function bi(e, t, n) {
+        const r = (0, i.m9)(e);
+        I(r.auth, t, At), await r.auth._initializationPromise;
+        const o = Qr(r.auth, n);
+        await Wt(!1, r, t.providerId), await li(o, r.auth);
+        const s = await Ei(r);
+        return o._openRedirect(r.auth, t, 'linkViaRedirect', s);
+      }
+      async function _i(e, t) {
+        return await We(e)._initializationPromise, Ii(e, t, !1);
+      }
+      async function Ii(e, t, n = !1) {
+        const r = We(e),
+          i = Qr(r, t),
+          o = new ui(r, i, n),
+          s = await o.execute();
+        return s && !n && (delete s.user._redirectEventId, await r._persistUserIfCurrent(s.user), await r._setRedirectUser(null, t)), s;
+      }
+      async function Ei(e) {
+        const t = er(`${e.uid}:::`);
+        return (e._redirectEventId = t), await e.auth._setRedirectUser(e), await e.auth._persistUserIfCurrent(e), t;
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Si = 6e5;
+      class Ti {
+        constructor(e) {
+          (this.auth = e),
+            (this.cachedEventUids = new Set()),
+            (this.consumers = new Set()),
+            (this.queuedRedirectEvent = null),
+            (this.hasHandledPotentialRedirect = !1),
+            (this.lastProcessedEventTime = Date.now());
+        }
+        registerConsumer(e) {
+          this.consumers.add(e),
+            this.queuedRedirectEvent &&
+              this.isEventForConsumer(this.queuedRedirectEvent, e) &&
+              (this.sendToConsumer(this.queuedRedirectEvent, e), this.saveEventToCache(this.queuedRedirectEvent), (this.queuedRedirectEvent = null));
+        }
+        unregisterConsumer(e) {
+          this.consumers.delete(e);
+        }
+        onEvent(e) {
+          if (this.hasEventBeenHandled(e)) return !1;
+          let t = !1;
+          return (
+            this.consumers.forEach(n => {
+              this.isEventForConsumer(e, n) && ((t = !0), this.sendToConsumer(e, n), this.saveEventToCache(e));
+            }),
+            this.hasHandledPotentialRedirect || !Ci(e) || ((this.hasHandledPotentialRedirect = !0), t || ((this.queuedRedirectEvent = e), (t = !0))),
+            t
+          );
+        }
+        sendToConsumer(e, t) {
+          var n;
+          if (e.error && !xi(e)) {
+            const r = (null === (n = e.error.code) || void 0 === n ? void 0 : n.split('auth/')[1]) || 'internal-error';
+            t.onError(b(this.auth, r));
+          } else t.onAuthEvent(e);
+        }
+        isEventForConsumer(e, t) {
+          const n = null === t.eventId || (!!e.eventId && e.eventId === t.eventId);
+          return t.filter.includes(e.type) && n;
+        }
+        hasEventBeenHandled(e) {
+          return Date.now() - this.lastProcessedEventTime >= Si && this.cachedEventUids.clear(), this.cachedEventUids.has(Ai(e));
+        }
+        saveEventToCache(e) {
+          this.cachedEventUids.add(Ai(e)), (this.lastProcessedEventTime = Date.now());
+        }
+      }
+      function Ai(e) {
+        return [e.type, e.eventId, e.sessionId, e.tenantId].filter(e => e).join('-');
+      }
+      function xi({ type: e, error: t }) {
+        return 'unknown' === e && 'auth/no-auth-event' === (null === t || void 0 === t ? void 0 : t.code);
+      }
+      function Ci(e) {
+        switch (e.type) {
+          case 'signInViaRedirect':
+          case 'linkViaRedirect':
+          case 'reauthViaRedirect':
+            return !0;
+          case 'unknown':
+            return xi(e);
+          default:

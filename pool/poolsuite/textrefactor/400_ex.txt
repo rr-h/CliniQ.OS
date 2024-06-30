@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+          return (
+            this.asyncQueue.enqueueAndForgetEvenWhileRestricted(async () => {
+              try {
+                this._onlineComponents && (await this._onlineComponents.terminate()),
+                  this._offlineComponents && (await this._offlineComponents.terminate()),
+                  this.authCredentials.shutdown(),
+                  this.appCheckCredentials.shutdown(),
+                  e.resolve();
+              } catch (t) {
+                const n = Mf(t, 'Failed to shutdown persistence');
+                e.reject(n);
+              }
+            }),
+            e.promise
+          );
+        }
+      }
+      async function Hd(e, t) {
+        e.asyncQueue.verifyOperationInProgress(), ti('FirestoreClient', 'Initializing OfflineComponentProvider');
+        const n = await e.getConfiguration();
+        await t.initialize(n);
+        let r = n.initialUser;
+        e.setCredentialChangeListener(async e => {
+          r.isEqual(e) || (await wh(t.localStore, e), (r = e));
+        }),
+          t.persistence.setDatabaseDeletedListener(() => e.terminate()),
+          (e._offlineComponents = t);
+      }
+      async function Kd(e, t) {
+        e.asyncQueue.verifyOperationInProgress();
+        const n = await Yd(e);
+        ti('FirestoreClient', 'Initializing OnlineComponentProvider');
+        const r = await e.getConfiguration();
+        await t.initialize(n, r),
+          e.setCredentialChangeListener(e => Rf(t.remoteStore, e)),
+          e.setAppCheckTokenChangeListener((e, n) => Rf(t.remoteStore, n)),
+          (e._onlineComponents = t);
+      }
+      function Qd(e) {
+        return 'FirebaseError' === e.name
+          ? e.code === ci.FAILED_PRECONDITION || e.code === ci.UNIMPLEMENTED
+          : !('undefined' != typeof DOMException && e instanceof DOMException) || 22 === e.code || 20 === e.code || 11 === e.code;
+      }
+      async function Yd(e) {
+        if (!e._offlineComponents)
+          if (e._uninitializedComponentsProvider) {
+            ti('FirestoreClient', 'Using user provided OfflineComponentProvider');
+            try {
+              await Hd(e, e._uninitializedComponentsProvider._offline);
+            } catch (t) {
+              const n = t;
+              if (!Qd(n)) throw n;
+              ri('Error using user provided cache. Falling back to memory cache: ' + n), await Hd(e, new Md());
+            }
+          } else ti('FirestoreClient', 'Using default OfflineComponentProvider'), await Hd(e, new Md());
+        return e._offlineComponents;
+      }
+      async function Xd(e) {
+        return (
+          e._onlineComponents ||
+            (e._uninitializedComponentsProvider
+              ? (ti('FirestoreClient', 'Using user provided OnlineComponentProvider'), await Kd(e, e._uninitializedComponentsProvider._online))
+              : (ti('FirestoreClient', 'Using default OnlineComponentProvider'), await Kd(e, new Vd()))),
+          e._onlineComponents
+        );
+      }
+      function Jd(e) {
+        return Yd(e).then(e => e.persistence);
+      }
+      function Zd(e) {
+        return Yd(e).then(e => e.localStore);
+      }
+      function ep(e) {
+        return Xd(e).then(e => e.remoteStore);
+      }
+      function tp(e) {
+        return Xd(e).then(e => e.syncEngine);
+      }
+      function np(e) {
+        return Xd(e).then(e => e.datastore);
+      }
+      async function rp(e) {
+        const t = await Xd(e),
+          n = t.eventManager;
+        return (n.onListen = od.bind(null, t.syncEngine)), (n.onUnlisten = ad.bind(null, t.syncEngine)), n;
+      }
+      function ip(e) {
+        return e.asyncQueue.enqueue(async () => {
+          const t = await Jd(e),
+            n = await ep(e);
+          return (
+            t.setNetworkEnabled(!0),
+            (function (e) {
+              const t = ui(e);
+              return t.vu.delete(0), uf(t);
+            })(n)
+          );
+        });
+      }
+      function op(e) {
+        return e.asyncQueue.enqueue(async () => {
+          const t = await Jd(e),
+            n = await ep(e);
+          return (
+            t.setNetworkEnabled(!1),
+            (async function (e) {
+              const t = ui(e);
+              t.vu.add(0), await cf(t), t.bu.set('Offline');
+            })(n)
+          );
+        });
+      }
+      function sp(e, t) {
+        const n = new hi();
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (async function (e, t, n) {
+              try {
+                const r = await (function (e, t) {
+                  const n = ui(e);
+                  return n.persistence.runTransaction('read document', 'readonly', e => n.localDocuments.getDocument(e, t));
+                })(e, t);
+                r.isFoundDocument()
+                  ? n.resolve(r)
+                  : r.isNoDocument()
+                    ? n.resolve(null)
+                    : n.reject(
+                        new li(
+                          ci.UNAVAILABLE,
+                          "Failed to get document from cache. (However, this document may exist on the server. Run again without setting 'source' in the GetOptions to attempt to retrieve the document from the server.)"
+                        )
+                      );
+              } catch (e) {
+                const r = Mf(e, `Failed to get document '${t} from cache`);
+                n.reject(r);
+              }
+            })(await Zd(e), t, n)
+          ),
+          n.promise
+        );
+      }
+      function ap(e, t, n = {}) {
+        const r = new hi();
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (function (e, t, n, r, i) {
+              const o = new $d({
+                  next: o => {
+                    t.enqueueAndForget(() => zf(e, s));
+                    const a = o.docs.has(n);
+                    !a && o.fromCache
+                      ? i.reject(new li(ci.UNAVAILABLE, 'Failed to get document because the client is offline.'))
+                      : a && o.fromCache && r && 'server' === r.source
+                        ? i.reject(
+                            new li(
+                              ci.UNAVAILABLE,
+                              'Failed to get document from server. (However, this document does exist in the local cache. Run again without setting source to "server" to retrieve the cached document.)'
+                            )
+                          )
+                        : i.resolve(o);
+                  },
+                  error: e => i.reject(e)
+                }),
+                s = new Kf(ua(n.path), o, { includeMetadataChanges: !0, Ku: !0 });
+              return qf(e, s);
+            })(await rp(e), e.asyncQueue, t, n, r)
+          ),
+          r.promise
+        );
+      }
+      function up(e, t) {
+        const n = new hi();
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (async function (e, t, n) {
+              try {
+                const r = await xh(e, t, !0),
+                  i = new td(t, r.ir),
+                  o = i.sc(r.documents),
+                  s = i.applyChanges(o, !1);
+                n.resolve(s.snapshot);
+              } catch (e) {
+                const r = Mf(e, `Failed to execute query '${t} against cache`);
+                n.reject(r);
+              }
+            })(await Zd(e), t, n)
+          ),
+          n.promise
+        );
+      }
+      function cp(e, t, n = {}) {
+        const r = new hi();
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (function (e, t, n, r, i) {
+              const o = new $d({
+                  next: n => {
+                    t.enqueueAndForget(() => zf(e, s)),
+                      n.fromCache && 'server' === r.source
+                        ? i.reject(
+                            new li(
+                              ci.UNAVAILABLE,
+                              'Failed to get documents from server. (However, these documents may exist in the local cache. Run again without setting source to "server" to retrieve the cached documents.)'
+                            )
+                          )
+                        : i.resolve(n);
+                  },
+                  error: e => i.reject(e)
+                }),
+                s = new Kf(n, o, { includeMetadataChanges: !0, Ku: !0 });
+              return qf(e, s);
+            })(await rp(e), e.asyncQueue, t, n, r)
+          ),
+          r.promise
+        );
+      }
+      function lp(e, t) {
+        const n = new $d(t);
+        return (
+          e.asyncQueue.enqueueAndForget(async () =>
+            (function (e, t) {
+              ui(e).ku.add(t), t.next();
+            })(await rp(e), n)
+          ),
+          () => {
+            n.Dc(),
+              e.asyncQueue.enqueueAndForget(async () =>
+                (function (e, t) {
+                  ui(e).ku.delete(t);
+                })(await rp(e), n)
+              );
+          }
+        );
+      }
+      function hp(e, t, n, r) {
+        const i = (function (e, t) {
+          let n;
+          return (
+            (n = 'string' == typeof e ? xu().encode(e) : e),
+            (function (e, t) {
+              return new qd(e, t);
+            })(
+              (function (e, t) {
+                if (e instanceof Uint8Array) return Bd(e, t);
+                if (e instanceof ArrayBuffer) return Bd(new Uint8Array(e), t);
+                if (e instanceof ReadableStream) return e.getReader();
+                throw new Error('Source of `toByteStreamReader` has to be a ArrayBuffer or ReadableStream');
+              })(n),
+              t
+            )
+          );
+        })(n, Zh(t));
+        e.asyncQueue.enqueueAndForget(async () => {
+          jd(await tp(e), i, r);
+        });
+      }
+      function fp(e, t) {
+        return e.asyncQueue.enqueue(async () =>
+          (function (e, t) {
+            const n = ui(e);
+            return n.persistence.runTransaction('Get named query', 'readonly', e => n.qs.getNamedQuery(e, t));
+          })(await Zd(e), t)
+        );
+      }
+      /**
+       * @license
+       * Copyright 2023 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      function dp(e) {
+        const t = {};
+        return void 0 !== e.timeoutSeconds && (t.timeoutSeconds = e.timeoutSeconds), t;
+        /**
+         * @license
+         * Copyright 2020 Google LLC
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *   http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+      }
+      const pp = new Map();
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function gp(e, t, n) {
+        if (!n) throw new li(ci.INVALID_ARGUMENT, `Function ${e}() cannot be called with an empty ${t}.`);
+      }
+      function mp(e, t, n, r) {
+        if (!0 === t && !0 === r) throw new li(ci.INVALID_ARGUMENT, `${e} and ${n} cannot be used together.`);
+      }
+      function vp(e) {
+        if (!Ni.isDocumentKey(e))
+          throw new li(
+            ci.INVALID_ARGUMENT,
+            `Invalid document reference. Document references must have an even number of segments, but ${e} has ${e.length}.`
+          );
+      }
+      function yp(e) {
+        if (Ni.isDocumentKey(e))
+          throw new li(
+            ci.INVALID_ARGUMENT,
+            `Invalid collection reference. Collection references must have an odd number of segments, but ${e} has ${e.length}.`
+          );
+      }
+      function wp(e) {
+        if (void 0 === e) return 'undefined';
+        if (null === e) return 'null';
+        if ('string' == typeof e) return e.length > 20 && (e = `${e.substring(0, 20)}...`), JSON.stringify(e);
+        if ('number' == typeof e || 'boolean' == typeof e) return '' + e;
+        if ('object' == typeof e) {
+          if (e instanceof Array) return 'an array';
+          {
+            const t = (function (e) {
+              return e.constructor ? e.constructor.name : null;
+            })(e);
+            return t ? `a custom ${t} object` : 'an object';
+          }
+        }
+        return 'function' == typeof e ? 'a function' : oi();
+      }
+      function bp(e, t) {
+        if (('_delegate' in e && (e = e._delegate), !(e instanceof t))) {
+          if (t.name === e.constructor.name)
+            throw new li(ci.INVALID_ARGUMENT, 'Type does not match the expected instance. Did you pass a reference from a different Firestore SDK?');
+          {
+            const n = wp(e);
+            throw new li(ci.INVALID_ARGUMENT, `Expected type '${t.name}', but it was: ${n}`);
+          }
+        }
+        return e;
+      }
+      function _p(e, t) {
+        if (t <= 0) throw new li(ci.INVALID_ARGUMENT, `Function ${e}() requires a positive number, but it was: ${t}.`);
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Ip {
+        constructor(e) {
+          var t, n;
+          if (void 0 === e.host) {
+            if (void 0 !== e.ssl) throw new li(ci.INVALID_ARGUMENT, "Can't provide ssl option if host option is not set");
+            (this.host = 'firestore.googleapis.com'), (this.ssl = !0);
+          } else (this.host = e.host), (this.ssl = null === (t = e.ssl) || void 0 === t || t);
+          if (
+            ((this.credentials = e.credentials),
+            (this.ignoreUndefinedProperties = !!e.ignoreUndefinedProperties),
+            (this.cache = e.localCache),
+            void 0 === e.cacheSizeBytes)
+          )
+            this.cacheSizeBytes = 41943040;
+          else {
+            if (-1 !== e.cacheSizeBytes && e.cacheSizeBytes < 1048576) throw new li(ci.INVALID_ARGUMENT, 'cacheSizeBytes must be at least 1048576');
+            this.cacheSizeBytes = e.cacheSizeBytes;
+          }
+          mp(

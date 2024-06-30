@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+              [/\b((zeki)?tb.*\b) b/i],
+              [p, [v, 'Zeki'], [m, I]],
+              [/\b([yr]\d{2}) b/i, /\b(dragon[- ]+touch |dt)(\w{5}) b/i],
+              [[v, 'Dragon Touch'], p, [m, I]],
+              [/\b(ns-?\w{0,9}) b/i],
+              [p, [v, 'Insignia'], [m, I]],
+              [/\b((nxa|next)-?\w{0,9}) b/i],
+              [p, [v, 'NextBook'], [m, I]],
+              [/\b(xtreme\_)?(v(1[045]|2[015]|[3469]0|7[05])) b/i],
+              [[v, 'Voice'], p, [m, _]],
+              [/\b(lvtel\-)?(v1[12]) b/i],
+              [[v, 'LvTel'], p, [m, _]],
+              [/\b(ph-1) /i],
+              [p, [v, 'Essential'], [m, _]],
+              [/\b(v(100md|700na|7011|917g).*\b) b/i],
+              [p, [v, 'Envizen'], [m, I]],
+              [/\b(trio[-\w\. ]+) b/i],
+              [p, [v, 'MachSpeed'], [m, I]],
+              [/\btu_(1491) b/i],
+              [p, [v, 'Rotor'], [m, I]],
+              [/(shield[\w ]+) b/i],
+              [p, [v, 'Nvidia'], [m, I]],
+              [/(sprint) (\w+)/i],
+              [v, p, [m, _]],
+              [/(kin\.[onetw]{3})/i],
+              [
+                [p, /\./g, ' '],
+                [v, F],
+                [m, _]
+              ],
+              [/droid.+; (cc6666?|et5[16]|mc[239][23]x?|vc8[03]x?)\)/i],
+              [p, [v, G], [m, I]],
+              [/droid.+; (ec30|ps20|tc[2-8]\d[kx])\)/i],
+              [p, [v, G], [m, _]],
+              [/(ouya)/i, /(nintendo) ([wids3utch]+)/i],
+              [v, p, [m, b]],
+              [/droid.+; (shield) bui/i],
+              [p, [v, 'Nvidia'], [m, b]],
+              [/(playstation [345portablevi]+)/i],
+              [p, [v, q], [m, b]],
+              [/\b(xbox(?: one)?(?!; xbox))[\); ]/i],
+              [p, [v, F], [m, b]],
+              [/smart-tv.+(samsung)/i],
+              [v, [m, E]],
+              [/hbbtv.+maple;(\d+)/i],
+              [
+                [p, /^/, 'SmartTV'],
+                [v, B],
+                [m, E]
+              ],
+              [/(nux; netcast.+smarttv|lg (netcast\.tv-201\d|android tv))/i],
+              [
+                [v, M],
+                [m, E]
+              ],
+              [/(apple) ?tv/i],
+              [v, [p, C + ' TV'], [m, E]],
+              [/crkey/i],
+              [
+                [p, R + 'cast'],
+                [v, L],
+                [m, E]
+              ],
+              [/droid.+aft(\w)( bui|\))/i],
+              [p, [v, x], [m, E]],
+              [/\(dtv[\);].+(aquos)/i, /(aquos-tv[\w ]+)\)/i],
+              [p, [v, $], [m, E]],
+              [/(bravia[\w ]+)( bui|\))/i],
+              [p, [v, q], [m, E]],
+              [/(mitv-\w{5}) bui/i],
+              [p, [v, z], [m, E]],
+              [/\b(roku)[\dx]*[\)\/]((?:dvp-)?[\d\.]*)/i, /hbbtv\/\d+\.\d+\.\d+ +\([\w ]*; *(\w[^;]*);([^;]*)/i],
+              [
+                [v, J],
+                [p, J],
+                [m, E]
+              ],
+              [/\b(android tv|smart[- ]?tv|opera tv|tv; rv:)\b/i],
+              [[m, E]],
+              [/((pebble))app/i],
+              [v, p, [m, S]],
+              [/droid.+; (glass) \d/i],
+              [p, [v, L], [m, S]],
+              [/droid.+; (wt63?0{2,3})\)/i],
+              [p, [v, G], [m, S]],
+              [/(quest( 2)?)/i],
+              [p, [v, W], [m, S]],
+              [/(tesla)(?: qtcarbrowser|\/[-\w\.]+)/i],
+              [v, [m, T]],
+              [/droid .+?; ([^;]+?)(?: bui|\) applew).+? mobile safari/i],
+              [p, [m, _]],
+              [/droid .+?; ([^;]+?)(?: bui|\) applew).+?(?! mobile) safari/i],
+              [p, [m, I]],
+              [/\b((tablet|tab)[;\/]|focus\/\d(?!.+mobile))/i],
+              [[m, I]],
+              [/(phone|mobile(?:[;\/]| [ \w\/\.]*safari)|pda(?=.+windows ce))/i],
+              [[m, _]],
+              [/(android[-\w\. ]{0,9});.+buil/i],
+              [p, [v, 'Generic']]
+            ],
+            engine: [
+              [/windows.+ edge\/([\w\.]+)/i],
+              [y, [g, P + 'HTML']],
+              [/webkit\/537\.36.+chrome\/(?!27)([\w\.]+)/i],
+              [y, [g, 'Blink']],
+              [
+                /(presto)\/([\w\.]+)/i,
+                /(webkit|trident|netfront|netsurf|amaya|lynx|w3m|goanna)\/([\w\.]+)/i,
+                /ekioh(flow)\/([\w\.]+)/i,
+                /(khtml|tasman|links)[\/ ]\(?([\w\.]+)/i,
+                /(icab)[\/ ]([23]\.[\d\.]+)/i
+              ],
+              [g, y],
+              [/rv\:([\w\.]{1,9})\b.+(gecko)/i],
+              [y, g]
+            ],
+            os: [
+              [/microsoft (windows) (vista|xp)/i],
+              [g, y],
+              [/(windows) nt 6\.2; (arm)/i, /(windows (?:phone(?: os)?|mobile))[\/ ]?([\d\.\w ]*)/i, /(windows)[\/ ]?([ntce\d\. ]+\w)(?!.+xbox)/i],
+              [g, [y, ee, ne]],
+              [/(win(?=3|9|n)|win 9x )([nt\d\.]+)/i],
+              [
+                [g, 'Windows'],
+                [y, ee, ne]
+              ],
+              [/ip[honead]{2,4}\b(?:.*os ([\w]+) like mac|; opera)/i, /cfnetwork\/.+darwin/i],
+              [
+                [y, /_/g, '.'],
+                [g, 'iOS']
+              ],
+              [/(mac os x) ?([\w\. ]*)/i, /(macintosh|mac_powerpc\b)(?!.+haiku)/i],
+              [
+                [g, 'Mac OS'],
+                [y, /_/g, '.']
+              ],
+              [/droid ([\w\.]+)\b.+(android[- ]x86|harmonyos)/i],
+              [y, g],
+              [
+                /(android|webos|qnx|bada|rim tablet os|maemo|meego|sailfish)[-\/ ]?([\w\.]*)/i,
+                /(blackberry)\w*\/([\w\.]*)/i,
+                /(tizen|kaios)[\/ ]([\w\.]+)/i,
+                /\((series40);/i
+              ],
+              [g, y],
+              [/\(bb(10);/i],
+              [y, [g, O]],
+              [/(?:symbian ?os|symbos|s60(?=;)|series60)[-\/ ]?([\w\.]*)/i],
+              [y, [g, 'Symbian']],
+              [/mozilla\/[\d\.]+ \((?:mobile|tablet|tv|mobile; [\w ]+); rv:.+ gecko\/([\w\.]+)/i],
+              [y, [g, D + ' OS']],
+              [/web0s;.+rt(tv)/i, /\b(?:hp)?wos(?:browser)?\/([\w\.]+)/i],
+              [y, [g, 'webOS']],
+              [/crkey\/([\d\.]+)/i],
+              [y, [g, R + 'cast']],
+              [/(cros) [\w]+ ([\w\.]+\w)/i],
+              [[g, 'Chromium OS'], y],
+              [
+                /(nintendo|playstation) ([wids345portablevuch]+)/i,
+                /(xbox); +xbox ([^\);]+)/i,
+                /\b(joli|palm)\b ?(?:os)?\/?([\w\.]*)/i,
+                /(mint)[\/\(\) ]?(\w*)/i,
+                /(mageia|vectorlinux)[; ]/i,
+                /([kxln]?ubuntu|debian|suse|opensuse|gentoo|arch(?= linux)|slackware|fedora|mandriva|centos|pclinuxos|red ?hat|zenwalk|linpus|raspbian|plan 9|minix|risc os|contiki|deepin|manjaro|elementary os|sabayon|linspire)(?: gnu\/linux)?(?: enterprise)?(?:[- ]linux)?(?:-gnu)?[-\/ ]?(?!chrom|package)([-\w\.]*)/i,
+                /(hurd|linux) ?([\w\.]*)/i,
+                /(gnu) ?([\w\.]*)/i,
+                /\b([-frentopcghs]{0,5}bsd|dragonfly)[\/ ]?(?!amd|[ix346]{1,2}86)([\w\.]*)/i,
+                /(haiku) (\w+)/i
+              ],
+              [g, y],
+              [/(sunos) ?([\w\.\d]*)/i],
+              [[g, 'Solaris'], y],
+              [
+                /((?:open)?solaris)[-\/ ]?([\w\.]*)/i,
+                /(aix) ((\d)(?=\.|\)| )[\w\.])*/i,
+                /\b(beos|os\/2|amigaos|morphos|openvms|fuchsia|hp-ux)/i,
+                /(unix) ?([\w\.]*)/i
+              ],
+              [g, y]
+            ]
+          },
+          ie = function (e, t) {
+            if ((typeof e === h && ((t = e), (e = o)), !(this instanceof ie))) return new ie(e, t).getResult();
+            var n = e || (typeof i !== l && i.navigator && i.navigator.userAgent ? i.navigator.userAgent : a),
+              r = t ? H(re, t) : re;
+            return (
+              (this.getBrowser = function () {
+                var e = {};
+                return (e[g] = o), (e[y] = o), Z.call(e, n, r.browser), (e.major = X(e.version)), e;
+              }),
+              (this.getCPU = function () {
+                var e = {};
+                return (e[w] = o), Z.call(e, n, r.cpu), e;
+              }),
+              (this.getDevice = function () {
+                var e = {};
+                return (e[v] = o), (e[p] = o), (e[m] = o), Z.call(e, n, r.device), e;
+              }),
+              (this.getEngine = function () {
+                var e = {};
+                return (e[g] = o), (e[y] = o), Z.call(e, n, r.engine), e;
+              }),
+              (this.getOS = function () {
+                var e = {};
+                return (e[g] = o), (e[y] = o), Z.call(e, n, r.os), e;
+              }),
+              (this.getResult = function () {
+                return {
+                  ua: this.getUA(),
+                  browser: this.getBrowser(),
+                  engine: this.getEngine(),
+                  os: this.getOS(),
+                  device: this.getDevice(),
+                  cpu: this.getCPU()
+                };
+              }),
+              (this.getUA = function () {
+                return n;
+              }),
+              (this.setUA = function (e) {
+                return (n = typeof e === f && e.length > A ? J(e, A) : e), this;
+              }),
+              this.setUA(n),
+              this
+            );
+          };
+        (ie.VERSION = s),
+          (ie.BROWSER = K([g, y, d])),
+          (ie.CPU = K([w])),
+          (ie.DEVICE = K([p, v, m, b, _, E, I, S, T])),
+          (ie.ENGINE = ie.OS = K([g, y])),
+          typeof t !== l
+            ? ('object' !== l && e.exports && (t = e.exports = ie), (t.UAParser = ie))
+            : 'function' === c && n.amdO
+              ? ((r = function () {
+                  return ie;
+                }.call(t, n, t, e)),
+                r === o || (e.exports = r))
+              : typeof i !== l && (i.UAParser = ie);
+        var oe = typeof i !== l && (i.jQuery || i.Zepto);
+        if (oe && !oe.ua) {
+          var se = new ie();
+          (oe.ua = se.getResult()),
+            (oe.ua.get = function () {
+              return se.getUA();
+            }),
+            (oe.ua.set = function (e) {
+              se.setUA(e);
+              var t = se.getResult();
+              for (var n in t) oe.ua[n] = t[n];
+            });
+        }
+      })('object' === typeof window ? window : this);
+    },
+    52621: (e, t, n) => {
+      e.exports = n(48438);
+    },
+    46037: (e, t, n) => {
+      'use strict';
+      var r = n(29123),
+        i = n(28278),
+        o = n(45721),
+        s = n(86870),
+        a = n(80102),
+        u = n(13631),
+        c = ('undefined' !== typeof window && window.btoa && window.btoa.bind(window)) || n(8119);
+      e.exports = function (e) {
+        return new Promise(function (t, l) {
+          var h = e.data,
+            f = e.headers;
+          r.isFormData(h) && delete f['Content-Type'];
+          var d = new XMLHttpRequest(),
+            p = 'onreadystatechange',
+            g = !1;
+          if (
+            ('undefined' === typeof window ||
+              !window.XDomainRequest ||
+              'withCredentials' in d ||
+              a(e.url) ||
+              ((d = new window.XDomainRequest()), (p = 'onload'), (g = !0), (d.onprogress = function () {}), (d.ontimeout = function () {})),
+            e.auth)
+          ) {
+            var m = e.auth.username || '',
+              v = e.auth.password || '';
+            f.Authorization = 'Basic ' + c(m + ':' + v);
+          }
+          if (
+            (d.open(e.method.toUpperCase(), o(e.url, e.params, e.paramsSerializer), !0),
+            (d.timeout = e.timeout),
+            (d[p] = function () {
+              if (d && (4 === d.readyState || g) && (0 !== d.status || (d.responseURL && 0 === d.responseURL.indexOf('file:')))) {
+                var n = 'getAllResponseHeaders' in d ? s(d.getAllResponseHeaders()) : null,
+                  r = e.responseType && 'text' !== e.responseType ? d.response : d.responseText,
+                  o = {
+                    data: r,
+                    status: 1223 === d.status ? 204 : d.status,
+                    statusText: 1223 === d.status ? 'No Content' : d.statusText,
+                    headers: n,
+                    config: e,
+                    request: d
+                  };
+                i(t, l, o), (d = null);
+              }
+            }),
+            (d.onerror = function () {
+              l(u('Network Error', e, null, d)), (d = null);
+            }),
+            (d.ontimeout = function () {
+              l(u('timeout of ' + e.timeout + 'ms exceeded', e, 'ECONNABORTED', d)), (d = null);
+            }),
+            r.isStandardBrowserEnv())
+          ) {
+            var y = n(51297),
+              w = (e.withCredentials || a(e.url)) && e.xsrfCookieName ? y.read(e.xsrfCookieName) : void 0;
+            w && (f[e.xsrfHeaderName] = w);
+          }
+          if (
+            ('setRequestHeader' in d &&
+              r.forEach(f, function (e, t) {
+                'undefined' === typeof h && 'content-type' === t.toLowerCase() ? delete f[t] : d.setRequestHeader(t, e);
+              }),
+            e.withCredentials && (d.withCredentials = !0),
+            e.responseType)
+          )
+            try {
+              d.responseType = e.responseType;
+            } catch (b) {
+              if ('json' !== e.responseType) throw b;
+            }
+          'function' === typeof e.onDownloadProgress && d.addEventListener('progress', e.onDownloadProgress),
+            'function' === typeof e.onUploadProgress && d.upload && d.upload.addEventListener('progress', e.onUploadProgress),
+            e.cancelToken &&
+              e.cancelToken.promise.then(function (e) {
+                d && (d.abort(), l(e), (d = null));
+              }),
+            void 0 === h && (h = null),
+            d.send(h);
+        });
+      };
+    },
+    48438: (e, t, n) => {
+      'use strict';
+      var r = n(29123),
+        i = n(32885),
+        o = n(53544),
+        s = n(90436);
+      function a(e) {
+        var t = new o(e),
+          n = i(o.prototype.request, t);
+        return r.extend(n, o.prototype, t), r.extend(n, t), n;
+      }
+      var u = a(s);
+      (u.Axios = o),
+        (u.create = function (e) {
+          return a(r.merge(s, e));
+        }),
+        (u.Cancel = n(5870)),
+        (u.CancelToken = n(63648)),
+        (u.isCancel = n(32943)),
+        (u.all = function (e) {
+          return Promise.all(e);
+        }),
+        (u.spread = n(38264)),
+        (e.exports = u),
+        (e.exports['default'] = u);
+    },
+    5870: e => {
+      'use strict';
+      function t(e) {
+        this.message = e;
+      }
+      (t.prototype.toString = function () {
+        return 'Cancel' + (this.message ? ': ' + this.message : '');
+      }),
+        (t.prototype.__CANCEL__ = !0),
+        (e.exports = t);
+    },
+    63648: (e, t, n) => {
+      'use strict';
+      var r = n(5870);
+      function i(e) {
+        if ('function' !== typeof e) throw new TypeError('executor must be a function.');
+        var t;
+        this.promise = new Promise(function (e) {
+          t = e;
+        });
+        var n = this;
+        e(function (e) {
+          n.reason || ((n.reason = new r(e)), t(n.reason));
+        });
+      }
+      (i.prototype.throwIfRequested = function () {
+        if (this.reason) throw this.reason;
+      }),
+        (i.source = function () {
+          var e,
+            t = new i(function (t) {
+              e = t;
+            });
+          return { token: t, cancel: e };

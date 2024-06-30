@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+          [z]: 'fire-fn-compat',
+          [G]: 'fire-iid',
+          [W]: 'fire-iid-compat',
+          [H]: 'fire-fcm',
+          [K]: 'fire-fcm-compat',
+          [Q]: 'fire-perf',
+          [Y]: 'fire-perf-compat',
+          [X]: 'fire-rc',
+          [J]: 'fire-rc-compat',
+          [Z]: 'fire-gcs',
+          [ee]: 'fire-gcs-compat',
+          [te]: 'fire-fst',
+          [ne]: 'fire-fst-compat',
+          'fire-js': 'fire-js',
+          [re]: 'fire-js-all'
+        },
+        ae = new Map(),
+        ue = new Map();
+      function ce(e, t) {
+        try {
+          e.container.addComponent(t);
+        } catch (n) {
+          P.debug(`Component ${t.name} failed to register with FirebaseApp ${e.name}`, n);
+        }
+      }
+      function le(e, t) {
+        e.container.addOrOverwriteComponent(t);
+      }
+      function he(e) {
+        const t = e.name;
+        if (ue.has(t)) return P.debug(`There were multiple attempts to register component ${t}.`), !1;
+        ue.set(t, e);
+        for (const n of ae.values()) ce(n, e);
+        return !0;
+      }
+      function fe(e, t) {
+        const n = e.container.getProvider('heartbeat').getImmediate({ optional: !0 });
+        return n && n.triggerHeartbeat(), e.container.getProvider(t);
+      }
+      function de(e, t, n = oe) {
+        fe(e, t).clearInstance(n);
+      }
+      function pe() {
+        ue.clear();
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const ge = {
+          ['no-app']: "No Firebase App '{$appName}' has been created - call initializeApp() first",
+          ['bad-app-name']: "Illegal App name: '{$appName}",
+          ['duplicate-app']: "Firebase App named '{$appName}' already exists with different options or config",
+          ['app-deleted']: "Firebase App named '{$appName}' already deleted",
+          ['no-options']: 'Need to provide options, when not being deployed to hosting via source.',
+          ['invalid-app-argument']: 'firebase.{$appName}() takes either no argument or a Firebase App instance.',
+          ['invalid-log-argument']: 'First argument to `onLog` must be null or a function.',
+          ['idb-open']: 'Error thrown when opening IndexedDB. Original error: {$originalErrorMessage}.',
+          ['idb-get']: 'Error thrown when reading from IndexedDB. Original error: {$originalErrorMessage}.',
+          ['idb-set']: 'Error thrown when writing to IndexedDB. Original error: {$originalErrorMessage}.',
+          ['idb-delete']: 'Error thrown when deleting from IndexedDB. Original error: {$originalErrorMessage}.'
+        },
+        me = new o.LL('app', 'Firebase', ge);
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      class ve {
+        constructor(e, t, n) {
+          (this._isDeleted = !1),
+            (this._options = Object.assign({}, e)),
+            (this._config = Object.assign({}, t)),
+            (this._name = t.name),
+            (this._automaticDataCollectionEnabled = t.automaticDataCollectionEnabled),
+            (this._container = n),
+            this.container.addComponent(new r.wA('app', () => this, 'PUBLIC'));
+        }
+        get automaticDataCollectionEnabled() {
+          return this.checkDestroyed(), this._automaticDataCollectionEnabled;
+        }
+        set automaticDataCollectionEnabled(e) {
+          this.checkDestroyed(), (this._automaticDataCollectionEnabled = e);
+        }
+        get name() {
+          return this.checkDestroyed(), this._name;
+        }
+        get options() {
+          return this.checkDestroyed(), this._options;
+        }
+        get config() {
+          return this.checkDestroyed(), this._config;
+        }
+        get container() {
+          return this._container;
+        }
+        get isDeleted() {
+          return this._isDeleted;
+        }
+        set isDeleted(e) {
+          this._isDeleted = e;
+        }
+        checkDestroyed() {
+          if (this.isDeleted) throw me.create('app-deleted', { appName: this._name });
+        }
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const ye = ie;
+      function we(e, t = {}) {
+        let n = e;
+        if ('object' !== typeof t) {
+          const e = t;
+          t = { name: e };
+        }
+        const i = Object.assign({ name: oe, automaticDataCollectionEnabled: !1 }, t),
+          s = i.name;
+        if ('string' !== typeof s || !s) throw me.create('bad-app-name', { appName: String(s) });
+        if ((n || (n = (0, o.aH)()), !n)) throw me.create('no-options');
+        const a = ae.get(s);
+        if (a) {
+          if ((0, o.vZ)(n, a.options) && (0, o.vZ)(i, a.config)) return a;
+          throw me.create('duplicate-app', { appName: s });
+        }
+        const u = new r.H0(s);
+        for (const r of ue.values()) u.addComponent(r);
+        const c = new ve(n, i, u);
+        return ae.set(s, c), c;
+      }
+      function be(e = oe) {
+        const t = ae.get(e);
+        if (!t && e === oe && (0, o.aH)()) return we();
+        if (!t) throw me.create('no-app', { appName: e });
+        return t;
+      }
+      function _e() {
+        return Array.from(ae.values());
+      }
+      async function Ie(e) {
+        const t = e.name;
+        ae.has(t) && (ae.delete(t), await Promise.all(e.container.getProviders().map(e => e.delete())), (e.isDeleted = !0));
+      }
+      function Ee(e, t, n) {
+        var i;
+        let o = null !== (i = se[e]) && void 0 !== i ? i : e;
+        n && (o += `-${n}`);
+        const s = o.match(/\s|\//),
+          a = t.match(/\s|\//);
+        if (s || a) {
+          const e = [`Unable to register library "${o}" with version "${t}":`];
+          return (
+            s && e.push(`library name "${o}" contains illegal characters (whitespace or "/")`),
+            s && a && e.push('and'),
+            a && e.push(`version name "${t}" contains illegal characters (whitespace or "/")`),
+            void P.warn(e.join(' '))
+          );
+        }
+        he(new r.wA(`${o}-version`, () => ({ library: o, version: t }), 'VERSION'));
+      }
+      function Se(e, t) {
+        if (null !== e && 'function' !== typeof e) throw me.create('invalid-log-argument');
+        (0, i.Am)(e, t);
+      }
+      function Te(e) {
+        (0, i.Ub)(e);
+      }
+      /**
+       * @license
+       * Copyright 2021 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Ae = 'firebase-heartbeat-database',
+        xe = 1,
+        Ce = 'firebase-heartbeat-store';
+      let ke = null;
+      function Oe() {
+        return (
+          ke ||
+            (ke = S(Ae, xe, {
+              upgrade: (e, t) => {
+                switch (t) {
+                  case 0:
+                    e.createObjectStore(Ce);
+                }
+              }
+            }).catch(e => {
+              throw me.create('idb-open', { originalErrorMessage: e.message });
+            })),
+          ke
+        );
+      }
+      async function Ne(e) {
+        try {
+          const t = await Oe(),
+            n = await t.transaction(Ce).objectStore(Ce).get(Pe(e));
+          return n;
+        } catch (t) {
+          if (t instanceof o.ZR) P.warn(t.message);
+          else {
+            const e = me.create('idb-get', { originalErrorMessage: null === t || void 0 === t ? void 0 : t.message });
+            P.warn(e.message);
+          }
+        }
+      }
+      async function Re(e, t) {
+        try {
+          const n = await Oe(),
+            r = n.transaction(Ce, 'readwrite'),
+            i = r.objectStore(Ce);
+          await i.put(t, Pe(e)), await r.done;
+        } catch (n) {
+          if (n instanceof o.ZR) P.warn(n.message);
+          else {
+            const e = me.create('idb-set', { originalErrorMessage: null === n || void 0 === n ? void 0 : n.message });
+            P.warn(e.message);
+          }
+        }
+      }
+      function Pe(e) {
+        return `${e.name}!${e.options.appId}`;
+      }
+      /**
+       * @license
+       * Copyright 2021 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const De = 1024,
+        Le = 2592e6;
+      class je {
+        constructor(e) {
+          (this.container = e), (this._heartbeatsCache = null);
+          const t = this.container.getProvider('app').getImmediate();
+          (this._storage = new Ue(t)), (this._heartbeatsCachePromise = this._storage.read().then(e => ((this._heartbeatsCache = e), e)));
+        }
+        async triggerHeartbeat() {
+          const e = this.container.getProvider('platform-logger').getImmediate(),
+            t = e.getPlatformInfoString(),
+            n = Me();
+          if (
+            (null === this._heartbeatsCache && (this._heartbeatsCache = await this._heartbeatsCachePromise),
+            this._heartbeatsCache.lastSentHeartbeatDate !== n && !this._heartbeatsCache.heartbeats.some(e => e.date === n))
+          )
+            return (
+              this._heartbeatsCache.heartbeats.push({ date: n, agent: t }),
+              (this._heartbeatsCache.heartbeats = this._heartbeatsCache.heartbeats.filter(e => {
+                const t = new Date(e.date).valueOf(),
+                  n = Date.now();
+                return n - t <= Le;
+              })),
+              this._storage.overwrite(this._heartbeatsCache)
+            );
+        }
+        async getHeartbeatsHeader() {
+          if (
+            (null === this._heartbeatsCache && (await this._heartbeatsCachePromise),
+            null === this._heartbeatsCache || 0 === this._heartbeatsCache.heartbeats.length)
+          )
+            return '';
+          const e = Me(),
+            { heartbeatsToSend: t, unsentEntries: n } = Fe(this._heartbeatsCache.heartbeats),
+            r = (0, o.L)(JSON.stringify({ version: 2, heartbeats: t }));
+          return (
+            (this._heartbeatsCache.lastSentHeartbeatDate = e),
+            n.length > 0
+              ? ((this._heartbeatsCache.heartbeats = n), await this._storage.overwrite(this._heartbeatsCache))
+              : ((this._heartbeatsCache.heartbeats = []), this._storage.overwrite(this._heartbeatsCache)),
+            r
+          );
+        }
+      }
+      function Me() {
+        const e = new Date();
+        return e.toISOString().substring(0, 10);
+      }
+      function Fe(e, t = De) {
+        const n = [];
+        let r = e.slice();
+        for (const i of e) {
+          const e = n.find(e => e.agent === i.agent);
+          if (e) {
+            if ((e.dates.push(i.date), Ve(n) > t)) {
+              e.dates.pop();
+              break;
+            }
+          } else if ((n.push({ agent: i.agent, dates: [i.date] }), Ve(n) > t)) {
+            n.pop();
+            break;
+          }
+          r = r.slice(1);
+        }
+        return { heartbeatsToSend: n, unsentEntries: r };
+      }
+      class Ue {
+        constructor(e) {
+          (this.app = e), (this._canUseIndexedDBPromise = this.runIndexedDBEnvironmentCheck());
+        }
+        async runIndexedDBEnvironmentCheck() {
+          return (
+            !!(0, o.hl)() &&
+            (0, o.eu)()
+              .then(() => !0)
+              .catch(() => !1)
+          );
+        }
+        async read() {
+          const e = await this._canUseIndexedDBPromise;
+          if (e) {
+            const e = await Ne(this.app);
+            return e || { heartbeats: [] };
+          }
+          return { heartbeats: [] };
+        }
+        async overwrite(e) {
+          var t;
+          const n = await this._canUseIndexedDBPromise;
+          if (n) {
+            const n = await this.read();
+            return Re(this.app, {
+              lastSentHeartbeatDate: null !== (t = e.lastSentHeartbeatDate) && void 0 !== t ? t : n.lastSentHeartbeatDate,
+              heartbeats: e.heartbeats
+            });
+          }
+        }
+        async add(e) {
+          var t;
+          const n = await this._canUseIndexedDBPromise;
+          if (n) {
+            const n = await this.read();
+            return Re(this.app, {
+              lastSentHeartbeatDate: null !== (t = e.lastSentHeartbeatDate) && void 0 !== t ? t : n.lastSentHeartbeatDate,
+              heartbeats: [...n.heartbeats, ...e.heartbeats]
+            });
+          }
+        }
+      }
+      function Ve(e) {
+        return (0, o.L)(JSON.stringify({ version: 2, heartbeats: e })).length;
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at

@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+                return (
+                  (e = Kl(e)),
+                  _o(function (t) {
+                    return lo(t, e);
+                  })
+                );
+              }
+              var Bf = Is(xn),
+                $f = Is(En),
+                qf = Is(Nn);
+              function zf(e) {
+                return ua(e) ? Bn(Na(e)) : go(e);
+              }
+              function Gf(e) {
+                return function (t) {
+                  return null == e ? i : Di(e, t);
+                };
+              }
+              var Wf = Ts(),
+                Hf = Ts(!0);
+              function Kf() {
+                return [];
+              }
+              function Qf() {
+                return !1;
+              }
+              function Yf() {
+                return {};
+              }
+              function Xf() {
+                return '';
+              }
+              function Jf() {
+                return !0;
+              }
+              function Zf(e, t) {
+                if (((e = Kl(e)), e < 1 || e > j)) return [];
+                var n = U,
+                  r = Bt(e, U);
+                (t = zs(t)), (e -= U);
+                var i = Wn(r, t);
+                while (++n < e) t(n);
+                return i;
+              }
+              function ed(e) {
+                return ul(e) ? xn(e, Na) : Ul(e) ? [e] : is(Oa(Zl(e)));
+              }
+              function td(e) {
+                var t = ++ft;
+                return Zl(e) + t;
+              }
+              var nd = _s(function (e, t) {
+                  return e + t;
+                }, 0),
+                rd = Cs('ceil'),
+                id = _s(function (e, t) {
+                  return e / t;
+                }, 1),
+                od = Cs('floor');
+              function sd(e) {
+                return e && e.length ? Ti(e, Nf, Mi) : i;
+              }
+              function ad(e, t) {
+                return e && e.length ? Ti(e, zs(t, 2), Mi) : i;
+              }
+              function ud(e) {
+                return Vn(e, Nf);
+              }
+              function cd(e, t) {
+                return Vn(e, zs(t, 2));
+              }
+              function ld(e) {
+                return e && e.length ? Ti(e, Nf, io) : i;
+              }
+              function hd(e, t) {
+                return e && e.length ? Ti(e, zs(t, 2), io) : i;
+              }
+              var fd = _s(function (e, t) {
+                  return e * t;
+                }, 1),
+                dd = Cs('round'),
+                pd = _s(function (e, t) {
+                  return e - t;
+                }, 0);
+              function gd(e) {
+                return e && e.length ? Gn(e, Nf) : 0;
+              }
+              function md(e, t) {
+                return e && e.length ? Gn(e, zs(t, 2)) : 0;
+              }
+              return (
+                (Ir.after = kc),
+                (Ir.ary = Oc),
+                (Ir.assign = eh),
+                (Ir.assignIn = th),
+                (Ir.assignInWith = nh),
+                (Ir.assignWith = rh),
+                (Ir.at = ih),
+                (Ir.before = Nc),
+                (Ir.bind = Rc),
+                (Ir.bindAll = Sf),
+                (Ir.bindKey = Pc),
+                (Ir.castArray = Jc),
+                (Ir.chain = Gu),
+                (Ir.chunk = La),
+                (Ir.compact = ja),
+                (Ir.concat = Ma),
+                (Ir.cond = Tf),
+                (Ir.conforms = Af),
+                (Ir.constant = xf),
+                (Ir.countBy = nc),
+                (Ir.create = oh),
+                (Ir.curry = Dc),
+                (Ir.curryRight = Lc),
+                (Ir.debounce = jc),
+                (Ir.defaults = sh),
+                (Ir.defaultsDeep = ah),
+                (Ir.defer = Mc),
+                (Ir.delay = Fc),
+                (Ir.difference = Fa),
+                (Ir.differenceBy = Ua),
+                (Ir.differenceWith = Va),
+                (Ir.drop = Ba),
+                (Ir.dropRight = $a),
+                (Ir.dropRightWhile = qa),
+                (Ir.dropWhile = za),
+                (Ir.fill = Ga),
+                (Ir.filter = ic),
+                (Ir.flatMap = ac),
+                (Ir.flatMapDeep = uc),
+                (Ir.flatMapDepth = cc),
+                (Ir.flatten = Ka),
+                (Ir.flattenDeep = Qa),
+                (Ir.flattenDepth = Ya),
+                (Ir.flip = Uc),
+                (Ir.flow = kf),
+                (Ir.flowRight = Of),
+                (Ir.fromPairs = Xa),
+                (Ir.functions = ph),
+                (Ir.functionsIn = gh),
+                (Ir.groupBy = fc),
+                (Ir.initial = eu),
+                (Ir.intersection = tu),
+                (Ir.intersectionBy = nu),
+                (Ir.intersectionWith = ru),
+                (Ir.invert = wh),
+                (Ir.invertBy = bh),
+                (Ir.invokeMap = pc),
+                (Ir.iteratee = Rf),
+                (Ir.keyBy = gc),
+                (Ir.keys = Ih),
+                (Ir.keysIn = Eh),
+                (Ir.map = mc),
+                (Ir.mapKeys = Sh),
+                (Ir.mapValues = Th),
+                (Ir.matches = Pf),
+                (Ir.matchesProperty = Df),
+                (Ir.memoize = Vc),
+                (Ir.merge = Ah),
+                (Ir.mergeWith = xh),
+                (Ir.method = Lf),
+                (Ir.methodOf = jf),
+                (Ir.mixin = Mf),
+                (Ir.negate = Bc),
+                (Ir.nthArg = Vf),
+                (Ir.omit = Ch),
+                (Ir.omitBy = kh),
+                (Ir.once = $c),
+                (Ir.orderBy = vc),
+                (Ir.over = Bf),
+                (Ir.overArgs = qc),
+                (Ir.overEvery = $f),
+                (Ir.overSome = qf),
+                (Ir.partial = zc),
+                (Ir.partialRight = Gc),
+                (Ir.partition = yc),
+                (Ir.pick = Oh),
+                (Ir.pickBy = Nh),
+                (Ir.property = zf),
+                (Ir.propertyOf = Gf),
+                (Ir.pull = uu),
+                (Ir.pullAll = cu),
+                (Ir.pullAllBy = lu),
+                (Ir.pullAllWith = hu),
+                (Ir.pullAt = fu),
+                (Ir.range = Wf),
+                (Ir.rangeRight = Hf),
+                (Ir.rearg = Wc),
+                (Ir.reject = _c),
+                (Ir.remove = du),
+                (Ir.rest = Hc),
+                (Ir.reverse = pu),
+                (Ir.sampleSize = Ec),
+                (Ir.set = Ph),
+                (Ir.setWith = Dh),
+                (Ir.shuffle = Sc),
+                (Ir.slice = gu),
+                (Ir.sortBy = xc),
+                (Ir.sortedUniq = Iu),
+                (Ir.sortedUniqBy = Eu),
+                (Ir.split = cf),
+                (Ir.spread = Kc),
+                (Ir.tail = Su),
+                (Ir.take = Tu),
+                (Ir.takeRight = Au),
+                (Ir.takeRightWhile = xu),
+                (Ir.takeWhile = Cu),
+                (Ir.tap = Wu),
+                (Ir.throttle = Qc),
+                (Ir.thru = Hu),
+                (Ir.toArray = Wl),
+                (Ir.toPairs = Lh),
+                (Ir.toPairsIn = jh),
+                (Ir.toPath = ed),
+                (Ir.toPlainObject = Xl),
+                (Ir.transform = Mh),
+                (Ir.unary = Yc),
+                (Ir.union = ku),
+                (Ir.unionBy = Ou),
+                (Ir.unionWith = Nu),
+                (Ir.uniq = Ru),
+                (Ir.uniqBy = Pu),
+                (Ir.uniqWith = Du),
+                (Ir.unset = Fh),
+                (Ir.unzip = Lu),
+                (Ir.unzipWith = ju),
+                (Ir.update = Uh),
+                (Ir.updateWith = Vh),
+                (Ir.values = Bh),
+                (Ir.valuesIn = $h),
+                (Ir.without = Mu),
+                (Ir.words = If),
+                (Ir.wrap = Xc),
+                (Ir.xor = Fu),
+                (Ir.xorBy = Uu),
+                (Ir.xorWith = Vu),
+                (Ir.zip = Bu),
+                (Ir.zipObject = $u),
+                (Ir.zipObjectDeep = qu),
+                (Ir.zipWith = zu),
+                (Ir.entries = Lh),
+                (Ir.entriesIn = jh),
+                (Ir.extend = th),
+                (Ir.extendWith = nh),
+                Mf(Ir, Ir),
+                (Ir.add = nd),
+                (Ir.attempt = Ef),
+                (Ir.camelCase = Wh),
+                (Ir.capitalize = Hh),
+                (Ir.ceil = rd),
+                (Ir.clamp = qh),
+                (Ir.clone = Zc),
+                (Ir.cloneDeep = tl),
+                (Ir.cloneDeepWith = nl),
+                (Ir.cloneWith = el),
+                (Ir.conformsTo = rl),
+                (Ir.deburr = Kh),
+                (Ir.defaultTo = Cf),
+                (Ir.divide = id),
+                (Ir.endsWith = Qh),
+                (Ir.eq = il),
+                (Ir.escape = Yh),
+                (Ir.escapeRegExp = Xh),
+                (Ir.every = rc),
+                (Ir.find = oc),
+                (Ir.findIndex = Wa),
+                (Ir.findKey = uh),
+                (Ir.findLast = sc),
+                (Ir.findLastIndex = Ha),
+                (Ir.findLastKey = ch),
+                (Ir.floor = od),
+                (Ir.forEach = lc),
+                (Ir.forEachRight = hc),
+                (Ir.forIn = lh),
+                (Ir.forInRight = hh),
+                (Ir.forOwn = fh),
+                (Ir.forOwnRight = dh),
+                (Ir.get = mh),
+                (Ir.gt = ol),
+                (Ir.gte = sl),
+                (Ir.has = vh),
+                (Ir.hasIn = yh),
+                (Ir.head = Ja),
+                (Ir.identity = Nf),
+                (Ir.includes = dc),
+                (Ir.indexOf = Za),
+                (Ir.inRange = zh),
+                (Ir.invoke = _h),
+                (Ir.isArguments = al),
+                (Ir.isArray = ul),
+                (Ir.isArrayBuffer = cl),
+                (Ir.isArrayLike = ll),
+                (Ir.isArrayLikeObject = hl),
+                (Ir.isBoolean = fl),
+                (Ir.isBuffer = dl),
+                (Ir.isDate = pl),
+                (Ir.isElement = gl),
+                (Ir.isEmpty = ml),
+                (Ir.isEqual = vl),
+                (Ir.isEqualWith = yl),
+                (Ir.isError = wl),
+                (Ir.isFinite = bl),
+                (Ir.isFunction = _l),
+                (Ir.isInteger = Il),
+                (Ir.isLength = El),
+                (Ir.isMap = Al),
+                (Ir.isMatch = xl),
+                (Ir.isMatchWith = Cl),
+                (Ir.isNaN = kl),
+                (Ir.isNative = Ol),
+                (Ir.isNil = Rl),
+                (Ir.isNull = Nl),
+                (Ir.isNumber = Pl),
+                (Ir.isObject = Sl),
+                (Ir.isObjectLike = Tl),
+                (Ir.isPlainObject = Dl),
+                (Ir.isRegExp = Ll),
+                (Ir.isSafeInteger = jl),
+                (Ir.isSet = Ml),
+                (Ir.isString = Fl),
+                (Ir.isSymbol = Ul),
+                (Ir.isTypedArray = Vl),
+                (Ir.isUndefined = Bl),
+                (Ir.isWeakMap = $l),
+                (Ir.isWeakSet = ql),
+                (Ir.join = iu),
+                (Ir.kebabCase = Jh),
+                (Ir.last = ou),
+                (Ir.lastIndexOf = su),
+                (Ir.lowerCase = Zh),
+                (Ir.lowerFirst = ef),
+                (Ir.lt = zl),
+                (Ir.lte = Gl),
+                (Ir.max = sd),
+                (Ir.maxBy = ad),
+                (Ir.mean = ud),
+                (Ir.meanBy = cd),
+                (Ir.min = ld),
+                (Ir.minBy = hd),
+                (Ir.stubArray = Kf),
+                (Ir.stubFalse = Qf),
+                (Ir.stubObject = Yf),
+                (Ir.stubString = Xf),
+                (Ir.stubTrue = Jf),
+                (Ir.multiply = fd),
+                (Ir.nth = au),
+                (Ir.noConflict = Ff),
+                (Ir.noop = Uf),
+                (Ir.now = Cc),
+                (Ir.pad = tf),
+                (Ir.padEnd = nf),
+                (Ir.padStart = rf),
+                (Ir.parseInt = of),
+                (Ir.random = Gh),
+                (Ir.reduce = wc),
+                (Ir.reduceRight = bc),
+                (Ir.repeat = sf),
+                (Ir.replace = af),
+                (Ir.result = Rh),
+                (Ir.round = dd),
+                (Ir.runInContext = e),
+                (Ir.sample = Ic),
+                (Ir.size = Tc),
+                (Ir.snakeCase = uf),
+                (Ir.some = Ac),
+                (Ir.sortedIndex = mu),
+                (Ir.sortedIndexBy = vu),
+                (Ir.sortedIndexOf = yu),
+                (Ir.sortedLastIndex = wu),
+                (Ir.sortedLastIndexBy = bu),
+                (Ir.sortedLastIndexOf = _u),
+                (Ir.startCase = lf),
+                (Ir.startsWith = hf),
+                (Ir.subtract = pd),
+                (Ir.sum = gd),
+                (Ir.sumBy = md),
+                (Ir.template = ff),
+                (Ir.times = Zf),
+                (Ir.toFinite = Hl),
+                (Ir.toInteger = Kl),
+                (Ir.toLength = Ql),
+                (Ir.toLower = df),
+                (Ir.toNumber = Yl),
+                (Ir.toSafeInteger = Jl),
+                (Ir.toString = Zl),
+                (Ir.toUpper = pf),
+                (Ir.trim = gf),
+                (Ir.trimEnd = mf),
+                (Ir.trimStart = vf),
+                (Ir.truncate = yf),
+                (Ir.unescape = wf),
+                (Ir.uniqueId = td),
+                (Ir.upperCase = bf),
+                (Ir.upperFirst = _f),
+                (Ir.each = lc),
+                (Ir.eachRight = hc),
+                (Ir.first = Ja),
+                Mf(
+                  Ir,
+                  (function () {

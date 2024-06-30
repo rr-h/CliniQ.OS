@@ -1,0 +1,401 @@
+remove firebase code from this and fix the code. NO NEED TO EXPLAIN OR TO SHOW A BEFORE. JUST DIRECTLY CARRY OUT THE TASK TO REMOVE FIREBASE ELEMENTS FROM THE GIVEN SNIPPET WITHOUT BREAKING THE PROJECT-
+              return r[e] || (r[e] = i(e));
+            };
+          },
+          '5dbc': function (e, t, n) {
+            var r = n('d3f4'),
+              i = n('8b97').set;
+            e.exports = function (e, t, n) {
+              var o,
+                s = t.constructor;
+              return s !== n && 'function' == typeof s && (o = s.prototype) !== n.prototype && r(o) && i && i(e, o), e;
+            };
+          },
+          '5df3': function (e, t, n) {
+            'use strict';
+            var r = n('02f4')(!0);
+            n('01f9')(
+              String,
+              'String',
+              function (e) {
+                (this._t = String(e)), (this._i = 0);
+              },
+              function () {
+                var e,
+                  t = this._t,
+                  n = this._i;
+                return n >= t.length ? { value: void 0, done: !0 } : ((e = r(t, n)), (this._i += e.length), { value: e, done: !1 });
+              }
+            );
+          },
+          '5eda': function (e, t, n) {
+            var r = n('5ca1'),
+              i = n('8378'),
+              o = n('79e5');
+            e.exports = function (e, t) {
+              var n = (i.Object || {})[e] || Object[e],
+                s = {};
+              (s[e] = t(n)),
+                r(
+                  r.S +
+                    r.F *
+                      o(function () {
+                        n(1);
+                      }),
+                  'Object',
+                  s
+                );
+            };
+          },
+          '613b': function (e, t, n) {
+            var r = n('5537')('keys'),
+              i = n('ca5a');
+            e.exports = function (e) {
+              return r[e] || (r[e] = i(e));
+            };
+          },
+          '626a': function (e, t, n) {
+            var r = n('2d95');
+            e.exports = Object('z').propertyIsEnumerable(0)
+              ? Object
+              : function (e) {
+                  return 'String' == r(e) ? e.split('') : Object(e);
+                };
+          },
+          6762: function (e, t, n) {
+            'use strict';
+            var r = n('5ca1'),
+              i = n('c366')(!0);
+            r(r.P, 'Array', {
+              includes: function (e) {
+                return i(this, e, arguments.length > 1 ? arguments[1] : void 0);
+              }
+            }),
+              n('9c6c')('includes');
+          },
+          '67ab': function (e, t, n) {
+            var r = n('ca5a')('meta'),
+              i = n('d3f4'),
+              o = n('69a8'),
+              s = n('86cc').f,
+              a = 0,
+              u =
+                Object.isExtensible ||
+                function () {
+                  return !0;
+                },
+              c = !n('79e5')(function () {
+                return u(Object.preventExtensions({}));
+              }),
+              l = function (e) {
+                s(e, r, { value: { i: 'O' + ++a, w: {} } });
+              },
+              h = function (e, t) {
+                if (!i(e)) return 'symbol' == typeof e ? e : ('string' == typeof e ? 'S' : 'P') + e;
+                if (!o(e, r)) {
+                  if (!u(e)) return 'F';
+                  if (!t) return 'E';
+                  l(e);
+                }
+                return e[r].i;
+              },
+              f = function (e, t) {
+                if (!o(e, r)) {
+                  if (!u(e)) return !0;
+                  if (!t) return !1;
+                  l(e);
+                }
+                return e[r].w;
+              },
+              d = function (e) {
+                return c && p.NEED && u(e) && !o(e, r) && l(e), e;
+              },
+              p = (e.exports = { KEY: r, NEED: !1, fastKey: h, getWeak: f, onFreeze: d });
+          },
+          6821: function (e, t, n) {
+            var r = n('626a'),
+              i = n('be13');
+            e.exports = function (e) {
+              return r(i(e));
+            };
+          },
+          '69a8': function (e, t) {
+            var n = {}.hasOwnProperty;
+            e.exports = function (e, t) {
+              return n.call(e, t);
+            };
+          },
+          '6a99': function (e, t, n) {
+            var r = n('d3f4');
+            e.exports = function (e, t) {
+              if (!r(e)) return e;
+              var n, i;
+              if (t && 'function' == typeof (n = e.toString) && !r((i = n.call(e)))) return i;
+              if ('function' == typeof (n = e.valueOf) && !r((i = n.call(e)))) return i;
+              if (!t && 'function' == typeof (n = e.toString) && !r((i = n.call(e)))) return i;
+              throw TypeError("Can't convert object to primitive value");
+            };
+          },
+          '6a9b': function (e, t, n) {
+            var r = n('8bab'),
+              i = n('e5fa');
+            e.exports = function (e) {
+              return r(i(e));
+            };
+          },
+          '6b54': function (e, t, n) {
+            'use strict';
+            n('3846');
+            var r = n('cb7c'),
+              i = n('0bfb'),
+              o = n('9e1e'),
+              s = 'toString',
+              a = /./[s],
+              u = function (e) {
+                n('2aba')(RegExp.prototype, s, e, !0);
+              };
+            n('79e5')(function () {
+              return '/a/b' != a.call({ source: 'a', flags: 'b' });
+            })
+              ? u(function () {
+                  var e = r(this);
+                  return '/'.concat(e.source, '/', 'flags' in e ? e.flags : !o && e instanceof RegExp ? i.call(e) : void 0);
+                })
+              : a.name != s &&
+                u(function () {
+                  return a.call(this);
+                });
+          },
+          '6e1f': function (e, t) {
+            var n = {}.toString;
+            e.exports = function (e) {
+              return n.call(e).slice(8, -1);
+            };
+          },
+          '6f42': function (e, t, n) {},
+          '6f8a': function (e, t) {
+            e.exports = function (e) {
+              return 'object' === typeof e ? null !== e : 'function' === typeof e;
+            };
+          },
+          7108: function (e, t, n) {
+            var r = n('0f89'),
+              i = n('f568'),
+              o = n('0029'),
+              s = n('5d8f')('IE_PROTO'),
+              a = function () {},
+              u = 'prototype',
+              c = function () {
+                var e,
+                  t = n('12fd')('iframe'),
+                  r = o.length,
+                  i = '<',
+                  s = '>';
+                (t.style.display = 'none'),
+                  n('103a').appendChild(t),
+                  (t.src = 'javascript:'),
+                  (e = t.contentWindow.document),
+                  e.open(),
+                  e.write(i + 'script' + s + 'document.F=Object' + i + '/script' + s),
+                  e.close(),
+                  (c = e.F);
+                while (r--) delete c[u][o[r]];
+                return c();
+              };
+            e.exports =
+              Object.create ||
+              function (e, t) {
+                var n;
+                return null !== e ? ((a[u] = r(e)), (n = new a()), (a[u] = null), (n[s] = e)) : (n = c()), void 0 === t ? n : i(n, t);
+              };
+          },
+          7514: function (e, t, n) {
+            'use strict';
+            var r = n('5ca1'),
+              i = n('0a49')(5),
+              o = 'find',
+              s = !0;
+            o in [] &&
+              Array(1)[o](function () {
+                s = !1;
+              }),
+              r(r.P + r.F * s, 'Array', {
+                find: function (e) {
+                  return i(this, e, arguments.length > 1 ? arguments[1] : void 0);
+                }
+              }),
+              n('9c6c')(o);
+          },
+          7633: function (e, t, n) {
+            var r = n('2695'),
+              i = n('0029');
+            e.exports =
+              Object.keys ||
+              function (e) {
+                return r(e, i);
+              };
+          },
+          7726: function (e, t) {
+            var n = (e.exports =
+              'undefined' != typeof window && window.Math == Math
+                ? window
+                : 'undefined' != typeof self && self.Math == Math
+                  ? self
+                  : Function('return this')());
+            'number' == typeof __g && (__g = n);
+          },
+          7772: function (e, t, n) {
+            var r = n('a7d3'),
+              i = n('da3c'),
+              o = '__core-js_shared__',
+              s = i[o] || (i[o] = {});
+            (e.exports = function (e, t) {
+              return s[e] || (s[e] = void 0 !== t ? t : {});
+            })('versions', []).push({ version: r.version, mode: n('b457') ? 'pure' : 'global', copyright: '© 2019 Denis Pushkarev (zloirock.ru)' });
+          },
+          '77f1': function (e, t, n) {
+            var r = n('4588'),
+              i = Math.max,
+              o = Math.min;
+            e.exports = function (e, t) {
+              return (e = r(e)), e < 0 ? i(e + t, 0) : o(e, t);
+            };
+          },
+          '79e5': function (e, t) {
+            e.exports = function (e) {
+              try {
+                return !!e();
+              } catch (t) {
+                return !0;
+              }
+            };
+          },
+          '7a56': function (e, t, n) {
+            'use strict';
+            var r = n('7726'),
+              i = n('86cc'),
+              o = n('9e1e'),
+              s = n('2b4c')('species');
+            e.exports = function (e) {
+              var t = r[e];
+              o &&
+                t &&
+                !t[s] &&
+                i.f(t, s, {
+                  configurable: !0,
+                  get: function () {
+                    return this;
+                  }
+                });
+            };
+          },
+          '7b00': function (e, t) {
+            var n = 0,
+              r = Math.random();
+            e.exports = function (e) {
+              return 'Symbol('.concat(void 0 === e ? '' : e, ')_', (++n + r).toString(36));
+            };
+          },
+          '7d8a': function (e, t, n) {
+            var r = n('6e1f'),
+              i = n('1b55')('toStringTag'),
+              o =
+                'Arguments' ==
+                r(
+                  (function () {
+                    return arguments;
+                  })()
+                ),
+              s = function (e, t) {
+                try {
+                  return e[t];
+                } catch (n) {}
+              };
+            e.exports = function (e) {
+              var t, n, a;
+              return void 0 === e
+                ? 'Undefined'
+                : null === e
+                  ? 'Null'
+                  : 'string' == typeof (n = s((t = Object(e)), i))
+                    ? n
+                    : o
+                      ? r(t)
+                      : 'Object' == (a = r(t)) && 'function' == typeof t.callee
+                        ? 'Arguments'
+                        : a;
+            };
+          },
+          '7d95': function (e, t, n) {
+            e.exports = !n('d782')(function () {
+              return (
+                7 !=
+                Object.defineProperty({}, 'a', {
+                  get: function () {
+                    return 7;
+                  }
+                }).a
+              );
+            });
+          },
+          '7f20': function (e, t, n) {
+            var r = n('86cc').f,
+              i = n('69a8'),
+              o = n('2b4c')('toStringTag');
+            e.exports = function (e, t, n) {
+              e && !i((e = n ? e : e.prototype), o) && r(e, o, { configurable: !0, value: t });
+            };
+          },
+          8378: function (e, t) {
+            var n = (e.exports = { version: '2.6.1' });
+            'number' == typeof __e && (__e = n);
+          },
+          '84f2': function (e, t) {
+            e.exports = {};
+          },
+          '85f2': function (e, t, n) {
+            e.exports = n('ec5b');
+          },
+          '86cc': function (e, t, n) {
+            var r = n('cb7c'),
+              i = n('c69a'),
+              o = n('6a99'),
+              s = Object.defineProperty;
+            t.f = n('9e1e')
+              ? Object.defineProperty
+              : function (e, t, n) {
+                  if ((r(e), (t = o(t, !0)), r(n), i))
+                    try {
+                      return s(e, t, n);
+                    } catch (a) {}
+                  if ('get' in n || 'set' in n) throw TypeError('Accessors not supported!');
+                  return 'value' in n && (e[t] = n.value), e;
+                };
+          },
+          '87b3': function (e, t, n) {
+            var r = Date.prototype,
+              i = 'Invalid Date',
+              o = 'toString',
+              s = r[o],
+              a = r.getTime;
+            new Date(NaN) + '' != i &&
+              n('2aba')(r, o, function () {
+                var e = a.call(this);
+                return e === e ? s.call(this) : i;
+              });
+          },
+          8875: function (e, t, n) {
+            var r, i, o;
+            (function (n, s) {
+              (i = []), (r = s), (o = 'function' === typeof r ? r.apply(t, i) : r), void 0 === o || (e.exports = o);
+            })('undefined' !== typeof self && self, function () {
+              function e() {
+                if (document.currentScript) return document.currentScript;
+                try {
+                  throw new Error();
+                } catch (h) {
+                  var e,
+                    t,
+                    n,
+                    r = /.*at [^(]*\((.*):(.+):(.+)\)$/gi,
+                    i = /@([^@]*):(\d+):(\d+)\s*$/gi,
