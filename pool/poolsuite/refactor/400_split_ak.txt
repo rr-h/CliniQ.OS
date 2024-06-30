@@ -1,0 +1,400 @@
+                'function' === ye(r) && r(this);
+              var f = this.options.onExitPage;
+              if ('function' === ye(f) && ge.addEventListener && !this.pageHandlersAdded) {
+                this.pageHandlersAdded = !0;
+                var d = function () {
+                  var e = s.options.transport;
+                  s.setTransport(de.TRANSPORT_BEACON), f(), s.setTransport(e);
+                };
+                ge.addEventListener(
+                  'pagehide',
+                  function () {
+                    d();
+                  },
+                  !1
+                );
+              }
+              this._connector.eventBridge.setEventReceiver(function (e) {
+                s._logEvent(e.eventType, e.eventProperties, e.userProperties);
+              });
+              var p = this._connector.identityStore.editIdentity();
+              this.options.deviceId && p.setDeviceId(this.options.deviceId), this.options.userId && p.setUserId(this.options.userId), p.commit();
+            } catch (g) {
+              qe.log.error(g), n && 'function' === ye(n.onError) && n.onError(g);
+            }
+        }),
+        (Gt.prototype._runNewSessionStartCallbacks = function () {
+          for (var e = 0; e < this._onNewSessionStartCallbacks.length; e++) this._onNewSessionStartCallbacks[e](this);
+        }),
+        (Gt.prototype.deleteLowerLevelDomainCookies = function () {
+          var e = qe.getHost(),
+            t = this.options.domain && '.' === this.options.domain[0] ? this.options.domain.slice(1) : this.options.domain;
+          if (t && qe.isWebWorkerEnvironment() && e !== t && new RegExp(t + '$').test(e)) {
+            for (var n = e.split('.'), r = t.split('.'), i = n.length; i > r.length; --i) {
+              var o = n.slice(n.length - i).join('.');
+              Ye.set(this._cookieName, null, { domain: '.' + o });
+            }
+            Ye.set(this._cookieName, null, {});
+          }
+        }),
+        (Gt.prototype._getInitialDeviceId = function (e, t) {
+          if (e) return e;
+          if (this.options.deviceIdFromUrlParam) {
+            var n = this._getDeviceIdFromUrlParam(this._getUrlParams());
+            if (n) return n;
+          }
+          return this.options.deviceId ? this.options.deviceId : t || Je();
+        });
+      var Wt = function (e) {
+        for (var t = 0; t < e.length; t++) {
+          var n = e[t].event.user_properties,
+            r = e[t].event.event_properties,
+            i = e[t].event.groups;
+          (e[t].event.user_properties = qe.validateProperties(n)),
+            (e[t].event.event_properties = qe.validateProperties(r)),
+            (e[t].event.groups = qe.validateGroups(i));
+        }
+      };
+      Gt.prototype._trackParamsAndReferrer = function () {
+        var e, t, n, r;
+        if (
+          (this.options.includeUtm && (e = this._initUtmData()),
+          this.options.includeReferrer && (t = this._saveReferrer(this._getReferrer())),
+          this.options.includeGclid && (n = this._saveGclid(this._getUrlParams())),
+          this.options.includeFbclid && (r = this._saveFbclid(this._getUrlParams())),
+          this.options.logAttributionCapturedEvent)
+        ) {
+          var i = J(J(J(J({}, e), t), n), r);
+          Object.keys(i).length > 0 && this.logEvent(de.ATTRIBUTION_EVENT, i);
+        }
+      };
+      var Ht = function e(t, n) {
+        if ('object' === ye(n)) {
+          var r = new Set(['headers']),
+            i = new Set(['eventUploadPeriodMillis']),
+            o = function (r) {
+              if (Object.prototype.hasOwnProperty.call(t, r)) {
+                var o = n[r],
+                  s = ye(t[r]);
+                ('transport' !== r || qe.validateTransport(o)) &&
+                  ('sessionId' !== r || null === o
+                    ? qe.validateInput(o, r + ' option', s) &&
+                      ('boolean' === s
+                        ? (t[r] = !!o)
+                        : ('string' === s && !qe.isEmptyString(o)) || ('number' === s && (o > 0 || (0 === o && i.has(r)))) || 'function' === s
+                          ? (t[r] = o)
+                          : 'object' === s && e(t[r], o))
+                    : (t[r] = qe.validateSessionId(o) ? o : null));
+              }
+            };
+          for (var s in n) r.has(s) ? (t[s] = J(J({}, t[s]), n[s])) : Object.prototype.hasOwnProperty.call(n, s) && o(s);
+        }
+      };
+      (Gt.prototype.runQueuedFunctions = function () {
+        var e = this._q;
+        this._q = [];
+        for (var t = 0; t < e.length; t++) {
+          var n = this[e[t][0]];
+          'function' === ye(n) && n.apply(this, e[t].slice(1));
+        }
+      }),
+        (Gt.prototype._apiKeySet = function (e) {
+          return (
+            !qe.isEmptyString(this.options.apiKey) || (qe.log.error('Invalid apiKey. Please set a valid apiKey with init() before calling ' + e), !1)
+          );
+        }),
+        (Gt.prototype._loadSavedUnsentEvents = function (e) {
+          var t = this._getFromStorage(gt, e),
+            n = this._parseSavedUnsentEventsString(t, e);
+          return this._setInStorage(gt, e, JSON.stringify(n)), n;
+        }),
+        (Gt.prototype._parseSavedUnsentEventsString = function (e, t) {
+          if (qe.isEmptyString(e)) return [];
+          if ('string' === ye(e))
+            try {
+              var n = JSON.parse(e);
+              if ('array' === ye(n)) return n;
+            } catch (fn) {}
+          return qe.log.error('Unable to load ' + t + ' events. Restart with a new empty queue.'), [];
+        }),
+        (Gt.prototype.isNewSession = function () {
+          return this._newSession;
+        }),
+        (Gt.prototype.onInit = function (e) {
+          this._isInitialized ? e(this) : this._onInitCallbacks.push(e);
+        }),
+        (Gt.prototype.onNewSessionStart = function (e) {
+          this._onNewSessionStartCallbacks.push(e);
+        }),
+        (Gt.prototype.getSessionId = function () {
+          return this._sessionId;
+        }),
+        (Gt.prototype.nextEventId = function () {
+          return this._eventId++, this._eventId;
+        }),
+        (Gt.prototype.nextIdentifyId = function () {
+          return this._identifyId++, this._identifyId;
+        }),
+        (Gt.prototype.nextSequenceNumber = function () {
+          return this._sequenceNumber++, this._sequenceNumber;
+        }),
+        (Gt.prototype._unsentCount = function () {
+          return this._unsentEvents.length + this._unsentIdentifys.length;
+        }),
+        (Gt.prototype._sendEventsIfReady = function () {
+          return (
+            0 !== this._unsentCount() &&
+            (this.options.batchEvents
+              ? this._unsentCount() >= this.options.eventUploadThreshold || this.options.transport === de.TRANSPORT_BEACON
+                ? (this.sendEvents(), !0)
+                : (this._updateScheduled ||
+                    ((this._updateScheduled = !0),
+                    setTimeout(
+                      function () {
+                        (this._updateScheduled = !1), this.sendEvents();
+                      }.bind(this),
+                      this.options.eventUploadPeriodMillis
+                    )),
+                  !1)
+              : (this.sendEvents(), !0))
+          );
+        }),
+        (Gt.prototype.clearStorage = function () {
+          return this._metadataStorage.clear();
+        }),
+        (Gt.prototype._getFromStorage = function (e, t) {
+          return e.getItem(t + this._storageSuffix);
+        }),
+        (Gt.prototype._setInStorage = function (e, t, n) {
+          e.setItem(t + this._storageSuffix, n);
+        });
+      var Kt = function (e) {
+          if (e._useOldCookie) {
+            var t = e.cookieStorage.get(e._oldCookiename);
+            'object' !== ye(t) || Yt(e, t);
+          } else {
+            var n = e._metadataStorage.load();
+            'object' === ye(n) && Yt(e, n);
+          }
+        },
+        Qt = function (e) {
+          var t = e.cookieStorage.get(e._oldCookiename);
+          'object' === ye(t) && (Yt(e, t), Xt(e));
+        },
+        Yt = function (e, t) {
+          t.deviceId && (e.options.deviceId = t.deviceId),
+            t.userId && (e.options.userId = t.userId),
+            null !== t.optOut && void 0 !== t.optOut && !1 !== t.optOut && (e.options.optOut = t.optOut),
+            t.sessionId && (e._sessionId = parseInt(t.sessionId, 10)),
+            t.lastEventTime && (e._lastEventTime = parseInt(t.lastEventTime, 10)),
+            t.eventId && (e._eventId = parseInt(t.eventId, 10)),
+            t.identifyId && (e._identifyId = parseInt(t.identifyId, 10)),
+            t.sequenceNumber && (e._sequenceNumber = parseInt(t.sequenceNumber, 10));
+        },
+        Xt = function (e) {
+          var t = {
+            deviceId: e.options.deviceId,
+            userId: e.options.userId,
+            optOut: e.options.optOut,
+            sessionId: e._sessionId,
+            lastEventTime: e._lastEventTime,
+            eventId: e._eventId,
+            identifyId: e._identifyId,
+            sequenceNumber: e._sequenceNumber
+          };
+          e._useOldCookie ? e.cookieStorage.set(e.options.cookieName + e._storageSuffix, t) : e._metadataStorage.save(t);
+        };
+      (Gt.prototype._initUtmData = function (e, t) {
+        (e = e || this._getUrlParams()), (t = t || this.cookieStorage.get('__utmz'));
+        var n = wt(t, e);
+        return Jt(this, n), n;
+      }),
+        (Gt.prototype._unsetUTMParams = function () {
+          var e = new Ot();
+          e.unset(de.REFERRER),
+            e.unset(de.REFERRING_DOMAIN),
+            e.unset(de.UTM_SOURCE),
+            e.unset(de.UTM_MEDIUM),
+            e.unset(de.UTM_CAMPAIGN),
+            e.unset(de.UTM_TERM),
+            e.unset(de.UTM_CONTENT),
+            this.identify(e);
+        });
+      var Jt = function (e, t) {
+        if ('object' === ye(t) && 0 !== Object.keys(t).length) {
+          var n = new Ot();
+          for (var r in t) Object.prototype.hasOwnProperty.call(t, r) && (n.setOnce('initial_' + r, t[r]), n.set(r, t[r]));
+          e.identify(n);
+        }
+      };
+      (Gt.prototype._getReferrer = function () {
+        var e = this._getReferrerFromUrlParam(this._getUrlParams());
+        return e || ('undefined' !== typeof document ? document.referrer : '');
+      }),
+        (Gt.prototype._getUrlParams = function () {
+          return ge.location.search;
+        }),
+        (Gt.prototype._saveGclid = function (e) {
+          var t = qe.getQueryParam('gclid', e);
+          if (!qe.isEmptyString(t)) {
+            var n = { gclid: t };
+            return Jt(this, n), n;
+          }
+        }),
+        (Gt.prototype._saveFbclid = function (e) {
+          var t = qe.getQueryParam('fbclid', e);
+          if (!qe.isEmptyString(t)) {
+            var n = { fbclid: t };
+            return Jt(this, n), n;
+          }
+        }),
+        (Gt.prototype._getDeviceIdFromUrlParam = function (e) {
+          return qe.getQueryParam(de.AMP_DEVICE_ID_PARAM, e);
+        }),
+        (Gt.prototype._getReferrerFromUrlParam = function (e) {
+          return qe.getQueryParam(de.AMP_REFERRER_PARAM, e);
+        }),
+        (Gt.prototype._getReferringDomain = function (e) {
+          if (qe.isEmptyString(e)) return null;
+          var t = e.split('/');
+          return t.length >= 3 ? t[2] : null;
+        }),
+        (Gt.prototype._saveReferrer = function (e) {
+          if (!qe.isEmptyString(e)) {
+            var t = { referrer: e, referring_domain: this._getReferringDomain(e) };
+            return Jt(this, t), t;
+          }
+        }),
+        (Gt.prototype.saveEvents = function () {
+          try {
+            var e = JSON.stringify(
+              this._unsentEvents.map(function (e) {
+                var t = e.event;
+                return t;
+              })
+            );
+            this._setInStorage(gt, this.options.unsentKey, e);
+          } catch (fn) {}
+          try {
+            var t = JSON.stringify(
+              this._unsentIdentifys.map(function (e) {
+                return e.event;
+              })
+            );
+            this._setInStorage(gt, this.options.unsentIdentifyKey, t);
+          } catch (fn) {}
+        }),
+        (Gt.prototype.setDomain = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setDomain'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (qe.validateInput(e, 'domain', 'string'))
+            try {
+              this.cookieStorage.options({
+                expirationDays: this.options.cookieExpiration,
+                secure: this.options.secureCookie,
+                domain: e,
+                sameSite: this.options.sameSiteCookie
+              }),
+                (this.options.domain = this.cookieStorage.options().domain),
+                Kt(this),
+                Xt(this);
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+        }),
+        (Gt.prototype.setUserId = function (e) {
+          var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+          if (qe.validateInput(t, 'startNewSession', 'boolean')) {
+            if (this._shouldDeferCall()) return this._q.push(['setUserId'].concat(Array.prototype.slice.call(arguments, 0)));
+            try {
+              (this.options.userId = (void 0 !== e && null !== e && '' + e) || null),
+                t &&
+                  (this.options.unsetParamsReferrerOnNewSession && this._unsetUTMParams(),
+                  (this._newSession = !0),
+                  (this._sessionId = new Date().getTime()),
+                  this._runNewSessionStartCallbacks(),
+                  this.options.saveParamsReferrerOncePerSession && this._trackParamsAndReferrer()),
+                Xt(this),
+                this._connector && this._connector.identityStore.editIdentity().setUserId(this.options.userId).commit();
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+          }
+        }),
+        (Gt.prototype.setGroup = function (e, t) {
+          if (this._shouldDeferCall()) return this._q.push(['setGroup'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (this._apiKeySet('setGroup()') && qe.validateInput(e, 'groupType', 'string') && !qe.isEmptyString(e)) {
+            var n = {};
+            n[e] = t;
+            var r = new Ot().set(e, t);
+            this._logEvent(de.IDENTIFY_EVENT, null, null, r.userPropertiesOperations, n, null, null, null);
+          }
+        }),
+        (Gt.prototype.setOptOut = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setOptOut'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (qe.validateInput(e, 'enable', 'boolean'))
+            try {
+              (this.options.optOut = e), Xt(this);
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+        }),
+        (Gt.prototype.setSessionId = function (e) {
+          if (qe.validateInput(e, 'sessionId', 'number'))
+            try {
+              (this._sessionId = e), Xt(this);
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+        }),
+        (Gt.prototype.resetSessionId = function () {
+          this.setSessionId(new Date().getTime());
+        }),
+        (Gt.prototype.regenerateDeviceId = function () {
+          if (this._shouldDeferCall()) return this._q.push(['regenerateDeviceId'].concat(Array.prototype.slice.call(arguments, 0)));
+          this.setDeviceId(Je());
+        }),
+        (Gt.prototype.setDeviceId = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setDeviceId'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (qe.validateDeviceId(e))
+            try {
+              qe.isEmptyString(e) ||
+                ((this.options.deviceId = '' + e),
+                Xt(this),
+                this._connector && this._connector.identityStore.editIdentity().setDeviceId(this.options.deviceId).commit());
+            } catch (fn) {
+              qe.log.error(fn);
+            }
+        }),
+        (Gt.prototype.setTransport = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setTransport'].concat(Array.prototype.slice.call(arguments, 0)));
+          qe.validateTransport(e) && (this.options.transport = e);
+        }),
+        (Gt.prototype.setUserProperties = function (e) {
+          if (this._shouldDeferCall()) return this._q.push(['setUserProperties'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (this._apiKeySet('setUserProperties()') && qe.validateInput(e, 'userProperties', 'object')) {
+            var t = qe.truncate(qe.validateProperties(e));
+            if (0 !== Object.keys(t).length) {
+              var n = new Ot();
+              for (var r in t) Object.prototype.hasOwnProperty.call(t, r) && n.set(r, t[r]);
+              this.identify(n);
+            }
+          }
+        }),
+        (Gt.prototype.clearUserProperties = function () {
+          if (this._shouldDeferCall()) return this._q.push(['clearUserProperties'].concat(Array.prototype.slice.call(arguments, 0)));
+          if (this._apiKeySet('clearUserProperties()')) {
+            var e = new Ot();
+            e.clearAll(), this.identify(e);
+          }
+        });
+      var Zt = function (e, t) {
+        for (var n = 0; n < t._q.length; n++) {
+          var r = e[t._q[n][0]];
+          'function' === ye(r) && r.apply(e, t._q[n].slice(1));
+        }
+        return e;
+      };
+      (Gt.prototype.identify = function (e, t, n, r) {
+        if (this._shouldDeferCall()) return this._q.push(['identify'].concat(Array.prototype.slice.call(arguments, 0)));
+        if (this._apiKeySet('identify()'))
+          if (('object' === ye(e) && Object.prototype.hasOwnProperty.call(e, '_q') && (e = Zt(new Ot(), e)), e instanceof Ot)) {

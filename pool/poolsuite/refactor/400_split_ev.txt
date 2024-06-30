@@ -1,0 +1,400 @@
+              e.Ec.forEach(e => {
+                e.forEach(e => {
+                  e.reject(new li(ci.CANCELLED, t));
+                });
+              }),
+                e.Ec.clear();
+            })(n, "'waitForPendingWrites' promise is rejected due to a user change."),
+            n.sharedClientState.handleUserChange(t, e.removedBatchIds, e.addedBatchIds),
+            await Id(n, e.er);
+        }
+      }
+      function Sd(e, t) {
+        const n = ui(e),
+          r = n.yc.get(t);
+        if (r && r.fc) return La().add(r.key);
+        {
+          let e = La();
+          const r = n._c.get(t);
+          if (!r) return e;
+          for (const t of r) {
+            const r = n.wc.get(t);
+            e = e.unionWith(r.view.nc);
+          }
+          return e;
+        }
+      }
+      async function Td(e, t) {
+        const n = ui(e),
+          r = await xh(n.localStore, t.query, !0),
+          i = t.view.hc(r);
+        return n.isPrimaryClient && wd(n, t.targetId, i.cc), i;
+      }
+      async function Ad(e, t) {
+        const n = ui(e);
+        return kh(n.localStore, t).then(e => Id(n, e));
+      }
+      async function xd(e, t, n, r) {
+        const i = ui(e),
+          o = await (function (e, t) {
+            const n = ui(e),
+              r = ui(n.mutationQueue);
+            return n.persistence.runTransaction('Lookup mutation documents', 'readonly', e =>
+              r.Sn(e, t).next(t => (t ? n.localDocuments.getDocuments(e, t) : zi.resolve(null)))
+            );
+          })(i.localStore, t);
+        null !== o
+          ? ('pending' === n
+              ? await Ef(i.remoteStore)
+              : 'acknowledged' === n || 'rejected' === n
+                ? (md(i, t, r || null),
+                  gd(i, t),
+                  (function (e, t) {
+                    ui(ui(e).mutationQueue).Cn(t);
+                  })(i.localStore, t))
+                : oi(),
+            await Id(i, o))
+          : ti('SyncEngine', 'Cannot apply mutation batch with id: ' + t);
+      }
+      async function Cd(e, t) {
+        const n = ui(e);
+        if ((Dd(n), Ld(n), !0 === t && !0 !== n.vc)) {
+          const e = n.sharedClientState.getAllActiveQueryTargets(),
+            t = await kd(n, e.toArray());
+          (n.vc = !0), await Pf(n.remoteStore, !0);
+          for (const r of t) lf(n.remoteStore, r);
+        } else if (!1 === t && !1 !== n.vc) {
+          const e = [];
+          let t = Promise.resolve();
+          n._c.forEach((r, i) => {
+            n.sharedClientState.isLocalQueryTarget(i) ? e.push(i) : (t = t.then(() => (vd(n, i), Ah(n.localStore, i, !0)))), hf(n.remoteStore, i);
+          }),
+            await t,
+            await kd(n, e),
+            (function (e) {
+              const t = ui(e);
+              t.yc.forEach((e, n) => {
+                hf(t.remoteStore, n);
+              }),
+                t.Ic.Ts(),
+                (t.yc = new Map()),
+                (t.gc = new Uo(Ni.comparator));
+            })(n),
+            (n.vc = !1),
+            await Pf(n.remoteStore, !1);
+        }
+      }
+      async function kd(e, t, n) {
+        const r = ui(e),
+          i = [],
+          o = [];
+        for (const s of t) {
+          let e;
+          const t = r._c.get(s);
+          if (t && 0 !== t.length) {
+            e = await Th(r.localStore, pa(t[0]));
+            for (const e of t) {
+              const t = r.wc.get(e),
+                n = await Td(r, t);
+              n.snapshot && o.push(n.snapshot);
+            }
+          } else {
+            const t = await Ch(r.localStore, s);
+            (e = await Th(r.localStore, t)), await sd(r, Od(t), s, !1, e.resumeToken);
+          }
+          i.push(e);
+        }
+        return r.dc.nu(o), i;
+      }
+      function Od(e) {
+        return aa(e.path, e.collectionGroup, e.orderBy, e.filters, e.limit, 'F', e.startAt, e.endAt);
+      }
+      function Nd(e) {
+        const t = ui(e);
+        return ui(ui(t.localStore).persistence).$i();
+      }
+      async function Rd(e, t, n, r) {
+        const i = ui(e);
+        if (i.vc) return void ti('SyncEngine', 'Ignoring unexpected query state notification.');
+        const o = i._c.get(t);
+        if (o && o.length > 0)
+          switch (n) {
+            case 'current':
+            case 'not-current': {
+              const e = await kh(i.localStore, _a(o[0])),
+                r = Pu.createSynthesizedRemoteEventForCurrentChange(t, 'current' === n, Ko.EMPTY_BYTE_STRING);
+              await Id(i, e, r);
+              break;
+            }
+            case 'rejected':
+              await Ah(i.localStore, t, !0), vd(i, t, r);
+              break;
+            default:
+              oi();
+          }
+      }
+      async function Pd(e, t, n) {
+        const r = Dd(e);
+        if (r.vc) {
+          for (const e of t) {
+            if (r._c.has(e)) {
+              ti('SyncEngine', 'Adding an already active target ' + e);
+              continue;
+            }
+            const t = await Ch(r.localStore, e),
+              n = await Th(r.localStore, t);
+            await sd(r, Od(t), n.targetId, !1, n.resumeToken), lf(r.remoteStore, n);
+          }
+          for (const e of n)
+            r._c.has(e) &&
+              (await Ah(r.localStore, e, !1)
+                .then(() => {
+                  hf(r.remoteStore, e), vd(r, e);
+                })
+                .catch(qi));
+        }
+      }
+      function Dd(e) {
+        const t = ui(e);
+        return (
+          (t.remoteStore.remoteSyncer.applyRemoteEvent = cd.bind(null, t)),
+          (t.remoteStore.remoteSyncer.getRemoteKeysForTarget = Sd.bind(null, t)),
+          (t.remoteStore.remoteSyncer.rejectListen = hd.bind(null, t)),
+          (t.dc.nu = Gf.bind(null, t.eventManager)),
+          (t.dc.Pc = Wf.bind(null, t.eventManager)),
+          t
+        );
+      }
+      function Ld(e) {
+        const t = ui(e);
+        return (
+          (t.remoteStore.remoteSyncer.applySuccessfulWrite = fd.bind(null, t)), (t.remoteStore.remoteSyncer.rejectFailedWrite = dd.bind(null, t)), t
+        );
+      }
+      function jd(e, t, n) {
+        const r = ui(e);
+        (async function (e, t, n) {
+          try {
+            const r = await t.getMetadata();
+            if (
+              await (function (e, t) {
+                const n = ui(e),
+                  r = Yu(t.createTime);
+                return n.persistence
+                  .runTransaction('hasNewerBundle', 'readonly', e => n.qs.getBundleMetadata(e, t.id))
+                  .then(e => !!e && e.createTime.compareTo(r) >= 0);
+              })(e.localStore, r)
+            )
+              return (
+                await t.close(),
+                n._completeWith(
+                  (function (e) {
+                    return {
+                      taskState: 'Success',
+                      documentsLoaded: e.totalDocuments,
+                      bytesLoaded: e.totalBytes,
+                      totalDocuments: e.totalDocuments,
+                      totalBytes: e.totalBytes
+                    };
+                  })(r)
+                ),
+                Promise.resolve(new Set())
+              );
+            n._updateProgress(Jf(r));
+            const i = new Xf(r, e.localStore, t.serializer);
+            let o = await t.bc();
+            for (; o; ) {
+              const e = await i.zu(o);
+              e && n._updateProgress(e), (o = await t.bc());
+            }
+            const s = await i.complete();
+            return (
+              await Id(e, s.Ju, void 0),
+              await (function (e, t) {
+                const n = ui(e);
+                return n.persistence.runTransaction('Save bundle', 'readwrite', e => n.qs.saveBundleMetadata(e, t));
+              })(e.localStore, r),
+              n._completeWith(s.progress),
+              Promise.resolve(s.Hu)
+            );
+          } catch (e) {
+            return ri('SyncEngine', `Loading bundle failed with ${e}`), n._failWith(e), Promise.resolve(new Set());
+          }
+        })(
+          /**
+           * @license
+           * Copyright 2020 Google LLC
+           *
+           * Licensed under the Apache License, Version 2.0 (the "License");
+           * you may not use this file except in compliance with the License.
+           * You may obtain a copy of the License at
+           *
+           *   http://www.apache.org/licenses/LICENSE-2.0
+           *
+           * Unless required by applicable law or agreed to in writing, software
+           * distributed under the License is distributed on an "AS IS" BASIS,
+           * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           * See the License for the specific language governing permissions and
+           * limitations under the License.
+           */ r,
+          t,
+          n
+        ).then(e => {
+          r.sharedClientState.notifyBundleLoaded(e);
+        });
+      }
+      class Md {
+        constructor() {
+          this.synchronizeTabs = !1;
+        }
+        async initialize(e) {
+          (this.serializer = Zh(e.databaseInfo.databaseId)),
+            (this.sharedClientState = this.createSharedClientState(e)),
+            (this.persistence = this.createPersistence(e)),
+            await this.persistence.start(),
+            (this.localStore = this.createLocalStore(e)),
+            (this.gcScheduler = this.createGarbageCollectionScheduler(e, this.localStore)),
+            (this.indexBackfillerScheduler = this.createIndexBackfillerScheduler(e, this.localStore));
+        }
+        createGarbageCollectionScheduler(e, t) {
+          return null;
+        }
+        createIndexBackfillerScheduler(e, t) {
+          return null;
+        }
+        createLocalStore(e) {
+          return yh(this.persistence, new mh(), e.initialUser, this.serializer);
+        }
+        createPersistence(e) {
+          return new oh(ah.zs, this.serializer);
+        }
+        createSharedClientState(e) {
+          return new $h();
+        }
+        async terminate() {
+          this.gcScheduler && this.gcScheduler.stop(), await this.sharedClientState.shutdown(), await this.persistence.shutdown();
+        }
+      }
+      class Fd extends Md {
+        constructor(e, t, n) {
+          super(), (this.Vc = e), (this.cacheSizeBytes = t), (this.forceOwnership = n), (this.synchronizeTabs = !1);
+        }
+        async initialize(e) {
+          await super.initialize(e),
+            await this.Vc.initialize(this, e),
+            await Ld(this.Vc.syncEngine),
+            await Ef(this.Vc.remoteStore),
+            await this.persistence.Ii(
+              () => (
+                this.gcScheduler && !this.gcScheduler.started && this.gcScheduler.start(),
+                this.indexBackfillerScheduler && !this.indexBackfillerScheduler.started && this.indexBackfillerScheduler.start(),
+                Promise.resolve()
+              )
+            );
+        }
+        createLocalStore(e) {
+          return yh(this.persistence, new mh(), e.initialUser, this.serializer);
+        }
+        createGarbageCollectionScheduler(e, t) {
+          const n = this.persistence.referenceDelegate.garbageCollector;
+          return new Ll(n, e.asyncQueue, t);
+        }
+        createIndexBackfillerScheduler(e, t) {
+          const n = new to(t, this.persistence);
+          return new eo(e.asyncQueue, n);
+        }
+        createPersistence(e) {
+          const t = ph(e.databaseInfo.databaseId, e.databaseInfo.persistenceKey),
+            n = void 0 !== this.cacheSizeBytes ? bl.withCacheSize(this.cacheSizeBytes) : bl.DEFAULT;
+          return new hh(
+            this.synchronizeTabs,
+            t,
+            e.clientId,
+            n,
+            e.asyncQueue,
+            Xh(),
+            Jh(),
+            this.serializer,
+            this.sharedClientState,
+            !!this.forceOwnership
+          );
+        }
+        createSharedClientState(e) {
+          return new $h();
+        }
+      }
+      class Ud extends Fd {
+        constructor(e, t) {
+          super(e, t, !1), (this.Vc = e), (this.cacheSizeBytes = t), (this.synchronizeTabs = !0);
+        }
+        async initialize(e) {
+          await super.initialize(e);
+          const t = this.Vc.syncEngine;
+          this.sharedClientState instanceof Bh &&
+            ((this.sharedClientState.syncEngine = {
+              jr: xd.bind(null, t),
+              zr: Rd.bind(null, t),
+              Wr: Pd.bind(null, t),
+              $i: Nd.bind(null, t),
+              Qr: Ad.bind(null, t)
+            }),
+            await this.sharedClientState.start()),
+            await this.persistence.Ii(async e => {
+              await Cd(this.Vc.syncEngine, e),
+                this.gcScheduler && (e && !this.gcScheduler.started ? this.gcScheduler.start() : e || this.gcScheduler.stop()),
+                this.indexBackfillerScheduler &&
+                  (e && !this.indexBackfillerScheduler.started ? this.indexBackfillerScheduler.start() : e || this.indexBackfillerScheduler.stop());
+            });
+        }
+        createSharedClientState(e) {
+          const t = Xh();
+          if (!Bh.D(t)) throw new li(ci.UNIMPLEMENTED, 'IndexedDB persistence is only available on platforms that support LocalStorage.');
+          const n = ph(e.databaseInfo.databaseId, e.databaseInfo.persistenceKey);
+          return new Bh(t, e.asyncQueue, n, e.clientId, e.initialUser);
+        }
+      }
+      class Vd {
+        async initialize(e, t) {
+          this.localStore ||
+            ((this.localStore = e.localStore),
+            (this.sharedClientState = e.sharedClientState),
+            (this.datastore = this.createDatastore(t)),
+            (this.remoteStore = this.createRemoteStore(t)),
+            (this.eventManager = this.createEventManager(t)),
+            (this.syncEngine = this.createSyncEngine(t, !e.synchronizeTabs)),
+            (this.sharedClientState.onlineStateHandler = e => ld(this.syncEngine, e, 1)),
+            (this.remoteStore.remoteSyncer.handleCredentialChange = Ed.bind(null, this.syncEngine)),
+            await Pf(this.remoteStore, this.syncEngine.isPrimaryClient));
+        }
+        createEventManager(e) {
+          return new $f();
+        }
+        createDatastore(e) {
+          const t = Zh(e.databaseInfo.databaseId),
+            n = ((r = e.databaseInfo), new Yh(r));
+          var r;
+          return (function (e, t, n, r) {
+            return new of(e, t, n, r);
+          })(e.authCredentials, e.appCheckCredentials, n, t);
+        }
+        createRemoteStore(e) {
+          return (
+            (t = this.localStore),
+            (n = this.datastore),
+            (r = e.asyncQueue),
+            (i = e => ld(this.syncEngine, e, 0)),
+            (o = zh.D() ? new zh() : new qh()),
+            new af(t, n, r, i, o)
+          );
+          var t, n, r, i, o;
+        }
+        createSyncEngine(e, t) {
+          return (function (e, t, n, r, i, o, s) {
+            const a = new id(e, t, n, r, i, o);
+            return s && (a.vc = !0), a;
+          })(this.localStore, this.remoteStore, this.eventManager, this.sharedClientState, e.initialUser, e.maxConcurrentLimboResolutions, t);
+        }
+        terminate() {
+          return (async function (e) {
+            const t = ui(e);
+            ti('RemoteStore', 'RemoteStore shutting down.'), t.vu.add(5), await cf(t), t.Pu.shutdown(), t.bu.set('Unknown');

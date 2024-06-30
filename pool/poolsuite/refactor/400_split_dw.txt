@@ -1,0 +1,400 @@
+        copy(e, t, n, r, i) {
+          return new Bo(
+            null != e ? e : this.key,
+            null != t ? t : this.value,
+            null != n ? n : this.color,
+            null != r ? r : this.left,
+            null != i ? i : this.right
+          );
+        }
+        isEmpty() {
+          return !1;
+        }
+        inorderTraversal(e) {
+          return this.left.inorderTraversal(e) || e(this.key, this.value) || this.right.inorderTraversal(e);
+        }
+        reverseTraversal(e) {
+          return this.right.reverseTraversal(e) || e(this.key, this.value) || this.left.reverseTraversal(e);
+        }
+        min() {
+          return this.left.isEmpty() ? this : this.left.min();
+        }
+        minKey() {
+          return this.min().key;
+        }
+        maxKey() {
+          return this.right.isEmpty() ? this.key : this.right.maxKey();
+        }
+        insert(e, t, n) {
+          let r = this;
+          const i = n(e, r.key);
+          return (
+            (r =
+              i < 0
+                ? r.copy(null, null, null, r.left.insert(e, t, n), null)
+                : 0 === i
+                  ? r.copy(null, t, null, null, null)
+                  : r.copy(null, null, null, null, r.right.insert(e, t, n))),
+            r.fixUp()
+          );
+        }
+        removeMin() {
+          if (this.left.isEmpty()) return Bo.EMPTY;
+          let e = this;
+          return e.left.isRed() || e.left.left.isRed() || (e = e.moveRedLeft()), (e = e.copy(null, null, null, e.left.removeMin(), null)), e.fixUp();
+        }
+        remove(e, t) {
+          let n,
+            r = this;
+          if (t(e, r.key) < 0)
+            r.left.isEmpty() || r.left.isRed() || r.left.left.isRed() || (r = r.moveRedLeft()),
+              (r = r.copy(null, null, null, r.left.remove(e, t), null));
+          else {
+            if (
+              (r.left.isRed() && (r = r.rotateRight()),
+              r.right.isEmpty() || r.right.isRed() || r.right.left.isRed() || (r = r.moveRedRight()),
+              0 === t(e, r.key))
+            ) {
+              if (r.right.isEmpty()) return Bo.EMPTY;
+              (n = r.right.min()), (r = r.copy(n.key, n.value, null, null, r.right.removeMin()));
+            }
+            r = r.copy(null, null, null, null, r.right.remove(e, t));
+          }
+          return r.fixUp();
+        }
+        isRed() {
+          return this.color;
+        }
+        fixUp() {
+          let e = this;
+          return (
+            e.right.isRed() && !e.left.isRed() && (e = e.rotateLeft()),
+            e.left.isRed() && e.left.left.isRed() && (e = e.rotateRight()),
+            e.left.isRed() && e.right.isRed() && (e = e.colorFlip()),
+            e
+          );
+        }
+        moveRedLeft() {
+          let e = this.colorFlip();
+          return e.right.left.isRed() && ((e = e.copy(null, null, null, null, e.right.rotateRight())), (e = e.rotateLeft()), (e = e.colorFlip())), e;
+        }
+        moveRedRight() {
+          let e = this.colorFlip();
+          return e.left.left.isRed() && ((e = e.rotateRight()), (e = e.colorFlip())), e;
+        }
+        rotateLeft() {
+          const e = this.copy(null, null, Bo.RED, null, this.right.left);
+          return this.right.copy(null, null, this.color, e, null);
+        }
+        rotateRight() {
+          const e = this.copy(null, null, Bo.RED, this.left.right, null);
+          return this.left.copy(null, null, this.color, null, e);
+        }
+        colorFlip() {
+          const e = this.left.copy(null, null, !this.left.color, null, null),
+            t = this.right.copy(null, null, !this.right.color, null, null);
+          return this.copy(null, null, !this.color, e, t);
+        }
+        checkMaxDepth() {
+          const e = this.check();
+          return Math.pow(2, e) <= this.size + 1;
+        }
+        check() {
+          if (this.isRed() && this.left.isRed()) throw oi();
+          if (this.right.isRed()) throw oi();
+          const e = this.left.check();
+          if (e !== this.right.check()) throw oi();
+          return e + (this.isRed() ? 0 : 1);
+        }
+      }
+      (Bo.EMPTY = null),
+        (Bo.RED = !0),
+        (Bo.BLACK = !1),
+        (Bo.EMPTY = new (class {
+          constructor() {
+            this.size = 0;
+          }
+          get key() {
+            throw oi();
+          }
+          get value() {
+            throw oi();
+          }
+          get color() {
+            throw oi();
+          }
+          get left() {
+            throw oi();
+          }
+          get right() {
+            throw oi();
+          }
+          copy(e, t, n, r, i) {
+            return this;
+          }
+          insert(e, t, n) {
+            return new Bo(e, t);
+          }
+          remove(e, t) {
+            return this;
+          }
+          isEmpty() {
+            return !0;
+          }
+          inorderTraversal(e) {
+            return !1;
+          }
+          reverseTraversal(e) {
+            return !1;
+          }
+          minKey() {
+            return null;
+          }
+          maxKey() {
+            return null;
+          }
+          isRed() {
+            return !1;
+          }
+          checkMaxDepth() {
+            return !0;
+          }
+          check() {
+            return 0;
+          }
+        })());
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      class $o {
+        constructor(e) {
+          (this.comparator = e), (this.data = new Uo(this.comparator));
+        }
+        has(e) {
+          return null !== this.data.get(e);
+        }
+        first() {
+          return this.data.minKey();
+        }
+        last() {
+          return this.data.maxKey();
+        }
+        get size() {
+          return this.data.size;
+        }
+        indexOf(e) {
+          return this.data.indexOf(e);
+        }
+        forEach(e) {
+          this.data.inorderTraversal((t, n) => (e(t), !1));
+        }
+        forEachInRange(e, t) {
+          const n = this.data.getIteratorFrom(e[0]);
+          for (; n.hasNext(); ) {
+            const r = n.getNext();
+            if (this.comparator(r.key, e[1]) >= 0) return;
+            t(r.key);
+          }
+        }
+        forEachWhile(e, t) {
+          let n;
+          for (n = void 0 !== t ? this.data.getIteratorFrom(t) : this.data.getIterator(); n.hasNext(); ) if (!e(n.getNext().key)) return;
+        }
+        firstAfterOrEqual(e) {
+          const t = this.data.getIteratorFrom(e);
+          return t.hasNext() ? t.getNext().key : null;
+        }
+        getIterator() {
+          return new qo(this.data.getIterator());
+        }
+        getIteratorFrom(e) {
+          return new qo(this.data.getIteratorFrom(e));
+        }
+        add(e) {
+          return this.copy(this.data.remove(e).insert(e, !0));
+        }
+        delete(e) {
+          return this.has(e) ? this.copy(this.data.remove(e)) : this;
+        }
+        isEmpty() {
+          return this.data.isEmpty();
+        }
+        unionWith(e) {
+          let t = this;
+          return (
+            t.size < e.size && ((t = e), (e = this)),
+            e.forEach(e => {
+              t = t.add(e);
+            }),
+            t
+          );
+        }
+        isEqual(e) {
+          if (!(e instanceof $o)) return !1;
+          if (this.size !== e.size) return !1;
+          const t = this.data.getIterator(),
+            n = e.data.getIterator();
+          for (; t.hasNext(); ) {
+            const e = t.getNext().key,
+              r = n.getNext().key;
+            if (0 !== this.comparator(e, r)) return !1;
+          }
+          return !0;
+        }
+        toArray() {
+          const e = [];
+          return (
+            this.forEach(t => {
+              e.push(t);
+            }),
+            e
+          );
+        }
+        toString() {
+          const e = [];
+          return this.forEach(t => e.push(t)), 'SortedSet(' + e.toString() + ')';
+        }
+        copy(e) {
+          const t = new $o(this.comparator);
+          return (t.data = e), t;
+        }
+      }
+      class qo {
+        constructor(e) {
+          this.iter = e;
+        }
+        getNext() {
+          return this.iter.getNext().key;
+        }
+        hasNext() {
+          return this.iter.hasNext();
+        }
+      }
+      function zo(e) {
+        return e.hasNext() ? e.getNext() : void 0;
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Go {
+        constructor(e) {
+          (this.fields = e), e.sort(Oi.comparator);
+        }
+        static empty() {
+          return new Go([]);
+        }
+        unionWith(e) {
+          let t = new $o(Oi.comparator);
+          for (const n of this.fields) t = t.add(n);
+          for (const n of e) t = t.add(n);
+          return new Go(t.toArray());
+        }
+        covers(e) {
+          for (const t of this.fields) if (t.isPrefixOf(e)) return !0;
+          return !1;
+        }
+        isEqual(e) {
+          return Ei(this.fields, e.fields, (e, t) => e.isEqual(t));
+        }
+      }
+      /**
+       * @license
+       * Copyright 2023 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Wo extends Error {
+        constructor() {
+          super(...arguments), (this.name = 'Base64DecodeError');
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function Ho() {
+        return 'undefined' != typeof atob;
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Ko {
+        constructor(e) {
+          this.binaryString = e;
+        }
+        static fromBase64String(e) {
+          const t = (function (e) {
+            try {
+              return atob(e);
+            } catch (e) {
+              throw 'undefined' != typeof DOMException && e instanceof DOMException ? new Wo('Invalid base64 string: ' + e) : e;
+            }
+          })(e);
+          return new Ko(t);
+        }
+        static fromUint8Array(e) {
+          const t = (function (e) {
+            let t = '';
+            for (let n = 0; n < e.length; ++n) t += String.fromCharCode(e[n]);
+            return t;
+          })(e);
+          return new Ko(t);
+        }
+        [Symbol.iterator]() {

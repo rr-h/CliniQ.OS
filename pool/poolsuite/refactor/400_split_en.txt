@@ -1,0 +1,400 @@
+              const i = t.store('remoteDocumentsV14'),
+                o = ((s = n),
+                s.document
+                  ? new Ni(Ci.fromString(s.document.name).popFirst(5))
+                  : s.noDocument
+                    ? Ni.fromSegments(s.noDocument.path)
+                    : s.unknownDocument
+                      ? Ni.fromSegments(s.unknownDocument.path)
+                      : oi()).path.toArray();
+              var s;
+              /**
+               * @license
+               * Copyright 2017 Google LLC
+               *
+               * Licensed under the Apache License, Version 2.0 (the "License");
+               * you may not use this file except in compliance with the License.
+               * You may obtain a copy of the License at
+               *
+               *   http://www.apache.org/licenses/LICENSE-2.0
+               *
+               * Unless required by applicable law or agreed to in writing, software
+               * distributed under the License is distributed on an "AS IS" BASIS,
+               * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+               * See the License for the specific language governing permissions and
+               * limitations under the License.
+               */ const a = {
+                prefixPath: o.slice(0, o.length - 2),
+                collectionGroup: o[o.length - 2],
+                documentId: o[o.length - 1],
+                readTime: n.readTime || [0, 0],
+                unknownDocument: n.unknownDocument,
+                noDocument: n.noDocument,
+                document: n.document,
+                hasCommittedMutations: !!n.hasCommittedMutations
+              };
+              r.push(i.put(a));
+            })
+            .next(() => zi.waitFor(r));
+        }
+        si(e, t) {
+          const n = t.store('mutations'),
+            r = $l(this.serializer),
+            i = new oh(ah.zs, this.serializer.fe);
+          return n.j().next(e => {
+            const n = new Map();
+            return (
+              e.forEach(e => {
+                var t;
+                let r = null !== (t = n.get(e.userId)) && void 0 !== t ? t : La();
+                Rc(this.serializer, e)
+                  .keys()
+                  .forEach(e => (r = r.add(e))),
+                  n.set(e.userId, r);
+              }),
+              zi.forEach(n, (e, n) => {
+                const o = new Yr(n),
+                  s = $c.de(this.serializer, o),
+                  a = i.getIndexManager(o),
+                  u = El.de(o, this.serializer, a, i.referenceDelegate);
+                return new Yl(r, u, s, a).recalculateAndSaveOverlaysForDocumentKeys(new Do(t, no.ct), e).next();
+              })
+            );
+          });
+        }
+      }
+      function ch(e) {
+        e.createObjectStore('targetDocuments', { keyPath: wo }).createIndex('documentTargetsIndex', bo, { unique: !0 }),
+          e.createObjectStore('targets', { keyPath: 'targetId' }).createIndex('queryTargetsIndex', yo, { unique: !0 }),
+          e.createObjectStore('targetGlobal');
+      }
+      const lh =
+        'Failed to obtain exclusive access to the persistence layer. To allow shared access, multi-tab synchronization has to be enabled in all tabs. If you are using `experimentalForceOwningTab:true`, make sure that only one tab has persistence enabled at any given time.';
+      class hh {
+        constructor(e, t, n, r, i, o, s, a, u, c, l = 15) {
+          if (
+            ((this.allowTabSynchronization = e),
+            (this.persistenceKey = t),
+            (this.clientId = n),
+            (this.ii = i),
+            (this.window = o),
+            (this.document = s),
+            (this.ri = u),
+            (this.oi = c),
+            (this.ui = l),
+            (this.Os = null),
+            (this.Fs = !1),
+            (this.isPrimary = !1),
+            (this.networkEnabled = !0),
+            (this.ci = null),
+            (this.inForeground = !1),
+            (this.ai = null),
+            (this.hi = null),
+            (this.li = Number.NEGATIVE_INFINITY),
+            (this.fi = e => Promise.resolve()),
+            !hh.D())
+          )
+            throw new li(
+              ci.UNIMPLEMENTED,
+              'This platform is either missing IndexedDB or is known to have an incomplete implementation. Offline persistence has been disabled.'
+            );
+          (this.referenceDelegate = new Fl(this, r)),
+            (this.di = t + 'main'),
+            (this.serializer = new Ac(a)),
+            (this.wi = new Wi(this.di, this.ui, new uh(this.serializer))),
+            (this.Bs = new kl(this.referenceDelegate, this.serializer)),
+            (this.remoteDocumentCache = $l(this.serializer)),
+            (this.qs = new Uc()),
+            this.window && this.window.localStorage
+              ? (this._i = this.window.localStorage)
+              : ((this._i = null),
+                !1 === c &&
+                  ni(
+                    'IndexedDbPersistence',
+                    'LocalStorage is unavailable. As a result, persistence may not work reliably. In particular enablePersistence() could fail immediately after refreshing the page.'
+                  ));
+        }
+        start() {
+          return this.mi()
+            .then(() => {
+              if (!this.isPrimary && !this.allowTabSynchronization) throw new li(ci.FAILED_PRECONDITION, lh);
+              return (
+                this.gi(),
+                this.yi(),
+                this.pi(),
+                this.runTransaction('getHighestListenSequenceNumber', 'readonly', e => this.Bs.getHighestSequenceNumber(e))
+              );
+            })
+            .then(e => {
+              this.Os = new no(e, this.ri);
+            })
+            .then(() => {
+              this.Fs = !0;
+            })
+            .catch(e => (this.wi && this.wi.close(), Promise.reject(e)));
+        }
+        Ii(e) {
+          return (
+            (this.fi = async t => {
+              if (this.started) return e(t);
+            }),
+            e(this.isPrimary)
+          );
+        }
+        setDatabaseDeletedListener(e) {
+          this.wi.B(async t => {
+            null === t.newVersion && (await e());
+          });
+        }
+        setNetworkEnabled(e) {
+          this.networkEnabled !== e &&
+            ((this.networkEnabled = e),
+            this.ii.enqueueAndForget(async () => {
+              this.started && (await this.mi());
+            }));
+        }
+        mi() {
+          return this.runTransaction('updateClientMetadataAndTryBecomePrimary', 'readwrite', e =>
+            dh(e)
+              .put({ clientId: this.clientId, updateTimeMs: Date.now(), networkEnabled: this.networkEnabled, inForeground: this.inForeground })
+              .next(() => {
+                if (this.isPrimary)
+                  return this.Ti(e).next(e => {
+                    e || ((this.isPrimary = !1), this.ii.enqueueRetryable(() => this.fi(!1)));
+                  });
+              })
+              .next(() => this.Ei(e))
+              .next(t => (this.isPrimary && !t ? this.Ai(e).next(() => !1) : !!t && this.vi(e).next(() => !0)))
+          )
+            .catch(e => {
+              if (Qi(e)) return ti('IndexedDbPersistence', 'Failed to extend owner lease: ', e), this.isPrimary;
+              if (!this.allowTabSynchronization) throw e;
+              return ti('IndexedDbPersistence', 'Releasing owner lease after error during lease refresh', e), !1;
+            })
+            .then(e => {
+              this.isPrimary !== e && this.ii.enqueueRetryable(() => this.fi(e)), (this.isPrimary = e);
+            });
+        }
+        Ti(e) {
+          return fh(e)
+            .get('owner')
+            .next(e => zi.resolve(this.Ri(e)));
+        }
+        Pi(e) {
+          return dh(e).delete(this.clientId);
+        }
+        async bi() {
+          if (this.isPrimary && !this.Vi(this.li, 18e5)) {
+            this.li = Date.now();
+            const e = await this.runTransaction('maybeGarbageCollectMultiClientState', 'readwrite-primary', e => {
+              const t = Lo(e, 'clientMetadata');
+              return t.j().next(e => {
+                const n = this.Si(e, 18e5),
+                  r = e.filter(e => -1 === n.indexOf(e));
+                return zi.forEach(r, e => t.delete(e.clientId)).next(() => r);
+              });
+            }).catch(() => []);
+            if (this._i) for (const t of e) this._i.removeItem(this.Di(t.clientId));
+          }
+        }
+        pi() {
+          this.hi = this.ii.enqueueAfterDelay('client_metadata_refresh', 4e3, () =>
+            this.mi()
+              .then(() => this.bi())
+              .then(() => this.pi())
+          );
+        }
+        Ri(e) {
+          return !!e && e.ownerId === this.clientId;
+        }
+        Ei(e) {
+          return this.oi
+            ? zi.resolve(!0)
+            : fh(e)
+                .get('owner')
+                .next(t => {
+                  if (null !== t && this.Vi(t.leaseTimestampMs, 5e3) && !this.Ci(t.ownerId)) {
+                    if (this.Ri(t) && this.networkEnabled) return !0;
+                    if (!this.Ri(t)) {
+                      if (!t.allowTabSynchronization) throw new li(ci.FAILED_PRECONDITION, lh);
+                      return !1;
+                    }
+                  }
+                  return (
+                    !(!this.networkEnabled || !this.inForeground) ||
+                    dh(e)
+                      .j()
+                      .next(
+                        e =>
+                          void 0 ===
+                          this.Si(e, 5e3).find(e => {
+                            if (this.clientId !== e.clientId) {
+                              const t = !this.networkEnabled && e.networkEnabled,
+                                n = !this.inForeground && e.inForeground,
+                                r = this.networkEnabled === e.networkEnabled;
+                              if (t || (n && r)) return !0;
+                            }
+                            return !1;
+                          })
+                      )
+                  );
+                })
+                .next(e => (this.isPrimary !== e && ti('IndexedDbPersistence', `Client ${e ? 'is' : 'is not'} eligible for a primary lease.`), e));
+        }
+        async shutdown() {
+          (this.Fs = !1),
+            this.xi(),
+            this.hi && (this.hi.cancel(), (this.hi = null)),
+            this.Ni(),
+            this.ki(),
+            await this.wi.runTransaction('shutdown', 'readwrite', ['owner', 'clientMetadata'], e => {
+              const t = new Do(e, no.ct);
+              return this.Ai(t).next(() => this.Pi(t));
+            }),
+            this.wi.close(),
+            this.Mi();
+        }
+        Si(e, t) {
+          return e.filter(e => this.Vi(e.updateTimeMs, t) && !this.Ci(e.clientId));
+        }
+        $i() {
+          return this.runTransaction('getActiveClients', 'readonly', e =>
+            dh(e)
+              .j()
+              .next(e => this.Si(e, 18e5).map(e => e.clientId))
+          );
+        }
+        get started() {
+          return this.Fs;
+        }
+        getMutationQueue(e, t) {
+          return El.de(e, this.serializer, t, this.referenceDelegate);
+        }
+        getTargetCache() {
+          return this.Bs;
+        }
+        getRemoteDocumentCache() {
+          return this.remoteDocumentCache;
+        }
+        getIndexManager(e) {
+          return new dl(e, this.serializer.fe.databaseId);
+        }
+        getDocumentOverlayCache(e) {
+          return $c.de(this.serializer, e);
+        }
+        getBundleCache() {
+          return this.qs;
+        }
+        runTransaction(e, t, n) {
+          ti('IndexedDbPersistence', 'Starting transaction:', e);
+          const r = 'readonly' === t ? 'readonly' : 'readwrite',
+            i = 15 === (o = this.ui) ? Po : 14 === o ? Ro : 13 === o ? No : 12 === o ? Oo : 11 === o ? ko : void oi();
+          var o;
+          let s;
+          return this.wi
+            .runTransaction(
+              e,
+              r,
+              i,
+              r => (
+                (s = new Do(r, this.Os ? this.Os.next() : no.ct)),
+                'readwrite-primary' === t
+                  ? this.Ti(s)
+                      .next(e => !!e || this.Ei(s))
+                      .next(t => {
+                        if (!t)
+                          throw (
+                            (ni(`Failed to obtain primary lease for action '${e}'.`),
+                            (this.isPrimary = !1),
+                            this.ii.enqueueRetryable(() => this.fi(!1)),
+                            new li(ci.FAILED_PRECONDITION, Bi))
+                          );
+                        return n(s);
+                      })
+                      .next(e => this.vi(s).next(() => e))
+                  : this.Oi(s).next(() => n(s))
+              )
+            )
+            .then(e => (s.raiseOnCommittedEvent(), e));
+        }
+        Oi(e) {
+          return fh(e)
+            .get('owner')
+            .next(e => {
+              if (
+                null !== e &&
+                this.Vi(e.leaseTimestampMs, 5e3) &&
+                !this.Ci(e.ownerId) &&
+                !this.Ri(e) &&
+                !(this.oi || (this.allowTabSynchronization && e.allowTabSynchronization))
+              )
+                throw new li(ci.FAILED_PRECONDITION, lh);
+            });
+        }
+        vi(e) {
+          const t = { ownerId: this.clientId, allowTabSynchronization: this.allowTabSynchronization, leaseTimestampMs: Date.now() };
+          return fh(e).put('owner', t);
+        }
+        static D() {
+          return Wi.D();
+        }
+        Ai(e) {
+          const t = fh(e);
+          return t.get('owner').next(e => (this.Ri(e) ? (ti('IndexedDbPersistence', 'Releasing primary lease.'), t.delete('owner')) : zi.resolve()));
+        }
+        Vi(e, t) {
+          const n = Date.now();
+          return !(e < n - t) && (!(e > n) || (ni(`Detected an update time that is in the future: ${e} > ${n}`), !1));
+        }
+        gi() {
+          null !== this.document &&
+            'function' == typeof this.document.addEventListener &&
+            ((this.ai = () => {
+              this.ii.enqueueAndForget(() => ((this.inForeground = 'visible' === this.document.visibilityState), this.mi()));
+            }),
+            this.document.addEventListener('visibilitychange', this.ai),
+            (this.inForeground = 'visible' === this.document.visibilityState));
+        }
+        Ni() {
+          this.ai && (this.document.removeEventListener('visibilitychange', this.ai), (this.ai = null));
+        }
+        yi() {
+          var e;
+          'function' == typeof (null === (e = this.window) || void 0 === e ? void 0 : e.addEventListener) &&
+            ((this.ci = () => {
+              this.xi();
+              const e = /(?:Version|Mobile)\/1[456]/;
+              (0, u.G6)() && (navigator.appVersion.match(e) || navigator.userAgent.match(e)) && this.ii.enterRestrictedMode(!0),
+                this.ii.enqueueAndForget(() => this.shutdown());
+            }),
+            this.window.addEventListener('pagehide', this.ci));
+        }
+        ki() {
+          this.ci && (this.window.removeEventListener('pagehide', this.ci), (this.ci = null));
+        }
+        Ci(e) {
+          var t;
+          try {
+            const n = null !== (null === (t = this._i) || void 0 === t ? void 0 : t.getItem(this.Di(e)));
+            return ti('IndexedDbPersistence', `Client '${e}' ${n ? 'is' : 'is not'} zombied in LocalStorage`), n;
+          } catch (e) {
+            return ni('IndexedDbPersistence', 'Failed to get zombied client id.', e), !1;
+          }
+        }
+        xi() {
+          if (this._i)
+            try {
+              this._i.setItem(this.Di(this.clientId), String(Date.now()));
+            } catch (e) {
+              ni('Failed to set zombie client id.', e);
+            }
+        }
+        Mi() {
+          if (this._i)
+            try {
+              this._i.removeItem(this.Di(this.clientId));
+            } catch (e) {}
+        }
+        Di(e) {
+          return `firestore_zombie_${this.persistenceKey}_${e}`;
+        }

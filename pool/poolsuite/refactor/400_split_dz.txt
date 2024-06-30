@@ -1,0 +1,400 @@
+        }
+        ft(e) {
+          for (const t of this.getFlattenedFilters()) if (e(t)) return t;
+          return null;
+        }
+      }
+      function js(e) {
+        return 'and' === e.op;
+      }
+      function Ms(e) {
+        return 'or' === e.op;
+      }
+      function Fs(e) {
+        return Us(e) && js(e);
+      }
+      function Us(e) {
+        for (const t of e.filters) if (t instanceof Ls) return !1;
+        return !0;
+      }
+      function Vs(e) {
+        if (e instanceof Ds) return e.field.canonicalString() + e.op.toString() + hs(e.value);
+        if (Fs(e)) return e.filters.map(e => Vs(e)).join(',');
+        {
+          const t = e.filters.map(e => Vs(e)).join(',');
+          return `${e.op}(${t})`;
+        }
+      }
+      function Bs(e, t) {
+        return e instanceof Ds
+          ? (function (e, t) {
+              return t instanceof Ds && e.op === t.op && e.field.isEqual(t.field) && as(e.value, t.value);
+            })(e, t)
+          : e instanceof Ls
+            ? (function (e, t) {
+                return (
+                  t instanceof Ls &&
+                  e.op === t.op &&
+                  e.filters.length === t.filters.length &&
+                  e.filters.reduce((e, n, r) => e && Bs(n, t.filters[r]), !0)
+                );
+              })(e, t)
+            : void oi();
+      }
+      function $s(e, t) {
+        const n = e.filters.concat(t);
+        return Ls.create(n, e.op);
+      }
+      function qs(e) {
+        return e instanceof Ds
+          ? (function (e) {
+              return `${e.field.canonicalString()} ${e.op} ${hs(e.value)}`;
+            })(e)
+          : e instanceof Ls
+            ? (function (e) {
+                return e.op.toString() + ' {' + e.getFilters().map(qs).join(' ,') + '}';
+              })(e)
+            : 'Filter';
+      }
+      class zs extends Ds {
+        constructor(e, t, n) {
+          super(e, t, n), (this.key = Ni.fromName(n.referenceValue));
+        }
+        matches(e) {
+          const t = Ni.comparator(e.key, this.key);
+          return this.matchesComparison(t);
+        }
+      }
+      class Gs extends Ds {
+        constructor(e, t) {
+          super(e, 'in', t), (this.keys = Hs('in', t));
+        }
+        matches(e) {
+          return this.keys.some(t => t.isEqual(e.key));
+        }
+      }
+      class Ws extends Ds {
+        constructor(e, t) {
+          super(e, 'not-in', t), (this.keys = Hs('not-in', t));
+        }
+        matches(e) {
+          return !this.keys.some(t => t.isEqual(e.key));
+        }
+      }
+      function Hs(e, t) {
+        var n;
+        return ((null === (n = t.arrayValue) || void 0 === n ? void 0 : n.values) || []).map(e => Ni.fromName(e.referenceValue));
+      }
+      class Ks extends Ds {
+        constructor(e, t) {
+          super(e, 'array-contains', t);
+        }
+        matches(e) {
+          const t = e.data.field(this.field);
+          return gs(t) && us(t.arrayValue, this.value);
+        }
+      }
+      class Qs extends Ds {
+        constructor(e, t) {
+          super(e, 'in', t);
+        }
+        matches(e) {
+          const t = e.data.field(this.field);
+          return null !== t && us(this.value.arrayValue, t);
+        }
+      }
+      class Ys extends Ds {
+        constructor(e, t) {
+          super(e, 'not-in', t);
+        }
+        matches(e) {
+          if (us(this.value.arrayValue, { nullValue: 'NULL_VALUE' })) return !1;
+          const t = e.data.field(this.field);
+          return null !== t && !us(this.value.arrayValue, t);
+        }
+      }
+      class Xs extends Ds {
+        constructor(e, t) {
+          super(e, 'array-contains-any', t);
+        }
+        matches(e) {
+          const t = e.data.field(this.field);
+          return !(!gs(t) || !t.arrayValue.values) && t.arrayValue.values.some(e => us(this.value.arrayValue, e));
+        }
+      }
+      /**
+       * @license
+       * Copyright 2019 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Js {
+        constructor(e, t = null, n = [], r = [], i = null, o = null, s = null) {
+          (this.path = e),
+            (this.collectionGroup = t),
+            (this.orderBy = n),
+            (this.filters = r),
+            (this.limit = i),
+            (this.startAt = o),
+            (this.endAt = s),
+            (this.dt = null);
+        }
+      }
+      function Zs(e, t = null, n = [], r = [], i = null, o = null, s = null) {
+        return new Js(e, t, n, r, i, o, s);
+      }
+      function ea(e) {
+        const t = ui(e);
+        if (null === t.dt) {
+          let e = t.path.canonicalString();
+          null !== t.collectionGroup && (e += '|cg:' + t.collectionGroup),
+            (e += '|f:'),
+            (e += t.filters.map(e => Vs(e)).join(',')),
+            (e += '|ob:'),
+            (e += t.orderBy
+              .map(e =>
+                (function (e) {
+                  return e.field.canonicalString() + e.dir;
+                })(e)
+              )
+              .join(',')),
+            ro(t.limit) || ((e += '|l:'), (e += t.limit)),
+            t.startAt && ((e += '|lb:'), (e += t.startAt.inclusive ? 'b:' : 'a:'), (e += t.startAt.position.map(e => hs(e)).join(','))),
+            t.endAt && ((e += '|ub:'), (e += t.endAt.inclusive ? 'a:' : 'b:'), (e += t.endAt.position.map(e => hs(e)).join(','))),
+            (t.dt = e);
+        }
+        return t.dt;
+      }
+      function ta(e, t) {
+        if (e.limit !== t.limit) return !1;
+        if (e.orderBy.length !== t.orderBy.length) return !1;
+        for (let n = 0; n < e.orderBy.length; n++) if (!Rs(e.orderBy[n], t.orderBy[n])) return !1;
+        if (e.filters.length !== t.filters.length) return !1;
+        for (let n = 0; n < e.filters.length; n++) if (!Bs(e.filters[n], t.filters[n])) return !1;
+        return e.collectionGroup === t.collectionGroup && !!e.path.isEqual(t.path) && !!Os(e.startAt, t.startAt) && Os(e.endAt, t.endAt);
+      }
+      function na(e) {
+        return Ni.isDocumentKey(e.path) && null === e.collectionGroup && 0 === e.filters.length;
+      }
+      function ra(e, t) {
+        return e.filters.filter(e => e instanceof Ds && e.field.isEqual(t));
+      }
+      function ia(e, t, n) {
+        let r = os,
+          i = !0;
+        for (const o of ra(e, t)) {
+          let e = os,
+            t = !0;
+          switch (o.op) {
+            case '<':
+            case '<=':
+              e = _s(o.value);
+              break;
+            case '==':
+            case 'in':
+            case '>=':
+              e = o.value;
+              break;
+            case '>':
+              (e = o.value), (t = !1);
+              break;
+            case '!=':
+            case 'not-in':
+              e = os;
+          }
+          Es({ value: r, inclusive: i }, { value: e, inclusive: t }) < 0 && ((r = e), (i = t));
+        }
+        if (null !== n)
+          for (let o = 0; o < e.orderBy.length; ++o)
+            if (e.orderBy[o].field.isEqual(t)) {
+              const e = n.position[o];
+              Es({ value: r, inclusive: i }, { value: e, inclusive: n.inclusive }) < 0 && ((r = e), (i = n.inclusive));
+              break;
+            }
+        return { value: r, inclusive: i };
+      }
+      function oa(e, t, n) {
+        let r = is,
+          i = !0;
+        for (const o of ra(e, t)) {
+          let e = is,
+            t = !0;
+          switch (o.op) {
+            case '>=':
+            case '>':
+              (e = Is(o.value)), (t = !1);
+              break;
+            case '==':
+            case 'in':
+            case '<=':
+              e = o.value;
+              break;
+            case '<':
+              (e = o.value), (t = !1);
+              break;
+            case '!=':
+            case 'not-in':
+              e = is;
+          }
+          Ss({ value: r, inclusive: i }, { value: e, inclusive: t }) > 0 && ((r = e), (i = t));
+        }
+        if (null !== n)
+          for (let o = 0; o < e.orderBy.length; ++o)
+            if (e.orderBy[o].field.isEqual(t)) {
+              const e = n.position[o];
+              Ss({ value: r, inclusive: i }, { value: e, inclusive: n.inclusive }) > 0 && ((r = e), (i = n.inclusive));
+              break;
+            }
+        return { value: r, inclusive: i };
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class sa {
+        constructor(e, t = null, n = [], r = [], i = null, o = 'F', s = null, a = null) {
+          (this.path = e),
+            (this.collectionGroup = t),
+            (this.explicitOrderBy = n),
+            (this.filters = r),
+            (this.limit = i),
+            (this.limitType = o),
+            (this.startAt = s),
+            (this.endAt = a),
+            (this.wt = null),
+            (this._t = null),
+            this.startAt,
+            this.endAt;
+        }
+      }
+      function aa(e, t, n, r, i, o, s, a) {
+        return new sa(e, t, n, r, i, o, s, a);
+      }
+      function ua(e) {
+        return new sa(e);
+      }
+      function ca(e) {
+        return (
+          0 === e.filters.length &&
+          null === e.limit &&
+          null == e.startAt &&
+          null == e.endAt &&
+          (0 === e.explicitOrderBy.length || (1 === e.explicitOrderBy.length && e.explicitOrderBy[0].field.isKeyField()))
+        );
+      }
+      function la(e) {
+        return e.explicitOrderBy.length > 0 ? e.explicitOrderBy[0].field : null;
+      }
+      function ha(e) {
+        for (const t of e.filters) {
+          const e = t.getFirstInequalityField();
+          if (null !== e) return e;
+        }
+        return null;
+      }
+      function fa(e) {
+        return null !== e.collectionGroup;
+      }
+      function da(e) {
+        const t = ui(e);
+        if (null === t.wt) {
+          t.wt = [];
+          const e = ha(t),
+            n = la(t);
+          if (null !== e && null === n) e.isKeyField() || t.wt.push(new Ns(e)), t.wt.push(new Ns(Oi.keyField(), 'asc'));
+          else {
+            let e = !1;
+            for (const n of t.explicitOrderBy) t.wt.push(n), n.field.isKeyField() && (e = !0);
+            if (!e) {
+              const e = t.explicitOrderBy.length > 0 ? t.explicitOrderBy[t.explicitOrderBy.length - 1].dir : 'asc';
+              t.wt.push(new Ns(Oi.keyField(), e));
+            }
+          }
+        }
+        return t.wt;
+      }
+      function pa(e) {
+        const t = ui(e);
+        if (!t._t)
+          if ('F' === t.limitType) t._t = Zs(t.path, t.collectionGroup, da(t), t.filters, t.limit, t.startAt, t.endAt);
+          else {
+            const e = [];
+            for (const i of da(t)) {
+              const t = 'desc' === i.dir ? 'asc' : 'desc';
+              e.push(new Ns(i.field, t));
+            }
+            const n = t.endAt ? new Cs(t.endAt.position, t.endAt.inclusive) : null,
+              r = t.startAt ? new Cs(t.startAt.position, t.startAt.inclusive) : null;
+            t._t = Zs(t.path, t.collectionGroup, e, t.filters, t.limit, n, r);
+          }
+        return t._t;
+      }
+      function ga(e, t) {
+        t.getFirstInequalityField(), ha(e);
+        const n = e.filters.concat([t]);
+        return new sa(e.path, e.collectionGroup, e.explicitOrderBy.slice(), n, e.limit, e.limitType, e.startAt, e.endAt);
+      }
+      function ma(e, t, n) {
+        return new sa(e.path, e.collectionGroup, e.explicitOrderBy.slice(), e.filters.slice(), t, n, e.startAt, e.endAt);
+      }
+      function va(e, t) {
+        return ta(pa(e), pa(t)) && e.limitType === t.limitType;
+      }
+      function ya(e) {
+        return `${ea(pa(e))}|lt:${e.limitType}`;
+      }
+      function wa(e) {
+        return `Query(target=${(function (e) {
+          let t = e.path.canonicalString();
+          return (
+            null !== e.collectionGroup && (t += ' collectionGroup=' + e.collectionGroup),
+            e.filters.length > 0 && (t += `, filters: [${e.filters.map(e => qs(e)).join(', ')}]`),
+            ro(e.limit) || (t += ', limit: ' + e.limit),
+            e.orderBy.length > 0 &&
+              (t += `, orderBy: [${e.orderBy
+                .map(e =>
+                  (function (e) {
+                    return `${e.field.canonicalString()} (${e.dir})`;
+                  })(e)
+                )
+                .join(', ')}]`),
+            e.startAt && ((t += ', startAt: '), (t += e.startAt.inclusive ? 'b:' : 'a:'), (t += e.startAt.position.map(e => hs(e)).join(','))),
+            e.endAt && ((t += ', endAt: '), (t += e.endAt.inclusive ? 'a:' : 'b:'), (t += e.endAt.position.map(e => hs(e)).join(','))),
+            `Target(${t})`
+          );
+        })(pa(e))}; limitType=${e.limitType})`;
+      }
+      function ba(e, t) {
+        return (
+          t.isFoundDocument() &&
+          (function (e, t) {
+            const n = t.key.path;
+            return null !== e.collectionGroup
+              ? t.key.hasCollectionId(e.collectionGroup) && e.path.isPrefixOf(n)
+              : Ni.isDocumentKey(e.path)
+                ? e.path.isEqual(n)
+                : e.path.isImmediateParentOf(n);
+          })(e, t) &&
+          (function (e, t) {
+            for (const n of da(e)) if (!n.field.isKeyField() && null === t.data.field(n.field)) return !1;
+            return !0;

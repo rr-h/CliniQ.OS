@@ -1,0 +1,400 @@
+      }
+      function Dp(e) {
+        return (function (e, t) {
+          if ('object' != typeof e || null === e) return !1;
+          const n = e;
+          for (const r of t) if (r in n && 'function' == typeof n[r]) return !0;
+          return !1;
+        })(
+          /**
+           * @license
+           * Copyright 2020 Google LLC
+           *
+           * Licensed under the Apache License, Version 2.0 (the "License");
+           * you may not use this file except in compliance with the License.
+           * You may obtain a copy of the License at
+           *
+           *   http://www.apache.org/licenses/LICENSE-2.0
+           *
+           * Unless required by applicable law or agreed to in writing, software
+           * distributed under the License is distributed on an "AS IS" BASIS,
+           * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           * See the License for the specific language governing permissions and
+           * limitations under the License.
+           */ e,
+          ['next', 'error', 'complete']
+        );
+      }
+      class Lp {
+        constructor() {
+          (this._progressObserver = {}),
+            (this._taskCompletionResolver = new hi()),
+            (this._lastProgress = { taskState: 'Running', totalBytes: 0, totalDocuments: 0, bytesLoaded: 0, documentsLoaded: 0 });
+        }
+        onProgress(e, t, n) {
+          this._progressObserver = { next: e, error: t, complete: n };
+        }
+        catch(e) {
+          return this._taskCompletionResolver.promise.catch(e);
+        }
+        then(e, t) {
+          return this._taskCompletionResolver.promise.then(e, t);
+        }
+        _completeWith(e) {
+          this._updateProgress(e), this._progressObserver.complete && this._progressObserver.complete(), this._taskCompletionResolver.resolve(e);
+        }
+        _failWith(e) {
+          (this._lastProgress.taskState = 'Error'),
+            this._progressObserver.next && this._progressObserver.next(this._lastProgress),
+            this._progressObserver.error && this._progressObserver.error(e),
+            this._taskCompletionResolver.reject(e);
+        }
+        _updateProgress(e) {
+          (this._lastProgress = e), this._progressObserver.next && this._progressObserver.next(e);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const jp = -1;
+      class Mp extends Ep {
+        constructor(e, t, n, r) {
+          super(e, t, n, r),
+            (this.type = 'firestore'),
+            (this._queue = new Pp()),
+            (this._persistenceKey = (null == r ? void 0 : r.name) || '[DEFAULT]');
+        }
+        _terminate() {
+          return this._firestoreClient || Up(this), this._firestoreClient.terminate();
+        }
+      }
+      function Fp(e) {
+        return e._firestoreClient || Up(e), e._firestoreClient.verifyNotTerminated(), e._firestoreClient;
+      }
+      function Up(e) {
+        var t, n, r;
+        const i = e._freezeSettings(),
+          o = (function (e, t, n, r) {
+            return new ns(
+              e,
+              t,
+              n,
+              r.host,
+              r.ssl,
+              r.experimentalForceLongPolling,
+              r.experimentalAutoDetectLongPolling,
+              dp(r.experimentalLongPollingOptions),
+              r.useFetchStreams
+            );
+          })(e._databaseId, (null === (t = e._app) || void 0 === t ? void 0 : t.options.appId) || '', e._persistenceKey, i);
+        (e._firestoreClient = new Wd(e._authCredentials, e._appCheckCredentials, e._queue, o)),
+          (null === (n = i.cache) || void 0 === n ? void 0 : n._offlineComponentProvider) &&
+            (null === (r = i.cache) || void 0 === r ? void 0 : r._onlineComponentProvider) &&
+            (e._firestoreClient._uninitializedComponentsProvider = {
+              _offlineKind: i.cache.kind,
+              _offline: i.cache._offlineComponentProvider,
+              _online: i.cache._onlineComponentProvider
+            });
+      }
+      function Vp(e, t) {
+        Qp((e = bp(e, Mp)));
+        const n = Fp(e);
+        if (n._uninitializedComponentsProvider) throw new li(ci.FAILED_PRECONDITION, 'SDK cache is already specified.');
+        ri('enableIndexedDbPersistence() will be deprecated in the future, you can use `FirestoreSettings.cache` instead.');
+        const r = e._freezeSettings(),
+          i = new Vd();
+        return $p(n, i, new Fd(i, r.cacheSizeBytes, null == t ? void 0 : t.forceOwnership));
+      }
+      function Bp(e) {
+        Qp((e = bp(e, Mp)));
+        const t = Fp(e);
+        if (t._uninitializedComponentsProvider) throw new li(ci.FAILED_PRECONDITION, 'SDK cache is already specified.');
+        ri('enableMultiTabIndexedDbPersistence() will be deprecated in the future, you can use `FirestoreSettings.cache` instead.');
+        const n = e._freezeSettings(),
+          r = new Vd();
+        return $p(t, r, new Ud(r, n.cacheSizeBytes));
+      }
+      function $p(e, t, n) {
+        const r = new hi();
+        return e.asyncQueue
+          .enqueue(async () => {
+            try {
+              await Hd(e, n), await Kd(e, t), r.resolve();
+            } catch (e) {
+              const n = e;
+              if (!Qd(n)) throw n;
+              ri('Error enabling indexeddb cache. Falling back to memory cache: ' + n), r.reject(n);
+            }
+          })
+          .then(() => r.promise);
+      }
+      function qp(e) {
+        if (e._initialized && !e._terminated)
+          throw new li(
+            ci.FAILED_PRECONDITION,
+            'Persistence can only be cleared before a Firestore instance is initialized or after it is terminated.'
+          );
+        const t = new hi();
+        return (
+          e._queue.enqueueAndForgetEvenWhileRestricted(async () => {
+            try {
+              await (async function (e) {
+                if (!Wi.D()) return Promise.resolve();
+                const t = e + 'main';
+                await Wi.delete(t);
+              })(ph(e._databaseId, e._persistenceKey)),
+                t.resolve();
+            } catch (e) {
+              t.reject(e);
+            }
+          }),
+          t.promise
+        );
+      }
+      function zp(e) {
+        return (function (e) {
+          const t = new hi();
+          return e.asyncQueue.enqueueAndForget(async () => pd(await tp(e), t)), t.promise;
+        })(Fp((e = bp(e, Mp))));
+      }
+      function Gp(e) {
+        return ip(Fp((e = bp(e, Mp))));
+      }
+      function Wp(e) {
+        return op(Fp((e = bp(e, Mp))));
+      }
+      function Hp(e, t) {
+        const n = Fp((e = bp(e, Mp))),
+          r = new Lp();
+        return hp(n, e._databaseId, t, r), r;
+      }
+      function Kp(e, t) {
+        return fp(Fp((e = bp(e, Mp))), t).then(t => (t ? new Ap(e, null, t.query) : null));
+      }
+      function Qp(e) {
+        if (e._initialized || e._terminated)
+          throw new li(
+            ci.FAILED_PRECONDITION,
+            'Firestore has already been started and persistence can no longer be enabled. You can only enable persistence before calling any other methods on a Firestore object.'
+          );
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      /**
+       * @license
+       * Copyright 2022 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      class Yp {
+        constructor(e) {
+          this._byteString = e;
+        }
+        static fromBase64String(e) {
+          try {
+            return new Yp(Ko.fromBase64String(e));
+          } catch (e) {
+            throw new li(ci.INVALID_ARGUMENT, 'Failed to construct data from Base64 string: ' + e);
+          }
+        }
+        static fromUint8Array(e) {
+          return new Yp(Ko.fromUint8Array(e));
+        }
+        toBase64() {
+          return this._byteString.toBase64();
+        }
+        toUint8Array() {
+          return this._byteString.toUint8Array();
+        }
+        toString() {
+          return 'Bytes(base64: ' + this.toBase64() + ')';
+        }
+        isEqual(e) {
+          return this._byteString.isEqual(e._byteString);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Xp {
+        constructor(...e) {
+          for (let t = 0; t < e.length; ++t)
+            if (0 === e[t].length) throw new li(ci.INVALID_ARGUMENT, 'Invalid field name at argument $(i + 1). Field names must not be empty.');
+          this._internalPath = new Oi(e);
+        }
+        isEqual(e) {
+          return this._internalPath.isEqual(e._internalPath);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2020 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      class Jp {
+        constructor(e) {
+          this._methodName = e;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Zp {
+        constructor(e, t) {
+          if (!isFinite(e) || e < -90 || e > 90) throw new li(ci.INVALID_ARGUMENT, 'Latitude must be a number between -90 and 90, but was: ' + e);
+          if (!isFinite(t) || t < -180 || t > 180)
+            throw new li(ci.INVALID_ARGUMENT, 'Longitude must be a number between -180 and 180, but was: ' + t);
+          (this._lat = e), (this._long = t);
+        }
+        get latitude() {
+          return this._lat;
+        }
+        get longitude() {
+          return this._long;
+        }
+        isEqual(e) {
+          return this._lat === e._lat && this._long === e._long;
+        }
+        toJSON() {
+          return { latitude: this._lat, longitude: this._long };
+        }
+        _compareTo(e) {
+          return Ii(this._lat, e._lat) || Ii(this._long, e._long);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const eg = /^__.*__$/;
+      class tg {
+        constructor(e, t, n) {
+          (this.data = e), (this.fieldMask = t), (this.fieldTransforms = n);
+        }
+        toMutation(e, t) {
+          return null !== this.fieldMask
+            ? new hu(e, this.data, this.fieldMask, t, this.fieldTransforms)
+            : new lu(e, this.data, t, this.fieldTransforms);
+        }
+      }
+      class ng {
+        constructor(e, t, n) {
+          (this.data = e), (this.fieldMask = t), (this.fieldTransforms = n);
+        }
+        toMutation(e, t) {
+          return new hu(e, this.data, this.fieldMask, t, this.fieldTransforms);
+        }
+      }
+      function rg(e) {
+        switch (e) {
+          case 0:
+          case 2:
+          case 1:
+            return !0;
+          case 3:
+          case 4:
+            return !1;
+          default:
+            throw oi();
+        }
+      }
+      class ig {
+        constructor(e, t, n, r, i, o) {

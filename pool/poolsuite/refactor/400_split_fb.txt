@@ -1,0 +1,400 @@
+             * @license
+             * Copyright 2020 Google LLC
+             *
+             * Licensed under the Apache License, Version 2.0 (the "License");
+             * you may not use this file except in compliance with the License.
+             * You may obtain a copy of the License at
+             *
+             *   http://www.apache.org/licenses/LICENSE-2.0
+             *
+             * Unless required by applicable law or agreed to in writing, software
+             * distributed under the License is distributed on an "AS IS" BASIS,
+             * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+             * See the License for the specific language governing permissions and
+             * limitations under the License.
+             */ r
+          );
+        for (const i of r) e = i._apply(e);
+        return e;
+      }
+      class Pg extends Ng {
+        constructor(e, t, n) {
+          super(), (this._field = e), (this._op = t), (this._value = n), (this.type = 'where');
+        }
+        static _create(e, t, n) {
+          return new Pg(e, t, n);
+        }
+        _apply(e) {
+          const t = this._parse(e);
+          return Yg(e._query, t), new Ap(e.firestore, e.converter, ga(e._query, t));
+        }
+        _parse(e) {
+          const t = sg(e.firestore),
+            n = (function (e, t, n, r, i, o, s) {
+              let a;
+              if (i.isKeyField()) {
+                if ('array-contains' === o || 'array-contains-any' === o)
+                  throw new li(ci.INVALID_ARGUMENT, `Invalid Query. You can't perform '${o}' queries on documentId().`);
+                if ('in' === o || 'not-in' === o) {
+                  Qg(s, o);
+                  const t = [];
+                  for (const n of s) t.push(Kg(r, e, n));
+                  a = { arrayValue: { values: t } };
+                } else a = Kg(r, e, s);
+              } else ('in' !== o && 'not-in' !== o && 'array-contains-any' !== o) || Qg(s, o), (a = mg(n, t, s, 'in' === o || 'not-in' === o));
+              return Ds.create(i, o, a);
+            })(e._query, 'where', t, e.firestore._databaseId, this._field, this._op, this._value);
+          return n;
+        }
+      }
+      function Dg(e, t, n) {
+        const r = t,
+          i = Cg('where', e);
+        return Pg._create(i, r, n);
+      }
+      class Lg extends Og {
+        constructor(e, t) {
+          super(), (this.type = e), (this._queryConstraints = t);
+        }
+        static _create(e, t) {
+          return new Lg(e, t);
+        }
+        _parse(e) {
+          const t = this._queryConstraints.map(t => t._parse(e)).filter(e => e.getFilters().length > 0);
+          return 1 === t.length ? t[0] : Ls.create(t, this._getOperator());
+        }
+        _apply(e) {
+          const t = this._parse(e);
+          return 0 === t.getFilters().length
+            ? e
+            : ((function (e, t) {
+                let n = e;
+                const r = t.getFlattenedFilters();
+                for (const i of r) Yg(n, i), (n = ga(n, i));
+              })(e._query, t),
+              new Ap(e.firestore, e.converter, ga(e._query, t)));
+        }
+        _getQueryConstraints() {
+          return this._queryConstraints;
+        }
+        _getOperator() {
+          return 'and' === this.type ? 'and' : 'or';
+        }
+      }
+      class jg extends Ng {
+        constructor(e, t) {
+          super(), (this._field = e), (this._direction = t), (this.type = 'orderBy');
+        }
+        static _create(e, t) {
+          return new jg(e, t);
+        }
+        _apply(e) {
+          const t = (function (e, t, n) {
+            if (null !== e.startAt)
+              throw new li(ci.INVALID_ARGUMENT, 'Invalid query. You must not call startAt() or startAfter() before calling orderBy().');
+            if (null !== e.endAt)
+              throw new li(ci.INVALID_ARGUMENT, 'Invalid query. You must not call endAt() or endBefore() before calling orderBy().');
+            const r = new Ns(t, n);
+            return (
+              (function (e, t) {
+                if (null === la(e)) {
+                  const n = ha(e);
+                  null !== n && Xg(e, n, t.field);
+                }
+              })(e, r),
+              r
+            );
+          })(e._query, this._field, this._direction);
+          return new Ap(
+            e.firestore,
+            e.converter,
+            (function (e, t) {
+              const n = e.explicitOrderBy.concat([t]);
+              return new sa(e.path, e.collectionGroup, n, e.filters.slice(), e.limit, e.limitType, e.startAt, e.endAt);
+            })(e._query, t)
+          );
+        }
+      }
+      function Mg(e, t = 'asc') {
+        const n = t,
+          r = Cg('orderBy', e);
+        return jg._create(r, n);
+      }
+      class Fg extends Ng {
+        constructor(e, t, n) {
+          super(), (this.type = e), (this._limit = t), (this._limitType = n);
+        }
+        static _create(e, t, n) {
+          return new Fg(e, t, n);
+        }
+        _apply(e) {
+          return new Ap(e.firestore, e.converter, ma(e._query, this._limit, this._limitType));
+        }
+      }
+      function Ug(e) {
+        return _p('limit', e), Fg._create('limit', e, 'F');
+      }
+      function Vg(e) {
+        return _p('limitToLast', e), Fg._create('limitToLast', e, 'L');
+      }
+      class Bg extends Ng {
+        constructor(e, t, n) {
+          super(), (this.type = e), (this._docOrFields = t), (this._inclusive = n);
+        }
+        static _create(e, t, n) {
+          return new Bg(e, t, n);
+        }
+        _apply(e) {
+          const t = Hg(e, this.type, this._docOrFields, this._inclusive);
+          return new Ap(
+            e.firestore,
+            e.converter,
+            (function (e, t) {
+              return new sa(e.path, e.collectionGroup, e.explicitOrderBy.slice(), e.filters.slice(), e.limit, e.limitType, t, e.endAt);
+            })(e._query, t)
+          );
+        }
+      }
+      function $g(...e) {
+        return Bg._create('startAt', e, !0);
+      }
+      function qg(...e) {
+        return Bg._create('startAfter', e, !1);
+      }
+      class zg extends Ng {
+        constructor(e, t, n) {
+          super(), (this.type = e), (this._docOrFields = t), (this._inclusive = n);
+        }
+        static _create(e, t, n) {
+          return new zg(e, t, n);
+        }
+        _apply(e) {
+          const t = Hg(e, this.type, this._docOrFields, this._inclusive);
+          return new Ap(
+            e.firestore,
+            e.converter,
+            (function (e, t) {
+              return new sa(e.path, e.collectionGroup, e.explicitOrderBy.slice(), e.filters.slice(), e.limit, e.limitType, e.startAt, t);
+            })(e._query, t)
+          );
+        }
+      }
+      function Gg(...e) {
+        return zg._create('endBefore', e, !1);
+      }
+      function Wg(...e) {
+        return zg._create('endAt', e, !0);
+      }
+      function Hg(e, t, n, r) {
+        if (((n[0] = (0, u.m9)(n[0])), n[0] instanceof Ag))
+          return (function (e, t, n, r, i) {
+            if (!r) throw new li(ci.NOT_FOUND, `Can't use a DocumentSnapshot that doesn't exist for ${n}().`);
+            const o = [];
+            for (const s of da(e))
+              if (s.field.isKeyField()) o.push(ds(t, r.key));
+              else {
+                const e = r.data.field(s.field);
+                if (Zo(e))
+                  throw new li(
+                    ci.INVALID_ARGUMENT,
+                    'Invalid query. You are trying to start or end a query using a document for which the field "' +
+                      s.field +
+                      '" is an uncommitted server timestamp. (Since the value of this field is unknown, you cannot start/end a query with it.)'
+                  );
+                if (null === e) {
+                  const e = s.field.canonicalString();
+                  throw new li(
+                    ci.INVALID_ARGUMENT,
+                    `Invalid query. You are trying to start or end a query using a document for which the field '${e}' (used as the orderBy) does not exist.`
+                  );
+                }
+                o.push(e);
+              }
+            return new Cs(o, i);
+          })(e._query, e.firestore._databaseId, t, n[0]._document, r);
+        {
+          const i = sg(e.firestore);
+          return (function (e, t, n, r, i, o) {
+            const s = e.explicitOrderBy;
+            if (i.length > s.length)
+              throw new li(
+                ci.INVALID_ARGUMENT,
+                `Too many arguments provided to ${r}(). The number of arguments must be less than or equal to the number of orderBy() clauses`
+              );
+            const a = [];
+            for (let u = 0; u < i.length; u++) {
+              const o = i[u];
+              if (s[u].field.isKeyField()) {
+                if ('string' != typeof o)
+                  throw new li(ci.INVALID_ARGUMENT, `Invalid query. Expected a string for document ID in ${r}(), but got a ${typeof o}`);
+                if (!fa(e) && -1 !== o.indexOf('/'))
+                  throw new li(
+                    ci.INVALID_ARGUMENT,
+                    `Invalid query. When querying a collection and ordering by documentId(), the value passed to ${r}() must be a plain document ID, but '${o}' contains a slash.`
+                  );
+                const n = e.path.child(Ci.fromString(o));
+                if (!Ni.isDocumentKey(n))
+                  throw new li(
+                    ci.INVALID_ARGUMENT,
+                    `Invalid query. When querying a collection group and ordering by documentId(), the value passed to ${r}() must result in a valid document path, but '${n}' is not because it contains an odd number of segments.`
+                  );
+                const i = new Ni(n);
+                a.push(ds(t, i));
+              } else {
+                const e = mg(n, r, o);
+                a.push(e);
+              }
+            }
+            return new Cs(a, o);
+          })(e._query, e.firestore._databaseId, i, t, n, r);
+        }
+      }
+      function Kg(e, t, n) {
+        if ('string' == typeof (n = (0, u.m9)(n))) {
+          if ('' === n)
+            throw new li(
+              ci.INVALID_ARGUMENT,
+              'Invalid query. When querying with documentId(), you must provide a valid document ID, but it was an empty string.'
+            );
+          if (!fa(t) && -1 !== n.indexOf('/'))
+            throw new li(
+              ci.INVALID_ARGUMENT,
+              `Invalid query. When querying a collection by documentId(), you must provide a plain document ID, but '${n}' contains a '/' character.`
+            );
+          const r = t.path.child(Ci.fromString(n));
+          if (!Ni.isDocumentKey(r))
+            throw new li(
+              ci.INVALID_ARGUMENT,
+              `Invalid query. When querying a collection group by documentId(), the value provided must result in a valid document path, but '${r}' is not because it has an odd number of segments (${r.length}).`
+            );
+          return ds(e, new Ni(r));
+        }
+        if (n instanceof Tp) return ds(e, n._key);
+        throw new li(
+          ci.INVALID_ARGUMENT,
+          `Invalid query. When querying with documentId(), you must provide a valid string or a DocumentReference, but it was: ${wp(n)}.`
+        );
+      }
+      function Qg(e, t) {
+        if (!Array.isArray(e) || 0 === e.length)
+          throw new li(ci.INVALID_ARGUMENT, `Invalid Query. A non-empty array is required for '${t.toString()}' filters.`);
+      }
+      function Yg(e, t) {
+        if (t.isInequality()) {
+          const n = ha(e),
+            r = t.field;
+          if (null !== n && !n.isEqual(r))
+            throw new li(
+              ci.INVALID_ARGUMENT,
+              `Invalid query. All where filters with an inequality (<, <=, !=, not-in, >, or >=) must be on the same field. But you have inequality filters on '${n.toString()}' and '${r.toString()}'`
+            );
+          const i = la(e);
+          null !== i && Xg(e, r, i);
+        }
+        const n = (function (e, t) {
+          for (const n of e) for (const e of n.getFlattenedFilters()) if (t.indexOf(e.op) >= 0) return e.op;
+          return null;
+        })(
+          e.filters,
+          (function (e) {
+            switch (e) {
+              case '!=':
+                return ['!=', 'not-in'];
+              case 'array-contains-any':
+              case 'in':
+                return ['not-in'];
+              case 'not-in':
+                return ['array-contains-any', 'in', 'not-in', '!='];
+              default:
+                return [];
+            }
+          })(t.op)
+        );
+        if (null !== n)
+          throw n === t.op
+            ? new li(ci.INVALID_ARGUMENT, `Invalid query. You cannot use more than one '${t.op.toString()}' filter.`)
+            : new li(ci.INVALID_ARGUMENT, `Invalid query. You cannot use '${t.op.toString()}' filters with '${n.toString()}' filters.`);
+      }
+      function Xg(e, t, n) {
+        if (!n.isEqual(t))
+          throw new li(
+            ci.INVALID_ARGUMENT,
+            `Invalid query. You have a where filter with an inequality (<, <=, !=, not-in, >, or >=) on field '${t.toString()}' and so you must also use '${t.toString()}' as your first argument to orderBy(), but your first orderBy() is on field '${n.toString()}' instead.`
+          );
+      }
+      class Jg {
+        convertValue(e, t = 'none') {
+          switch (ss(e)) {
+            case 0:
+              return null;
+            case 1:
+              return e.booleanValue;
+            case 2:
+              return Xo(e.integerValue || e.doubleValue);
+            case 3:
+              return this.convertTimestamp(e.timestampValue);
+            case 4:
+              return this.convertServerTimestamp(e, t);
+            case 5:
+              return e.stringValue;
+            case 6:
+              return this.convertBytes(Jo(e.bytesValue));
+            case 7:
+              return this.convertReference(e.referenceValue);
+            case 8:
+              return this.convertGeoPoint(e.geoPointValue);
+            case 9:
+              return this.convertArray(e.arrayValue, t);
+            case 10:
+              return this.convertObject(e.mapValue, t);
+            default:
+              throw oi();
+          }
+        }
+        convertObject(e, t) {
+          return this.convertObjectMap(e.fields, t);
+        }
+        convertObjectMap(e, t = 'none') {
+          const n = {};
+          return (
+            Mo(e, (e, r) => {
+              n[e] = this.convertValue(r, t);
+            }),
+            n
+          );
+        }
+        convertGeoPoint(e) {
+          return new Zp(Xo(e.latitude), Xo(e.longitude));
+        }
+        convertArray(e, t) {
+          return (e.values || []).map(e => this.convertValue(e, t));
+        }
+        convertServerTimestamp(e, t) {
+          switch (t) {
+            case 'previous':
+              const n = es(e);
+              return null == n ? null : this.convertValue(n, t);
+            case 'estimate':
+              return this.convertTimestamp(ts(e));
+            default:
+              return null;
+          }
+        }
+        convertTimestamp(e) {
+          const t = Yo(e);
+          return new Ti(t.seconds, t.nanos);
+        }
+        convertDocumentKey(e, t) {
+          const n = Ci.fromString(e);
+          si(Sc(n));
+          const r = new rs(n.get(1), n.get(3)),
+            i = new Ni(n.popFirst(5));
+          return (
+            r.isEqual(t) ||
+              ni(
+                `Document ${i} contains a document reference within a different database (${r.projectId}/${r.database}) which is not supported. It will be treated as a reference in the current database (${t.projectId}/${t.database}) instead.`
+              ),
+            i
+          );
+        }
+      }

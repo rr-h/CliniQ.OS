@@ -1,0 +1,400 @@
+          for (r = Mr(r, 2), n = Mr(n, 2); !kr(r); ) {
+            var s = o.add(r);
+            0 >= s.X(e) && ((i = i.add(n)), (o = s)), (r = Mr(r, 1)), (n = Mr(n, 1));
+          }
+          return (t = Rr(e, i.R(t))), new Dr(i, t);
+        }
+        for (i = Ar; 0 <= e.X(t); ) {
+          for (
+            n = Math.max(1, Math.floor(e.ea() / t.ea())),
+              r = Math.ceil(Math.log(n) / Math.LN2),
+              r = 48 >= r ? 1 : Math.pow(2, r - 48),
+              o = Er(n),
+              s = o.R(t);
+            Or(s) || 0 < s.X(e);
+
+          )
+            (n -= r), (o = Er(n)), (s = o.R(t));
+          kr(o) && (o = xr), (i = i.add(o)), (e = Rr(e, s));
+        }
+        return new Dr(i, e);
+      }
+      function jr(e) {
+        for (var t = e.g.length + 1, n = [], r = 0; r < t; r++) n[r] = (e.D(r) << 1) | (e.D(r - 1) >>> 31);
+        return new br(n, e.h);
+      }
+      function Mr(e, t) {
+        var n = t >> 5;
+        t %= 32;
+        for (var r = e.g.length - n, i = [], o = 0; o < r; o++) i[o] = 0 < t ? (e.D(o + n) >>> t) | (e.D(o + n + 1) << (32 - t)) : e.D(o + n);
+        return new br(i, e.h);
+      }
+      (r = br.prototype),
+        (r.ea = function () {
+          if (Or(this)) return -Nr(this).ea();
+          for (var e = 0, t = 1, n = 0; n < this.g.length; n++) {
+            var r = this.D(n);
+            (e += (0 <= r ? r : Tr + r) * t), (t *= Tr);
+          }
+          return e;
+        }),
+        (r.toString = function (e) {
+          if (((e = e || 10), 2 > e || 36 < e)) throw Error('radix out of range: ' + e);
+          if (kr(this)) return '0';
+          if (Or(this)) return '-' + Nr(this).toString(e);
+          for (var t = Er(Math.pow(e, 6)), n = this, r = ''; ; ) {
+            var i = Lr(n, t).g;
+            n = Rr(n, i.R(t));
+            var o = ((0 < n.g.length ? n.g[0] : n.h) >>> 0).toString(e);
+            if (((n = i), kr(n))) return o + r;
+            for (; 6 > o.length; ) o = '0' + o;
+            r = o + r;
+          }
+        }),
+        (r.D = function (e) {
+          return 0 > e ? 0 : e < this.g.length ? this.g[e] : this.h;
+        }),
+        (r.X = function (e) {
+          return (e = Rr(this, e)), Or(e) ? -1 : kr(e) ? 0 : 1;
+        }),
+        (r.abs = function () {
+          return Or(this) ? Nr(this) : this;
+        }),
+        (r.add = function (e) {
+          for (var t = Math.max(this.g.length, e.g.length), n = [], r = 0, i = 0; i <= t; i++) {
+            var o = r + (65535 & this.D(i)) + (65535 & e.D(i)),
+              s = (o >>> 16) + (this.D(i) >>> 16) + (e.D(i) >>> 16);
+            (r = s >>> 16), (o &= 65535), (s &= 65535), (n[i] = (s << 16) | o);
+          }
+          return new br(n, -2147483648 & n[n.length - 1] ? -1 : 0);
+        }),
+        (r.R = function (e) {
+          if (kr(this) || kr(e)) return Ar;
+          if (Or(this)) return Or(e) ? Nr(this).R(Nr(e)) : Nr(Nr(this).R(e));
+          if (Or(e)) return Nr(this.R(Nr(e)));
+          if (0 > this.X(Cr) && 0 > e.X(Cr)) return Er(this.ea() * e.ea());
+          for (var t = this.g.length + e.g.length, n = [], r = 0; r < 2 * t; r++) n[r] = 0;
+          for (r = 0; r < this.g.length; r++)
+            for (var i = 0; i < e.g.length; i++) {
+              var o = this.D(r) >>> 16,
+                s = 65535 & this.D(r),
+                a = e.D(i) >>> 16,
+                u = 65535 & e.D(i);
+              (n[2 * r + 2 * i] += s * u),
+                Pr(n, 2 * r + 2 * i),
+                (n[2 * r + 2 * i + 1] += o * u),
+                Pr(n, 2 * r + 2 * i + 1),
+                (n[2 * r + 2 * i + 1] += s * a),
+                Pr(n, 2 * r + 2 * i + 1),
+                (n[2 * r + 2 * i + 2] += o * a),
+                Pr(n, 2 * r + 2 * i + 2);
+            }
+          for (r = 0; r < t; r++) n[r] = (n[2 * r + 1] << 16) | n[2 * r];
+          for (r = t; r < 2 * t; r++) n[r] = 0;
+          return new br(n, 0);
+        }),
+        (r.gb = function (e) {
+          return Lr(this, e).h;
+        }),
+        (r.and = function (e) {
+          for (var t = Math.max(this.g.length, e.g.length), n = [], r = 0; r < t; r++) n[r] = this.D(r) & e.D(r);
+          return new br(n, this.h & e.h);
+        }),
+        (r.or = function (e) {
+          for (var t = Math.max(this.g.length, e.g.length), n = [], r = 0; r < t; r++) n[r] = this.D(r) | e.D(r);
+          return new br(n, this.h | e.h);
+        }),
+        (r.xor = function (e) {
+          for (var t = Math.max(this.g.length, e.g.length), n = [], r = 0; r < t; r++) n[r] = this.D(r) ^ e.D(r);
+          return new br(n, this.h ^ e.h);
+        }),
+        (fr.prototype.createWebChannel = fr.prototype.g),
+        (dr.prototype.send = dr.prototype.u),
+        (dr.prototype.open = dr.prototype.m),
+        (dr.prototype.close = dr.prototype.close),
+        (ut.NO_ERROR = 0),
+        (ut.TIMEOUT = 8),
+        (ut.HTTP_ERROR = 6),
+        (ct.COMPLETE = 'complete'),
+        (ft.EventType = pt),
+        (pt.OPEN = 'a'),
+        (pt.CLOSE = 'b'),
+        (pt.ERROR = 'c'),
+        (pt.MESSAGE = 'd'),
+        (Ie.prototype.listen = Ie.prototype.O),
+        (kn.prototype.listenOnce = kn.prototype.P),
+        (kn.prototype.getLastError = kn.prototype.Sa),
+        (kn.prototype.getLastErrorCode = kn.prototype.Ia),
+        (kn.prototype.getStatus = kn.prototype.da),
+        (kn.prototype.getResponseJson = kn.prototype.Wa),
+        (kn.prototype.getResponseText = kn.prototype.ja),
+        (kn.prototype.send = kn.prototype.ha),
+        (kn.prototype.setWithCredentials = kn.prototype.Oa),
+        (yr.prototype.digest = yr.prototype.l),
+        (yr.prototype.reset = yr.prototype.reset),
+        (yr.prototype.update = yr.prototype.j),
+        (br.prototype.add = br.prototype.add),
+        (br.prototype.multiply = br.prototype.R),
+        (br.prototype.modulo = br.prototype.gb),
+        (br.prototype.compare = br.prototype.X),
+        (br.prototype.toNumber = br.prototype.ea),
+        (br.prototype.toString = br.prototype.toString),
+        (br.prototype.getBits = br.prototype.D),
+        (br.fromNumber = Er),
+        (br.fromString = Sr);
+      var Fr = (l.createWebChannelTransport = function () {
+          return new fr();
+        }),
+        Ur = (l.getStatEventTarget = function () {
+          return tt();
+        }),
+        Vr = (l.ErrorCode = ut),
+        Br = (l.EventType = ct),
+        $r = (l.Event = Ze),
+        qr = (l.Stat = {
+          xb: 0,
+          Ab: 1,
+          Bb: 2,
+          Ub: 3,
+          Zb: 4,
+          Wb: 5,
+          Xb: 6,
+          Vb: 7,
+          Tb: 8,
+          Yb: 9,
+          PROXY: 10,
+          NOPROXY: 11,
+          Rb: 12,
+          Nb: 13,
+          Ob: 14,
+          Mb: 15,
+          Pb: 16,
+          Qb: 17,
+          tb: 18,
+          sb: 19,
+          ub: 20
+        }),
+        zr = (l.FetchXmlHttpFactory = In),
+        Gr = (l.WebChannel = ft),
+        Wr = (l.XhrIo = kn),
+        Hr = (l.Md5 = yr),
+        Kr = (l.Integer = br);
+      const Qr = '@firebase/firestore';
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Yr {
+        constructor(e) {
+          this.uid = e;
+        }
+        isAuthenticated() {
+          return null != this.uid;
+        }
+        toKey() {
+          return this.isAuthenticated() ? 'uid:' + this.uid : 'anonymous-user';
+        }
+        isEqual(e) {
+          return e.uid === this.uid;
+        }
+      }
+      (Yr.UNAUTHENTICATED = new Yr(null)),
+        (Yr.GOOGLE_CREDENTIALS = new Yr('google-credentials-uid')),
+        (Yr.FIRST_PARTY = new Yr('first-party-uid')),
+        (Yr.MOCK_USER = new Yr('mock-user'));
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      let Xr = '9.23.0';
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const Jr = new a.Yd('@firebase/firestore');
+      function Zr() {
+        return Jr.logLevel;
+      }
+      function ei(e) {
+        Jr.setLogLevel(e);
+      }
+      function ti(e, ...t) {
+        if (Jr.logLevel <= a['in'].DEBUG) {
+          const n = t.map(ii);
+          Jr.debug(`Firestore (${Xr}): ${e}`, ...n);
+        }
+      }
+      function ni(e, ...t) {
+        if (Jr.logLevel <= a['in'].ERROR) {
+          const n = t.map(ii);
+          Jr.error(`Firestore (${Xr}): ${e}`, ...n);
+        }
+      }
+      function ri(e, ...t) {
+        if (Jr.logLevel <= a['in'].WARN) {
+          const n = t.map(ii);
+          Jr.warn(`Firestore (${Xr}): ${e}`, ...n);
+        }
+      }
+      function ii(e) {
+        if ('string' == typeof e) return e;
+        try {
+          return (t = e), JSON.stringify(t);
+        } catch (t) {
+          return e;
+        }
+        /**
+         * @license
+         * Copyright 2020 Google LLC
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *   http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */ var t;
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ function oi(e = 'Unexpected state') {
+        const t = `FIRESTORE (${Xr}) INTERNAL ASSERTION FAILED: ` + e;
+        throw (ni(t), new Error(t));
+      }
+      function si(e, t) {
+        e || oi();
+      }
+      function ai(e, t) {
+        e || oi();
+      }
+      function ui(e, t) {
+        return e;
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ const ci = {
+        OK: 'ok',
+        CANCELLED: 'cancelled',
+        UNKNOWN: 'unknown',
+        INVALID_ARGUMENT: 'invalid-argument',
+        DEADLINE_EXCEEDED: 'deadline-exceeded',
+        NOT_FOUND: 'not-found',
+        ALREADY_EXISTS: 'already-exists',
+        PERMISSION_DENIED: 'permission-denied',
+        UNAUTHENTICATED: 'unauthenticated',
+        RESOURCE_EXHAUSTED: 'resource-exhausted',
+        FAILED_PRECONDITION: 'failed-precondition',
+        ABORTED: 'aborted',
+        OUT_OF_RANGE: 'out-of-range',
+        UNIMPLEMENTED: 'unimplemented',
+        INTERNAL: 'internal',
+        UNAVAILABLE: 'unavailable',
+        DATA_LOSS: 'data-loss'
+      };
+      class li extends u.ZR {
+        constructor(e, t) {
+          super(e, t), (this.code = e), (this.message = t), (this.toString = () => `${this.name}: [code=${this.code}]: ${this.message}`);
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class hi {
+        constructor() {
+          this.promise = new Promise((e, t) => {
+            (this.resolve = e), (this.reject = t);
+          });
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.

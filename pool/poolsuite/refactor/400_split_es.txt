@@ -1,0 +1,400 @@
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class af {
+        constructor(e, t, n, r, i) {
+          (this.localStore = e),
+            (this.datastore = t),
+            (this.asyncQueue = n),
+            (this.remoteSyncer = {}),
+            (this.Eu = []),
+            (this.Au = new Map()),
+            (this.vu = new Set()),
+            (this.Ru = []),
+            (this.Pu = i),
+            this.Pu.Yr(e => {
+              n.enqueueAndForget(async () => {
+                mf(this) &&
+                  (ti('RemoteStore', 'Restarting streams for network reachability change.'),
+                  await (async function (e) {
+                    const t = ui(e);
+                    t.vu.add(4), await cf(t), t.bu.set('Unknown'), t.vu.delete(4), await uf(t);
+                  })(this));
+              });
+            }),
+            (this.bu = new sf(n, r));
+        }
+      }
+      async function uf(e) {
+        if (mf(e)) for (const t of e.Ru) await t(!0);
+      }
+      async function cf(e) {
+        for (const t of e.Ru) await t(!1);
+      }
+      function lf(e, t) {
+        const n = ui(e);
+        n.Au.has(t.targetId) || (n.Au.set(t.targetId, t), gf(n) ? pf(n) : Df(n).Ko() && ff(n, t));
+      }
+      function hf(e, t) {
+        const n = ui(e),
+          r = Df(n);
+        n.Au.delete(t), r.Ko() && df(n, t), 0 === n.Au.size && (r.Ko() ? r.jo() : mf(n) && n.bu.set('Unknown'));
+      }
+      function ff(e, t) {
+        if ((e.Vu.qt(t.targetId), t.resumeToken.approximateByteSize() > 0 || t.snapshotVersion.compareTo(Ai.min()) > 0)) {
+          const n = e.remoteSyncer.getRemoteKeysForTarget(t.targetId).size;
+          t = t.withExpectedCount(n);
+        }
+        Df(e).su(t);
+      }
+      function df(e, t) {
+        e.Vu.qt(t), Df(e).iu(t);
+      }
+      function pf(e) {
+        (e.Vu = new Uu({
+          getRemoteKeysForTarget: t => e.remoteSyncer.getRemoteKeysForTarget(t),
+          le: t => e.Au.get(t) || null,
+          ue: () => e.datastore.serializer.databaseId
+        })),
+          Df(e).start(),
+          e.bu.gu();
+      }
+      function gf(e) {
+        return mf(e) && !Df(e).Uo() && e.Au.size > 0;
+      }
+      function mf(e) {
+        return 0 === ui(e).vu.size;
+      }
+      function vf(e) {
+        e.Vu = void 0;
+      }
+      async function yf(e) {
+        e.Au.forEach((t, n) => {
+          ff(e, t);
+        });
+      }
+      async function wf(e, t) {
+        vf(e), gf(e) ? (e.bu.Iu(t), pf(e)) : e.bu.set('Unknown');
+      }
+      async function bf(e, t, n) {
+        if ((e.bu.set('Online'), t instanceof Mu && 2 === t.state && t.cause))
+          try {
+            await (async function (e, t) {
+              const n = t.cause;
+              for (const r of t.targetIds) e.Au.has(r) && (await e.remoteSyncer.rejectListen(r, n), e.Au.delete(r), e.Vu.removeTarget(r));
+            })(e, t);
+          } catch (n) {
+            ti('RemoteStore', 'Failed to remove targets %s: %s ', t.targetIds.join(','), n), await _f(e, n);
+          }
+        else if ((t instanceof Lu ? e.Vu.Ht(t) : t instanceof ju ? e.Vu.ne(t) : e.Vu.Xt(t), !n.isEqual(Ai.min())))
+          try {
+            const t = await _h(e.localStore);
+            n.compareTo(t) >= 0 &&
+              (await (function (e, t) {
+                const n = e.Vu.ce(t);
+                return (
+                  n.targetChanges.forEach((n, r) => {
+                    if (n.resumeToken.approximateByteSize() > 0) {
+                      const i = e.Au.get(r);
+                      i && e.Au.set(r, i.withResumeToken(n.resumeToken, t));
+                    }
+                  }),
+                  n.targetMismatches.forEach((t, n) => {
+                    const r = e.Au.get(t);
+                    if (!r) return;
+                    e.Au.set(t, r.withResumeToken(Ko.EMPTY_BYTE_STRING, r.snapshotVersion)), df(e, t);
+                    const i = new Tc(r.target, t, n, r.sequenceNumber);
+                    ff(e, i);
+                  }),
+                  e.remoteSyncer.applyRemoteEvent(n)
+                );
+              })(e, n));
+          } catch (t) {
+            ti('RemoteStore', 'Failed to raise snapshot:', t), await _f(e, t);
+          }
+      }
+      async function _f(e, t, n) {
+        if (!Qi(t)) throw t;
+        e.vu.add(1),
+          await cf(e),
+          e.bu.set('Offline'),
+          n || (n = () => _h(e.localStore)),
+          e.asyncQueue.enqueueRetryable(async () => {
+            ti('RemoteStore', 'Retrying IndexedDB access'), await n(), e.vu.delete(1), await uf(e);
+          });
+      }
+      function If(e, t) {
+        return t().catch(n => _f(e, n, t));
+      }
+      async function Ef(e) {
+        const t = ui(e),
+          n = Lf(t);
+        let r = t.Eu.length > 0 ? t.Eu[t.Eu.length - 1].batchId : -1;
+        for (; Sf(t); )
+          try {
+            const e = await Sh(t.localStore, r);
+            if (null === e) {
+              0 === t.Eu.length && n.jo();
+              break;
+            }
+            (r = e.batchId), Tf(t, e);
+          } catch (e) {
+            await _f(t, e);
+          }
+        Af(t) && xf(t);
+      }
+      function Sf(e) {
+        return mf(e) && e.Eu.length < 10;
+      }
+      function Tf(e, t) {
+        e.Eu.push(t);
+        const n = Lf(e);
+        n.Ko() && n.ou && n.uu(t.mutations);
+      }
+      function Af(e) {
+        return mf(e) && !Lf(e).Uo() && e.Eu.length > 0;
+      }
+      function xf(e) {
+        Lf(e).start();
+      }
+      async function Cf(e) {
+        Lf(e).hu();
+      }
+      async function kf(e) {
+        const t = Lf(e);
+        for (const n of e.Eu) t.uu(n.mutations);
+      }
+      async function Of(e, t, n) {
+        const r = e.Eu.shift(),
+          i = yu.from(r, t, n);
+        await If(e, () => e.remoteSyncer.applySuccessfulWrite(i)), await Ef(e);
+      }
+      async function Nf(e, t) {
+        t &&
+          Lf(e).ou &&
+          (await (async function (e, t) {
+            if (((n = t.code), Eu(n) && n !== ci.ABORTED)) {
+              const n = e.Eu.shift();
+              Lf(e).Qo(), await If(e, () => e.remoteSyncer.rejectFailedWrite(n.batchId, t)), await Ef(e);
+            }
+            var n;
+          })(e, t)),
+          Af(e) && xf(e);
+      }
+      async function Rf(e, t) {
+        const n = ui(e);
+        n.asyncQueue.verifyOperationInProgress(), ti('RemoteStore', 'RemoteStore received new credentials');
+        const r = mf(n);
+        n.vu.add(3), await cf(n), r && n.bu.set('Unknown'), await n.remoteSyncer.handleCredentialChange(t), n.vu.delete(3), await uf(n);
+      }
+      async function Pf(e, t) {
+        const n = ui(e);
+        t ? (n.vu.delete(2), await uf(n)) : t || (n.vu.add(2), await cf(n), n.bu.set('Unknown'));
+      }
+      function Df(e) {
+        return (
+          e.Su ||
+            ((e.Su = (function (e, t, n) {
+              const r = ui(e);
+              return r.fu(), new nf(t, r.connection, r.authCredentials, r.appCheckCredentials, r.serializer, n);
+              /**
+               * @license
+               * Copyright 2018 Google LLC
+               *
+               * Licensed under the Apache License, Version 2.0 (the "License");
+               * you may not use this file except in compliance with the License.
+               * You may obtain a copy of the License at
+               *
+               *   http://www.apache.org/licenses/LICENSE-2.0
+               *
+               * Unless required by applicable law or agreed to in writing, software
+               * distributed under the License is distributed on an "AS IS" BASIS,
+               * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+               * See the License for the specific language governing permissions and
+               * limitations under the License.
+               */
+            })(e.datastore, e.asyncQueue, { uo: yf.bind(null, e), ao: wf.bind(null, e), nu: bf.bind(null, e) })),
+            e.Ru.push(async t => {
+              t ? (e.Su.Qo(), gf(e) ? pf(e) : e.bu.set('Unknown')) : (await e.Su.stop(), vf(e));
+            })),
+          e.Su
+        );
+      }
+      function Lf(e) {
+        return (
+          e.Du ||
+            ((e.Du = (function (e, t, n) {
+              const r = ui(e);
+              return r.fu(), new rf(t, r.connection, r.authCredentials, r.appCheckCredentials, r.serializer, n);
+            })(e.datastore, e.asyncQueue, { uo: Cf.bind(null, e), ao: Nf.bind(null, e), au: kf.bind(null, e), cu: Of.bind(null, e) })),
+            e.Ru.push(async t => {
+              t
+                ? (e.Du.Qo(), await Ef(e))
+                : (await e.Du.stop(),
+                  e.Eu.length > 0 && (ti('RemoteStore', `Stopping write stream with ${e.Eu.length} pending writes`), (e.Eu = [])));
+            })),
+          e.Du
+        );
+        /**
+         * @license
+         * Copyright 2017 Google LLC
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *   http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+      }
+      class jf {
+        constructor(e, t, n, r, i) {
+          (this.asyncQueue = e),
+            (this.timerId = t),
+            (this.targetTimeMs = n),
+            (this.op = r),
+            (this.removalCallback = i),
+            (this.deferred = new hi()),
+            (this.then = this.deferred.promise.then.bind(this.deferred.promise)),
+            this.deferred.promise.catch(e => {});
+        }
+        static createAndSchedule(e, t, n, r, i) {
+          const o = Date.now() + n,
+            s = new jf(e, t, o, r, i);
+          return s.start(n), s;
+        }
+        start(e) {
+          this.timerHandle = setTimeout(() => this.handleDelayElapsed(), e);
+        }
+        skipDelay() {
+          return this.handleDelayElapsed();
+        }
+        cancel(e) {
+          null !== this.timerHandle && (this.clearTimeout(), this.deferred.reject(new li(ci.CANCELLED, 'Operation cancelled' + (e ? ': ' + e : ''))));
+        }
+        handleDelayElapsed() {
+          this.asyncQueue.enqueueAndForget(() =>
+            null !== this.timerHandle ? (this.clearTimeout(), this.op().then(e => this.deferred.resolve(e))) : Promise.resolve()
+          );
+        }
+        clearTimeout() {
+          null !== this.timerHandle && (this.removalCallback(this), clearTimeout(this.timerHandle), (this.timerHandle = null));
+        }
+      }
+      function Mf(e, t) {
+        if ((ni('AsyncQueue', `${t}: ${e}`), Qi(e))) return new li(ci.UNAVAILABLE, `${t}: ${e}`);
+        throw e;
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Ff {
+        constructor(e) {
+          (this.comparator = e ? (t, n) => e(t, n) || Ni.comparator(t.key, n.key) : (e, t) => Ni.comparator(e.key, t.key)),
+            (this.keyedMap = Ca()),
+            (this.sortedSet = new Uo(this.comparator));
+        }
+        static emptySet(e) {
+          return new Ff(e.comparator);
+        }
+        has(e) {
+          return null != this.keyedMap.get(e);
+        }
+        get(e) {
+          return this.keyedMap.get(e);
+        }
+        first() {
+          return this.sortedSet.minKey();
+        }
+        last() {
+          return this.sortedSet.maxKey();
+        }
+        isEmpty() {
+          return this.sortedSet.isEmpty();
+        }
+        indexOf(e) {
+          const t = this.keyedMap.get(e);
+          return t ? this.sortedSet.indexOf(t) : -1;
+        }
+        get size() {
+          return this.sortedSet.size;
+        }
+        forEach(e) {
+          this.sortedSet.inorderTraversal((t, n) => (e(t), !1));
+        }
+        add(e) {
+          const t = this.delete(e.key);
+          return t.copy(t.keyedMap.insert(e.key, e), t.sortedSet.insert(e, null));
+        }
+        delete(e) {
+          const t = this.get(e);
+          return t ? this.copy(this.keyedMap.remove(e), this.sortedSet.remove(t)) : this;
+        }
+        isEqual(e) {
+          if (!(e instanceof Ff)) return !1;
+          if (this.size !== e.size) return !1;
+          const t = this.sortedSet.getIterator(),
+            n = e.sortedSet.getIterator();
+          for (; t.hasNext(); ) {
+            const e = t.getNext().key,
+              r = n.getNext().key;
+            if (!e.isEqual(r)) return !1;
+          }
+          return !0;
+        }
+        toString() {
+          const e = [];
+          return (
+            this.forEach(t => {
+              e.push(t.toString());
+            }),
+            0 === e.length ? 'DocumentSet ()' : 'DocumentSet (\n  ' + e.join('  \n') + '\n)'
+          );
+        }
+        copy(e, t) {
+          const n = new Ff();
+          return (n.comparator = this.comparator), (n.keyedMap = e), (n.sortedSet = t), n;
+        }
+      }
+      /**
+       * @license
+       * Copyright 2017 Google LLC
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *   http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */ class Uf {
+        constructor() {
