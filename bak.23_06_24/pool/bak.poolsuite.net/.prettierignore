@@ -1,0 +1,13 @@
+# Ignore specific directories
+node_modules/
+.nyc_output
+coverage
+dist
+tests/fixtures/
+
+
+# Ignore build artifacts
+*.min.js
+*.bundle.js
+*.min.css
+./pool/poolsuite.net/js/chunk-vendors.611cb757.js

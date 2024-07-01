@@ -1,0 +1,129 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "mSKDisease": [
+    {
+      "diseaseName": "Osteoporosis",
+      "diseaseID": "M1"
+    },
+    {
+      "diseaseName": "Gout",
+      "diseaseID": "M2"
+    },
+    {
+      "diseaseName": "Osteoarthritis",
+      "diseaseID": "M3"
+    },
+    {
+      "diseaseName": "Tendinitis",
+      "diseaseID": "M4"
+    },
+    {
+      "diseaseName": "Carpal Tunnel Syndrome",
+      "diseaseID": "M5"
+    },
+    {
+      "diseaseName": "Bursitis",
+      "diseaseID": "M6"
+    },
+    {
+      "diseaseName": "Plantar Fasciitis",
+      "diseaseID": "M7"
+    },
+    {
+      "diseaseName": "Scoliosis",
+      "diseaseID": "M8"
+    },
+    {
+      "diseaseName": "Lumbar Disc Herniation",
+      "diseaseID": "M9"
+    },
+    {
+      "diseaseName": "Paget Disease of Bone",
+      "diseaseID": "M10"
+    },
+    {
+      "diseaseName": "Rotator Cuff Tendinitis",
+      "diseaseID": "M11"
+    },
+    {
+      "diseaseName": "Frozen Shoulder",
+      "diseaseID": "M12"
+    },
+    {
+      "diseaseName": "Achilles Tendinitis",
+      "diseaseID": "M13"
+    },
+    {
+      "diseaseName": "Osteomyelitis",
+      "diseaseID": "M14"
+    },
+    {
+      "diseaseName": "Meniscal Tears",
+      "diseaseID": "M15"
+    },
+    {
+      "diseaseName": "Patellar Tendinitis",
+      "diseaseID": "M16"
+    },
+    {
+      "diseaseName": "Spinal Stenosis",
+      "diseaseID": "M17"
+    },
+    {
+      "diseaseName": "Dupuytren Contracture",
+      "diseaseID": "M18"
+    },
+    {
+      "diseaseName": "Sciatica",
+      "diseaseID": "M19"
+    },
+    {
+      "diseaseName": "Osteomalacia",
+      "diseaseID": "M20"
+    },
+    {
+      "diseaseName": "Polymyalgia Rheumatica",
+      "diseaseID": "M21"
+    },
+    {
+      "diseaseName": "Spondylolisthesis",
+      "diseaseID": "M22"
+    },
+    {
+      "diseaseName": "Morton Neuroma",
+      "diseaseID": "M23"
+    },
+    {
+      "diseaseName": "Kyphosis",
+      "diseaseID": "M24"
+    },
+    {
+      "diseaseName": "Elbow Epicondylitis",
+      "diseaseID": "M25"
+    },
+    {
+      "diseaseName": "De Quervain Tenosynovitis",
+      "diseaseID": "M26"
+    },
+    {
+      "diseaseName": "Hallux Valgus",
+      "diseaseID": "M27"
+    },
+    {
+      "diseaseName": "Ganglion Cysts",
+      "diseaseID": "M28"
+    },
+    {
+      "diseaseName": "Trigger Finger",
+      "diseaseID": "M29"
+    },
+    {
+      "diseaseName": "Lumbar Radiculopathy",
+      "diseaseID": "M30"
+    }
+  ]
+}

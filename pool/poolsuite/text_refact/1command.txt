@@ -1,1 +1,0 @@
-refactor to remove firebase parse line by line very carefully, remove the firebase elements and output the remaining code

@@ -1,0 +1,69 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "ophthalmologyDisease": [
+    {
+      "diseaseName": "Glaucoma",
+      "diseaseID": "OP1"
+    },
+    {
+      "diseaseName": "Cataract",
+      "diseaseID": "OP2"
+    },
+    {
+      "diseaseName": "Age-related Macular Degeneration",
+      "diseaseID": "OP3"
+    },
+    {
+      "diseaseName": "Diabetic Retinopathy",
+      "diseaseID": "OP4"
+    },
+    {
+      "diseaseName": "Dry Eye Syndrome",
+      "diseaseID": "OP5"
+    },
+    {
+      "diseaseName": "Conjunctivitis",
+      "diseaseID": "OP6"
+    },
+    {
+      "diseaseName": "Keratitis",
+      "diseaseID": "OP7"
+    },
+    {
+      "diseaseName": "Uveitis",
+      "diseaseID": "OP8"
+    },
+    {
+      "diseaseName": "Retinal Detachment",
+      "diseaseID": "OP9"
+    },
+    {
+      "diseaseName": "Macular Hole",
+      "diseaseID": "OP10"
+    },
+    {
+      "diseaseName": "Blepharitis",
+      "diseaseID": "OP11"
+    },
+    {
+      "diseaseName": "Optic Neuritis",
+      "diseaseID": "OP12"
+    },
+    {
+      "diseaseName": "Pterygium",
+      "diseaseID": "OP13"
+    },
+    {
+      "diseaseName": "Corneal Ulcer",
+      "diseaseID": "OP14"
+    },
+    {
+      "diseaseName": "Amblyopia",
+      "diseaseID": "OP15"
+    }
+  ]
+}

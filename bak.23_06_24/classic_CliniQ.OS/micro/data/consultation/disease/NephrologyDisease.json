@@ -1,0 +1,89 @@
+{
+  "import": {
+    "type": "json"
+  },
+  "key": "value",
+  "type": "json",
+  "nephrologyDisease": [
+    {
+      "diseaseName": "Acute Kidney Injury",
+      "diseaseID": "NP1"
+    },
+    {
+      "diseaseName": "Chronic Kidney Disease",
+      "diseaseID": "NP2"
+    },
+    {
+      "diseaseName": "Glomerulonephritis",
+      "diseaseID": "NP3"
+    },
+    {
+      "diseaseName": "Nephrotic Syndrome",
+      "diseaseID": "NP4"
+    },
+    {
+      "diseaseName": "Kidney Stones",
+      "diseaseID": "NP5"
+    },
+    {
+      "diseaseName": "Renal Artery Stenosis",
+      "diseaseID": "NP6"
+    },
+    {
+      "diseaseName": "Interstitial Nephritis",
+      "diseaseID": "NP7"
+    },
+    {
+      "diseaseName": "Haemolytic Uraemic Syndrome",
+      "diseaseID": "NP8"
+    },
+    {
+      "diseaseName": "Lupus Nephritis",
+      "diseaseID": "NP9"
+    },
+    {
+      "diseaseName": "Diabetic Nephropathy",
+      "diseaseID": "NP10"
+    },
+    {
+      "diseaseName": "Kidney Cancer",
+      "diseaseID": "NP11"
+    },
+    {
+      "diseaseName": "Renal Cysts",
+      "diseaseID": "NP12"
+    },
+    {
+      "diseaseName": "Urinary Tract Infection",
+      "diseaseID": "NP13"
+    },
+    {
+      "diseaseName": "Nephrolithiasis",
+      "diseaseID": "NP14"
+    },
+    {
+      "diseaseName": "Pyelonephritis",
+      "diseaseID": "NP15"
+    },
+    {
+      "diseaseName": "Kidney Cancer",
+      "diseaseID": "NP16"
+    },
+    {
+      "diseaseName": "Renal Cysts",
+      "diseaseID": "NP17"
+    },
+    {
+      "diseaseName": "Urinary Tract Infection",
+      "diseaseID": "NP18"
+    },
+    {
+      "diseaseName": "Nephrolithiasis",
+      "diseaseID": "NP19"
+    },
+    {
+      "diseaseName": "Pyelonephritis",
+      "diseaseID": "NP20"
+    }
+  ]
+}

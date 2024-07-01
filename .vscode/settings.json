@@ -34,5 +34,6 @@
     }
   ],
   "livePreview.defaultPreviewPath": "/frontend/CQ.OS_UI/index.html",
-  "gitdoc.enabled": true
+  "gitdoc.enabled": true,
+  "editor.tabSize": 2
 }
